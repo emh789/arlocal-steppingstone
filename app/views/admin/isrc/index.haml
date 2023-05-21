@@ -1,0 +1,17 @@
+= html_head_title_extend! "ISRC"
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Audio and Video
+  .arl_admin_resource_header_title
+    ISRC data
+  .arl_admin_resource_header_buttons
+    = isrc_admin_button_to_edit
+
+.arl_admin_isrc_index
+  %table.arl_admin_isrc_index_isrcs
+    - @resources.each do |resource|
+      %tr.arl_admin_isrc_index_isrcs_item
+        %td.arl_admin_isrc_index_isrcs_item_class= resource.class
+        %td.arl_admin_isrc_index_isrcs_item_title= resource_reference_admin_link(resource)
+        %td.arl_admin_isrc_index_isrcs_item_isrc= resource.isrc

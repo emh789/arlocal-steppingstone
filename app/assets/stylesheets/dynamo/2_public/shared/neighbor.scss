@@ -1,0 +1,15 @@
+.neighbor_nav_button {
+  border-radius: $border-radius;
+  display: inline-block;
+  font-family: $font-family-application;
+  font-size: 1em;
+  font-weight: bold;
+  height: 1.5em;
+  line-height: 1.5em;
+  margin: 0rem 0.5rem;
+  min-width: 1.5em;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+}

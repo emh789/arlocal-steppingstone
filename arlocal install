@@ -1,0 +1,53 @@
+# A&R.local Installation Guide
+bundl
+## Get the software
+
+sudo apt install build-essential 
+
+___Requires: ruby___
+    ruby-install
+    chruby
+
+___Requires: gem bundler___
+
+___Requires: secure web server___
+for example, nginx:
+    sudo apt install nginx
+    sudo apt install certbot python3-certbot-nginx
+
+___Requires packaged dependencies___
+   sudo apt install mediainfo libsqlite3-dev nodejs sqlite3 
+
+
+1. git init
+2. git pull 
+3. bundle install
+
+
+## Create initial settings
+
+5. rails credentials:edit
+
+```
+NO CREDENTIALS:
+/home/eli/dev/eliharrison_git/config/initializers/x_arlocal.rb:21:in `block in <main>': undefined method `[]' for nil:NilClass (NoMethodError)
+```
+
+6. rails arlocal:init
+6.1. db:schema:load
+6.2. arlocal:init:settings
+6.3. arlocal:administrator:create
+6.4. arlocal:init:info_page
+
+
+
+
+7. Catalog folder
+7.1 upload content to public/catalog
+7.2 upload content to other folder in filesystem
+7.2.1. create soft-link to directory in public
+7.2.2. remove/rename existing catalog/ folder
+7.2.3. soft-link catalog/ to soft-link directory
+7.2.3.a. !!! creating catalog/ as a soft-link directly to your folder may result in data deletion if catalog/ is replaced or deleted.
+
+

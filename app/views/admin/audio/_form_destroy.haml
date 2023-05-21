@@ -1,0 +1,14 @@
+= form_with model: [:admin, audio], method: :delete, local: true, class: :arl_form do |f|
+  .arl_form_title
+    Destroy audio?
+    .arl_form_data_label_destroy= tag.i audio.title
+
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_caveat Audio will be removed from any album or event tracklists.
+    %li.arl_form_explanation_caveat <em>Imported</em> audio files will remain in the file system.
+    %li.arl_form_explanation_caveat <em>Uploaded</em> audio attachment(s) will be purged.
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_warning This action can not be undone.
+
+  .arl_form_actions
+    = f.submit 'Destroy Audio', data: { confirm: 'Are you sure?' },  class: :arl_button_form_submit_destroy

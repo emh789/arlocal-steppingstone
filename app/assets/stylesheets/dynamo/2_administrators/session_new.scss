@@ -1,0 +1,78 @@
+.arl_administrator_new {
+  font-family: $font-family-application;
+  padding: $arl-margin-wide;
+}
+
+.arl_administrator_new_header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: $arl-margin;
+  margin-bottom: $arl-margin;
+}
+
+.arl_administrator_new_prompt {
+  margin-top: $arl-margin;
+}
+
+.arl_administrator_new_prompt_form {
+  margin-bottom: 0rem;
+  margin-left: $arl-margin-wide;
+  margin-right: $arl-margin-wide;
+  margin-top: -($arl-margin-wide);
+}
+
+.arl_administrator_new_prompt_logo {
+  box-sizing: border-box;
+  height: 10rem;
+  margin-right: $arl-margin-wide;
+  opacity: 50%;
+  width: 10rem;
+}
+
+
+
+@media #{$media-screen-1} {
+  .arl_administrator_new_header {
+    text-align: center;
+  }
+  .arl_administrator_new_prompt {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .arl_administrator_new_prompt_form {
+  }
+}
+
+
+@media #{$media-screen-2} {
+  .arl_administrator_new_header {
+    text-align: center;
+  }
+  .arl_administrator_new_prompt {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .arl_administrator_new_prompt_form {
+    width: 25rem;
+  }
+}
+
+
+@media #{$media-screen-3} {
+  .arl_administrator_new_header {
+    text-align: left;
+  }
+  .arl_administrator_new_prompt {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .arl_administrator_new_prompt_form {
+    width: 25rem;
+  }
+}

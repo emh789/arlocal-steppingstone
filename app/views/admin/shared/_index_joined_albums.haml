@@ -1,0 +1,4 @@
+.arl_admin_joined_resource
+  %dh.arl_admin_joined_resource_heading= resource_joined_albums_count_statement(resource, punctuated: true)
+  - resource.albums_sorted.each do |album|
+    %dd.arl_admin_joined_resource_data= album.title

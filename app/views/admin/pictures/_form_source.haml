@@ -1,0 +1,10 @@
+= form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :source), local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Picture source
+  .arl_form_data
+    = render 'form_elements/source_select',    attribute: :source_type,               form: f, selectable: selectable
+    = render 'form_elements/text_field',       attribute: :source_imported_file_path, form: f, aside: "#{source_imported_dirname(trailing_separator: true)}"
+    = render 'form_elements/file_field',       attribute: :source_uploaded,         form: f, purge_path: edit_admin_picture_path(@picture, pane: :source_uploaded_purge)
+  .arl_form_actions
+    .arl_form_action_submit
+      = f.submit class: :arl_button_form_submit

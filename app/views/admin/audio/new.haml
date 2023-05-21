@@ -1,0 +1,9 @@
+= html_head_title_extend! 'New Audio'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Audio
+  = render '/form_elements/errors', resource: @audio
+
+.arl_admin_audio_edit
+  = render 'form', audio: @audio, selectable: @form_metadata.selectables

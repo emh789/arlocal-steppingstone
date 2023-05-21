@@ -1,0 +1,27 @@
+= html_head_title_extend! :articles, @article.title
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Article
+  .arl_admin_resource_header_title
+    = "#{@article.title}"
+  .arl_admin_resource_header_buttons
+    = article_admin_button_to_previous(@article_neighbors.previous)
+    = article_admin_button_to_edit(@article)
+    = article_admin_button_to_next(@article_neighbors.next)
+
+.arl_admin_articles_show
+  %dl.arl_admin_articles_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @article.title
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @article.visibility
+  %dl.arl_admin_articles_show_atributes
+    = render 'admin/shared/metadata_pair', key: 'Author', value: @article.author
+    = render 'admin/shared/metadata_pair', key: 'Copyright', text_props: @article.copyright_props
+    = render 'admin/shared/metadata_pair', key: 'Date released', value: @article.date_released
+  %div.arl_admin_articles_show_joins
+    = render 'admin/shared/show_joined_infopages', resource: @article
+  %dl.arl_admin_articles_show_content
+    = render 'admin/shared/metadata_pair', key: 'Content', text_props: @article.content_props
+  %dl.arl_admin_articles_show_etc
+    -#= render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_article_path(@article.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @article.updated_at

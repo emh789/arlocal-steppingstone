@@ -1,0 +1,31 @@
+.arl_admin_resource_joins_buttons
+  = infopage_picture_admin_button_to_new_join_single(infopage)
+  = infopage_picture_admin_button_to_new_import(infopage)
+  = infopage_picture_admin_button_to_new_upload(infopage)
+  = infopage_picture_admin_button_to_new_join_by_keyword(infopage)
+
+.arl_form_title
+  = infopage_statement_pictures_count(infopage)
+
+- if infopage.does_have_pictures
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :pictures), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading
+            %th.arl_form_data_joins_heading title
+            %th.arl_form_data_joins_heading group
+            %th.arl_form_data_joins_heading order
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :infopage_pictures, infopage.infopage_pictures_sorted do |ip|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= picture_preferred_tag(ip.object.picture, html_class: :arl_form_data_joins_picture_thumbnail_image)
+              %td.arl_form_data_joins_value= picture_reference_admin_link(ip.object.infopageable)
+              %td.arl_form_data_joins_value= ip.select :infopage_group, @form_metadata.selectables.item_groups, { selected: ip.object.infopage_group }, { class: :arl_form_data_attr_input_select }
+              %td.arl_form_data_joins_value= ip.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field
+              %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ip
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation= "will also detatch any pictures with '#{icon_destroy}' box checked"

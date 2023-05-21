@@ -1,0 +1,186 @@
+$dark-bg:                   rgba(016,014,010,1.00);
+$dark-bg-layer:             rgba(028,025,018,1.00);
+$dark-bg-layer2:            rgba(040,037,034,1.00);
+$dark-border:               rgba(050,048,044,1.00);
+$dark-fg:                   rgba(238,234,230,1.00);
+$dark-fg-link:              rgba(234,234,200,1.00);
+
+$dark-admin-bg1:            rgba(032,014,010,1.00);
+$dark-admin-bg2:            rgba(032,024,010,1.00);
+$dark-admin-bg3:            rgba(196,014,010,1.00);
+
+$dark-button-bg:            rgba(000,000,000,1.00);
+
+$dark-highlight-bg:         rgba(064,064,032,1.00);
+$dark-highlight-fg:         rgba(255,255,196,1.00);
+$dark-marquee-bg:           rgba(064,064,064,1.00);
+$dark-marquee-fg:           rgba(255,255,255,1.00);
+$dark-marquee-bold-link:    saturate(6);
+
+
+//$dark-jp-progress-bar-bg:   rgba(128,196,238,1.00);
+
+//$dark-bg-jp-link-vendor: transparentize($var-color-bg-exciting, 0.375);
+//$dark-bg-jp-media-current: transparentize(mix($var-color-fg-exciting, $var-color-bg-exciting, 33), 0.25);
+//$dark-bg-jp-progress-bar: $var-color-jp-progress-bar-bg;
+
+
+
+@media (prefers-color-scheme: dark) {
+  * {
+    border-color: $dark-border;
+  }
+  *:focus {
+    outline: ($border-width * 2) $border-style mix($dark-fg, $dark-bg);
+  }
+  ::selection {
+    background-color: transparentize(mix($dark-fg-link, $dark-highlight-bg), 0.5);
+    color: $dark-fg;
+  }
+  img {
+    opacity: 0.825;
+  }
+  input, select, textarea {
+    background-color: $dark-bg;
+    color: $dark-fg;
+    border-color: $dark-border;
+  }
+  .arl_admin_header {
+    background-color: $dark-admin-bg1;
+  }
+  .arl_admin_header_nav_button {
+    background-color: $dark-button-bg;
+    box-shadow: 0rem 0rem 1px $dark-border;
+  }
+  .arl_admin_header_nav_select {
+    background-color: $dark-button-bg;
+    box-shadow: 0rem 0rem 1px $dark-border;
+  }
+  .arl_admin_resource_header, .arl_admin_resource_header_with_thumbnail {
+    background-color: $dark-admin-bg2;
+  }
+  .arl_button_form_submit, .arl_form_bulk_item_button_submit {
+      background-color: $dark-button-bg;
+    &:hover {
+      background-color: $dark-admin-bg2;
+    }
+    &:active, &:focus {
+      background-color: $dark-admin-bg2;
+      color: $dark-highlight-fg;
+    }
+  }
+  .arl_button_form_submit_destroy {
+      color: mix($dark-admin-bg3, $dark-fg);
+      background-color: $dark-button-bg;
+    &:hover {
+      background-color: $dark-admin-bg1;
+      color: $dark-highlight-fg;
+    }
+    &:active, &:focus {
+      background-color: $dark-admin-bg1;
+      color: $dark-highlight-fg;
+    }
+  }
+  .arl_error_file_missing, .arl_error_not_indexed {
+    color: mix(red, $dark-fg);
+  }
+  .arl_form_data_attr_input_checkbox_visible {
+    background-color: $dark-bg;
+    border-color: $dark-border;
+  }
+  .arl_form_data_attr_input_checkbox:checked + .arl_form_data_attr_input_checkbox_visible {
+    background-color: transparentize($dark-fg-link, 0.6);
+    background-image: asset_url('font-awesome/check.svg');
+    background-size: cover;
+  }
+  .arl_form_data_joins_destroy_checkbox_visible {
+    background-color: transparentize($dark-fg-link, 0.8);
+    background-color: $dark-bg;
+    border-color: $dark-border;
+  }
+  .arl_form_data_joins_destroy_checkbox:checked + .arl_form_data_joins_destroy_checkbox_visible {
+    background-color: $dark-admin-bg3;
+    background-image: asset_url('font-awesome/xmark.svg');
+    background-size: 100% 100%;
+  }
+  .arl_marquee {
+    background-color: $dark-marquee-bg;
+    color: $dark-marquee-fg;
+    filter: $dark-marquee-bold-link;
+    text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.75);
+  }
+  .color_base {
+    background-color: $dark-bg;
+    border-color: $dark-border;
+    color: $dark-fg;
+  }
+  .color_bg_th {
+    background-color: transparentize($dark-bg-layer2, 0.5);
+  }
+  .color_bg_td {
+    background-color: transparentize($dark-bg, 0.5);
+  }
+  .color_bg1 {
+    background-color: $dark-bg;
+  }
+  .color_bg2 {
+    background-color: $dark-bg-layer;
+  }
+  .color_bg3 {
+    background-color: $dark-button-bg;
+  }
+  .color_highlight_bg {
+    background-color: $dark-highlight-bg;
+  }
+  .color_bg_heading {
+    background-color: $dark-bg-layer2;
+  }
+  .color_border {
+    border-color: $dark-border;
+  }
+  .color_fg {
+    color: $dark-fg;
+  }
+  .color_link, a {
+    color: $dark-fg-link;
+  }
+  .jp_arl_playlist_controls {
+    background-color: $dark-bg-layer2;
+  }
+  .jp_arl_button, .jp_arl_button_small {
+    filter: invert(40%) sepia(100%) hue-rotate(135deg) saturate(1.75) drop-shadow(0 0 0.033em $dark-border);
+  }
+  .jp_arl_progress_bar, .jp-seek-bar {
+    background-color: rgba(064,080,080,1);
+    border-color: $dark-border;
+  }
+  .jp-playlist {
+    background-color: $dark-bg;
+  }
+  .jp-playlist-current {
+    background-color: $dark-highlight-bg;
+  }
+  .jp-playlist-item-title a {
+    color: $dark-fg;
+  }
+  .jp-repeat, .jp-shuffle {
+    filter: invert(50%) drop-shadow(0 0 0.05em $dark-border);
+  }
+  .jp-play-bar {
+    background-color: rgba(072,138,142,1);
+  }
+  .jp-type-playlist {
+    border-color: $dark-border;
+    box-shadow: 0rem 0rem 0.25rem transparentize($dark-bg, 0.5);
+  }
+  .faux_border {
+    box-shadow: 0rem 0rem 1px $dark-border;
+  }
+  .neighbor_nav_button {
+    background-color: $dark-button-bg;
+    box-shadow: 0rem 0rem 1px $dark-border;
+  }
+  .shadow_attracting {
+    box-shadow: 0rem 0rem 0.25rem transparentize($dark-bg, 0.5);
+  }
+}

@@ -1,0 +1,10 @@
+= form_with(model: [:admin, article], method: :delete, local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Destroy article?
+    .arl_form_data_label_destroy= tag.i article.title
+
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_warning This action can not be undone.
+
+  .arl_form_actions
+    = f.submit 'Destroy Article', data: { confirm: 'Are you sure?' },  class: :arl_button_form_submit_destroy

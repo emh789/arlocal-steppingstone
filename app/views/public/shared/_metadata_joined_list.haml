@@ -1,0 +1,4 @@
+.arl_metadata_pair
+  %dt.arl_metadata_key= "#{key} - #{list.count}"
+  - list.each do |value|
+    %dd.arl_metadata_value= content_tag(:a, value[:title], href: value[:url])

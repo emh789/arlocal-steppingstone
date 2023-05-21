@@ -1,0 +1,23 @@
+.arl_error_file_missing {
+  display: list-item;
+  list-style-position: outside;
+  margin-left: 0.375em;
+  text-indent: -0.375em;
+}
+
+.arl_error_image_missing {
+  height: 100%;
+  width: 100%;
+}
+
+.arl_error_not_indexed {
+  display: list-item;
+  list-style-position: outside;
+  margin-left: 0.375em;
+  text-indent: -0.375em;
+}
+
+.arl_error_404 {
+  font-family: $font-family-application;
+  margin: $arl-spacing-wide;
+}

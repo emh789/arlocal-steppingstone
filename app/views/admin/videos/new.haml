@@ -1,0 +1,9 @@
+= html_head_title_extend! 'new video'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Video
+  = render '/form_elements/errors', resource: @video
+
+.arl_admin_video_new
+  = render 'form', video: @video, selectable: @form_metadata.selectables

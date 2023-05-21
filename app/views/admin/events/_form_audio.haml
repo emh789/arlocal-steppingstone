@@ -1,0 +1,27 @@
+.arl_admin_resource_joins_buttons
+  = event_audio_admin_button_to_new_join_single(event)
+  = event_audio_admin_button_to_new_import(event)
+  = event_audio_admin_button_to_new_upload(event)
+  = event_audio_admin_button_to_new_join_by_keyword(event)
+
+.arl_form_title
+  = event_statement_audio_count(event)
+
+- if event.does_have_audio
+  = form_with(model: [:admin, event], url: admin_event_path(event, pane: :audio), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading title
+            %th.arl_form_data_joins_heading order
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :event_audio, event.event_audio_sorted do |ea|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= audio_reference_admin_link(ea.object.audio)
+              %td.arl_form_data_joins_value= ea.text_field :event_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field
+              %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ea
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation= "will also detach any audio with '#{icon_destroy}' box checked"

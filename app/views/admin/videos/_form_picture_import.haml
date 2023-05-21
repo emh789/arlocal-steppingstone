@@ -1,0 +1,9 @@
+.arl_form_title
+  Import picture
+
+= form_with(model: [:admin, video], url: admin_video_picture_create_from_import_path(video), local: true, class: :arl_form) do |f|
+  .arl_form_data
+    = f.fields_for :pictures, video.pictures.build do |vp|
+      = render 'form_elements/text_field', attribute: :source_imported_file_path, form: vp, aside: "#{source_imported_dirname(trailing_separator: true)}"
+  .arl_form_actions
+    = f.submit class: :arl_button_form_submit

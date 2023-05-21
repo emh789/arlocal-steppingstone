@@ -1,0 +1,24 @@
+.arl_admin_resource_joins_buttons
+  = audio_album_admin_button_to_new_join_single(audio)
+
+.arl_form_title
+  = audio_statement_albums_count(audio)
+
+- if audio.does_have_albums
+  = form_with model: [:admin, audio], url: admin_audio_path(audio, pane: :albums), local: true, class: :arl_form do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading album title
+            %th.arl_form_data_joins_heading order
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :album_audio, audio.album_audio_sorted do |aa|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= album_reference_admin_link(aa.object.album)
+              %td.arl_form_data_joins_value= aa.text_field :album_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field_inline
+              %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: aa
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation= "will also detach any albums with '#{icon_destroy}' box checked"

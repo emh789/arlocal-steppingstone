@@ -1,0 +1,9 @@
+= html_head_title_extend! 'new event'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Event
+  = render '/form_elements/errors', resource: @event
+
+.arl_admin_events_new
+  = render 'form', event: @event, selectable: @form_metadata.selectables

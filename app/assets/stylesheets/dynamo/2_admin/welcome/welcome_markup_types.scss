@@ -1,0 +1,64 @@
+.arl_admin_markup_types {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family-application;
+  justify-content: center;
+  padding: $arl-spacing-wide;
+}
+.arl_admin_markup_types_example {
+  border-style: $border-style;
+  border-width: $border-width;
+  margin: $arl-spacing-wide 0rem;
+  width: 100%;
+}
+.arl_admin_markup_types_example_details {}
+.arl_admin_markup_types_example_heading {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.8em;
+  padding: $arl-margin-narrow $arl-margin;
+  width: 33%;
+}
+.arl_admin_markup_types_example_title {
+  font-family: $font-family-title;
+  font-weight: bold;
+  margin-top: $arl-margin;
+}
+.arl_admin_markup_types_example_value_entered {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.8em;
+  font-family: $font-family-monospace;
+  padding: $arl-margin-narrow $arl-margin;
+  white-space: pre-wrap;
+  width: 33%;
+}
+.arl_admin_markup_types_example_value_displayed {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.8em;
+  padding: $arl-margin-narrow $arl-margin;
+  width: 33%;
+}
+.arl_admin_markup_types_example_value_html_source {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-family: monospace;
+  font-size: 0.8em;
+  padding: $arl-margin-narrow $arl-margin;
+  white-space: pre-wrap;
+  width: 33%;
+}
+.arl_admin_markup_types_heading_summary {
+  align-self: center;
+  font-family: $font-family-application;
+  margin-bottom: $arl-margin;
+  max-width: 45rem;
+}
+.arl_admin_markup_types_heading_title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: $arl-margin;
+  text-align: center;
+}

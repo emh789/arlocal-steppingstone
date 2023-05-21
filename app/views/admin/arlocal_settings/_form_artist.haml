@@ -1,0 +1,9 @@
+= form_with model: [:admin, arlocal_settings], url: admin_arlocal_settings_path(arlocal_settings, pane: :artist), local: true, class: :arl_form, method: :patch do |f|
+  .arl_form_title
+    Artist settings
+  .arl_form_data
+    = render 'form_elements/text_field', attribute: :artist_name, form: f
+    = render 'form_elements/text_field_sized', attribute: :artist_content_copyright_year_earliest, form: f, size: 8
+    = render 'form_elements/text_field_sized', attribute: :artist_content_copyright_year_latest, form: f, size: 8, aside: 'Leave blank to use year-of-the-moment.'
+  .arl_form_actions
+    = f.submit 'Update A&R.local settings', class: :arl_button_form_submit

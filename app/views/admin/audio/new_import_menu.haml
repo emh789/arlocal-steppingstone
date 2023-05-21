@@ -1,0 +1,13 @@
+= html_head_title_extend! 'Import Audio'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    Import Audio
+
+.arl_audio_new_import_menu
+  .arl_audio_new_import_menu_option
+    = link_to "import single", admin_audio_new_import_single_path, class: :arl_button_form_submit
+  .arl_audio_new_import_menu_option
+    = link_to "import to album", admin_audio_new_import_to_album_path, class: :arl_button_form_submit
+  .arl_audio_new_import_menu_option
+    = link_to "import to event", admin_audio_new_import_to_event_path, class: :arl_button_form_submit

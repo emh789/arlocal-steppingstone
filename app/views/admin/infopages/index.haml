@@ -1,0 +1,18 @@
+= html_head_title_extend! :infopage
+
+.arl_admin_resource_header.resource_index_private
+  .arl_admin_resource_header_category
+    Infopage Index
+
+.arl_admin_infopages_index
+  - @infopages.each do |infopage|
+    .arl_admin_infopages_index_infopage
+      .arl_admin_infopages_index_infopage_order
+        = infopage.index_order.to_s.concat('.')
+      .arl_admin_infopages_index_infopage_title
+        = link_to infopage.title, admin_infopage_path(infopage.id_public), class: :arl_admin_infopage_index_infopage_text_title_link
+      .arl_admin_infopages_index_infopage_resources
+        %dl.arl_admin_joined_resources
+          = render 'admin/shared/index_joined_articles', resource: infopage
+          = render 'admin/shared/index_joined_links', resource: infopage
+          = render 'admin/shared/index_joined_pictures', resource: infopage

@@ -1,0 +1,11 @@
+- if local_assigns.has_key?(:key) && local_assigns.has_key?(:boolean)
+  = render 'admin/shared/metadata_pair_boolean', key: key, boolean: boolean
+
+- if local_assigns.has_key?(:key) && local_assigns.has_key?(:text_props)
+  = render 'admin/shared/metadata_pair_text_props', key: key, text_props: text_props
+
+- if local_assigns.has_key?(:key) && local_assigns.has_key?(:value)
+  = render 'admin/shared/metadata_pair_value', key: key, value: value
+
+- if local_assigns.has_key?(:key) && local_assigns.has_key?(:visibility)
+  = render 'admin/shared/metadata_pair_visibility', key: key, visibility: visibility

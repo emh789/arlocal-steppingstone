@@ -1,0 +1,18 @@
+= html_head_title_extend! :picture
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    Picture Upload
+
+.arl_admin_picture_edit
+  = form_with(model: [:admin, Picture.new], local: true, url: admin_picture_create_from_upload_path, class: :arl_form) do |f|
+
+    .arl_form_data
+      = render 'form_elements/file_field', attribute: :source_uploaded, form: f
+
+      - if @auto_keyword
+        = f.fields_for :picture_keywords, f.object.picture_keywords.build do |pk|
+          = render 'form_elements/auto_keyword', auto_keyword: @auto_keyword, form: pk
+
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit

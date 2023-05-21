@@ -1,0 +1,23 @@
+.arl_streams_show {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: $arl-margin;
+}
+.arl_streams_show_description {
+  font-family: $font-family-description;
+  margin: $arl-margin;
+  text-align: center;
+}
+.arl_streams_show_html_element {
+  font-family: $font-family-application;
+  margin: $arl-margin;
+  max-width: 50rem;
+}
+.arl_streams_show_title {
+  font-family: $font-family-title;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: $arl-margin;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<svg width="260" height="260" viewbox="0 0 260 260"
+  xmlns="http://www.w3.org/2000/svg">
+
+  <g>
+    <path       
+      d="M 230,135 A 105,85 0 1 1 125,50"
+      fill="none"
+      shape-rendering="geometricPrecision" 
+      stroke="black"
+      stroke-width="30"
+      stroke-linecap="round"
+    />
+    <path
+      d="M 125,10 L 125,100 L 195,50 Z"
+      fill="black"
+      shape-rendering="geometricPrecision" 
+      stroke="black"
+      stroke-width="15"
+      stroke-linecap="round"
+    />
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+.arl_form_title
+  Upload picture
+
+= form_with model: [:admin, album], local: true, url: admin_album_picture_create_from_upload_path(album), class: :arl_form do |f|
+  .arl_form_data
+    = f.fields_for :pictures, f.object.pictures.build do |ap|
+      = render 'form_elements/file_upload', attribute: :source_uploaded, form: ap
+  .arl_form_actions
+    = f.submit class: :arl_button_form_submit

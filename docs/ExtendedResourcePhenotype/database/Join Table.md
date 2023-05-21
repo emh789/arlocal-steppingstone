@@ -1,0 +1,1 @@
+- connects [[Model]] through a [[has_many Join Model]] with [[has_many Target Model]]

@@ -1,0 +1,12 @@
+= html_head_title_extend! :links
+
+.arl_admin_resource_header.resource_index_private
+  .arl_admin_resource_header_category
+    Links Index
+
+.arl_admin_links_index
+  %table.arl_admin_links_index
+    - @links.each do |link|
+      %tr.arl_admin_links_index_link
+        %td.arl_admin_links_index_link_info
+          = render 'index_link_name', link: link

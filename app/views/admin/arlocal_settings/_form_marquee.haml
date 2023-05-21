@@ -1,0 +1,8 @@
+= form_with(model: [:admin, arlocal_settings], url: admin_arlocal_settings_path(arlocal_settings, pane: :marquee), local: true, class: :arl_form, method: :patch) do |f|
+  .arl_form_title
+    Marquee settings
+  .arl_form_data
+    = render 'form_elements/check_box', attribute: :marquee_enabled, form: f
+    = render 'form_elements/parseable_area', attribute: :marquee, form: f, selectable: selectable
+  .arl_form_actions
+    = f.submit 'Update A&R.Local settings', class: :arl_button_form_submit

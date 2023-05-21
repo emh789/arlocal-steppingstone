@@ -1,0 +1,4 @@
+.arl_admin_joined_resource
+  %dh.arl_admin_joined_resource_heading= resource_joined_videos_count_statement(resource, punctuated: true)
+  - resource.videos_sorted.each do |video|
+    %dd.arl_admin_joined_resource_data= video.title

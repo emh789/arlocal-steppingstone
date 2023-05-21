@@ -1,0 +1,26 @@
+.arl_admin_resource_joins_buttons
+  = infopage_article_admin_button_to_new_join_single(infopage)
+
+.arl_form_title
+  = infopage_statement_articles_count(infopage)
+
+- if infopage.does_have_articles
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :articles), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading title
+            %th.arl_form_data_joins_heading group
+            %th.arl_form_data_joins_heading order
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :infopage_articles, infopage.infopage_articles_sorted do |ia|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= article_reference_admin_link(ia.object.infopageable)
+              %td.arl_form_data_joins_value= ia.select :infopage_group, @form_metadata.selectables.item_groups, { selected: ia.object.infopage_group }, { class: :arl_form_data_attr_input_select }
+              %td.arl_form_data_joins_value= ia.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: ia
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation= "will also detatch any articles with '#{icon_destroy}' box checked"

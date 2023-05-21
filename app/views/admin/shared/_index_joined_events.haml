@@ -1,0 +1,4 @@
+.arl_admin_joined_resource
+  %dh.arl_admin_joined_resource_heading= resource_joined_events_count_statement(resource, punctuated: true)
+  - resource.events_sorted.each do |event|
+    %dd.arl_admin_joined_resource_data= event.title

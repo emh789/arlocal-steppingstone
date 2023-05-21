@@ -1,0 +1,9 @@
+.arl_admin_infopage_show_item
+  .arl_admin_infopage_show_item_order
+    = "#{order}."
+  .arl_admin_infopage_show_item_class
+    Link
+  .arl_admin_infopage_show_item_title
+    = link_reference_admin_link(link)
+  .arl_admin_infopage_show_item_content.color_bg1.faux_border
+    = link_parse(link)

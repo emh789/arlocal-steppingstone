@@ -1,0 +1,16 @@
+= form_with(model: [:admin, video], local: true, class: :arl_form) do |f|
+  .arl_form_title
+    video details
+  .arl_form_data
+    = render 'form_elements/text_field',      attribute: :title,            form: f
+    = render 'form_elements/visibility',      attribute: :visibility,       form: f
+    = render 'form_elements/auto_keyword',    attribute: :video_keywords,   form: f, auto_keyword: @auto_keyword
+    = render 'form_elements/spacer'
+    = render 'form_elements/parseable_field', attribute: :copyright,        form: f, selectable: selectable
+    = render 'form_elements/date_select',     attribute: :date_released,    form: f, default_date: Date.current
+    = render 'form_elements/parseable_area',  attribute: :description,      form: f, selectable: selectable
+    = render 'form_elements/isrc',            attribute: :isrc,             form: f
+    = render 'form_elements/parseable_area',  attribute: :personnel,        form: f, selectable: selectable
+  .arl_form_actions
+    .arl_form_action_submit
+      = f.submit class: :arl_button_form_submit

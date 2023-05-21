@@ -1,0 +1,11 @@
+= form_with(model: [:admin, keyword], local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Keyword Details
+  .arl_form_data
+    = render 'form_elements/text_field',    attribute: :title,    form: f
+    = render 'form_elements/can_select_x',  attribute: :albums,   form: f
+    = render 'form_elements/can_select_x',  attribute: :events,   form: f
+    = render 'form_elements/can_select_x',  attribute: :pictures, form: f
+    = render 'form_elements/can_select_x',  attribute: :videos,   form: f
+  .arl_form_actions
+    = f.submit class: :arl_button_form_submit

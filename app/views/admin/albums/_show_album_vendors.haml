@@ -1,0 +1,10 @@
+.arl_admin_album_show_vendors.arl_metadata_layout_block
+  .arl_metadata_pair
+    .arl_metadata_key Vendor widget gumroad
+    - if album.vendor_widget_gumroad.to_s != ''
+      %dd.arl_metadata_value= album.vendor_widget_gumroad
+    - else
+      %dd.arl_metadata_value_nil (none)
+  .arl_metadata_pair_boolean
+    .arl_metadata_key Show can have vendor widget gumroad
+    .arl_metadata_value= album.show_can_have_vendor_widget_gumroad ? album.show_can_have_vendor_widget_gumroad : 'false'

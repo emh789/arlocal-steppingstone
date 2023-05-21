@@ -1,0 +1,27 @@
+= html_head_title_extend! :audio
+
+.arl_admin_resource_header.resoucr_index_private
+  .arl_admin_resource_header_category
+    Audio Index
+  -# NOT YET IMPLEMENTED
+  -# .arl_admin_resource_header_nav
+  -#   = audio_admin_button_to_public
+
+.arl_audio_index
+  .arl_audio_select
+    = form_with model: @arlocal_settings, url: admin_arlocal_settings_update_and_return_path, local: true do |f|
+      = audio_admin_filter_select(f, params)
+      = f.submit icon_pin, class: :arl_button_form_aux_submit
+
+  %table.arl_audio_index_audios
+    - @audio.each do |audio|
+      %tr
+        %td.arl_audio_index_audio
+          .arl_audio_index_audio_title
+            = audio_title_link_with_indicator(audio, html_class: :arl_audio_index_audio_title_url)
+            = audio_file_source_path_with_indicators(audio, html_class: :arl_audio_index_audio_title_path)
+          %dl.arl_audio_index_audio_metadata
+            .arl_metadata_layout_inline
+              .arl_metadata_value= audio.duration_as_text(precision: :milliseconds)
+              .arl_metadata_value= audio.isrc_hyphenated
+              .arl_metadata_value= audio.date_released

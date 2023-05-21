@@ -1,0 +1,9 @@
+= html_head_title_extend! 'new keyword'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Keyword
+  = render '/form_elements/errors', resource: @keyword
+
+.arl_admin_keywords_new
+  = render 'form', keyword: @keyword, selectable: @form_metadata.selectables

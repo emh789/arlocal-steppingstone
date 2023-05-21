@@ -1,0 +1,23 @@
+.arl_admin_resource_joins_buttons
+  = keyword_album_admin_button_to_new_join_single(keyword)
+
+.arl_form_title
+  = keyword_statement_albums_count(keyword)
+
+- if keyword.does_have_albums
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :albums), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading album title
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :album_keywords, keyword.album_keywords_sorted do |ak|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= album_reference_admin_link(ak.object.album)
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: ak
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation
+        = "will detach any albums with the #{icon_remove} box checked."

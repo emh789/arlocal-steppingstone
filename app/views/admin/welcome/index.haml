@@ -1,0 +1,13 @@
+.arl_admin_welcome
+  .arl_admin_welcome_logo
+    = app_logo html_class: [:arl_admin_welcome_logo_img, :faux_border]
+  .arl_admin_welcome_text
+    A&amp;R.local is a content management and delivery application for musicians.
+
+  .arl_admin_welcome_help
+    %h3.arl_admin_welcome_help_title Help Topics
+    %ul.arl_admin_welcome_help_contents
+      %li.arl_admin_welcome_help_contents_topic= link_to 'Content Storage', admin_welcome_content_storage_path
+      %li.arl_admin_welcome_help_contents_topic= link_to 'Icons', admin_welcome_icons_path
+      %li.arl_admin_welcome_help_contents_topic= link_to 'Markup types explained', admin_welcome_markup_types_path
+      %li.arl_admin_welcome_help_contents_topic= link_to 'Visibility', admin_welcome_visibility_path

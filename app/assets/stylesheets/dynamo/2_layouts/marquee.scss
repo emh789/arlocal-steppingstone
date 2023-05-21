@@ -1,0 +1,11 @@
+.arl_marquee {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom-style: $border-style;
+  border-bottom-width: $border-width;
+  font-family: $font-family-marquee;
+  padding: $arl-margin-narrow;
+  text-align: center;
+}

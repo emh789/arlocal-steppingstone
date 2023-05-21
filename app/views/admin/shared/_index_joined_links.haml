@@ -1,0 +1,4 @@
+.arl_admin_joined_resource
+  %dh.arl_admin_joined_resource_heading= resource_joined_links_count_statement(resource, punctuated: true)
+  - resource.links_sorted.each do |link|
+    %dd.arl_admin_joined_resource_data= link.title

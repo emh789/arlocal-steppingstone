@@ -1,0 +1,13 @@
+= html_head_title_extend! 'Upload Audio'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    Upload Audio
+
+.arl_audio_new_upload_menu
+  .arl_audio_new_upload_menu_option
+    = link_to "upload single", admin_audio_new_upload_single_path, class: :arl_button_form_submit
+  .arl_audio_new_upload_menu_option
+    = link_to "upload to album", admin_audio_new_upload_to_album_path, class: :arl_button_form_submit
+  .arl_audio_new_upload_menu_option
+    = link_to "upload to event", admin_audio_new_upload_to_event_path, class: :arl_button_form_submit

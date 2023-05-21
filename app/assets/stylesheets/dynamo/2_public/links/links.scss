@@ -1,0 +1,39 @@
+.arl_link {
+}
+
+.arl_link_address {
+  font-family: $font-family-data;
+  font-style: normal;
+}
+
+.arl_link_email {
+}
+
+.arl_link_description {
+}
+
+.arl_link_description:nth-of-type(2) {
+  margin-top: 0.25rem;
+}
+
+.arl_link_details {
+  font-family: $font-family-description;
+  font-size: 0.875em;
+  padding-top: 0.05em;
+}
+
+.arl_link_heading {
+  font-family: $font-family-title;
+  font-weight: 700;
+}
+
+.arl_link_name {
+  font-family: $font-family-title;
+  font-weight: 700;
+}
+
+.arl_link_resource {
+}
+
+.arl_link_url {
+}

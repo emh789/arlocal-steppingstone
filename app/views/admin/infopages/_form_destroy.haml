@@ -1,0 +1,12 @@
+= form_with(model: [:admin, infopage], method: :delete, local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Destroy infopage?
+    .arl_form_data_label_destroy= tag.i infopage.title
+
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_caveat Attached articles, links, and pictures will remain in database and filesystem.
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_warning This action can not be undone.
+
+  .arl_form_actions
+    = f.submit 'Destroy Infopage', data: { confirm: 'Are you sure?' },  class: :arl_button_form_submit_destroy

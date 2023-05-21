@@ -1,0 +1,34 @@
+= html_head_title_extend! :pictures, @picture.slug
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Picture
+  .arl_admin_resource_header_title
+    = @picture.title
+  .arl_admin_resource_header_buttons
+    = picture_admin_button_to_previous(@picture_neighbors.previous)
+    = picture_admin_button_to_edit(@picture)
+    = picture_admin_button_to_public(@picture)
+    = picture_admin_button_to_next(@picture_neighbors.next)
+
+.arl_admin_pictures_show
+  %dl.arl_admin_pictures_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @picture.title
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @picture.visibility
+  %div.arl_admin_pictures_show_picture
+    = render 'show_image', picture: @picture
+  %dl.arl_admin_pictures_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'Credits', text_props: @picture.credits_props
+    = render 'admin/shared/metadata_pair', key: 'Date/time', value: picture_datetime_effective_statement(@picture)
+    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @picture.description_props
+    = render 'admin/shared/metadata_pair', key: 'Show can display title', boolean: @picture.show_can_display_title
+    = render 'admin/shared/metadata_pair', key: 'Source', value: @picture.source_type
+    = render 'admin/shared/metadata_pair', key: 'Source file path', value: @picture.source_file_path
+  %div.arl_admin_pictures_show_joins
+    = render 'admin/shared/show_joined_albums', resource: @picture
+    = render 'admin/shared/show_joined_events', resource: @picture
+    = render 'admin/shared/show_joined_keywords', resource: @picture
+    = render 'admin/shared/show_joined_videos', resource: @picture
+  %dl.arl_admin_pictures_show_etc
+    = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_picture_path(@picture.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @picture.updated_at

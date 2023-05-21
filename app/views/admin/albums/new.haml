@@ -1,0 +1,8 @@
+= html_head_title_extend! 'new album'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category= 'New Album'
+  = render '/form_elements/errors', resource: @album
+
+.arl_admin_albums_new
+  = render 'form', album: @album, selectable: @form_metadata.selectables

@@ -1,0 +1,29 @@
+= html_head_title_extend! :infopage, @infopage.title
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Info Page
+  .arl_admin_resource_header_title
+    = @infopage.title
+  .arl_admin_resource_header_buttons
+    = infopage_admin_button_to_previous(@infopage_neighbors.previous)
+    = infopage_admin_button_to_edit(@infopage)
+    = infopage_admin_button_to_public(@infopage)
+    = infopage_admin_button_to_next(@infopage_neighbors.next)
+
+.arl_admin_infopage_show
+  - if @infopage.does_have_items_group_top
+    .arl_admin_infopage_show_group
+      .arl_admin_infopage_show_group_heading= "Top frame: #{@infopage.items_group_top.length}"
+      - @infopage.items_group_top.each do |item|
+        = render 'show_infopage_item', item: item
+  - if @infopage.does_have_items_group_left
+    .arl_admin_infopage_show_group
+      .arl_admin_infopage_show_group_heading= "Left frame: #{@infopage.items_group_left.length}"
+      - @infopage.items_group_left.each do |item|
+        = render 'show_infopage_item', item: item
+  - if @infopage.does_have_items_group_right
+    .arl_admin_infopage_show_group
+      .arl_admin_infopage_show_group_heading= "Right frame: #{@infopage.items_group_right.length}"
+      - @infopage.items_group_right.each do |item|
+        = render 'show_infopage_item', item: item

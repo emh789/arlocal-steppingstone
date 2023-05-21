@@ -1,0 +1,7 @@
+= form_with(model: [:html_head, arlocal_settings], url: admin_arlocal_settings_path(arlocal_settings, pane: :html_head), local: true, class: :arl_form, method: :patch) do |f|
+  .arl_form_title
+    HTML Header settings
+  .arl_form_data
+    = render 'form_elements/check_box', attribute: :html_head_can_include_meta_description, form: f, aside: 'Brief description tag for search engines and app feeds.'
+  .arl_form_actions
+    = f.submit 'Update A&R.Local settings', class: :arl_button_form_submit

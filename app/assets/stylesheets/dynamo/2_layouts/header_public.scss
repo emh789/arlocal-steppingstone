@@ -1,0 +1,33 @@
+.arl_header {
+  align-items: center;
+  border-bottom-style: $border-style;
+  border-bottom-width: $border-width;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: $arl-margin-wide $arl-spacing-narrow;
+}
+
+.arl_header_artist {
+  margin-top: $arl-margin-narrow;
+  margin-bottom: 0rem;
+}
+
+.arl_header_artist_name {
+  font-family: $font-family-artist;
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 2.5rem;
+  text-decoration: none;
+}
+
+.arl_header_nav {
+  font-family: $font-family-nav;
+  font-weight: bold;
+  margin: $arl-margin-narrow;
+  text-align: center;
+}
+
+.arl_header_nav_category {
+  margin: $arl-margin;
+}

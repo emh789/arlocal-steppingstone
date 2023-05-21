@@ -1,0 +1,8 @@
+= html_head_title_extend! 'new picture'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Picture
+
+.arl_admin_pictures_new
+  = render 'form', picture: @picture, selectable: @form_metadata.selectables

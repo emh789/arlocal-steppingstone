@@ -1,0 +1,33 @@
+.arl_admin_welcome {
+  display: grid;
+  column-gap: $arl-spacing-wide;
+  grid-template-areas: 'logo help' 'text text';
+  grid-template-columns: min-content auto;
+  margin: $arl-spacing-wide;
+  row-gap: $arl-spacing-wide;
+}
+.arl_admin_welcome_logo {
+  grid-area: logo;
+}
+.arl_admin_welcome_logo_img {
+  max-width: 15rem;
+  border-radius: $border-radius-narrow;
+}
+.arl_admin_welcome_text {
+  font-family: $font-family-application;
+  grid-area: text;
+}
+.arl_admin_welcome_help {
+  grid-area: help;
+}
+.arl_admin_welcome_help_title {
+  font-family: $font-family-application;
+  font-size: 1.25em;
+  margin-top: $arl-margin;
+}
+.arl_admin_welcome_help_contents {
+  font-family: $font-family-application;
+}
+.arl_admin_welcome_help_contents_topic {
+  margin-bottom: $arl-margin-narrow;
+}

@@ -1,0 +1,71 @@
+.arl_metadata_key {
+  font-family: $font-family-description;
+  font-weight: bold;
+  margin-top: 0rem;
+}
+
+.arl_metadata_layout_block {
+  display: flex;
+  flex-direction: column;
+  margin: $arl-spacing 0rem;
+}
+
+.arl_metadata_layout_inline .arl_metadata_key:after {
+  content: ': ';
+  margin-right: 0.5em;
+}
+.arl_metadata_layout_parser {
+  padding: $arl-margin 0rem;
+}
+.arl_metadata_layout_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.arl_metadata_pair {
+  margin: $arl-margin 0rem;
+}
+
+.arl_metadata_value {
+  font-family: $font-family-data;
+}
+
+.arl_metadata_value_list {
+}
+.arl_metadata_value_list_item {
+}
+
+.arl_metadata_value_nil {
+  font-family: $font-family-data;
+  font-style: italic;
+}
+.arl_metadata_value_parser {
+  font-family: $font-family-data;
+}
+.arl_metadata_value_parser_nil {
+  font-family: $font-family-data;
+  font-style: italic;
+}
+.arl_metadata_table_values {
+  font-family: $font-family-data;
+  width: 100%;
+}
+.arl_metadata_table_value {
+  min-width: 5em;
+  vertical-align: top;
+  padding: 0rem ($arl-margin-narrow / 4);
+}
+.arl_metadata_table_value_wrap {
+  min-width: 5em;
+  vertical-align: top;
+  padding-left: 0.5rem;
+  padding-right: ($arl-margin-narrow / 4);
+  text-indent: -0.5rem;
+}
+.arl_metadata_table_value_right {
+  vertical-align: top;
+  padding: 0rem ($arl-margin-narrow / 4);
+  text-align: right;
+}

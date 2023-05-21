@@ -1,0 +1,81 @@
+@mixin buttonize_anchor {
+  border-radius: $border-radius-wide;
+  border-style: $border-style;
+  border-width: $border-width;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0rem 0.5rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+@mixin buttonize_select {
+  border-style: $border-style;
+  border-width: $border-width;
+  cursor: pointer;
+  font-family: $font-family-application;
+  font-size: 0.9em;
+  padding: ($arl-spacing-narrow / 4) ($arl-spacing-narrow / 2);
+  text-align: center;
+}
+
+@mixin buttonize_submit {
+  border-style: $border-style;
+  border-width: $border-width-wide;
+  border-radius: $border-radius-wide;
+  cursor: pointer;
+  font-family: $font-family-application;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: $arl-margin-narrow;
+}
+
+.arl_admin_header_nav {
+  cursor: default;
+}
+.arl_admin_header_nav_button {
+  cursor: pointer;
+}
+.arl_admin_resource_header_buttons {
+  cursor: default;
+}
+.arl_button_filter_select {
+  @include buttonize_select;
+}
+
+.arl_button_form_submit_destroy {
+  @include buttonize_submit;
+}
+
+.arl_button_form_submit {
+  @include buttonize_submit;
+}
+
+.arl_button_form_aux_submit {
+  border-style: $border-style;
+  border-width: $border-width;
+  cursor: pointer;
+  font-family: $font-family-application;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: $arl-margin-narrow;
+  font-size: 0.75rem;
+  margin: 0rem $arl-margin;
+  filter: saturate(0.67);
+}
+
+.arl_button_nav_next {
+  @include buttonize_anchor;
+}
+
+.arl_button_nav_previous {
+  @include buttonize_anchor;
+}
+
+.arl_button_not_allowed {
+  cursor: not-allowed;
+}
+.arl_button_select {
+  @include buttonize_select;
+}

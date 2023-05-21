@@ -1,0 +1,35 @@
+= html_head_title_extend! :video
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Video
+  .arl_admin_resource_header_title
+    = @video.title
+  .arl_admin_resource_header_buttons
+    = video_admin_button_to_previous(@video_neighbors.previous)
+    = video_admin_button_to_edit(@video)
+    = video_admin_button_to_next(@video_neighbors.next)
+
+.arl_admin_videos_show
+  %dl.arl_admin_videos_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @video.title
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @video.visibility
+  %div.arl_admin_videos_show_player
+    = render 'show_video', video: @video
+  %dl.arl_admin_videos_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'Copyright', text_props: @video.copyright_props
+    = render 'admin/shared/metadata_pair', key: 'Date released', value: @video.date_released
+    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @video.description_props
+    = render 'admin/shared/metadata_pair', key: 'ISRC', value: @video.isrc_hyphenated
+    = render 'admin/shared/metadata_pair', key: 'Personnel', text_props: @video.personnel_props
+    = render 'admin/shared/metadata_pair', key: 'Source', value: @video.source_type
+    = render 'admin/shared/metadata_pair', key: 'Source embed', value: @video.source_embed
+    = render 'admin/shared/metadata_pair', key: 'Source file path', value: @video.source_file_path
+    = render 'admin/shared/metadata_pair', key: 'Source url', value: @video.source_url
+  %div.arl_admin_videos_show_joins
+    = render 'admin/shared/show_joined_events', resource: @video
+    = render 'admin/shared/show_joined_keywords', resource: @video
+    = render 'admin/shared/show_joined_pictures', resource: @video
+  %dl.arl_admin_audio_show_etc
+    = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_video_path(@video.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @video.updated_at

@@ -1,0 +1,81 @@
+.jp_arl_buttons_playlist {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 4rem;
+  padding: 1.5rem 1.75rem;
+}
+
+.jp_arl_button.jp-next {
+  @include jp_button_next;
+  height: 2rem;
+  margin-top: 2rem;
+  width: 1.75rem;
+}
+
+.jp_arl_button.jp-pause {
+  @include jp_button_pause;
+  height: 4rem;
+  width: 3rem;
+}
+
+.jp_arl_button.jp-play {
+  @include jp_button_play;
+  height: 4rem;
+  width: 3rem;
+}
+
+.jp_arl_button.jp-previous {
+  @include jp_button_previous;
+  height: 2rem;
+  margin-top: 2rem;
+  width: 1.75rem;
+}
+
+.jp_arl_button.jp-repeat {
+  @include jp_button_repeat;
+  height: 1.25rem;
+  margin-top: 2rem;
+  width: 1.25rem;
+}
+
+.jp_arl_button.jp-repeat-off {
+  @include jp_button_repeat_off;
+  height: 1.25rem;
+  margin-top: 2rem;
+  width: 1.25rem;
+}
+
+.jp_arl_button.jp-shuffle {
+  @include jp_button_shuffle;
+  height: 1.25rem;
+  margin-top: 2rem;
+  width: 1.25rem;
+}
+
+.jp_arl_button.jp-shuffle-off {
+  @include jp_button_shuffle_off;
+  height: 1.25rem;
+  margin-top: 2rem;
+  width: 1.25rem;
+}
+
+.jp_arl_button.jp-stop {
+  @include jp_button_stop;
+  height: 1.6rem;
+  margin-top: 2rem;
+  width: 1.75rem;
+}
+
+.jp_arl_button_small.jp-play {
+  @include jp_button_play;
+  height: 3rem;
+  width: 2rem;
+}
+
+.jp_arl_button_small.jp-pause {
+  @include jp_button_pause;
+  height: 3rem;
+  width: 2rem;
+}

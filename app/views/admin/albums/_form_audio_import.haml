@@ -1,0 +1,9 @@
+.arl_form_title
+  Import audio
+
+= form_with(model: [:admin, album], url: admin_album_audio_create_from_import_path(album), local: true, class: :arl_form) do |f|
+  .arl_form_data
+    = f.fields_for :audio, album.audio.build do |a|
+      = render 'form_elements/text_field', attribute: :source_imported_file_path, form: a, aside: "#{source_imported_dirname(trailing_separator: true)}"
+  .arl_form_actions
+    = f.submit class: :arl_button_form_submit

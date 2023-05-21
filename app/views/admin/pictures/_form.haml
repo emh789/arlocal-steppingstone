@@ -1,0 +1,13 @@
+= form_with(model: [:admin, picture], local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Picture details
+  .arl_form_data
+    = render 'form_elements/parseable_field', attribute: :title,                  form: f, selectable: selectable
+    = render 'form_elements/visibility',      attribute: :visibility,             form: f
+    = render 'form_elements/auto_keyword',    attribute: :picture_keywords,       form: f, auto_keyword: @auto_keyword
+    = render 'form_elements/spacer'
+    = render 'form_elements/parseable_area',  attribute: :credits,                form: f, selectable: selectable
+    = render 'form_elements/parseable_area',  attribute: :description,            form: f, selectable: selectable
+    = render 'form_elements/check_box',       attribute: :show_can_display_title, form: f
+  .arl_form_actions
+    = f.submit class: :arl_button_form_submit

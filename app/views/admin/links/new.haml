@@ -1,0 +1,9 @@
+= html_head_title_extend! 'new link'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Link
+  = render '/form_elements/errors', resource: @link
+
+.arl_admin_links_new
+  = render 'form', link: @link, selectable: @form_metadata.selectables

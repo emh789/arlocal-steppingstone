@@ -1,0 +1,14 @@
+= html_head_title_extend! :streams
+
+.arl_admin_resource_header.resource_index_private
+  .arl_admin_resource_header_category
+    Streams Index
+
+.arl_admin_streams_index
+  %table.arl_admin_streams_index
+    - @streams.each do |stream|
+      %tr.arl_admin_streams_index_stream.arl_active_link_container{data: {url: admin_stream_path(stream.id_admin)}}
+        %td.arl_admin_streams_index_stream_title
+          = link_to stream.title
+        %td.arl_admin_streams_index_stream_html_element
+          = stream.html_element

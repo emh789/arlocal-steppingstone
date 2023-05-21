@@ -1,0 +1,12 @@
+-# `include_blank` has been set to `false` because
+-# because `picture_options` already includes an option for `nil`
+-# through its declaration in the `pictures_controller`
+
+- if local_assigns[:attribute]
+  .arl_form_data_attr
+    = form.select attribute, picture_options_for_select(selectable.pictures, form), { include_blank: false }, { class: [:arl_form_data_attr_input_select_picture, :arl_listening] }
+    = picture_for_select_original_nil_tag(html_class: :arl_form_data_attr_thumbnail_image)
+- else
+  .arl_form_data_attr
+    = form.select :picture_id, picture_options_for_select(selectable.pictures, form), { include_blank: false }, { class: [:arl_form_data_attr_input_select_picture, :arl_listening] }
+    = picture_for_select_original_nil_tag(html_class: :arl_form_data_attr_thumbnail_image)

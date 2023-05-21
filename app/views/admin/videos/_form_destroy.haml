@@ -1,0 +1,14 @@
+= form_with(model: [:admin, video], method: :delete, local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Destroy video?
+    .arl_form_data_label_destroy= tag.i video.title
+
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_caveat Attached source will be destroyed.
+    %li.arl_form_explanation_caveat Thumbnail picture will remain in database.
+    %li.arl_form_explanation_caveat Catalog source files will remain in the filesystem.
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_warning This action can not be undone.
+
+  .arl_form_actions
+    = f.submit 'Destroy Video', data: { confirm: 'Are you sure?' },  class: :arl_button_form_submit_destroy

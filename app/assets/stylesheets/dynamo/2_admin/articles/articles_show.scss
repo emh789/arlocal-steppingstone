@@ -1,0 +1,83 @@
+.arl_admin_articles_show {
+  align-items: start;
+  column-gap: $arl-spacing;
+  display: grid;
+  padding: $arl-margin $arl-spacing;
+}
+.arl_admin_articles_show_attributes {
+  font-size: 0.9em;
+  grid-area: attributes;
+  padding: $arl-margin 0rem;
+}
+.arl_admin_articles_show_content {
+  grid-area: content;
+}
+.arl_admin_articles_show_title {
+  grid-area: title;
+  padding: $arl-margin 0rem;
+}
+.arl_admin_articles_show_joins {
+  align-items: start;
+  display: grid;
+  font-size: 0.9em;
+  grid-area: joins;
+  grid-template-areas: 'infopages';
+  grid-template-rows: min-content min-content min-content min-content;
+  padding: $arl-margin 0rem;
+  row-gap: $arl-spacing;
+}
+.arl_admin_articles_show_etc {
+  grid-area: etc;
+  padding: $arl-margin 0rem;
+}
+
+
+@media #{$media-screen-1} {
+  .arl_admin_articles_show {
+    grid-template-areas: 'title' 'attributes' 'joins' 'content' 'etc';
+  }
+  .arl_admin_articles_show_joins {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+    border-bottom-style: $border-style;
+    border-bottom-width: $border-width;
+    padding-top: $arl-spacing;
+  }
+}
+@media #{$media-screen-2} {
+  .arl_admin_articles_show {
+    grid-template-areas: 'title' 'attributes' 'joins' 'content' 'etc';
+    grid-template-columns: 25rem;
+  }
+  .arl_admin_articles_show_joins {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+    border-bottom-style: $border-style;
+    border-bottom-width: $border-width;
+    padding-top: $arl-spacing;
+  }
+}
+@media #{$media-screen-3-only} {
+  .arl_admin_articles_show {
+    column-gap: $arl-spacing-wide * 2;
+    grid-template-areas: 'title content' 'attributes content' 'joins content' 'etc etc';
+    grid-template-columns: 15rem 29rem;
+  }
+  .arl_admin_articles_show_etc {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+  }
+}
+@media #{$media-screen-4} {
+  .arl_admin_articles_show {
+    column-gap: $arl-spacing-wide * 2;
+    grid-template-areas: 'title content joins' 'attributes content joins' 'etc etc etc';
+    grid-template-columns: 15rem 30rem 22rem;
+    grid-template-rows: min-content 1fr min-content;
+    // row-gap: $arl-spacing;
+  }
+  .arl_admin_articles_show_etc {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+  }
+}

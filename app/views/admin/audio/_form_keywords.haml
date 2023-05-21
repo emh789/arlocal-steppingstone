@@ -1,0 +1,22 @@
+.arl_admin_resource_joins_buttons
+  = audio_keyword_admin_button_to_new_join_single(audio)
+
+.arl_form_title
+  = audio_statement_keywords_count(audio)
+
+- if audio.does_have_keywords
+  = form_with model: [:admin, audio], url: admin_audio_path(audio, pane: :keywords), local: true, class: :arl_form do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading keyword title
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :audio_keywords, audio.audio_keywords_sorted do |ak|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= keyword_reference_admin_link(ak.object.keyword)
+              %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ak
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation= "will also unjoin any keywords with '#{icon_destroy}' box checked"

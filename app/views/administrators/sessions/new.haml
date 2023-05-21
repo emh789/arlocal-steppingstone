@@ -1,0 +1,23 @@
+.arl_administrator_new
+  .arl_administrator_new_header
+    Administrator Access
+  .arl_administrator_new_prompt
+    = app_logo html_class: :arl_administrator_new_prompt_logo
+    .arl_administrator_new_prompt_form
+      = form_for(resource, as: resource_name, html: { class: [:arl_form, :arl_layout_narrow] }, url: session_path(resource_name)) do |f|
+        .arl_form_data
+          .arl_form_data_attr
+            = f.label :email, class: :arl_form_data_attr_label
+            = f.email_field :email, autocomplete: 'email', autofocus: true, class: [:arl_form_data_attr_input_text_field]
+          .arl_form_data_attr
+            = f.label :password, class: :arl_form_data_attr_label
+            = f.password_field :password, autocomplete: 'current_password', class: [:arl_form_data_attr_input_text_field]
+          -# - if devise_mapping.rememberable?
+          -#   .arl_form_data_attr
+          -#     = f.label :remember_me, class: :arl_form_data_attr_label
+          -#     = f.check_box :remember_me, class: :arl_form_data_attr_input_checkbox_inline
+        .arl_form_actions
+          .arl_form_action_submit
+            = f.submit "Log in", class: [:arl_button_form_submit]
+        .arl_form_links
+          =# render 'administrators/shared/links'

@@ -1,0 +1,9 @@
+.arl_admin_infopage_show_item
+  .arl_admin_infopage_show_item_order
+    = "#{order}."
+  .arl_admin_infopage_show_item_class
+    Article
+  .arl_admin_infopage_show_item_title
+    = article_reference_admin_link(article)
+  .arl_admin_infopage_show_item_content.color_bg1.faux_border
+    = parser_div(article.content_props)

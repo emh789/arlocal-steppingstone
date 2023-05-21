@@ -1,0 +1,186 @@
+$light-bg:                  rgba(226,222,212,1.00);
+$light-bg-layer:            rgba(238,236,226,1.00);
+$light-bg-layer2:           rgba(252,251,248,1.00);
+$light-border:              rgba(184,184,184,1.00);
+$light-fg:                  rgba(040,040,040,1.00);
+$light-fg-link:             rgba(000,048,096,1.00);
+
+$light-admin-bg1:           rgba(234,180,172,1.00);
+$light-admin-bg2:           rgba(234,212,172,1.00);
+$light-admin-bg3:           rgba(255,028,020,1.00);
+
+$light-button-bg:           rgba(255,255,255,1.00);
+
+$light-highlight-bg:        rgba(248,248,096,1.00);
+$light-highlight-fg:        rgba(048,000,000,1.00);
+$light-marquee-bg:          rgba(208,206,202,1.00);
+$light-marquee-fg:          rgba(016,016,016,1.00);
+$light-marquee-bold-link:   saturate(2.5);
+
+
+//$light-bg-jp-progress-bar: #7CE;
+
+//$dark-bg-jp-link-vendor: transparentize($var-color-bg-exciting, 0.375);
+//$dark-bg-jp-media-current: transparentize(mix($var-color-fg-exciting, $var-color-bg-exciting, 33), 0.25);
+//$dark-bg-jp-progress-bar: $var-color-jp-progress-bar-bg;
+
+
+
+@media (prefers-color-scheme: light) {
+  * {
+    border-color: $light-border;
+  }
+  *:focus {
+    outline: ($border-width * 2) $border-style mix($light-fg, $light-bg);
+  }
+  ::selection {
+    background-color: transparentize(mix($light-fg-link, $light-highlight-bg), 0.66);
+    color: $light-fg;
+  }
+  img {
+    opacity: 1.00;
+  }
+  input, select, textarea {
+    background-color: $light-bg;
+    color: $light-fg;
+    border-color: $light-border;
+  }
+  .arl_admin_header {
+    background-color: $light-admin-bg1;
+  }
+  .arl_admin_header_nav_button {
+    background-color: $light-button-bg;
+    box-shadow: 0rem 0rem 1px $light-border;
+  }
+  .arl_admin_header_nav_select {
+    background-color: $light-button-bg;
+    box-shadow: 0rem 0rem 1px $light-border;
+  }
+  .arl_admin_resource_header, .arl_admin_resource_header_with_thumbnail {
+    background-color: $light-admin-bg2;
+  }
+  .arl_button_form_submit, .arl_form_bulk_item_button_submit {
+    background-color: $light-bg-layer2;
+    &:hover {
+      background-color: $light-admin-bg2;
+    }
+    &:active, &:focus {
+      background-color: $light-admin-bg2;
+      color: $light-highlight-fg;
+    }
+  }
+  .arl_button_form_submit_destroy {
+      color: mix($light-admin-bg3, $light-fg);
+      background-color: $light-bg-layer2;
+    &:hover {
+      background-color: transparentize($light-admin-bg1, 0.5);
+      color: $light-highlight-fg;
+    }
+    &:active, &:focus {
+      background-color: $dark-admin-bg1;
+      color: $dark-highlight-fg;
+    }
+  }
+  .arl_error_file_missing, .arl_error_not_indexed {
+    color: mix(red, $light-fg);
+  }
+  .arl_form_data_attr_input_checkbox_visible {
+    background-color: $light-bg;
+    border-color: $light-border;
+  }
+  .arl_form_data_attr_input_checkbox:checked + .arl_form_data_attr_input_checkbox_visible {
+    background-color: transparentize($light-fg-link, 0.8);
+    background-image: asset_url('font-awesome/check.svg');
+    background-size: 100% 100%;
+  }
+  .arl_form_data_joins_destroy_checkbox_visible {
+    background-color: transparentize($light-fg-link, 0.8);
+    background-color: $light-bg;
+    border-color: $light-border;
+  }
+  .arl_form_data_joins_destroy_checkbox:checked + .arl_form_data_joins_destroy_checkbox_visible {
+    background-color: $light-admin-bg3;
+    background-image: asset_url('font-awesome/xmark.svg');
+    background-size: 100% 100%;
+  }
+  .arl_marquee {
+    background-color: $light-marquee-bg;
+    color: $light-marquee-fg;
+    filter: $light-marquee-bold-link;
+    text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.125);
+  }
+  .color_base {
+    background-color: $light-bg;
+    border-color: $light-border;
+    color: $light-fg;
+  }
+  .color_bg_td {
+    background-color: transparentize($light-bg-layer2, 0.25);
+  }
+  .color_bg_th {
+    background-color: transparentize($light-bg, 0.25);
+  }
+  .color_bg1 {
+    background-color: $light-bg;
+  }
+  .color_bg2 {
+    background-color: $light-bg-layer;
+  }
+  .color_bg3 {
+    background-color: $light-bg-layer2;
+  }
+  .color_highlight_bg {
+    background-color: transparentize($light-highlight-bg, 0.5);
+  }
+  .color_bg_heading {
+    background-color: $light-bg;
+  }
+  .color_border {
+    border-color: $light-border;
+  }
+  .color_fg {
+    color: $light-fg;
+  }
+  .color_link, a {
+    color: $light-fg-link;
+  }
+  .jp_arl_playlist_controls {
+    background-color: $light-bg-layer2;
+  }
+  .jp_arl_button, .jp_arl_button_small {
+    filter: invert(60%) sepia(100%) hue-rotate(150deg) saturate(1.5) drop-shadow(0 0 0.033em $light-fg);
+  }
+  .jp_arl_progress_bar, .jp-seek-bar {
+    background-color: rgba(208,220,226,1);
+    border-color: $light-border;
+  }
+  .jp-playlist {
+    background-color: $light-bg;
+  }
+  .jp-playlist-current {
+    background-color: $light-highlight-bg;
+  }
+  .jp-playlist-item-title a {
+    color: $light-fg;
+  }
+  .jp-repeat, .jp-shuffle {
+    filter: invert(55%) drop-shadow(0 0 0.05em $light-border);
+  }
+  .jp-play-bar {
+    background-color: rgba(127,199,226,1);
+  }
+  .jp-type-playlist {
+    border-color: $light-border;
+    box-shadow: 0rem 0rem 0.25rem transparentize($light-fg, 0.9);
+  }
+  .faux_border {
+    box-shadow: 0rem 0rem $border-width transparentize($light-fg, 0.25);
+  }
+  .neighbor_nav_button {
+    background-color: $light-button-bg;
+    box-shadow: 0rem 0rem 1px $light-border;
+  }
+  .shadow_attracting {
+    box-shadow: 0rem 0rem 0.25rem transparentize($light-fg, 0.9)
+  }
+}

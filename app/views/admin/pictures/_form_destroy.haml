@@ -1,0 +1,14 @@
+= form_with(model: [:admin, picture], method: :delete, local: true, class: :arl_form) do |f|
+  .arl_form_title
+    Destroy picture?
+    .arl_form_data_label_destroy= tag.i picture.title
+
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_caveat Picture will be removed from any albums or events.
+    %li.arl_form_explanation_caveat <em>Imported</em> picture files will remain in the file system.
+    %li.arl_form_explanation_caveat <em>Uploaded</em> picture attachment(s) will be purged.
+  %ul.arl_form_explanation
+    %li.arl_form_explanation_warning This action can not be undone.
+
+  .arl_form_actions
+    = f.submit 'Destroy Picture', data: { confirm: 'Are you sure?' },  class: :arl_button_form_submit_destroy

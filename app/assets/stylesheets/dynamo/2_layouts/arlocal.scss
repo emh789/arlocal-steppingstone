@@ -1,0 +1,14 @@
+.arlocal {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.arl_base {
+  // min-height: 100vh;
+  // width: 100%;
+}
+
+@media #{$media-screen-1} {
+  .arlocal {
+  }
+}

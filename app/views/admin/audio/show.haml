@@ -1,0 +1,40 @@
+= html_head_title_extend! 'Audio', @audio.title
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Audio
+  .arl_admin_resource_header_title
+    %span= @audio.title
+    - if @audio.does_have_subtitle
+      %span= "(#{@audio.subtitle})"
+  .arl_admin_resource_header_nav
+    = audio_admin_button_to_previous(@audio_neighbors.previous)
+    = audio_admin_button_to_edit(@audio)
+    = audio_admin_button_to_public(@audio)
+    = audio_admin_button_to_next(@audio_neighbors.next)
+
+.arl_admin_audio_show
+  %dl.arl_admin_audio_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @audio.title
+    = render 'admin/shared/metadata_pair', key: 'Subtitle', value: @audio.subtitle
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @audio.visibility
+  %div.arl_admin_audio_show_player
+    = render 'public/jplayer_single/jplayer_audio', audio: @audio
+  %dl.arl_admin_audio_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'Audio artist', value: @audio.audio_artist
+    = render 'admin/shared/metadata_pair', key: 'Composer', value: @audio.composer
+    = render 'admin/shared/metadata_pair', key: 'Date released', value: @audio.date_released
+    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @audio.description_props
+    = render 'admin/shared/metadata_pair', key: 'Duration', value: @audio.duration_as_text(precision: :mils)
+    = render 'admin/shared/metadata_pair', key: 'ISRC', value: @audio.isrc_hyphenated
+    = render 'admin/shared/metadata_pair', key: 'Musicians', text_props: @audio.musicians_props
+    = render 'admin/shared/metadata_pair', key: 'Personnel', text_props: @audio.personnel_props
+    = render 'admin/shared/metadata_pair', key: 'Source', value: @audio.source_type
+    = render 'admin/shared/metadata_pair', key: 'Source file path', value: @audio.source_file_path
+  %div.arl_admin_albums_show_joins
+    = render 'admin/shared/show_joined_albums', resource: @audio
+    = render 'admin/shared/show_joined_events', resource: @audio
+    = render 'admin/shared/show_joined_keywords', resource: @audio
+  %dl.arl_admin_audio_show_etc
+    = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_audio_path(@audio.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @audio.updated_at

@@ -1,0 +1,28 @@
+.arl_form_title
+  = picture_statement_events_count(picture)
+
+- if picture.does_have_events
+  = form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :events), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading event
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :event_pictures, picture.event_pictures_sorted do |ep|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= event_reference_admin_link(ep.object.event)
+              %td.arl_form_data_joins_value= ep.check_box :_destroy
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation
+        will also unjoin any events with 'remove' box checked
+
+= render 'form_elements/spacer'
+
+.arl_form_title
+  Add to event
+.arl_form_actions
+  .arl_admin_resource_alt_buttons
+    = picture_event_admin_button_to_new_join_single(picture)

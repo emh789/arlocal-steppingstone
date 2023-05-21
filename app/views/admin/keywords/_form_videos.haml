@@ -1,0 +1,28 @@
+.arl_form_title
+  = keyword_statement_videos_count(keyword)
+
+- if keyword.does_have_videos
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :videos), local: true, class: :arl_form) do |f|
+    .arl_form_data
+      %table.arl_form_data_joins
+        %thead
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading video title
+            %th.arl_form_data_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :video_keywords, keyword.video_keywords_sorted do |vk|
+            %tr.arl_form_data_joins_values
+              %td.arl_form_data_joins_value= video_reference_admin_link(vk.object.video)
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: vk
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation
+        = "will detach any video with the #{icon_remove} box checked."
+
+= render 'form_elements/spacer'
+
+.arl_form_title
+  Add videos
+.arl_form_actions
+  .arl_admin_resource_alt_buttons
+    = keyword_video_admin_button_to_new_join_single(keyword)

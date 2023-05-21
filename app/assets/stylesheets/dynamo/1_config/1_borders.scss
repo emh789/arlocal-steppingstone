@@ -1,0 +1,14 @@
+@mixin border-pseudo-vertical {
+  margin-left: $border-width;
+  margin-right: $border-width;
+}
+
+
+.arl_border_bottom {
+  border-bottom-style: $border-style;
+  border-bottom-width: $border-width;
+}
+.arl_border_top {
+  border-top-style: $border-style;
+  border-top-width: $border-width;
+}

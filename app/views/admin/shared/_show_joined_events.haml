@@ -1,0 +1,11 @@
+.arl_admin_resource_show_joined_events
+  .arl_admin_resource_show_joined_heading.arl_metadata_key
+    = resource_joined_events_count_label(resource)
+  - if resource.does_have_events
+    %table.arl_admin_resource_show_joined_items.arl_metadata_table_values
+      - resource.joined_events.each do |joined_event|
+        %tr
+          %td.arl_metadata_table_value
+            = event_reference_admin_link(joined_event.event)
+          %td.arl_metadata_table_value
+            = visibility_description(joined_event.event.visibility)

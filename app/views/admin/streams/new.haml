@@ -1,0 +1,9 @@
+= html_head_title_extend! 'new stream'
+
+.arl_admin_resource_header.resource_new
+  .arl_admin_resource_header_category
+    New Stream
+  = render '/form_elements/errors', resource: @stream
+
+.arl_admin_streams_new
+  = render 'form', stream: @stream, selectable: @form_metadata.selectables

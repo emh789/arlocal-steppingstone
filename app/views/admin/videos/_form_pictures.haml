@@ -1,0 +1,30 @@
+
+.arl_form_title
+  = video_statement_pictures_count(video)
+
+- if video.does_have_pictures
+  = form_with(model: [:admin, video], url: admin_video_path(video, pane: :pictures), local: true, class: :arl_form, method: :patch) do |f|
+    .arl_form_data
+      .arl_form_data_joins
+        = f.fields_for :video_pictures do |vp|
+          .arl_form_data_joins_picture
+            = render 'form_elements/joins_picture_thumbnail', form: vp
+            = render 'form_elements/joins_picture_title', form: vp
+            = render 'form_elements/joins_picture_coverpicture', form: vp
+            = render 'form_elements/joins_picture_order', form: vp, resource_order: :video_order
+            = render 'form_elements/joins_picture_remove', form: vp
+    .arl_form_actions
+      = f.submit class: :arl_button_form_submit
+      %aside.arl_form_action_explanation
+        = "will also detatch any pictures with the #{icon_remove} box checked"
+
+= render 'form_elements/spacer'
+
+.arl_form_title
+  Add picture
+.arl_form_actions
+  .arl_admin_resource_alt_buttons
+    = video_picture_admin_button_to_new_join_single(video)
+    = video_picture_admin_button_to_new_import(video)
+    = video_picture_admin_button_to_new_upload(video)
+

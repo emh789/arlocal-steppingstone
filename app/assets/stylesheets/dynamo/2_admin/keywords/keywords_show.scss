@@ -1,0 +1,29 @@
+.arl_admin_keywords_show {
+  align-items: start;
+  column-gap: $arl-spacing-wide * 2;
+  display: grid;
+  grid-template-areas: 'title joins' 'attributes joins';
+  grid-template-columns: 15rem 25rem;
+  grid-template-rows: min-content 1fr;
+  margin: $arl-margin-wide 0rem;
+  row-gap: $arl-spacing;
+}
+.arl_admin_keywords_show_attributes {
+  font-size: 0.9em;
+  grid-area: attributes;
+  padding: $arl-margin 0rem;
+}
+.arl_admin_keywords_show_joins {
+  align-items: start;
+  display: grid;
+  font-size: 0.9em;
+  grid-area: joins;
+  grid-template-areas: 'albums' 'audio' 'events' 'pictures' 'videos';
+  grid-template-rows: min-content min-content min-content min-content;
+  padding: $arl-margin 0rem;
+  row-gap: $arl-spacing;
+}
+.arl_admin_keywords_show_title {
+  grid-area: title;
+  padding:  0rem;
+}

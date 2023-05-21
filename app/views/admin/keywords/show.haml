@@ -1,0 +1,28 @@
+= html_head_title_extend! :keywords, @keyword.title
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Keyword
+  .arl_admin_resource_header_title
+    = @keyword.title
+  .arl_admin_resource_header_buttons
+    = keyword_admin_button_to_previous(@keyword_neighbors.previous)
+    = keyword_admin_button_to_edit(@keyword)
+    = keyword_admin_button_to_next(@keyword_neighbors.next)
+
+.arl_admin_keywords_show
+  %div.arl_admin_keywords_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @keyword.title
+  %dl.arl_admin_keywords_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'Can select albums', boolean: @keyword.can_select_albums
+    = render 'admin/shared/metadata_pair', key: 'Can select events', boolean: @keyword.can_select_events
+    = render 'admin/shared/metadata_pair', key: 'Can select pictures', boolean: @keyword.can_select_pictures
+    = render 'admin/shared/metadata_pair', key: 'Can select videos', boolean: @keyword.can_select_videos
+  %div.arl_admin_keywords_show_joins
+    = render 'admin/shared/show_joined_albums', resource: @keyword
+    = render 'admin/shared/show_joined_audio', resource: @keyword
+    = render 'admin/shared/show_joined_events', resource: @keyword
+    = render 'admin/shared/show_joined_pictures', resource: @keyword
+    = render 'admin/shared/show_joined_videos', resource: @keyword
+  %dl.arl_admin_keywords_show_etc
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @keyword.updated_at

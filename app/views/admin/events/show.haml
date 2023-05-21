@@ -1,0 +1,37 @@
+= html_head_title_extend! :events, @event.date_and_venue
+
+- if @event.show_will_cycle_pictures
+  = resource_script_picture_cycler(@event)
+
+.arl_admin_resource_header.resource_show
+  .arl_admin_resource_header_category
+    Event
+  .arl_admin_resource_header_title
+    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_text_markup}"
+  .arl_admin_resource_header_buttons
+    = event_admin_button_to_previous(@event_neighbors.previous)
+    = event_admin_button_to_edit(@event)
+    = event_admin_button_to_next(@event_neighbors.next)
+
+.arl_admin_events_show
+  %dl.arl_admin_events_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @event.title
+    = render 'admin/shared/metadata_pair', key: 'Date/time of start', value: @event.datetime_friendly
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @event.visibility
+  %div.arl_admin_events_show_picture
+    = render 'show_event_coverpicture', event: @event
+  %dl.arl_admin_events_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'alert', value: @event.alert
+    = render 'admin/shared/metadata_pair', key: 'City', value: @event.city
+    = render 'admin/shared/metadata_pair', key: 'Details', text_props: @event.details_props
+    = render 'admin/shared/metadata_pair', key: 'Map url', value: @event.map_url
+    = render 'admin/shared/metadata_pair', key: 'Show can cycle pictures', boolean: @event.show_can_cycle_pictures
+    = render 'admin/shared/metadata_pair', key: 'Venue', value: @event.venue
+    = render 'admin/shared/metadata_pair', key: 'Venue URL', value: @event.venue_url
+  %div.arl_admin_events_show_joins
+    = render 'admin/shared/show_joined_audio', resource: @event
+    = render 'admin/shared/show_joined_keywords', resource: @event
+    = render 'admin/shared/show_joined_pictures', resource: @event
+  %dl.arl_admin_events_show_etc
+    = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_event_path(@event.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @event.updated_at

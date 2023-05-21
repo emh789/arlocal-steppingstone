@@ -1,0 +1,75 @@
+.arl_admin_header {
+  border-bottom-style: $border-style;
+  border-bottom-width: $border-width;
+  display: grid;
+  font-family: $font-family-application;
+	grid-gap: 1rem 1rem;
+  grid-template-areas: 'logo text' 'buttons buttons';
+	grid-template-columns: min-content auto;
+	padding: $arl-spacing-wide;
+}
+.arl_admin_header_logo {
+  grid-area: logo;
+}
+.arl_admin_header_logo_thumbnail {
+  border-radius: $border-radius-narrow;
+  border-style: $border-style;
+  border-width: $border-width;
+  height: 6rem;
+  width: 6rem;
+}
+.arl_admin_header_text {
+  display: flex;
+  flex-direction: column;
+  grid-area: text;
+  justify-content: space-evenly;
+}
+.arl_admin_header_text_artist {
+  font-size: 1.5em;
+	margin: 0;
+}
+.arl_admin_header_text_title {
+	font-size: 1.25em;
+	margin: 0;
+}
+.arl_admin_header_text_email {
+}
+.arl_admin_header_nav {
+	grid-area: buttons;
+}
+.arl_admin_header_nav_button {
+  border-radius: $border-radius;
+  display: inline-block;
+  font-family: $font-family-application;
+  font-size: 0.9em;
+  font-weight: bold;
+  height: 1.5em;
+  line-height: 1.5em;
+  margin-right: 0.5rem;
+  min-width: 1.5em;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  &:last-child {
+    margin-right: 0rem;
+  }
+}
+.arl_admin_header_nav_select {
+  border-radius: $border-radius;
+  display: inline-block;
+  font-family: $font-family-application;
+  font-weight: bold;
+  font-size: 0.9em;
+  height: 1.5em;
+  line-height: 1.5em;
+  margin-right: 0.5rem;
+  min-width: 1.5em;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: middle;
+  &:last-child {
+    margin-right: 0rem;
+  }
+}
