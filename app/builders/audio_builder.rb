@@ -4,9 +4,6 @@ class AudioBuilder
   require 'mediainfo'
 
 
-  include CatalogHelper
-
-
   attr_reader :audio, :metadata
 
 
