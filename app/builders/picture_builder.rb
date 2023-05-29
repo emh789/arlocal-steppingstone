@@ -4,9 +4,6 @@ class PictureBuilder
   require 'exiftool'
 
 
-  include CatalogHelper
-
-
   attr_reader :picture
 
 

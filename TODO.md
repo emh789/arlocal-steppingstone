@@ -32,7 +32,6 @@ Video scope
 
 ### finish admin renovation
 
-  - autokeyword formatting
   - give a title to nested_picture uploads/imports
   - audio/picture not found -- clearer indicator *maybe a preceeding question mark*
   - More useful 'index' action for resources *working on it*
@@ -165,3 +164,5 @@ e.g. line 10-28  `# TODO: Is this still a potentially useful method or code patt
 
 several joined_resource models have wrapper methods to prevent failure if joined is nil
 is this pattern obsolete? **YES.**
+
+- autokeyword formatting
