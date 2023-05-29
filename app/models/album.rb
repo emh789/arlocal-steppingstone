@@ -240,7 +240,19 @@ class Album < ApplicationRecord
   end
 
 
-  def duration(round_to_seconds: true)
+  def duration(rounded_to: nil)
+    case rounded_to
+    when :secs, :seconds
+      duration_rounded_to_seconds
+    when :mils, :milliseconds
+      duration_rounded_to_milliseconds
+    else
+      duration_rounded_to_milliseconds
+    end
+  end
+
+
+  def duration_rounded_to_seconds
     mins = 0
     secs = 0
     mils = 0
@@ -253,7 +265,7 @@ class Album < ApplicationRecord
       mils -= 1000
       secs += 1
     end
-    if (mils >= 500) && (round_to_seconds == true)
+    if (mils >= 500)
       secs += 1
     end
     while secs >= 60
@@ -261,6 +273,27 @@ class Album < ApplicationRecord
       mins += 1
     end
     "#{mins}:#{secs.to_s.rjust(2, '0')}"
+  end
+
+
+  def duration_rounded_to_milliseconds
+    mins = 0
+    secs = 0
+    mils = 0
+    audio.each do |aud|
+      mins += aud.duration_mins
+      secs += aud.duration_secs
+      mils += aud.duration_mils
+    end
+    while mils >= 1000
+      mils -= 1000
+      secs += 1
+    end
+    while secs >= 60
+      secs -= 60
+      mins += 1
+    end
+    "#{mins}:#{secs.to_s.rjust(2, '0')}:#{mils.to_s.rjust(3, '0')}"
   end
 
 

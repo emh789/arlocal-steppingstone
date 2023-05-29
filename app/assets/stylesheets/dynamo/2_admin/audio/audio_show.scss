@@ -21,7 +21,7 @@
   display: grid;
   font-size: 0.9em;
   grid-area: joins;
-  grid-template-areas: 'audio' 'events' 'keywords';
+  grid-template-areas: 'albums' 'events' 'keywords';
   grid-template-rows: min-content min-content min-content;
   padding: $arl-margin 0rem;
   row-gap: $arl-spacing;

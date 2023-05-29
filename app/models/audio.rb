@@ -155,23 +155,23 @@ class Audio < ApplicationRecord
   end
 
 
-  def duration_as_text(precision: :secs)
-    case precision
-    when :minutes, :mins
-      duration_as_text_to_minutess
-    when :seconds, :secs
-      duration_as_text_to_seconds
+  def duration(rounded_to: nil)
+    case rounded_to
+    when :mins, :minutes
+      duration_rounded_to_minutes
+    when :secs, :seconds
+      duration_rounded_to_seconds
     when :cents
-      duration_as_text_to_cents
-    when :milliseconds, :mils
-      duration_as_text_to_mils
+      duration_rounded_to_cents
+    when :mils, :milliseconds
+      duration_rounded_to_milliseconds
     else
-      duration_as_text_to_mils
+      duration_rounded_to_milliseconds
     end
   end
 
 
-  def duration_as_text_to_minutes
+  def duration_rounded_to_minutes
     mins = duration_mins
     if duration_secs >= 30
       mins = mins + 1
@@ -180,7 +180,7 @@ class Audio < ApplicationRecord
   end
 
 
-  def duration_as_text_to_seconds
+  def duration_rounded_to_seconds
     mins = duration_mins
     secs = duration_secs
     if duration_mils >= 500
@@ -194,7 +194,7 @@ class Audio < ApplicationRecord
   end
 
 
-  def duration_as_text_to_cents
+  def duration_rounded_to_cents
     mins = duration_mins
     secs = duration_secs
     cents = duration_mils.fdiv(10).round
@@ -210,7 +210,7 @@ class Audio < ApplicationRecord
   end
 
 
-  def duration_as_text_to_mils
+  def duration_rounded_to_milliseconds
     "#{duration_mins}:#{duration_secs.to_s.rjust(2, '0')}.#{duration_mils.to_s.rjust(3, '0')}"
   end
 

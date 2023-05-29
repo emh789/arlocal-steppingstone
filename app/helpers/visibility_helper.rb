@@ -11,12 +11,18 @@ module VisibilityHelper
       },
       {
         id: 1,
-        icon: icon_published,
-        title: 'unlisted',
-        description: "#{icon_published} Unlisted"
+        icon: icon_private,
+        title: 'hidden',
+        description: "#{icon_private} Hidden".html_safe
       },
       {
         id: 2,
+        icon: icon_published,
+        title: 'attachable',
+        description: "#{icon_published} Attachable".html_safe
+      },
+      {
+        id: 3,
         icon: icon_published,
         title: 'public',
         description: "#{icon_published} Public".html_safe

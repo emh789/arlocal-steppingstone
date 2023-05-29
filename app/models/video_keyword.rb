@@ -5,42 +5,24 @@ class VideoKeyword < ApplicationRecord
   belongs_to :keyword, counter_cache: :videos_count
 
 
-  # wraps video.id_public to prevent failure if video is nil
-  def video_id_public
-    if video
-      video.id_public
-    end
-  end
-
-
-  # wraps video.title to prevent failure if video is nil
-  def video_title
-    if video
-      video.title
-    end
-  end
-
-
   ### created_at
+
+
+  def does_have_order
+    false
+  end
 
 
   ### id
 
 
-  def id_public
-    id
-  end
+  ### keyword_id
 
 
   ### updated_at
 
 
-  # wraps keyword.title to prevent failure if keyword is nil
-  def keyword_title
-    if keyword
-      keyword.title
-    end
-  end
+  ### video_id
 
 
 end
