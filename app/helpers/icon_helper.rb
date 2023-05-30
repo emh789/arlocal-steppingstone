@@ -70,9 +70,12 @@ module IconHelper
 
 
   def icon_private
-    # '🕶️'
-    # '⛔'
     '⊖'
+  end
+
+
+  def icon_question
+    '?'
   end
 
 

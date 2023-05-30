@@ -76,7 +76,13 @@ module ResourcesHelper
 
 
   def resource_joined_keywords_count_statement(resource, punctuated: false)
-    pluralize resource.keywords_count.to_i, 'keyword'
+    # pluralize resource.keywords_count.to_i, 'keyword'
+    count = resource.keywords_count.to_i
+    result = pluralize count, 'keyword'
+    if punctuated && (count > 0)
+      result = result.concat(':')
+    end
+    result
   end
 
 

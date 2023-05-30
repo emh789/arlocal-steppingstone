@@ -84,6 +84,16 @@ class Audio < ApplicationRecord
   ### albums_count
 
 
+  def albums_sorted
+    albums_sorted_by_title_asc
+  end
+
+
+  def albums_sorted_by_title_asc
+    albums.to_a.sort_by! { |album| album.title.downcase }
+  end
+
+
   def audio_keywords_sorted
     audio_keywords_sorted_by_title_asc
   end
@@ -235,13 +245,23 @@ class Audio < ApplicationRecord
   end
 
 
-  def event_audio_by_datetime_asc
+  def event_audio_sorted
+    event_audio_sorted_by_datetime_asc
+  end
+
+
+  def event_audio_sorted_by_datetime_asc
     event_audio.to_a.sort_by! { |ea| ea.event.datetime }
   end
 
 
-  def event_audio_sorted
-    event_audio_by_datetime_asc
+  def events_sorted
+    events_sorted_by_datetime_asc
+  end
+
+
+  def events_sorted_by_datetime_asc
+    events.to_a.sort_by! { |event| event.datetime }
   end
 
 
@@ -319,6 +339,16 @@ class Audio < ApplicationRecord
   ### keywords_count
 
 
+  def keywords_sorted
+    keywords_sorted_by_title_asc
+  end
+
+
+  def keywords_sorted_by_title_asc
+    keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
+  end
+
+  
   ### musicians_parser_id
 
 

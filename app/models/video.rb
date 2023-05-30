@@ -30,11 +30,8 @@ class Video < ApplicationRecord
   has_many :keywords, through: :video_keywords
 
   has_many :video_pictures, -> { includes(:picture) }, dependent: :destroy
-  has_many :pictures, through: :video_pictures do
-    def order_by_filename_asc
-      order(filename: :asc)
-    end
-  end
+  has_many :pictures, through: :video_pictures
+  
   has_one :coverpicture, -> { where is_coverpicture: true }, class_name: 'VideoPicture'
 
 

@@ -122,7 +122,7 @@ module AudioHelper
   end
 
 
-  def audio_file_source_path_with_indicators(audio, html_class: [])
+  def audio_file_source_path_with_indicator_class(audio, html_class: [])
     filename = ''
     html_class = [html_class].flatten
 
@@ -140,8 +140,11 @@ module AudioHelper
         html_class << :arl_error_file_missing
       end
     end
-
-    tag.div "#{filename}", class: html_class
+    if filename == ''
+      filename = '<i>(no file indicated)</i>'
+    end
+    # tag.div "#{filename}".html_safe, class: html_class
+    tag.div "#{filename}".html_safe
   end
 
 
@@ -212,6 +215,11 @@ module AudioHelper
 
   def audio_statement_keywords_count(audio)
     pluralize audio.keywords_count.to_i, 'keyword'
+  end
+
+
+  def audio_admin_title_link(audio)
+    link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin)
   end
 
 

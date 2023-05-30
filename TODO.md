@@ -15,28 +15,19 @@ resource.visibility:
     - hidden
     - private
 
-keyword scopes
-Picture queries rely on instance methods rather than databse attributes
-    effective datetime value, for example, selects from a hierarchy of three values (manual entry, exif, file)
-  harder to refactor into model scopes w/o corresponding database attribute
-    **Maybe bypass model scopes and just use a sorted array?**
-  should this change?
-Video scope
-  sort_by_keyword -> can this be refactored into model scope?
-**Some complex queries return a hash rather than an ActiveRecord::Association array.**
-**Maybe they should be kept separate from the ActiveRecord#scope methods?**
-***Conclusion***
-  - keep scopes for visibility: indexable, linkable, published, etc.
-  - use collection variable in `fields_for` blocks, &c.
-  - assume that the query will deliver an enumerable
+Ongoing debate:
+**When to use model scope vs. When to use Query method?**
+  - some query results depend on values from instance methods rather than activerecord:query interface
+  - some queries return a hash with results from database attribute or instance method as its keys
 
 ### finish admin renovation
 
   - give a title to nested_picture uploads/imports
   - audio/picture not found -- clearer indicator *maybe a preceeding question mark*
+    - **Audio is the model for Picture.**
   - More useful 'index' action for resources *working on it*
 
-  *Review helper methods for currency in light of recent refactorying frenzy.*
+  *Review helper methods for currency in light of recent refactoring frenzy.*
   *related:*
     >   refactor index_joined_resource view templates
         fallout: keyword_statement_items_count methods might be unused now
@@ -89,9 +80,6 @@ Not sure what these were from:
     - probably best as a boolean
 
 - Video: include attribute for duration? read mediainfo?
-
-- Why does PictureKeyword have an `id_public` method? It's not even directly accessible.
-  - related: are the redundant join methods such as `PictureKeyword#picture_title #picture_id #picture_slug` still needed?
 
 - form_elements/picture_select: should it receive selectable or selectable.pictures?
   - _Check this throughout. Might be best to start with seeing what variables each form_elements requires._
@@ -146,6 +134,21 @@ Not sure what these were from:
 
 ## Possibly finished
 
+keyword scopes
+Picture queries rely on instance methods rather than databse attributes
+    effective datetime value, for example, selects from a hierarchy of three values (manual entry, exif, file)
+  harder to refactor into model scopes w/o corresponding database attribute
+    **Maybe bypass model scopes and just use a sorted array?**
+  should this change?
+Video scope
+  sort_by_keyword -> can this be refactored into model scope?
+**Some complex queries return a hash rather than an ActiveRecord::Association array.**
+**Maybe they should be kept separate from the ActiveRecord#scope methods?**
+***Conclusion***
+  - keep scopes for visibility: indexable, linkable, published, etc.
+  - use collection variable in `fields_for` blocks, &c.
+  - assume that the query will deliver an enumerable
+
 
 
 ## Probably finished
@@ -164,5 +167,8 @@ e.g. line 10-28  `# TODO: Is this still a potentially useful method or code patt
 
 several joined_resource models have wrapper methods to prevent failure if joined is nil
 is this pattern obsolete? **YES.**
+- Why does PictureKeyword have an `id_public` method? It's not even directly accessible.
+  - related: are the redundant join methods such as `PictureKeyword#picture_title #picture_id #picture_slug` still needed?
+
 
 - autokeyword formatting
