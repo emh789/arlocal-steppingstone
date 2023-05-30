@@ -182,8 +182,9 @@ class Audio < ApplicationRecord
 
 
   def duration_rounded_to_minutes
-    mins = duration_mins
-    if duration_secs >= 30
+    mins = duration_mins.to_i
+    secs = duration_secs.to_i
+    if secs >= 30
       mins = mins + 1
     end
     "#{mins.to_s}"
@@ -191,9 +192,10 @@ class Audio < ApplicationRecord
 
 
   def duration_rounded_to_seconds
-    mins = duration_mins
-    secs = duration_secs
-    if duration_mils >= 500
+    mins = duration_mins.to_i
+    secs = duration_secs.to_i
+    mils = duration_mils.to_i
+    if mils >= 500
       secs = secs + 1
     end
     if secs >= 60
@@ -205,9 +207,9 @@ class Audio < ApplicationRecord
 
 
   def duration_rounded_to_cents
-    mins = duration_mins
-    secs = duration_secs
-    cents = duration_mils.fdiv(10).round
+    mins = duration_mins.to_i
+    secs = duration_secs.to_i
+    cents = duration_mils.to_i.fdiv(10).round
     if cents >= 100
       secs = secs + 1
       cents = cents - 100
@@ -225,24 +227,16 @@ class Audio < ApplicationRecord
   end
 
 
-  def duration_hrs
-    super.to_i
-  end
+  ### duration_hrs
 
 
-  def duration_mins
-    super.to_i
-  end
+  ### duration_mins
 
 
-  def duration_secs
-    super.to_i
-  end
+  ### duration_secs
 
 
-  def duration_mils
-    super.to_i
-  end
+  ### duration_mils
 
 
   def event_audio_sorted
@@ -348,7 +342,7 @@ class Audio < ApplicationRecord
     keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
   end
 
-  
+
   ### musicians_parser_id
 
 
@@ -397,7 +391,20 @@ class Audio < ApplicationRecord
   end
 
 
-  ### source_imported_file_path
+  def source_file_does_exist
+    case source_type
+    when 'imported', 'uploaded'
+      File.exist?(source_absolute_pat h_to_file)
+    end
+  end
+
+
+  def source_file_does_not_exist
+    case source_type
+    when 'imported', 'uploaded'
+      File.exist?(source_absolute_path_to_file) == false
+    end
+  end
 
 
   def source_file_extname
@@ -432,6 +439,9 @@ class Audio < ApplicationRecord
       ''
     end
   end
+
+
+  ### source_imported_file_path
 
 
   def source_is_file
@@ -504,6 +514,16 @@ class Audio < ApplicationRecord
 
 
   private
+
+
+  def source_absolute_path_to_file
+    case source_type
+    when 'uploaded'
+      ActiveStorage::Blob.service.send(:path_for, source_uploaded.key)
+    when 'imported'
+      File.join(Rails.application.config.x.arlocal[:source_imported_filesystem_dirname], source_imported_file_path)
+    end
+  end
 
 
   def strip_whitespace_edges_from_entered_text

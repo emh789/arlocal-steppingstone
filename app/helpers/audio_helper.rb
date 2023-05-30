@@ -123,28 +123,15 @@ module AudioHelper
 
 
   def audio_file_source_path_with_indicator_class(audio, html_class: [])
-    filename = ''
+    filename = audio.source_file_path
     html_class = [html_class].flatten
-
-    case audio.source_type
-    when 'attachment'
-      filename = audio.source_uploaded_file_path
-      path_to_file = ActiveStorage::Blob.service.send(:path_for, audio.source_uploaded.key)
-      if File.exist?(path_to_file) == false
-        html_class << :arl_error_file_missing
-      end
-    when 'imported'
-      filename = audio.source_imported_file_path
-      path_to_file = source_imported_file_path(audio)
-      if File.exist?(path_to_file) == false
-        html_class << :arl_error_file_missing
-      end
-    end
     if filename == ''
       filename = '<i>(no file indicated)</i>'
     end
-    # tag.div "#{filename}".html_safe, class: html_class
-    tag.div "#{filename}".html_safe
+    if audio.source_file_does_not_exist
+      html_class << :arl_error_file_missing
+    end
+    tag.div "#{filename}".html_safe, class: html_class
   end
 
 

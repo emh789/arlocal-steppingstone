@@ -4,6 +4,11 @@
 
 ## HIGHEST priority
 
+Had AudioHelper.audio_read_source_metadata been refactored into a builder method? If not, should it be?
+
+javascript_helper could be split into jplayer_helper
+would be nice to look into other ways to generate/metaprogram the javascript for jplayer
+
 autokeyword smells bad.
 
 resource.visibility:
@@ -12,7 +17,7 @@ resource.visibility:
   - choose new name?
     - indexed
     - attachable
-    - hidden
+    - unlisted
     - private
 
 Ongoing debate:
@@ -23,9 +28,8 @@ Ongoing debate:
 ### finish admin renovation
 
   - give a title to nested_picture uploads/imports
-  - audio/picture not found -- clearer indicator *maybe a preceeding question mark*
-    - **Audio is the model for Picture.**
   - More useful 'index' action for resources *working on it*
+    - **Audio is the model for Picture.**
 
   *Review helper methods for currency in light of recent refactoring frenzy.*
   *related:*
@@ -134,6 +138,12 @@ Not sure what these were from:
 
 ## Possibly finished
 
+Renaming source_imported etc resulted in a naming collision
+  - resource_model: audio.source_imported_file_path for relative to public/portfolio
+  - source_imported_helper: source_imported_file_path(audio) for absolute path to look for file
+because Audio.file_exists? is dependent on both the source type and the config.x.arlocal configuration setting for public/portfolio
+
+
 keyword scopes
 Picture queries rely on instance methods rather than databse attributes
     effective datetime value, for example, selects from a hierarchy of three values (manual entry, exif, file)
@@ -149,6 +159,7 @@ Video scope
   - use collection variable in `fields_for` blocks, &c.
   - assume that the query will deliver an enumerable
 
+audio: why are durations `super.to_i`? *historical reasons. refactor to where integers are necessary, leave attribute method alone.*
 
 
 ## Probably finished
@@ -172,3 +183,4 @@ is this pattern obsolete? **YES.**
 
 
 - autokeyword formatting
+- audio/picture not found -- clearer indicator *maybe a preceeding question mark*

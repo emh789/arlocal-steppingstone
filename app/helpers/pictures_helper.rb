@@ -118,13 +118,6 @@ module PicturesHelper
   end
 
 
-  # def picture_datetime_cascade_value_statement(picture)
-  #   picture_datetime = tag.span("#{picture.datetime_effective_value}")
-  #   sanitize("#{picture_datetime}")
-  # end
-
-
-
   def picture_datetime_effective_statement(picture)
     "#{picture.datetime_effective_value} (#{picture.datetime_effective_method})"
   end
@@ -133,19 +126,13 @@ module PicturesHelper
   def picture_file_path_div_with_indicators(picture, html_class: [])
     filename = picture.source_file_path
     html_class = [html_class].flatten
-    case picture.source_type
-    when 'attachment'
-      path_to_file = ActiveStorage::Blob.service.send(:path_for, picture.source_uploaded.key)
-      if File.exist?(path_to_file) == false
-        html_class << :arl_error_file_missing
-      end
-    when 'imported'
-      path_to_file = source_imported_file_path(picture)
-      if File.exist?(path_to_file) == false
-        html_class << :arl_error_file_missing
-      end
+    if filename == ''
+      filename = '<i>(no file indicated)</i>'
     end
-    tag.div filename, class: html_class
+    if picture.source_file_does_not_exist
+      html_class << :arl_error_file_missing
+    end
+    tag.div "#{filename}".html_safe, class: html_class
   end
 
 

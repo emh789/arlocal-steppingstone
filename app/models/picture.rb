@@ -413,12 +413,25 @@ class Picture < ApplicationRecord
   end
 
 
-  ### source_imported_file_path
-
-
   def source_file_basename
     if source_file_path
       File.basename(source_file_path, '.*')
+    end
+  end
+
+
+  def source_file_does_exist
+    case source_type
+    when 'imported', 'uploaded'
+      File.exist?(source_absolute_pat h_to_file)
+    end
+  end
+
+
+  def source_file_does_not_exist
+    case source_type
+    when 'imported', 'uploaded'
+      File.exist?(source_absolute_path_to_file) == false
     end
   end
 
@@ -448,6 +461,9 @@ class Picture < ApplicationRecord
       source_url
     end
   end
+
+
+  ### source_imported_file_path
 
 
   def source_is_file
@@ -565,6 +581,16 @@ class Picture < ApplicationRecord
       end
     rescue Date::Error
       self.errors.add :base, :invalid_date, message: 'Invalid date.'
+    end
+  end
+
+
+  def source_absolute_path_to_file
+    case source_type
+    when 'uploaded'
+      ActiveStorage::Blob.service.send(:path_for, source_uploaded.key)
+    when 'imported'
+      File.join(Rails.application.config.x.arlocal[:source_imported_filesystem_dirname], source_imported_file_path)
     end
   end
 

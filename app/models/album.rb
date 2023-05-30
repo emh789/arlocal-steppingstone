@@ -281,9 +281,9 @@ class Album < ApplicationRecord
     secs = 0
     mils = 0
     audio.each do |aud|
-      mins += aud.duration_mins
-      secs += aud.duration_secs
-      mils += aud.duration_mils
+      mins += aud.duration_mins.to_i
+      secs += aud.duration_secs.to_i
+      mils += aud.duration_mils.to_i
     end
     while mils >= 1000
       mils -= 1000

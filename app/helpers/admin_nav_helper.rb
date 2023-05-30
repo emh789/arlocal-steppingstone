@@ -60,7 +60,7 @@ module AdminNavHelper
   end
 
 
-  def admin_nav_option_tag(option = { label: '', category: '', path: '' })
+  def admin_nav_option_tag(option = { label: '', controller: '', path: '' })
     if option[:controller].match(params[:controller])
       content_tag(:option, option[:label], selected: 'selected', data: {url: option[:path]})
     else
