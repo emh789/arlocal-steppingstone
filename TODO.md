@@ -4,54 +4,40 @@
 
 ## HIGHEST priority
 
-Had AudioHelper.audio_read_source_metadata been refactored into a builder method? If not, should it be?
+page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
+`HtmlHelper.html_head_title_extend!` line 37
 
-javascript_helper could be split into jplayer_helper
-would be nice to look into other ways to generate/metaprogram the javascript for jplayer
-
-autokeyword smells bad.
-
-resource.visibility:
-  "private" isn't really private, there is still a direct URL if a file is in storage
-  - see visibility_helper
-  - choose new name?
-    - indexed
-    - attachable
-    - unlisted
-    - private
-
-Ongoing debate:
-**When to use model scope vs. When to use Query method?**
-  - some query results depend on values from instance methods rather than activerecord:query interface
-  - some queries return a hash with results from database attribute or instance method as its keys
-
-### finish admin renovation
-
+finish admin renovation
   - give a title to nested_picture uploads/imports
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
-
-  *Review helper methods for currency in light of recent refactoring frenzy.*
-  *related:*
-    >   refactor index_joined_resource view templates
+  - *Review helper methods for currency in light of recent refactoring frenzy.*
+    *related:*
+      - refactor index_joined_resource view templates
         fallout: keyword_statement_items_count methods might be unused now
         (replaced by resource_statement_items_count)
-
-####  **TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.**
-
+  - **TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.**
 
 video#show css
   text_data, does it need a min-width?
 Video index needs headings
 
-    + form_metadata
-    + partials
-      + event _form_join_by_keyword,
-        + method keyword.title_with_video_count
-      + event _form_join_single
-      + video join_single
-
 Not sure what these were from:
+  + form_metadata
+  + partials
+    + event _form_join_by_keyword,
+      + method keyword.title_with_video_count
+    + event _form_join_single
+    + video join_single
+
+Ongoing debate:
+**When to use model scope vs. When to use Query method?**
+  - some query results depend on values from instance methods rather than activerecord:query interface
+  - some queries return a hash with result from database attribute or instance method as its keys
+    - for example, calendar of events by year
+
+
+Not sure what these were from _(but probably from the EventVideo addenda)_:
 ---
   - Fallout
     - models/event_audio.rb: what is self.event_hash and why?
@@ -100,6 +86,11 @@ Not sure what these were from:
 
 ## Medium priority
 
+autokeyword smells bad.
+
+Had AudioHelper.audio_read_source_metadata been refactored into a builder method? *no* If not, should it be? *no, if anywhere then into the Album model*
+  - used in `app/views/admin/audio/_form_id3.haml`
+
 - import/upload video via `keywords/_form_video_import`
 
 - change the Calendar model from a module to a class
@@ -134,15 +125,20 @@ Not sure what these were from:
 
 **Continue to be mindful about including `autocomplete: false` in form elements.**
 
+look into other ways to generate/metaprogram the javascript for jplayer
+
 
 
 ## Possibly finished
+
+
+
+## Probably finished
 
 Renaming source_imported etc resulted in a naming collision
   - resource_model: audio.source_imported_file_path for relative to public/portfolio
   - source_imported_helper: source_imported_file_path(audio) for absolute path to look for file
 because Audio.file_exists? is dependent on both the source type and the config.x.arlocal configuration setting for public/portfolio
-
 
 keyword scopes
 Picture queries rely on instance methods rather than databse attributes
@@ -159,28 +155,5 @@ Video scope
   - use collection variable in `fields_for` blocks, &c.
   - assume that the query will deliver an enumerable
 
-audio: why are durations `super.to_i`? *historical reasons. refactor to where integers are necessary, leave attribute method alone.*
-
-
-## Probably finished
-
-wording mismatch between album.duration and audio.duration
-`rounded_to` implies data manipulation **More accurate wording**
-`precision` implies observation
-  - album has `duration(rounded_to: :units)`
-  - audio has `duration_as_text(precision: :units)`
-  also look at album_audio, event_audio, etc.
-  does events need event.playlist_duration or something similar? *yagni…y*
-
-album_audio.rb &c
-there are singleton methods that might not reflect the current reality.
-e.g. line 10-28  `# TODO: Is this still a potentially useful method or code pattern?` **no.**
-
-several joined_resource models have wrapper methods to prevent failure if joined is nil
-is this pattern obsolete? **YES.**
-- Why does PictureKeyword have an `id_public` method? It's not even directly accessible.
-  - related: are the redundant join methods such as `PictureKeyword#picture_title #picture_id #picture_slug` still needed?
-
-
-- autokeyword formatting
-- audio/picture not found -- clearer indicator *maybe a preceeding question mark*
+javascript_helper could be split into jplayer_helper. *No. Just remove obsolete google analytics methods.*
+would be nice to look into other ways to generate/metaprogram the javascript for jplayer *Yes, but low priority.*

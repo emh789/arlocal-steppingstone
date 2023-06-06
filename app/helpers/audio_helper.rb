@@ -149,7 +149,7 @@ module AudioHelper
     end
   end
 
-
+  # used by app/views/admin/audio/_form_id3.haml
   def audio_read_source_metadata(audio)
     metadata = nil
     result = {}

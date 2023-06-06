@@ -3,29 +3,29 @@ module VisibilityHelper
 
   def visibilities
     [
-      {
-        id: 0,
-        icon: icon_private,
-        title: 'private',
-        description: "#{icon_private} Private".html_safe
-      },
+      # {
+      #   id: 0,
+      #   icon: icon_private,
+      #   title: 'private',
+      #   description: "#{icon_private} Private; Unavailable".html_safe
+      # },
       {
         id: 1,
         icon: icon_private,
-        title: 'hidden',
-        description: "#{icon_private} Hidden".html_safe
+        title: 'private',
+        description: "#{icon_private} private".html_safe
       },
       {
         id: 2,
         icon: icon_published,
-        title: 'attachable',
-        description: "#{icon_published} Attachable".html_safe
+        title: 'unlisted',
+        description: "#{icon_published} unlisted".html_safe
       },
       {
         id: 3,
         icon: icon_published,
         title: 'public',
-        description: "#{icon_published} Public".html_safe
+        description: "#{icon_published} public".html_safe
       }
     ]
   end

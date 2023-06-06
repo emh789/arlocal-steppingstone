@@ -105,3 +105,36 @@ pictures -> video **DONE**
   > // TODO: figure out why this doesn't render border-bottom or border-top
   > // see .jp-type-playlist for border-bottom.
   > // see .arl_albums_show_player for border-top.
+
+  audio: why are durations `super.to_i`? *historical reasons. refactor to where integers are necessary, leave attribute method alone.*
+  wording mismatch between album.duration and audio.duration
+  `rounded_to` implies data manipulation **More accurate wording**
+  `precision` implies observation
+    - album has `duration(rounded_to: :units)`
+    - audio has `duration_as_text(precision: :units)`
+    also look at album_audio, event_audio, etc.
+    does events need event.playlist_duration or something similar? *yagni…y*
+
+  album_audio.rb &c
+  there are singleton methods that might not reflect the current reality.
+  e.g. line 10-28  `# TODO: Is this still a potentially useful method or code pattern?` **no.**
+
+  several joined_resource models have wrapper methods to prevent failure if joined is nil
+  is this pattern obsolete? **YES.**
+  - Why does PictureKeyword have an `id_public` method? It's not even directly accessible.
+    - related: are the redundant join methods such as `PictureKeyword#picture_title #picture_id #picture_slug` still needed?
+
+  - autokeyword formatting
+  - audio/picture not found -- clearer indicator *maybe a preceeding question mark*
+
+  resource.visibility:
+    "private" isn't really private, there is still a direct URL if a file is in storage
+    - see visibility_helper
+    - choose new name?
+      - indexed
+      - attachable
+      - unlisted
+      - private
+    - **NO. IT GETS TOO COMPLICATED.**
+      - keep ['public','unlisted','private']
+      - add a disclaimer

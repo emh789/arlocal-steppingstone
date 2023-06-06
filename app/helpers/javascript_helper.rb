@@ -4,53 +4,6 @@ module JavascriptHelper
   ###########
 
 
-  def js_element_ga(tracking_id)
-<<-JS_ELEMENT_GA
-
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', '#{tracking_id}', 'auto');
-ga('send', 'pageview');
-</script>
-
-<script async src='https://www.google-analytics.com/analytics.js'>
-</script>
-
-JS_ELEMENT_GA
-  end
-
-
-  ###########
-
-
-  def js_element_ga_jp_onready_development
-<<-JS_ELEMENT_GA_JP_ONREADY_DEV
-
-<script>
-$(document).ready(function() { Arlocal.jPlayer_ga._env.development.onReady() });
-</script>
-
-JS_ELEMENT_GA_JP_ONREADY_DEV
-  end
-
-
-  ###########
-
-
-  def js_element_ga_jp_onready_production
-<<-JS_ELEMENT_GA_JP_ONREADY_PRODUCTION
-
-<script>
-$(document).ready(function() { Arlocal.jPlayer_ga._env.production.onReady() });
-</script>
-
-JS_ELEMENT_GA_JP_ONREADY_PRODUCTION
-  end
-
-
-  ###########
-
-
   def js_fragment_jp_audio_ordered(resource_audio)
     album_order = resource_audio.playlist_order
     title = resource_audio.full_title

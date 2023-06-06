@@ -605,8 +605,8 @@ class Picture < ApplicationRecord
   def strip_whitespace_edges_from_entered_text
     [ self.credits_text_markup,
       self.description_text_markup,
+      self.source_imported_file_path,
       self.title_text_markup,
-      self.source_imported_file_path
     ].each { |a| a.to_s.strip! }
   end
 

@@ -31,7 +31,7 @@ class Video < ApplicationRecord
 
   has_many :video_pictures, -> { includes(:picture) }, dependent: :destroy
   has_many :pictures, through: :video_pictures
-  
+
   has_one :coverpicture, -> { where is_coverpicture: true }, class_name: 'VideoPicture'
 
 

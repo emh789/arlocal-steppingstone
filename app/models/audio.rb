@@ -394,7 +394,7 @@ class Audio < ApplicationRecord
   def source_file_does_exist
     case source_type
     when 'imported', 'uploaded'
-      File.exist?(source_absolute_pat h_to_file)
+      File.exist?(source_absolute_path_to_file)
     end
   end
 
@@ -418,7 +418,11 @@ class Audio < ApplicationRecord
 
 
   def source_file_extension_or_dummy
-    source_file_extname.to_s == '' ? 'm4a' : source_file_extension
+    if source_file_extname.to_s == ''
+      'm4a'
+    else
+      source_file_extension
+    end
   end
 
 
@@ -518,10 +522,10 @@ class Audio < ApplicationRecord
 
   def source_absolute_path_to_file
     case source_type
-    when 'uploaded'
-      ActiveStorage::Blob.service.send(:path_for, source_uploaded.key)
     when 'imported'
       File.join(Rails.application.config.x.arlocal[:source_imported_filesystem_dirname], source_imported_file_path)
+    when 'uploaded'
+      ActiveStorage::Blob.service.send(:path_for, source_uploaded.key)
     end
   end
 
@@ -531,8 +535,8 @@ class Audio < ApplicationRecord
       self.composer,
       self.copyright_text_markup,
       self.description_text_markup,
-      self.personnel_text_markup,
       self.musicians_text_markup,
+      self.personnel_text_markup,
       self.source_imported_file_path,
       self.subtitle,
       self.title

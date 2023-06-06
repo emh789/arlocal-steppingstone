@@ -500,8 +500,8 @@ class Album < ApplicationRecord
     [ self.album_artist,
       self.copyright_text_markup,
       self.description_text_markup,
-      self.personnel_text_markup,
       self.musicians_text_markup,
+      self.personnel_text_markup,
       self.title,
       self.vendor_widget_gumroad
     ].select{ |a| a.to_s != '' }.each { |a| a.to_s.strip! }
