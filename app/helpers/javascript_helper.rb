@@ -1,41 +1,25 @@
 module JavascriptHelper
 
 
-  ###########
+  require 'json'
 
 
   def js_fragment_jp_audio_ordered(resource_audio)
-    album_order = resource_audio.playlist_order
-    title = resource_audio.full_title
-    duration = resource_audio.audio.duration(rounded_to: :seconds)
-    type = resource_audio.audio.source_file_extension
-    path = audio_preferred_url(resource_audio.audio)
-<<-JS_FRAGMENT_JP_AUDIO_ORDERED
-{
-  albumOrder: "#{album_order}",
-  title: "#{title}",
-  duration: "#{duration}",
-  #{type}: "#{path}"
-}
-JS_FRAGMENT_JP_AUDIO_ORDERED
+    filetype = resource_audio.audio.source_file_extension_or_dummy
+    { "albumOrder" => resource_audio.playlist_order,
+      "title" => resource_audio.full_title,
+      "duration" => resource_audio.audio.duration(rounded_to: :seconds),
+      "#{filetype}" => audio_preferred_url(resource_audio.audio)
+    }.to_json
   end
 
 
-  ###########
-
-
   def js_fragment_jp_audio_unordered(audio)
-    title = audio.full_title
-    duration = audio.duration(rounded_to: :seconds)
-    type = audio.source_file_extension_or_dummy
-    path = audio_preferred_url(audio)
-<<-JS_FRAGMENT_JP_AUDIO_UNORDERED
-{
-  title: "#{title}",
-  duration: "#{duration}",
-  #{type}: "#{path}"
-}
-JS_FRAGMENT_JP_AUDIO_UNORDERED
+    filetype = audio.source_file_extension_or_dummy
+    { "title" => audio.full_title,
+      "duration" => audio.duration(rounded_to: :seconds),
+      "#{filetype}" => audio_preferred_url(audio)
+    }.to_json
   end
 
 
