@@ -1,13 +1,6 @@
 class QueryAlbums
 
 
-  # Controllers should call a singleton method, to maintain the look and feel of
-  # the ActiveRecord Query Interface.
-  #
-  # If a singleton menthod requires interpretation of data, the singleton
-  # method will create and utilize an instance object.
-
-
   protected
 
 
@@ -42,9 +35,8 @@ class QueryAlbums
 
 
   def self.options_for_select_admin
-    Album.order_by_title_asc
+    Album.all.sort_by{ |a| a.title.downcase }
   end
-
 
 
   public
@@ -59,13 +51,13 @@ class QueryAlbums
   def index_admin
     case determine_filter_method_admin
     when 'datetime_asc'
-      all_albums.order_by_datetime_asc
+      all_albums.sort_by{ |a| a.date_released }
     when 'datetime_desc'
-      all_albums.order_by_datetime_desc
+      all_albums.sort_by{ |a| a.date_released }.reverse
     when 'title_asc'
-      all_albums.order_by_title_asc
+      all_albums.sort_by{ |a| a.title.downcase }
     when 'title_desc'
-      all_albums.order_by_title_desc
+      all_albums.sort_by{ |a| a.title.downcase }.reverse
     else
       all_albums
     end
@@ -75,13 +67,13 @@ class QueryAlbums
   def index_public
     case determine_filter_method_public
     when 'datetime_asc'
-      all_albums.publicly_indexable.order_by_datetime_asc
+      all_albums.publicly_indexable.sort_by{ |a| a.date_released }
     when 'datetime_desc'
-      all_albums.publicly_indexable.order_by_datetime_desc
+      all_albums.publicly_indexable.sort_by{ |a| a.date_released }.reverse
     when 'title_asc'
-      all_albums.publicly_indexable.order_by_title_asc
+      all_albums.publicly_indexable.sort_by{ |a| a.title.downcase }
     when 'title_desc'
-      all_albums.publicly_indexable.order_by_title_desc
+      all_albums.publicly_indexable.sort_by{ |a| a.title.downcase }.reverse
     else
       all_albums.publicly_indexable
     end
@@ -98,12 +90,11 @@ class QueryAlbums
   end
 
 
-
   private
 
 
   def all_albums
-    Album.all.includes({ audio: :source_uploaded_attachment }, :keywords, { pictures: :source_uploaded_attachment })
+    Album.includes({ audio: :source_uploaded_attachment }, :keywords, { pictures: :source_uploaded_attachment })
   end
 
 

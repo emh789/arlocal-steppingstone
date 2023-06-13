@@ -4,6 +4,10 @@
 
 ## HIGHEST priority
 
+Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
+
+`QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few diifferent places.
+
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
 `HtmlHelper.html_head_title_extend!` line 37
 
@@ -22,19 +26,13 @@ video#show css
   text_data, does it need a min-width?
 Video index needs headings
 
-Not sure what these were from:
+Not sure what these were from: _(but probably from the EventVideo addenda)_:
   + form_metadata
   + partials
     + event _form_join_by_keyword,
       + method keyword.title_with_video_count
     + event _form_join_single
     + video join_single
-
-Ongoing debate:
-**When to use model scope vs. When to use Query method?**
-  - some query results depend on values from instance methods rather than activerecord:query interface
-  - some queries return a hash with result from database attribute or instance method as its keys
-    - for example, calendar of events by year
 
 
 Not sure what these were from _(but probably from the EventVideo addenda)_:
@@ -156,4 +154,21 @@ Video scope
   - assume that the query will deliver an enumerable
 
 javascript_helper could be split into jplayer_helper. *No. Just remove obsolete google analytics methods.*
-would be nice to look into other ways to generate/metaprogram the javascript for jplayer *Yes, but low priority.*
+would be nice to look into other ways to generate/metaprogram the javascript for jplayer *Yes, but low priority.* **It's easy. `require 'json'` do it**
+
+Ongoing debate:
+**When to use model scope vs. When to use Query method?**
+  - some query results depend on values from instance methods rather than activerecord:query interface
+  - some queries return a hash with result from database attribute or instance method as its keys
+    - for example, calendar of events by year
+  - compare picture (Query) w audio (scope)
+  - Since we're using additional Query classes, move display-order methods to the Query class for consistency
+    and reserve scopes for categorical distinctions (e.g. visibility)
+**Still needs:**
+  - Album v-
+  - Event v-
+  - Keyword v-
+  - Video v-
+**Possible fallout from removing scopes. Especially `Class.options_for_select_admin`**
+  which itself could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
+*Comment out scopes but don't remove yet.*

@@ -40,7 +40,7 @@ class QueryVideos
 
 
   def self.options_for_select_admin
-    Video.order_by_title_asc
+    Video.all.sort_by{ |v| v.title.downcase }
   end
 
 
@@ -62,13 +62,13 @@ class QueryVideos
   def index_admin
     case determine_filter_method_admin
     when 'datetime_asc'
-      all_videos.order_by_datetime_asc
+      all_videos.sort_by{ |v| v.date_released }
     when 'datetime_desc'
-      all_videos.order_by_datetime_desc
+      all_videos.sort_by{ |v| v.date_released }.reverse
     when 'title_asc'
-      all_videos.order_by_title_asc
+      all_videos.sort_by{ |v| v.title.downcase }
     when 'title_desc'
-      all_videos.order_by_title_desc
+      all_videos.sort_by{ |v| v.title.downcase }.reverse
     else
       all_videos
     end
@@ -78,17 +78,17 @@ class QueryVideos
   def index_public
     case determine_filter_method_public
     when 'datetime_asc'
-      all_videos.publicly_indexable.order_by_datetime_asc
+      all_videos.publicly_indexable.sort_by{ |v| v.date_released }
     when 'datetime_desc'
-      all_videos.publicly_indexable.order_by_datetime_desc
+      all_videos.publicly_indexable.sort_by{ |v| v.date_released }.reverse
     when 'keyword_datetime_desc'
-      sort_by_keyword(all_videos.publicly_indexable)
+      sort_public_videos_by_keyword(inner_order: :date_released_desc)
     when 'keyword_title_asc'
-      sort_by_keyword(all_videos.publicly_indexable)
+      sort_public_videos_by_keyword(inner_order: :title_asc)
     when 'title_asc'
-      all_videos.publicly_indexable.order_by_title_asc
+      all_videos.publicly_indexable.sort_by{ |v| v.title.downcase }
     when 'title_desc'
-      all_videos.publicly_indexable.order_by_title_desc
+      all_videos.publicly_indexable.sort_by{ |v| v.title.downcase }.reverse
     else
       all_videos.publicly_indexable
     end
@@ -105,13 +105,24 @@ class QueryVideos
   end
 
 
-  def sort_by_keyword(collection)
+  # TODO: This seems like it could be refactored.
+  def sort_public_videos_by_keyword(inner_order: nil)
     result = Hash.new
-    Keyword.where(can_select_videos: true).order(order_selecting_videos: :asc).each do |keyword|
-      result[keyword.title] = collection.joins(:keywords).where(keywords: keyword)
+    video_collection = Video.publicly_indexable.joins(:keywords)
+    Keyword.only_that_will_select_videos.each do |keyword|
+      result[keyword.title] = video_collection.where(keywords: keyword)
     end
-    result["more videos"] = collection.reject{ |vid| vid.keywords.map { |k| k.can_select_videos }.include?(true) }
+    result["more videos"] = video_collection.reject{ |vid| vid.keywords.map { |k| k.can_select_videos }.include?(true) }
     result.delete_if { |k,v| v == [] }
+    result.each_pair do |key, values|
+      case inner_order
+      when :date_released_desc
+        result[key] = values.sort_by{ |video| video.date_released }.reverse
+      when :title_asc
+        result[key] = values.sort_by{ |video| video.title.downcase }
+      end
+    end
+    result
   end
 
 
@@ -120,7 +131,7 @@ class QueryVideos
 
 
   def all_videos
-    Video.all.includes(:events, :keywords, {pictures: :source_uploaded_attachment})
+    Video.includes(:events, :keywords, {pictures: :source_uploaded_attachment})
   end
 
 

@@ -7,7 +7,6 @@ class Picture < ApplicationRecord
   extend Paginateable
   include Seedable
 
-
   scope :publicly_indexable, -> { where(visibility: ['public']) }
   scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
 

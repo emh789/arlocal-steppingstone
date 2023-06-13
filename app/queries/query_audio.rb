@@ -40,7 +40,7 @@ class QueryAudio
 
 
   def self.options_for_select_admin
-    Audio.order_by_title_asc
+    Audio.all.sort_by{ |a| a.full_title.downcase }
   end
 
 
@@ -57,21 +57,21 @@ class QueryAudio
   def index_admin(arg = nil)
     case determine_filter_method_admin
     when 'datetime_asc'
-      all_audio.order_by_date_released_asc.order_by_filepath_asc
+      all_audio.sort_by{ |a| a.title.downcase }.sort_by{ |a| a.date_released }
     when 'datetime_desc'
-      all_audio.order_by_date_released_desc.order_by_filepath_asc
+      all_audio.sort_by{ |a| a.title.downcase }.reverse.sort_by{ |a| a.date_released }.reverse
     when 'filepath_asc'
-      all_audio.order_by_filepath_asc
+      all_audio.sort_by{ |a| a.source_file_path }
     when 'filepath_desc'
-      all_audio.order_by_filepath_desc
+      all_audio.sort_by{ |a| a.source_file_path }.reverse
     when 'isrc_asc'
-      all_audio.order_by_isrc_asc
+      all_audio.sort_by{ |a| [a.isrc_country_code, a.isrc_registrant_code, a.isrc_year_of_reference, a.isrc_designation_code] }
     when 'isrc_desc'
-      all_audio.order_by_isrc_desc
+      all_audio.sort_by{ |a| [a.isrc_country_code, a.isrc_registrant_code, a.isrc_year_of_reference, a.isrc_designation_code] }.reverse
     when 'title_asc'
-      all_audio.order_by_title_asc
+      all_audio.sort_by{ |a| a.title.downcase }
     when 'title_desc'
-      all_audio.order_by_title_desc
+      all_audio.sort_by{ |a| a.title.downcase }.reverse
     else
       all_audio
     end

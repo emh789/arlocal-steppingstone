@@ -6,16 +6,12 @@ class Event < ApplicationRecord
   extend Neighborable
   include Seedable
 
-  scope :all_future,     -> { where("datetime_utc > ?", Time.current.midnight).order(datetime_utc: :asc) }
-  scope :all_past,       -> { where("datetime_utc < ?", Time.current).order(datetime_utc: :desc) }
-  scope :all_upcoming,   -> { where(datetime_utc: Time.current.midnight...Time.current.next_month).order(datetime_utc: :asc) }
-  scope :all_with_audio, -> { where("audio_count >= 1").order(datetime_utc: :desc) }
-  scope :order_by_start_time_asc,  -> { order(datetime_utc: :asc ) }
-  scope :order_by_start_time_desc, -> { order(datetime_utc: :desc) }
-  scope :order_by_title_asc,       -> { order(Event.arel_table[:title].lower.asc ) }
-  scope :order_by_title_desc,      -> { order(Event.arel_table[:title].lower.desc) }
-  scope :publicly_indexable, -> { where(visibility: ['public']) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
+  scope :only_future,         -> { where datetime_utc: Time.current.midnight.. }
+  scope :only_future_near,    -> { where datetime_utc: Time.current.midnight...Time.current.next_month }
+  scope :only_past,           -> { where datetime_utc: (..Time.current) }
+  scope :only_with_audio,     -> { where audio_count:  1.. }
+  scope :publicly_indexable,  -> { where visibility:   ['public'] }
+  scope :publicly_linkable,   -> { where visibility:   ['public', 'unlisted'] }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -39,12 +35,12 @@ class Event < ApplicationRecord
   has_many :event_pictures, -> { includes(:picture) }, dependent: :destroy
   has_many :pictures, through: :event_pictures
 
-  has_one :coverpicture, -> { where is_coverpicture: true }, class_name: 'EventPicture'
+  has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'EventPicture'
 
-  has_many :event_keywords, dependent: :destroy
+  has_many :event_keywords, -> { includes(:keyword) }, dependent: :destroy
   has_many :keywords, through: :event_keywords
 
-  has_many :event_videos, dependent: :destroy
+  has_many :event_videos, -> { includes(:video) }, dependent: :destroy
   has_many :videos, through: :event_videos
 
   accepts_nested_attributes_for :audio

@@ -7,10 +7,6 @@ class Album < ApplicationRecord
   extend Paginateable
   include Seedable
 
-  scope :order_by_datetime_asc,  -> { order(date_released: :asc ) }
-  scope :order_by_datetime_desc, -> { order(date_released: :desc) }
-  scope :order_by_title_asc,     -> { order(Album.arel_table[:title].lower.asc ) }
-  scope :order_by_title_desc,    -> { order(Album.arel_table[:title].lower.desc) }
   scope :publicly_indexable, -> { where(visibility: ['public']) }
   scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
 
@@ -26,20 +22,19 @@ class Album < ApplicationRecord
   has_many :album_audio, -> { includes(:audio) }, dependent: :destroy
   has_many :audio, through: :album_audio
 
-  has_many :album_keywords, dependent: :destroy
+  has_many :album_keywords, -> { includes(:keyword) }, dependent: :destroy
   has_many :keywords, through: :album_keywords
 
   has_many :album_pictures, -> { includes(:picture) }, dependent: :destroy
   has_many :pictures, through: :album_pictures
 
-  has_one :coverpicture, -> { where is_coverpicture: true }, class_name: 'AlbumPicture'
+  has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'AlbumPicture'
 
   accepts_nested_attributes_for :album_audio, allow_destroy: true
   accepts_nested_attributes_for :album_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
   accepts_nested_attributes_for :album_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
   accepts_nested_attributes_for :audio
   accepts_nested_attributes_for :pictures
-
 
 
   public

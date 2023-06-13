@@ -7,10 +7,6 @@ class Video < ApplicationRecord
   extend Paginateable
   include Seedable
 
-  scope :order_by_datetime_asc,  -> { order(date_released: :asc ) }
-  scope :order_by_datetime_desc, -> { order(date_released: :desc) }
-  scope :order_by_title_asc,     -> { order(Video.arel_table[:title].lower.asc ) }
-  scope :order_by_title_desc,    -> { order(Video.arel_table[:title].lower.desc) }
   scope :publicly_indexable, -> { where(visibility: ['public']) }
   scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
 
@@ -18,22 +14,21 @@ class Video < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
 
-  validates :isrc_country_code, allow_blank: true, length: { is: 2 }
-  validates :isrc_designation_code, allow_blank: true, length: { is: 5 }, uniqueness: { scope: :isrc_year_of_reference }
-  validates :isrc_registrant_code, allow_blank: true, length: { is: 3 }
-  validates :isrc_year_of_reference, allow_blank: true, length: { is: 2 }
+  validates :isrc_country_code,       allow_blank: true, length: { is: 2 }
+  validates :isrc_designation_code,   allow_blank: true, length: { is: 5 }, uniqueness: { scope: :isrc_year_of_reference }
+  validates :isrc_registrant_code,    allow_blank: true, length: { is: 3 }
+  validates :isrc_year_of_reference,  allow_blank: true, length: { is: 2 }
 
-  has_many :event_videos, dependent: :destroy
+  has_many :event_videos, -> { includes(:event) }, dependent: :destroy
   has_many :events, through: :event_videos
 
-  has_many :video_keywords, dependent: :destroy
+  has_many :video_keywords, -> { includes(:keyword) }, dependent: :destroy
   has_many :keywords, through: :video_keywords
 
   has_many :video_pictures, -> { includes(:picture) }, dependent: :destroy
   has_many :pictures, through: :video_pictures
 
-  has_one :coverpicture, -> { where is_coverpicture: true }, class_name: 'VideoPicture'
-
+  has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'VideoPicture'
 
   has_one_attached :source_uploaded
 

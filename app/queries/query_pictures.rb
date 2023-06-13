@@ -1,15 +1,6 @@
 class QueryPictures
 
 
-  # Controllers call a singleton method to maintain the look and feel of
-  # the ActiveRecord Query Interface.
-  #
-  # If a singleton menthod requires interpretation of data, such as
-  # ArlocalSettings or request parameters, the singleton method will create an
-  # instance object and call a corresponding instance method.
-
-
-
   protected
 
 
@@ -156,11 +147,11 @@ class QueryPictures
     when 'only_match_keywords'
       all_pictures.joins(:keywords).where(keywords: {id: keywords.map{|k| k.id} })
     when 'only_recent_10'
-      all_pictures.order(:created_at).limit(10).order(Picture.arel_table[:title_without_markup].lower.asc)
+      all_pictures.order(:created_at).limit(10).sort_by{ |p| p.title_without_markup.downcase }
     when 'only_recent_20'
-      all_pictures.order(:created_at).limit(20).order(Picture.arel_table[:title_without_markup].lower.asc)
+      all_pictures.order(:created_at).limit(20).sort_by{ |p| p.title_without_markup.downcase }
     when 'only_recent_40'
-      all_pictures.order(:created_at).limit(40).order(Picture.arel_table[:title_without_markup].lower.asc)
+      all_pictures.order(:created_at).limit(40).sort_by{ |p| p.title_without_markup.downcase }
     else
       all_pictures
     end
@@ -177,7 +168,7 @@ class QueryPictures
 
 
   def all_pictures
-    Picture.all.with_attached_source_uploaded
+    Picture.with_attached_source_uploaded
   end
 
 

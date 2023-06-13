@@ -35,7 +35,7 @@ class QueryEvents
 
 
   def self.options_for_select_admin
-    Event.order_by_start_time_asc
+    Event.all.sort_by{ |e| e.datetime_utc }
   end
 
 
@@ -51,17 +51,17 @@ class QueryEvents
   def index_admin
     case determine_filter_method_admin
     when 'datetime_asc'
-      all_events.order_by_start_time_asc
+      all_events.sort_by{ |e| e.datetime_utc }
     when 'datetime_desc'
-      all_events.order_by_start_time_desc
+      all_events.sort_by{ |e| e.datetime_utc }.reverse
     when 'only_future'
-      all_events.all_future
+      all_events.only_future.sort_by{ |e| e.datetime_utc }
     when 'only_past'
-      all_events.all_past
+      all_events.only_past.sort_by{ |e| e.datetime_utc }.reverse
     when 'title_asc'
-      all_events.order_by_title_asc
+      all_events.sort_by{ |e| e.title.downcase }
     when 'title_desc'
-      all_events.order_by_title_desc
+      all_events.sort_by{ |e| e.title.downcase }.reverse
     else
       all_events
     end
@@ -71,17 +71,17 @@ class QueryEvents
   def index_public
     case determine_filter_method_public
     when 'all'
-      all_events.publicly_indexable
+      all_events.publicly_indexable.sort_by{ |e| e.datetime_utc }
     when 'future'
-      all_events.publicly_indexable.all_future
+      all_events.publicly_indexable.only_future.sort_by{ |e| e.datetime_utc }
     when 'past'
-      all_events.publicly_indexable.all_past
+      all_events.publicly_indexable.only_past.sort_by{ |e| e.datetime_utc }.reverse
     when 'upcoming'
-      all_events.publicly_indexable.all_upcoming
+      all_events.publicly_indexable.only_future_near.sort_by{ |e| e.datetime_utc }
     when 'with_audio'
-      all_events.publicly_indexable.all_with_audio
+      all_events.publicly_indexable.only_with_audio.sort_by{ |e| e.datetime_utc }.reverse
     else
-      all_events.publicly_indexable
+      all_events.publicly_indexable.sort_by{ |e| e.datetime_utc }
     end
   end
 
@@ -100,7 +100,7 @@ class QueryEvents
 
 
   def all_events
-    Event.all.includes({ audio: :source_uploaded_attachment }, :keywords, { pictures: :source_uploaded_attachment }, { videos: :source_uploaded_attachment })
+    Event.includes({ audio: :source_uploaded_attachment }, :keywords, { pictures: :source_uploaded_attachment }, { videos: :source_uploaded_attachment })
   end
 
 

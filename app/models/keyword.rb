@@ -5,27 +5,27 @@ class Keyword < ApplicationRecord
   extend Neighborable
   include Seedable
 
-  scope :order_by_title_asc,  -> { order(Keyword.arel_table[:title].lower.asc ) }
-  scope :order_by_title_desc, -> { order(Keyword.arel_table[:title].lower.desc) }
+  scope :only_that_can_select_videos,  -> { where(can_select_videos: true).order(order_selecting_videos: :asc) }
+  scope :only_that_will_select_videos, -> { where(can_select_videos: true).where(videos_count: (1..)).order(order_selecting_videos: :asc) }
 
   friendly_id :slug_candidates, use: :slugged
 
   before_validation :strip_whitespace_edges_from_entered_text
   validates :title, presence: true, uniqueness: true
 
-  has_many :album_keywords, dependent: :destroy
+  has_many :album_keywords, -> { includes(:album) }, dependent: :destroy
   has_many :albums, through: :album_keywords
 
-  has_many :audio_keywords, dependent: :destroy
+  has_many :audio_keywords, -> { includes(:audio) }, dependent: :destroy
   has_many :audio, through: :audio_keywords
 
-  has_many :event_keywords, dependent: :destroy
+  has_many :event_keywords, -> { includes(:event) }, dependent: :destroy
   has_many :events, through: :event_keywords
 
-  has_many :picture_keywords, dependent: :destroy
+  has_many :picture_keywords, -> { includes(:picture) }, dependent: :destroy
   has_many :pictures, through: :picture_keywords
 
-  has_many :video_keywords, dependent: :destroy
+  has_many :video_keywords, -> { includes(:video) }, dependent: :destroy
   has_many :videos, through: :video_keywords
 
   accepts_nested_attributes_for :album_keywords, allow_destroy: true
