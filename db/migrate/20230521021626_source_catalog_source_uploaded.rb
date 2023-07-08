@@ -65,6 +65,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     applicable_resources.each do |resource|
       puts resource[:name]
       resource[:object].all.each do |item|
+        puts ({id: item.id, title: item.title, source_type: item.source_type})
         item.source_type = determine_old_source_type(item.source_type)
         puts ({id: item.id, title: item.title, source_type: item.source_type})
         item.save
