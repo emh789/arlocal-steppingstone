@@ -386,8 +386,8 @@ class Picture < ApplicationRecord
     datetime_from_manual_entry_hour_changed? ||
     datetime_from_manual_entry_minute_changed? ||
     datetime_from_manual_entry_second_changed? ||
-    source_uploaded.changed? ||
-    source_imported_file_path_changed? ||
+    # source_uploaded.changed? ||
+    # source_imported_file_path_changed? ||
     source_type_changed? ||
     super
   end
