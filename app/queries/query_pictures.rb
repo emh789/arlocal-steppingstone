@@ -141,19 +141,19 @@ class QueryPictures
   def options_for_select_admin
     case determine_filter_method_form_selectable
     when 'all_title_asc'
-      all_pictures.sort_by{ |p| p.title_without_markup.downcase }
+      all_pictures_for_select.sort_by{ |p| p.title_without_markup.downcase }
     when 'all_title_desc'
-      all_pictures.sort_by{ |p| p.title_without_markup.downcase }.reverse
+      all_pictures_for_select.sort_by{ |p| p.title_without_markup.downcase }.reverse
     when 'only_match_keywords'
-      all_pictures.joins(:keywords).where(keywords: {id: keywords.map{|k| k.id} })
+      all_pictures_for_select.joins(:keywords).where(keywords: {id: keywords.map{|k| k.id} })
     when 'only_recent_10'
-      all_pictures.order(:created_at).limit(10).sort_by{ |p| p.title_without_markup.downcase }
+      all_pictures_for_select.order(:created_at).limit(10).sort_by{ |p| p.title_without_markup.downcase }
     when 'only_recent_20'
-      all_pictures.order(:created_at).limit(20).sort_by{ |p| p.title_without_markup.downcase }
+      all_pictures_for_select.order(:created_at).limit(20).sort_by{ |p| p.title_without_markup.downcase }
     when 'only_recent_40'
-      all_pictures.order(:created_at).limit(40).sort_by{ |p| p.title_without_markup.downcase }
+      all_pictures_for_select.order(:created_at).limit(40).sort_by{ |p| p.title_without_markup.downcase }
     else
-      all_pictures
+      all_pictures_for_select
     end
   end
 
@@ -169,6 +169,11 @@ class QueryPictures
 
   def all_pictures
     Picture.with_attached_source_uploaded
+  end
+
+
+  def all_pictures_for_select
+    Picture.with_attached_source_uploaded.select(:id, :source_imported_file_path, :source_type, :title_without_markup)
   end
 
 

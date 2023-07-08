@@ -20,7 +20,7 @@ class Audio < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  before_validation :strip_whitespace_edges_from_entered_text
+  # before_validation :strip_whitespace_edges_from_entered_text
 
   validates :duration_hrs,           allow_blank: true, numericality: { only_integer: true }
   validates :duration_mins,          allow_blank: true, length: { maximum: 3 }, numericality: { only_integer: true }

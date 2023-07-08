@@ -25,7 +25,7 @@ class QueryStreams
 
 
   def self.options_for_select_admin
-    new.options_for_select_admin
+    Stream.select(:id, :title)
   end
 
 
@@ -45,11 +45,6 @@ class QueryStreams
 
   def neighborhood_admin(stream, distance: 1)
     Stream.neighborhood(stream, collection: index_admin, distance: distance)
-  end
-
-
-  def options_for_select_admin
-    index_admin
   end
 
 

@@ -4,8 +4,6 @@
 
 ## HIGHEST priority
 
-Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
-
 `QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few diifferent places.
 
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
@@ -128,6 +126,8 @@ look into other ways to generate/metaprogram the javascript for jplayer
 
 
 ## Possibly finished
+
+Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
 
 

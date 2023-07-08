@@ -40,7 +40,7 @@ class QueryAudio
 
 
   def self.options_for_select_admin
-    Audio.all.sort_by{ |a| a.full_title.downcase }
+    Audio.select(:id, :title, :subtitle).sort_by{ |a| a.full_title.downcase }
   end
 
 

@@ -40,7 +40,7 @@ class QueryVideos
 
 
   def self.options_for_select_admin
-    Video.all.sort_by{ |v| v.title.downcase }
+    Video.select(:id, :title).sort_by{ |v| v.title.downcase }
   end
 
 

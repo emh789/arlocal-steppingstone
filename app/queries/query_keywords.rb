@@ -1,4 +1,4 @@
-00class QueryKeywords
+class QueryKeywords
 
 
   protected
@@ -20,7 +20,7 @@
 
 
   def self.options_for_select_admin
-    Keyword.all.sort_by( |k| k.title.downcase )
+    Keyword.select(:id, :title).sort_by{ |k| k.title.downcase }
   end
 
 
@@ -32,7 +32,7 @@
 
 
   def index_admin
-    all_keywords.sort_by( |k| k.title.downcase )
+    all_keywords.sort_by{ |k| k.title.downcase }
   end
 
 

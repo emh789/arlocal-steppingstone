@@ -20,7 +20,7 @@ class QueryLinks
 
 
   def self.options_for_select_admin
-    Link.all
+    Link.select(:id, :title).sort_by{ |l| l.title }
   end
 
 

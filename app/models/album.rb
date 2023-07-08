@@ -12,7 +12,7 @@ class Album < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  before_validation :strip_whitespace_edges_from_entered_text
+  # before_validation :strip_whitespace_edges_from_entered_text
 
   validates :album_pictures_sorter_id, presence: true
   validates :description_parser_id,    presence: true

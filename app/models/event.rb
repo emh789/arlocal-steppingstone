@@ -15,8 +15,8 @@ class Event < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  before_validation :strip_whitespace_edges_from_entered_text
-  before_validation :create_attr_title_without_markup
+  # before_validation :strip_whitespace_edges_from_entered_text
+  # before_validation :create_attr_title_without_markup
 
   validates :details_parser_id,        presence: true
   validates :event_pictures_sorter_id, presence: true
@@ -50,6 +50,14 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :event_videos,   allow_destroy: true
   accepts_nested_attributes_for :pictures
   accepts_nested_attributes_for :videos
+
+
+  protected
+
+
+  def self.datetime_array_attrs
+    [ :datetime_year, :datetime_month, :datetime_day, :datetime_hour, :datetime_min, :datetime_zone ]
+  end
 
 
   public
