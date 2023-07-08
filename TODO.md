@@ -4,6 +4,15 @@
 
 ## HIGHEST priority
 
+Migration for "catalog/imported" and "attachment/uploaded"
+  - update the data
+    - audio
+    - picture
+    - arlocal_settings icon_source_type
+  - 20230521021626_source_catalog_source_uploaded.rb
+    - see 20230405010631_resource_visibility.rb for example
+  - **OK now I think.**
+
 `QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few diifferent places.
 
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
