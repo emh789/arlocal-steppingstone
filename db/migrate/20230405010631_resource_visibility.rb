@@ -4,11 +4,11 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
   def up
     add_column :infopages, :visibility, :string
     applicable_resources.each do |resource|
-      puts resource[:name]
+      say resource[:name]
       add_column resource[:symbol], :visibility, :string
       resource[:object].all.each do |item|
         item.visibility = determine_visibility(item)
-        puts ({id: item.id, title: item.title, visibility: item.visibility})
+        say ({id: item.id, title: item.title, visibility: item.visibility})
         item.save
       end
       remove_column resource[:symbol], :indexed
@@ -20,13 +20,13 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
   def down
     remove_column :infopages, :visibility
     applicable_resources.each do |resource|
-      puts resource[:name]
+      say resource[:name]
       add_column resource[:symbol], :indexed, :string
       add_columm resource[:symbol], :published, :string
       resource[:object].all.each do |item|
         item.published = determine_published(item)
         item.indexed = determine_indexed(item)
-        puts ({id: item.id, title: item.title, indexed: item.indexed, published: item.published})
+        say ({id: item.id, title: item.title, indexed: item.indexed, published: item.published})
         item.save
       end
       remove_column resource[:symbol], :visibility
@@ -51,14 +51,14 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
 
 
   def determine_indexed(item)
-    if ['public'].include?(item.visibility)
+    if ['public'].include?(item.read_attribute(:visibility))
       true
     end
   end
 
 
   def determine_published(item)
-    if ['public','unlisted'].include?(item.visibility)
+    if ['public','unlisted'].include?(item.read_attribute(:visibility))
       true
     end
   end

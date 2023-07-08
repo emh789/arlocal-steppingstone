@@ -53,21 +53,21 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
 
 
   def down_arlocal_settings
-    puts 'ArlocalSettings'
+    say 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_old_source_type(arlocal_settings.icon_source_type)
-    puts ({icon_source_type: arlocal_settings.icon_source_type})
-    arlocal_settings.sav
+    say ({icon_source_type: arlocal_settings.icon_source_type})
+    arlocal_settings.save
   end
 
 
   def down_resources
     applicable_resources.each do |resource|
-      puts resource[:name]
+      say resource[:name]
       resource[:object].all.each do |item|
-        puts ({id: item.id, title: item.title, source_type: item.source_type})
+        say ({id: item.id, title: item.title, source_type: item.source_type})
         item.source_type = determine_old_source_type(item.source_type)
-        puts ({id: item.id, title: item.title, source_type: item.source_type})
+        say ({id: item.id, title: item.title, source_type: item.source_type})
         item.save
       end
     end
@@ -75,21 +75,21 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
 
 
   def up_arlocal_settings
-    puts 'ArlocalSettings'
+    say 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_new_source_type(arlocal_settings.icon_source_type)
-    puts ({icon_source_type: arlocal_settings.icon_source_type})
+    say ({icon_source_type: arlocal_settings.icon_source_type})
     arlocal_settings.save
   end
 
 
   def up_resources
     applicable_resources.each do |resource|
-      puts resource[:name]
+      say resource[:name]
       resource[:object].all.each do |item|
-        puts ({id: item.id, title: item.title, source_type: item.source_type})
+        say ({id: item.id, title: item.title, source_type: item.source_type})
         item.source_type = determine_new_source_type(item.source_type)
-        puts ({id: item.id, title: item.title, source_type: item.source_type})
+        say ({id: item.id, title: item.title, source_type: item.source_type})
         item.save
       end
     end

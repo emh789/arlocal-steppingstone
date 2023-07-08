@@ -12,6 +12,7 @@ Migration for "catalog/imported" and "attachment/uploaded"
   - 20230521021626_source_catalog_source_uploaded.rb
     - see 20230405010631_resource_visibility.rb for example
   - **OK now I think.**
+  - *Not yet. Somehow the visibility value bleeds into source_type*
 
 `QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few diifferent places.
 
