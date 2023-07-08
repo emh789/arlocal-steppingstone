@@ -51,11 +51,14 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
 
 
   def determine_visibility(item)
-    if (item.indexed == true) && (item.published == true)
+    indexed = item.read_attribute(:indexed)
+    published = item.read_attribute(:published)
+
+    if (indexed == true) && (published == true)
       'public'
-    elsif (item.indexed == false) && (item.published == true)
+    elsif (indexed == false) && (published == true)
       'unlisted'
-    elsif (item.indexed == false) && (item.published == false)
+    elsif (indexed == false) && (published == false)
       'private'
     else
       'private'
