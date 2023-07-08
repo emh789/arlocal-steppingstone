@@ -8,7 +8,7 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
       add_column resource[:symbol], :visibility, :string
       resource[:object].all.each do |item|
         item.visibility = determine_visibility(item)
-        puts {id: item.id, title: item.title, visibility: item.visibility}
+        puts ({id: item.id, title: item.title, visibility: item.visibility})
         item.save
       end
       remove_column resource[:symbol], :indexed
@@ -26,7 +26,7 @@ class ResourceVisibility < ActiveRecord::Migration[7.0]
       resource[:object].all.each do |item|
         item.published = determine_published(item)
         item.indexed = determine_indexed(item)
-        puts {id: item.id, title: item.title, indexed: item.indexed, published: item.published}
+        puts ({id: item.id, title: item.title, indexed: item.indexed, published: item.published})
         item.save
       end
       remove_column resource[:symbol], :visibility

@@ -56,7 +56,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     puts 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_old_source_type(arlocal_settings.icon_source_type)
-    puts {icon_source_type: arlocal_settings.icon_source_type}
+    puts ({icon_source_type: arlocal_settings.icon_source_type})
     arlocal_settings.sav
   end
 
@@ -66,7 +66,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
       puts resource[:name]
       resource[:object].all.each do |item|
         item.source_type = determine_old_source_type(item.source_type)
-        puts {id: item.id, title: item.title, source_type: item.source_type}
+        puts ({id: item.id, title: item.title, source_type: item.source_type})
         item.save
       end
     end
@@ -77,7 +77,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     puts 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_new_source_type(arlocal_settings.icon_source_type)
-    puts {icon_source_type: arlocal_settings.icon_source_type}
+    puts ({icon_source_type: arlocal_settings.icon_source_type})
     arlocal_settings.save
   end
 
@@ -87,7 +87,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
       puts resource[:name]
       resource[:object].all.each do |item|
         item.source_type = determine_new_source_type(item.source_type)
-        puts {id: item.id, title: item.title, source_type: item.source_type}
+        puts ({id: item.id, title: item.title, source_type: item.source_type})
         item.save
       end
     end
