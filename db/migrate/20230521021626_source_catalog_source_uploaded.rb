@@ -56,7 +56,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     say 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_old_source_type(arlocal_settings.icon_source_type)
-    say ({icon_source_type: arlocal_settings.icon_source_type})
+    say ({icon_source_type: arlocal_settings.icon_source_type}), true
     arlocal_settings.save
   end
 
@@ -65,9 +65,8 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     applicable_resources.each do |resource|
       say resource[:name]
       resource[:object].all.each do |item|
-        say ({id: item.id, title: item.title, source_type: item.source_type})
-        item.source_type = determine_old_source_type(item.source_type)
-        say ({id: item.id, title: item.title, source_type: item.source_type})
+        item.source_type = determine_old_source_type(item.read_attribute(:source_type))
+        say ({id: item.id, title: item.title, source_type: item.source_type}), true
         item.save
       end
     end
@@ -78,7 +77,7 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     say 'ArlocalSettings'
     arlocal_settings = ArlocalSettings.first
     arlocal_settings.icon_source_type = determine_new_source_type(arlocal_settings.icon_source_type)
-    say ({icon_source_type: arlocal_settings.icon_source_type})
+    say ({icon_source_type: arlocal_settings.icon_source_type}), true
     arlocal_settings.save
   end
 
@@ -87,9 +86,8 @@ class SourceCatalogSourceUploaded < ActiveRecord::Migration[7.0]
     applicable_resources.each do |resource|
       say resource[:name]
       resource[:object].all.each do |item|
-        say ({id: item.id, title: item.title, source_type: item.source_type})
         item.source_type = determine_new_source_type(item.source_type)
-        say ({id: item.id, title: item.title, source_type: item.source_type})
+        say ({id: item.id, title: item.title, source_type: item.read_attribute(:source_type)}), true
         item.save
       end
     end
