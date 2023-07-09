@@ -48,6 +48,9 @@ class MarkupParser
 
   def self.parse_sanitize_class(resource_text_props)
     parser = MarkupParser.find(resource_text_props[:parser_id])
+    if parser == false
+      parser = MarkupParser.find(4)
+    end
     { html_class: parser.html_class, sanitized_text: parser.parse_and_sanitize(resource_text_props[:text_markup]) }
   end
 
