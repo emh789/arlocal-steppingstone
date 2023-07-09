@@ -4,7 +4,7 @@
   = resource_script_picture_cycler(@event)
 
 .arl_events_show
-  / = render 'show_event_coverpicture', event: @event
+  -# = render 'show_event_coverpicture', event: @event
 
   .arl_events_show_info
     = render 'show_event_info_datetime', event: @event
@@ -16,7 +16,3 @@
 - if @event.does_have_audio
   .arl_events_show_audio
     = render 'public/jplayer_multiple/jplayer_event', event: @event
-  
-    
-    
-  

@@ -6,5 +6,5 @@
   %table.arl_events_index_table
     - @events.each do |event|
       %tr.arl_events_index_event.arl_active_link_container{data: {url: public_event_path(event.id_public)}}
-        / = render 'index_event_coverpicture', event: event
+        -# = render 'index_event_coverpicture', event: event
         = render 'index_event_info', event: event

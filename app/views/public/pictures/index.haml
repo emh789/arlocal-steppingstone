@@ -1,7 +1,7 @@
 = html_head_title_extend! :pictures
 
 .arl_pictures_index
-  =# render 'shared/selector_list', selectors: @selectors, all_link: true, nil_link: false
+  -# = render 'shared/selector_list', selectors: @selectors, all_link: true, nil_link: false
 
   .arl_pictures_index_pictures
     - @pictures.each do |picture|
