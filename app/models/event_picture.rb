@@ -25,6 +25,11 @@ class EventPicture < ApplicationRecord
   ### is_coverpicture
 
 
+  def order
+    event_order
+  end
+  
+
   ### picture_id
 
 
