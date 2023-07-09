@@ -12,7 +12,7 @@ class Video < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  # before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_whitespace_edges_from_entered_text
 
   validates :isrc_country_code,       allow_blank: true, length: { is: 2 }
   validates :isrc_designation_code,   allow_blank: true, length: { is: 5 }, uniqueness: { scope: :isrc_year_of_reference }

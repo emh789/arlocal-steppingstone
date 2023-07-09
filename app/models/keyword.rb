@@ -10,7 +10,7 @@ class Keyword < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  # before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_whitespace_edges_from_entered_text
   validates :title, presence: true, uniqueness: true
 
   has_many :album_keywords, -> { includes(:album) }, dependent: :destroy

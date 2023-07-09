@@ -12,9 +12,9 @@ class Picture < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
-  # before_validation :strip_whitespace_edges_from_entered_text
-  # before_validation :strip_any_leading_slash_from_source_imported_file_path
-  # before_validation :create_attr_title_without_markup
+  before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_any_leading_slash_from_source_imported_file_path
+  before_validation :create_attr_title_without_markup
 
   validates :credits_parser_id, presence: true
   validates :description_parser_id, presence: true

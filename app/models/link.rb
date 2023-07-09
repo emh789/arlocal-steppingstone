@@ -6,7 +6,7 @@ class Link < ApplicationRecord
   include Seedable
 
 
-  # before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_whitespace_edges_from_entered_text
 
   validates :details_parser_id, presence: true
 
