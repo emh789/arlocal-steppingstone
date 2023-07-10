@@ -420,7 +420,7 @@ class Picture < ApplicationRecord
   def source_file_does_exist
     case source_type
     when 'imported', 'uploaded'
-      File.exist?(source_absolute_pat h_to_file)
+      File.exist?(source_absolute_path_to_file)
     end
   end
 
