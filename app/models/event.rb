@@ -16,7 +16,7 @@ class Event < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   before_validation :strip_whitespace_edges_from_entered_text
-  before_validation :create_attr_title_without_markup
+  before_save :create_attr_title_without_markup
 
   validates :details_parser_id,        presence: true
   validates :event_pictures_sorter_id, presence: true
