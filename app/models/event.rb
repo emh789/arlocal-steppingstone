@@ -16,37 +16,35 @@ class Event < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   before_validation :strip_whitespace_edges_from_entered_text
-  before_save :create_attr_title_without_markup
 
-  validates :details_parser_id,        presence: true
-  validates :event_pictures_sorter_id, presence: true
   validates :datetime_year,            presence: true
   validates :datetime_month,           presence: true
   validates :datetime_day,             presence: true
+  validates :details_parser_id,        presence: true
+  validates :event_pictures_sorter_id, presence: true
   validates :title_parser_id,          presence: true
   validates :title_text_markup,        presence: true
   validates :venue,                    presence: true
 
+  before_save :create_attr_title_without_markup
   before_save :convert_datetime_to_utc
 
-  has_many :event_audio, -> { includes(:audio) }, dependent: :destroy
-  has_many :audio, through: :event_audio
-
+  has_many :event_audio,    -> { includes(:audio)   }, dependent: :destroy
+  has_many :event_keywords, -> { includes(:keyword) }, dependent: :destroy
   has_many :event_pictures, -> { includes(:picture) }, dependent: :destroy
+  has_many :event_videos,   -> { includes(:video)   }, dependent: :destroy
+
+  has_many :audio,    through: :event_audio
+  has_many :keywords, through: :event_keywords
   has_many :pictures, through: :event_pictures
+  has_many :videos,   through: :event_videos
 
   has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'EventPicture'
-
-  has_many :event_keywords, -> { includes(:keyword) }, dependent: :destroy
-  has_many :keywords, through: :event_keywords
-
-  has_many :event_videos, -> { includes(:video) }, dependent: :destroy
-  has_many :videos, through: :event_videos
 
   accepts_nested_attributes_for :audio
   accepts_nested_attributes_for :event_audio,    allow_destroy: true
   accepts_nested_attributes_for :event_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
-  accepts_nested_attributes_for :event_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
+  accepts_nested_attributes_for :event_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == ''  }
   accepts_nested_attributes_for :event_videos,   allow_destroy: true
   accepts_nested_attributes_for :pictures
   accepts_nested_attributes_for :videos

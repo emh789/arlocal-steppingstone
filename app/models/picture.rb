@@ -14,39 +14,37 @@ class Picture < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
   before_validation :strip_any_leading_slash_from_source_imported_file_path
-  before_validation :create_attr_title_without_markup
 
-  validates :credits_parser_id, presence: true
-  validates :description_parser_id, presence: true
-  validates :title_parser_id, presence: true
-
+  validates :credits_parser_id,                 presence: true
   validates :datetime_from_manual_entry_year,   allow_blank: true, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_month,  allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_day,    allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_hour,   allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_minute, allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_second, allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
+  validates :description_parser_id,             presence: true
+  validates :title_parser_id,                   presence: true
 
   validate :datetime_is_valid?
 
-  has_many :album_pictures, dependent: :destroy
-  has_many :albums, through: :album_pictures
+  before_save :create_attr_title_without_markup
 
-  has_many :event_pictures, dependent: :destroy
-  has_many :events, through: :event_pictures
-
+  has_many :album_pictures,   dependent: :destroy
+  has_many :event_pictures,   dependent: :destroy
   has_many :picture_keywords, dependent: :destroy
-  has_many :keywords, through: :picture_keywords
+  has_many :video_pictures,   dependent: :destroy
 
-  has_many :video_pictures, dependent: :destroy
-  has_many :videos, through: :video_pictures
+  has_many :albums,   through: :album_pictures
+  has_many :events,   through: :event_pictures
+  has_many :keywords, through: :picture_keywords
+  has_many :videos,   through: :video_pictures
 
   has_one_attached :source_uploaded
 
-  accepts_nested_attributes_for :album_pictures, allow_destroy: true
-  accepts_nested_attributes_for :event_pictures, allow_destroy: true
-  accepts_nested_attributes_for :picture_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
-  accepts_nested_attributes_for :video_pictures, allow_destroy: true
+  accepts_nested_attributes_for :album_pictures,    allow_destroy: true
+  accepts_nested_attributes_for :event_pictures,    allow_destroy: true
+  accepts_nested_attributes_for :picture_keywords,  allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
+  accepts_nested_attributes_for :video_pictures,    allow_destroy: true
 
 
   protected

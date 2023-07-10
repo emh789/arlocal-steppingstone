@@ -11,28 +11,26 @@ class Keyword < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   before_validation :strip_whitespace_edges_from_entered_text
+
   validates :title, presence: true, uniqueness: true
 
-  has_many :album_keywords, -> { includes(:album) }, dependent: :destroy
-  has_many :albums, through: :album_keywords
-
-  has_many :audio_keywords, -> { includes(:audio) }, dependent: :destroy
-  has_many :audio, through: :audio_keywords
-
-  has_many :event_keywords, -> { includes(:event) }, dependent: :destroy
-  has_many :events, through: :event_keywords
-
+  has_many :album_keywords,   -> { includes(:album)   }, dependent: :destroy
+  has_many :audio_keywords,   -> { includes(:audio)   }, dependent: :destroy
+  has_many :event_keywords,   -> { includes(:event)   }, dependent: :destroy
   has_many :picture_keywords, -> { includes(:picture) }, dependent: :destroy
+  has_many :video_keywords,   -> { includes(:video)   }, dependent: :destroy
+
+  has_many :albums,   through: :album_keywords
+  has_many :audio,    through: :audio_keywords
+  has_many :events,   through: :event_keywords
   has_many :pictures, through: :picture_keywords
+  has_many :videos,   through: :video_keywords
 
-  has_many :video_keywords, -> { includes(:video) }, dependent: :destroy
-  has_many :videos, through: :video_keywords
-
-  accepts_nested_attributes_for :album_keywords, allow_destroy: true
-  accepts_nested_attributes_for :audio_keywords, allow_destroy: true
-  accepts_nested_attributes_for :event_keywords, allow_destroy: true
-  accepts_nested_attributes_for :picture_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
-  accepts_nested_attributes_for :video_keywords, allow_destroy: true
+  accepts_nested_attributes_for :album_keywords,    allow_destroy: true
+  accepts_nested_attributes_for :audio_keywords,    allow_destroy: true
+  accepts_nested_attributes_for :event_keywords,    allow_destroy: true
+  accepts_nested_attributes_for :picture_keywords,  allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
+  accepts_nested_attributes_for :video_keywords,    allow_destroy: true
 
 
   public

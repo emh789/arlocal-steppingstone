@@ -15,24 +15,23 @@ class Album < ApplicationRecord
   before_validation :strip_whitespace_edges_from_entered_text
 
   validates :album_pictures_sorter_id, presence: true
-  validates :description_parser_id,    presence: true
   validates :date_released,            presence: true
+  validates :description_parser_id,    presence: true
   validates :title,                    presence: true
 
-  has_many :album_audio, -> { includes(:audio) }, dependent: :destroy
-  has_many :audio, through: :album_audio
-
+  has_many :album_audio,    -> { includes(:audio)   }, dependent: :destroy
   has_many :album_keywords, -> { includes(:keyword) }, dependent: :destroy
-  has_many :keywords, through: :album_keywords
-
   has_many :album_pictures, -> { includes(:picture) }, dependent: :destroy
+
+  has_many :audio,    through: :album_audio
+  has_many :keywords, through: :album_keywords
   has_many :pictures, through: :album_pictures
 
   has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'AlbumPicture'
 
-  accepts_nested_attributes_for :album_audio, allow_destroy: true
+  accepts_nested_attributes_for :album_audio,    allow_destroy: true
   accepts_nested_attributes_for :album_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
-  accepts_nested_attributes_for :album_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
+  accepts_nested_attributes_for :album_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == ''  }
   accepts_nested_attributes_for :audio
   accepts_nested_attributes_for :pictures
 

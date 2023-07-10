@@ -31,14 +31,13 @@ class Audio < ApplicationRecord
   validates :isrc_registrant_code,   allow_blank: true, length: { is: 3 }
   validates :isrc_year_of_reference, allow_blank: true, length: { is: 2 }
 
-  has_many :album_audio, dependent: :destroy
-  has_many :albums, through: :album_audio
-
+  has_many :album_audio,    dependent: :destroy
   has_many :audio_keywords, dependent: :destroy
-  has_many :keywords, through: :audio_keywords
+  has_many :event_audio,    dependent: :destroy
 
-  has_many :event_audio, dependent: :destroy
-  has_many :events, through: :event_audio
+  has_many :albums,   through: :album_audio
+  has_many :events,   through: :event_audio
+  has_many :keywords, through: :audio_keywords
 
   has_one_attached :source_uploaded
 

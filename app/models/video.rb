@@ -19,13 +19,12 @@ class Video < ApplicationRecord
   validates :isrc_registrant_code,    allow_blank: true, length: { is: 3 }
   validates :isrc_year_of_reference,  allow_blank: true, length: { is: 2 }
 
-  has_many :event_videos, -> { includes(:event) }, dependent: :destroy
-  has_many :events, through: :event_videos
-
+  has_many :event_videos,   -> { includes(:event)   }, dependent: :destroy
   has_many :video_keywords, -> { includes(:keyword) }, dependent: :destroy
-  has_many :keywords, through: :video_keywords
-
   has_many :video_pictures, -> { includes(:picture) }, dependent: :destroy
+
+  has_many :events,   through: :event_videos
+  has_many :keywords, through: :video_keywords
   has_many :pictures, through: :video_pictures
 
   has_one :coverpicture, -> { where(is_coverpicture: true).includes(:picture) }, class_name: 'VideoPicture'
@@ -37,7 +36,7 @@ class Video < ApplicationRecord
   accepts_nested_attributes_for :keywords
   accepts_nested_attributes_for :pictures
   accepts_nested_attributes_for :video_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
-  accepts_nested_attributes_for :video_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == '' }
+  accepts_nested_attributes_for :video_pictures, allow_destroy: true, reject_if: proc { |attributes| attributes['picture_id'] == ''  }
 
 
 
