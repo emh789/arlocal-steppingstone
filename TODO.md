@@ -4,6 +4,8 @@
 
 ## HIGHEST priority
 
+Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loading.
+
 Migration for "catalog/imported" and "attachment/uploaded"
   - update the data
     - audio

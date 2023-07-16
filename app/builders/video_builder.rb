@@ -4,7 +4,7 @@ class VideoBuilder
   require 'mediainfo'
 
 
-  include CatalogHelper
+  # include CatalogHelper
 
 
   attr_reader :metadata, :video
