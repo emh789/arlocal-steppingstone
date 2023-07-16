@@ -1,10 +1,10 @@
 # A&R.Local To-Do List
 
 
-
 ## HIGHEST priority
 
-Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loading.
+jplayer_playlist
+  - uploaded attachment gives null filename
 
 Migration for "catalog/imported" and "attachment/uploaded"
   - update the data
@@ -186,3 +186,5 @@ Ongoing debate:
 **Possible fallout from removing scopes. Especially `Class.options_for_select_admin`**
   which itself could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 *Comment out scopes but don't remove yet.*
+
+Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loading.

@@ -142,10 +142,12 @@ module AudioHelper
 
   def audio_preferred_url(audio)
     case audio.source_type
-    when 'attachment'
-      url_for(audio.source_uploaded)
     when 'imported'
       source_imported_url(audio)
+    when 'uploaded'
+      if audio.source_uploaded.attached?
+        url_for(audio.source_uploaded)
+      end
     end
   end
 
