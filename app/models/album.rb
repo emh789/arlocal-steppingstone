@@ -324,7 +324,9 @@ class Album < ApplicationRecord
   end
 
 
-  ### indexed
+  def indexed
+    ['public'].include?(visibility)
+  end
 
 
   def joined_audio

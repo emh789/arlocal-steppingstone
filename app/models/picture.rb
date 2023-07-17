@@ -324,6 +324,11 @@ class Picture < ApplicationRecord
   end
 
 
+  def indexed
+    ['public'].include?(visibility)
+  end
+
+
   def joined_albums
     album_pictures_sorted
   end

@@ -3,9 +3,6 @@
 
 ## HIGHEST priority
 
-jplayer_playlist
-  - uploaded attachment gives null filename
-
 Migration for "catalog/imported" and "attachment/uploaded"
   - update the data
     - audio
@@ -188,3 +185,6 @@ Ongoing debate:
 *Comment out scopes but don't remove yet.*
 
 Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loading.
+
+jplayer_playlist
+  - uploaded attachment gives null filename

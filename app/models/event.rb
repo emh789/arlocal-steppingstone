@@ -319,6 +319,11 @@ class Event < ApplicationRecord
   end
 
 
+  def indexed
+    ['public'].include?(visibility)
+  end
+
+
   ### keywords_count
 
 

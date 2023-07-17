@@ -190,6 +190,11 @@ class Video < ApplicationRecord
   end
 
 
+  def indexed
+    ['public'].include?(visibility)
+  end
+
+
   def isrc
     [isrc_country_code, isrc_registrant_code, isrc_year_of_reference, isrc_designation_code].join
   end

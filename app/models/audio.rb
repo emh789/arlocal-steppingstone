@@ -289,7 +289,7 @@ class Audio < ApplicationRecord
 
 
   def indexed
-    visibility == 'indexed'
+    ['public'].include?(visibility)
   end
 
 

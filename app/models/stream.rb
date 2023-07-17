@@ -57,6 +57,11 @@ class Stream < ApplicationRecord
   end
 
 
+  def indexed
+    ['public'].include?(visibility)
+  end
+
+
   def published
     ['public','unlisted'].include?(visibility)
   end
