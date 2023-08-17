@@ -236,7 +236,7 @@ class Event < ApplicationRecord
 
 
   def event_audio_sorted_by_order_asc
-    event_audio.to_a.sort_by! { |ea| ea.event_order }
+    event_audio.to_a.sort_by! { |ea| ea.event_order.to_i }
   end
 
 

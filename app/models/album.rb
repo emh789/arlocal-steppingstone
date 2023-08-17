@@ -56,7 +56,7 @@ class Album < ApplicationRecord
 
 
   def album_audio_sorted_by_album_order_asc
-    album_audio.to_a.sort_by! { |aa| aa.album_order }
+    album_audio.to_a.sort_by! { |aa| aa.album_order.to_i }
   end
 
 
