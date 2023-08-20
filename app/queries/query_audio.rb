@@ -65,9 +65,9 @@ class QueryAudio
     when 'filepath_desc'
       all_audio.sort_by{ |a| a.source_file_path }.reverse
     when 'isrc_asc'
-      all_audio.sort_by{ |a| [a.isrc_country_code, a.isrc_registrant_code, a.isrc_year_of_reference, a.isrc_designation_code] }
+      all_audio.sort_by{ |a| [a.isrc_country_code.to_s, a.isrc_registrant_code.to_s, a.isrc_year_of_reference.to_s, a.isrc_designation_code.to_s] }
     when 'isrc_desc'
-      all_audio.sort_by{ |a| [a.isrc_country_code, a.isrc_registrant_code, a.isrc_year_of_reference, a.isrc_designation_code] }.reverse
+      all_audio.sort_by{ |a| [a.isrc_country_code.to_s, a.isrc_registrant_code.to_s, a.isrc_year_of_reference.to_s, a.isrc_designation_code.to_s] }.reverse
     when 'title_asc'
       all_audio.sort_by{ |a| a.title.downcase }
     when 'title_desc'
