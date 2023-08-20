@@ -145,7 +145,8 @@ class PictureBuilder
       b.attributes_default_assign
       b.attributes_given_assign(picture_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(picture_params)
+      # b.metadata_read_from_tempfile(picture_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
     end
   end
@@ -156,7 +157,8 @@ class PictureBuilder
       b.attributes_default_assign
       b.attributes_given_assign(picture_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(picture_params)
+      # b.metadata_read_from_tempfile(picture_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
     end
   end
@@ -167,7 +169,8 @@ class PictureBuilder
       b.attributes_default_assign
       b.attributes_given_assign(picture_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(picture_params)
+      # b.metadata_read_from_tempfile(picture_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
     end
   end
@@ -312,12 +315,12 @@ class PictureBuilder
   end
 
 
-  def metadata_read_from_tempfile(picture_params)
-    tf = picture_params['source_uploaded'].tempfile
-    if File.exist?(tf.path)
-      @metadata = Exiftool.new(tf.path)
-    end
-  end
+  # def metadata_read_from_tempfile(picture_params)
+  #   tf = picture_params['source_uploaded'].tempfile
+  #   if File.exist?(tf.path)
+  #     @metadata = Exiftool.new(tf.path)
+  #   end
+  # end
 
 
   def source_type_assign(source_type)

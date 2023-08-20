@@ -128,7 +128,8 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(audio_params)
+      # b.metadata_read_from_tempfile(audio_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
     end
   end
@@ -139,7 +140,8 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(audio_params)
+      # b.metadata_read_from_tempfile(audio_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
       b.set_new_album_order
     end
@@ -151,7 +153,8 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      b.metadata_read_from_tempfile(audio_params)
+      # b.metadata_read_from_tempfile(audio_params)
+      b.metadata_read_from_uploaded
       b.metadata_assign
       b.set_new_event_order
     end
