@@ -4,12 +4,12 @@ addEventListener("direct-upload:initialize", event => {
   const { target, detail } = event
   const { id, file } = detail
   target.insertAdjacentHTML("beforebegin", `
-    <div id="direct-upload-${id}" class="direct-upload direct-upload--pending">
+    <div id="direct-upload-${id}" class="direct-upload direct-upload--pending color_bg1 color_fg">
       <div id="direct-upload-progress-${id}" class="direct-upload__progress" style="width: 0%"></div>
       <span class="direct-upload__filename"></span>
     </div>
   `)
-  target.previousElementSibling.querySelector(`.direct-upload__filename`).textContent = file.name
+  target.previousElementSibling.querySelector(`.direct-upload__filename`).textContent = ('Uploading ' + file.name)
 })
 
 addEventListener("direct-upload:start", event => {

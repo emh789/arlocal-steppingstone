@@ -297,12 +297,12 @@ class AudioBuilder
   end
 
 
-  def metadata_read_from_tempfile(audio_params)
-    tf = audio_params['source_uploaded'].tempfile
-    if File.exist?(tf.path)
-      @metadata = MediaInfo.from(tf.path)
-    end
-  end
+  # def metadata_read_from_tempfile(audio_params)
+  #   tf = audio_params['source_uploaded'].tempfile
+  #   if File.exist?(tf.path)
+  #     @metadata = MediaInfo.from(tf.path)
+  #   end
+  # end
 
 
   def set_new_album_order

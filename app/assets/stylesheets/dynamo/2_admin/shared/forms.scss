@@ -58,7 +58,7 @@
 }
 .arl_form_data_attr {
   display: grid;
-  grid-template-areas: 'label inline' 'explanation explanation' 'input input' 'thumbnail thumbnail';
+  grid-template-areas: 'label inline' 'explanation explanation' 'input input' 'detail detail';
   grid-template-columns: 1fr min-content;
   margin: $arl-margin-wide 0;
 }
@@ -237,7 +237,7 @@
 .arl_form_data_attr_thumbnail_image {
   align-self: center;
   border-radius: $border-radius-narrow;
-  grid-area: thumbnail;
+  grid-area: detail;
   justify-self: center;
   margin-top: $arl-margin-narrow;
   max-height: 8rem;
