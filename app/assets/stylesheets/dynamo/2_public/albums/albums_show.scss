@@ -48,10 +48,9 @@
 
 @media #{$media-screen-1} {
   .arl_albums_show {
-    align-items: stretch;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
   .arl_albums_show_nav_neighbors {
     margin: 0rem 0rem 1.5rem 0rem;

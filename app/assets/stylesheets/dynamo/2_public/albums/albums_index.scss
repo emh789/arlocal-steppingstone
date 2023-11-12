@@ -57,6 +57,10 @@
 
 @media #{$media-screen-1} {
   .arl_albums_index {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: $arl-margin;
   }
   .arl_albums_index_album_picture {
