@@ -27,6 +27,8 @@ Possibly some bugs remaining here.
 
 ## Probably finished
 
+***Admin Pictures Index - make default button => pin icon***
+
 views/shared is now views/public/shared
 
 - admin_header_nav

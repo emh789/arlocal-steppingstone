@@ -15,7 +15,7 @@ Migration for "catalog/imported" and "attachment/uploaded"
   - ***REALLY FREAKING WEIRD.***
     - Migrations can run separately, but in a single roll they mess with data values.
 
-`QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few diifferent places.
+`QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few different places.
 
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
 `HtmlHelper.html_head_title_extend!` line 37
