@@ -21,7 +21,8 @@ page html_head titles are inconsistent. Maybe just a single method ONE TIME, not
 `HtmlHelper.html_head_title_extend!` line 37
 
 finish admin renovation
-  - `admin/welcome/markup_types` needs dynamic layout. grid fixes this.
+  - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
+    - **Might need a rewrite with a `param` and `<select>`**
   - `admin/#{resource}/edit` category panes have crazy border
   - `admin/isrc/edit` narrow view buttons overflow right
   - give a title to nested_picture uploads/imports
@@ -32,7 +33,8 @@ finish admin renovation
       - refactor index_joined_resource view templates
         fallout: keyword_statement_items_count methods might be unused now
         (replaced by resource_statement_items_count)
-  - **TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.**
+  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
+    - live trials suggest this is complete.
 
 video#show css
   text_data, does it need a min-width?
