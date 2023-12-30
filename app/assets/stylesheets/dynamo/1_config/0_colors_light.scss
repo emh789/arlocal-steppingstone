@@ -1,4 +1,5 @@
 $light-bg:                  rgba(226,222,212,1.00);
+$light-bg-foundation:       rgba(127,127,127,1.00);
 $light-bg-layer:            rgba(238,236,226,1.00);
 $light-bg-layer2:           rgba(252,251,248,1.00);
 $light-border:              rgba(184,184,184,1.00);
@@ -17,6 +18,7 @@ $light-marquee-bg:          rgba(208,206,202,1.00);
 $light-marquee-fg:          rgba(016,016,016,1.00);
 $light-marquee-bold-link:   saturate(2.5);
 
+$light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
 
 //$light-bg-jp-progress-bar: #7CE;
 
@@ -103,14 +105,20 @@ $light-marquee-bold-link:   saturate(2.5);
     background-image: asset_url('font-awesome/xmark.svg');
     background-size: 100% 100%;
   }
+  .arl_footer {
+    background-color: $light-bg;
+  }
+  .arl_header {
+    background-color: $light-bg;
+  }
   .arl_marquee {
     background-color: $light-marquee-bg;
     color: $light-marquee-fg;
     filter: $light-marquee-bold-link;
     text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.125);
   }
-  .color_base {
-    background-color: $light-bg;
+  .arlocal, .arlocal_admin {
+    background: $light-bg;
     border-color: $light-border;
     color: $light-fg;
   }
@@ -182,5 +190,11 @@ $light-marquee-bold-link:   saturate(2.5);
   }
   .shadow_attracting {
     box-shadow: 0rem 0rem 0.25rem transparentize($light-fg, 0.9)
+  }
+}
+
+@media ( prefers-color-scheme: light ) and #{$media-screen-1} {
+  body {
+    background: $light-narrow-foundation;
   }
 }

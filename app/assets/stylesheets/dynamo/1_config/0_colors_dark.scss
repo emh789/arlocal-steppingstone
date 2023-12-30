@@ -17,6 +17,8 @@ $dark-marquee-bg:           rgba(064,064,064,1.00);
 $dark-marquee-fg:           rgba(255,255,255,1.00);
 $dark-marquee-bold-link:    saturate(6);
 
+// $dark-narrow-foundation: linear-gradient(to right, #111, #000, #111);
+$dark-narrow-foundation: black;
 
 //$dark-jp-progress-bar-bg:   rgba(128,196,238,1.00);
 
@@ -103,14 +105,20 @@ $dark-marquee-bold-link:    saturate(6);
     background-image: asset_url('font-awesome/xmark.svg');
     background-size: 100% 100%;
   }
+  .arl_footer {
+    background-color: $dark-bg;
+  }
+  .arl_header {
+    background-color: $dark-bg;
+  }
   .arl_marquee {
     background-color: $dark-marquee-bg;
     color: $dark-marquee-fg;
     filter: $dark-marquee-bold-link;
     text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.75);
   }
-  .color_base {
-    background-color: $dark-bg;
+  .arlocal, .arlocal_admin {
+    background: $dark-bg;
     border-color: $dark-border;
     color: $dark-fg;
   }
@@ -182,5 +190,11 @@ $dark-marquee-bold-link:    saturate(6);
   }
   .shadow_attracting {
     box-shadow: 0rem 0rem 0.25rem transparentize($dark-bg, 0.5);
+  }
+}
+
+@media ( prefers-color-scheme: dark ) and #{$media-screen-1} {
+  body {
+    background: $dark-narrow-foundation;
   }
 }
