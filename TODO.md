@@ -21,6 +21,9 @@ page html_head titles are inconsistent. Maybe just a single method ONE TIME, not
 `HtmlHelper.html_head_title_extend!` line 37
 
 finish admin renovation
+  - `admin/welcome/markup_types` needs dynamic layout. grid fixes this.
+  - `admin/#{resource}/edit` category panes have crazy border
+  - `admin/isrc/edit` narrow view buttons overflow right
   - give a title to nested_picture uploads/imports
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
