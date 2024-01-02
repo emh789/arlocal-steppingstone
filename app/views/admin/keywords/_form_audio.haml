@@ -4,7 +4,7 @@
   = keyword_audio_admin_button_to_new_upload(keyword)
 
 .arl_form_title
-  = keyword_statement_audio_count(keyword)
+  = resource_joined_audio_count_statement(keyword)
 
 - if keyword.does_have_audio
   = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :audio), local: true, method: :patch, class: :arl_form) do |f|
