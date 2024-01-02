@@ -121,19 +121,4 @@ module VideosHelper
   end
 
 
-  def video_statement_events_count(video)
-    pluralize video.events_count.to_i, 'events'
-  end
-
-
-  def video_statement_keywords_count(video)
-    pluralize video.keywords_count.to_i, 'keyword'
-  end
-
-
-  def video_statement_pictures_count(video)
-    pluralize video.pictures_count.to_i, 'picture'
-  end
-
-
 end
