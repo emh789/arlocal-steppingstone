@@ -162,6 +162,7 @@
   .arl_admin_resource_edit_nav {
     display: flex;
     flex-direction: column;
+    margin-bottom: $arl-margin-wide;
     width: 100%;
   }
   .arl_admin_resource_edit_nav_item {
