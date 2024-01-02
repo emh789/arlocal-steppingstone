@@ -22,6 +22,8 @@ finish admin renovation
         (replaced by resource_statement_items_count)
         - looks like it from Album and Picture helpers
         - in `_form_[resource]`
+      - audio_helper
+        - when use `audio_reference_admin_link` vs `audio_admin_title_link`?
 
 video#show css
   text_data, does it need a min-width?
