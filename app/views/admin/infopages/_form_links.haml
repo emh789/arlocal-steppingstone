@@ -2,9 +2,9 @@
   = infopage_link_admin_button_to_new_join_single(infopage)
 
 .arl_form_title
-  = infopage_statement_links_count(infopage)
-- if infopage.does_have_links
+  = resource_joined_links_count_statement(infopage)
 
+- if infopage.does_have_links
   = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :links), local: true, class: :arl_form) do |f|
     .arl_form_data
       %table.arl_form_data_joins
