@@ -20,6 +20,8 @@ finish admin renovation
       - refactor index_joined_resource view templates
         fallout: keyword_statement_items_count methods might be unused now
         (replaced by resource_statement_items_count)
+        - looks like it from Album and Picture helpers
+        - in `_form_[resource]`
 
 video#show css
   text_data, does it need a min-width?
@@ -147,7 +149,7 @@ finish admin renovation:
     - live trials suggest this is complete.
   - `admin/#{resource}/edit` category panes have crazy border
 
-    
+
 Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
 
