@@ -16,12 +16,6 @@ finish admin renovation
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
   - *Review helper methods for currency in light of recent refactoring frenzy.*
-    *related:*
-      - refactor index_joined_resource view templates
-        fallout: keyword_statement_items_count methods might be unused now
-        (replaced by resource_statement_items_count)
-        - looks like it from Album and Picture helpers
-        - in `_form_[resource]`
     - Keyword Admin:
       - #edit margins too big? _(narrow viewport)_
       - #edit?videos missing buttons
@@ -161,6 +155,13 @@ Investigate which `Class.options_for_select_admin` could be optimized with a `.s
 
 
 ## Probably finished
+
+- admin display review
+  - refactor index_joined_resource view templates
+    fallout: keyword_statement_items_count methods might be unused now
+    (replaced by resource_statement_items_count)
+    - looks like it from Album and Picture helpers
+    - in `_form_[resource]`
 
 Renaming source_imported etc resulted in a naming collision
   - resource_model: audio.source_imported_file_path for relative to public/portfolio

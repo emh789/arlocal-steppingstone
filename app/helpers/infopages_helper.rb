@@ -112,21 +112,6 @@ module InfopagesHelper
   end
 
 
-  def infopage_statement_articles_count(infopage)
-    pluralize infopage.articles.count.to_i, 'article'
-  end
-
-
-  def infopage_statement_links_count(infopage)
-    pluralize infopage.links.count.to_i, 'link'
-  end
-
-
-  def infopage_statement_pictures_count(infopage)
-    pluralize infopage.pictures.count.to_i, 'picture'
-  end
-
-
   def infopage_reference_admin_link(infopage)
     link_to infopage.title, admin_infopage_path(infopage.id_admin)
   end

@@ -5,7 +5,7 @@
   = album_picture_admin_button_to_new_join_by_keyword(album)
 
 .arl_form_title
-  = album_statement_pictures_count(album)
+  = resource_joined_pictures_count_statement(album)
 
 - if album.does_have_pictures
   = form_with(model: [:admin, album], url: admin_album_path(album, pane: :pictures), local: true, class: :arl_form, method: :patch) do |f|

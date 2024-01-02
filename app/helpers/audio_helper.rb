@@ -192,21 +192,6 @@ module AudioHelper
   end
 
 
-  def audio_statement_albums_count(audio)
-    pluralize audio.albums_count.to_i, 'album'
-  end
-
-
-  def audio_statement_events_count(audio)
-    pluralize audio.events_count.to_i, 'event'
-  end
-
-
-  def audio_statement_keywords_count(audio)
-    pluralize audio.keywords_count.to_i, 'keyword'
-  end
-
-
   def audio_admin_title_link(audio)
     link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin)
   end

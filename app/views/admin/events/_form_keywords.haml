@@ -2,7 +2,7 @@
   = event_keyword_admin_button_to_new_join_single(event)
 
 .arl_form_title
-  = event_statement_keywords_count(event)
+  = resource_joined_keywords_count_statement(event)
 
 - if event.does_have_keywords
   = form_with(model: [:admin, event], url: admin_event_path(event, pane: :keywords), local: true, class: :arl_form) do |f|

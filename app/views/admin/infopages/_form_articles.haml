@@ -2,7 +2,7 @@
   = infopage_article_admin_button_to_new_join_single(infopage)
 
 .arl_form_title
-  = infopage_statement_articles_count(infopage)
+  = resource_joined_articles_count_statement(infopage)
 
 - if infopage.does_have_articles
   = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :articles), local: true, class: :arl_form) do |f|

@@ -5,7 +5,7 @@
   = event_audio_admin_button_to_new_join_by_keyword(event)
 
 .arl_form_title
-  = event_statement_audio_count(event)
+  = resource_joined_audio_count_statement(event)
 
 - if event.does_have_audio
   = form_with(model: [:admin, event], url: admin_event_path(event, pane: :audio), local: true, class: :arl_form) do |f|

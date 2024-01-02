@@ -1,5 +1,5 @@
 .arl_form_title
-  = video_statement_events_count(video)
+  = resource_joined_events_count_statement(video)
 
 - if video.does_have_events
   = form_with(model: [:admin, video], url: admin_video_path(video, pane: :events), local: true, class: :arl_form) do |f|
@@ -27,4 +27,3 @@
 .arl_form_actions
   .arl_admin_resource_alt_buttons
     = video_event_admin_button_to_new_join_single(video)
-

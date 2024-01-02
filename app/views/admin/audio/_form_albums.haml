@@ -2,7 +2,7 @@
   = audio_album_admin_button_to_new_join_single(audio)
 
 .arl_form_title
-  = audio_statement_albums_count(audio)
+  = resource_joined_albums_count_statement(audio)
 
 - if audio.does_have_albums
   = form_with model: [:admin, audio], url: admin_audio_path(audio, pane: :albums), local: true, class: :arl_form do |f|

@@ -2,7 +2,7 @@
   = album_keyword_admin_button_to_new_join_single(album)
 
 .arl_form_title
-  = album_statement_keywords_count(album)
+  = resource_joined_keywords_count_statement(album)
 
 - if album.does_have_keywords
   = form_with(model: [:admin, album], url: admin_album_path(album, pane: :keywords), local: true, class: :arl_form, method: :patch) do |f|
