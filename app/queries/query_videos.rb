@@ -105,26 +105,30 @@ class QueryVideos
   end
 
 
-  # TODO: This seems like it could be refactored.
   def sort_public_videos_by_keyword(inner_order: nil)
-    result = Hash.new
+    public_videos_by_keyword = Hash.new
+
+    keyword_collection = Keyword.only_that_will_select_videos
     video_collection = Video.publicly_indexable.joins(:keywords)
-    Keyword.only_that_will_select_videos.each do |keyword|
-      result[keyword.title] = video_collection.where(keywords: keyword)
+    keyword_collection.each do |keyword|
+      public_videos_by_keyword[keyword.title] = video_collection.where(keywords: keyword)
     end
-    result["more videos"] = video_collection.reject{ |vid| vid.keywords.map { |k| k.can_select_videos }.include?(true) }
-    result.delete_if { |k,v| v == [] }
-    result.each_pair do |key, values|
+
+    video_without_keyword_collection = video_collection.reject{ |video| video.keywords.map { |keyword| keyword.can_select_videos }.include?(true) }
+    public_videos_by_keyword["more videos"] = video_without_keyword_collection
+
+    public_videos_by_keyword.delete_if { |keyword, videos| videos == [] }
+    public_videos_by_keyword.each_pair do |keyword, videos|
       case inner_order
       when :date_released_desc
-        result[key] = values.sort_by{ |video| video.date_released }.reverse
+        public_videos_by_keyword[keyword] = videos.sort_by{ |video| video.date_released }.reverse
       when :title_asc
-        result[key] = values.sort_by{ |video| video.title.downcase }
+        public_videos_by_keyword[keyword] = videos.sort_by{ |video| video.title.downcase }
       end
     end
-    result
-  end
 
+    public_videos_by_keyword
+  end
 
 
   private

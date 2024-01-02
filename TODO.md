@@ -3,8 +3,6 @@
 
 ## HIGHEST priority
 
-`QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few different places.
-
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
 `HtmlHelper.html_head_title_extend!` line 37
 
@@ -129,6 +127,10 @@ look into other ways to generate/metaprogram the javascript for jplayer
 
 
 ## Possibly finished
+
+`QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few different places.
+  - Maybe not. It's a specific collection.
+  - Makes more sense with improved label semantics.
 
 I think the only test use cases are complete:
 Migration for "catalog/imported" and "attachment/uploaded"
