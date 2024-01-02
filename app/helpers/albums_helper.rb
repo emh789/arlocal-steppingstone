@@ -148,23 +148,8 @@ module AlbumsHelper
   end
 
 
-  def album_statement_audio_count(album)
-    pluralize album.audio_count.to_i, 'audio'
-  end
-
-
   def album_statement_date_released(album)
     sanitize "Released #{album.date_released.strftime('%B %d %Y')}"
-  end
-
-
-  def album_statement_keywords_count(album)
-    pluralize album.keywords_count.to_i, 'keyword'
-  end
-
-
-  def album_statement_pictures_count(album)
-    pluralize album.pictures_count.to_i, 'picture'
   end
 
 
