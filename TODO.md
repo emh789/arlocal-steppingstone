@@ -22,6 +22,12 @@ finish admin renovation
         (replaced by resource_statement_items_count)
         - looks like it from Album and Picture helpers
         - in `_form_[resource]`
+    - Keyword Admin:
+      - #edit margins too big? _(narrow viewport)_
+      - #edit?videos missing buttons
+        - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+      - #show missing _narrow viewport_ directive
+    - Links_helpers need some review for currency and effectiveness
 
 video#show css
   text_data, does it need a min-width?
