@@ -191,29 +191,10 @@ module EventsHelper
   end
 
 
-  def event_statement_audio_count(event)
-    pluralize event.audio_count.to_i, 'audio'
-  end
-
-
-  def event_statement_keywords_count(event)
-    pluralize event.keywords_count.to_i, 'keyword'
-  end
-
-
-  def event_statement_pictures_count(event)
-    pluralize event.pictures_count.to_i, 'picture'
-  end
-
-
-  def event_statement_videos_count(event)
-    pluralize event.videos_count.to_i, 'video'
-  end
-
-
-#  def event_video_admin_button_to_new_import(event)
-#    button_admin_to_new_import edit_admin_event_path(event.id_admin, pane: :video_import)
-#  end
+  #  NYI
+  #  def event_video_admin_button_to_new_import(event)
+  #    button_admin_to_new_import edit_admin_event_path(event.id_admin, pane: :video_import)
+  #  end
 
 
   def event_video_admin_button_to_new_join_by_keyword(event)
@@ -226,9 +207,10 @@ module EventsHelper
   end
 
 
-#  def event_video_admin_button_to_new_upload(event)
-#    button_admin_to_new_upload edit_admin_event_path(event.id_admin, pane: :video_upload)
-#  end
+  #  NYI
+  #  def event_video_admin_button_to_new_upload(event)
+  #    button_admin_to_new_upload edit_admin_event_path(event.id_admin, pane: :video_upload)
+  #  end
 
 
 
