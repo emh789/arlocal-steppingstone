@@ -183,27 +183,6 @@ module PicturesHelper
   end
 
 
-
-  def picture_statement_albums_count(picture)
-    pluralize picture.albums_count.to_i, 'album'
-  end
-
-
-  def picture_statement_events_count(picture)
-    pluralize picture.events_count.to_i, 'event'
-  end
-
-
-  def picture_statement_keywords_count(picture)
-    pluralize picture.keywords_count.to_i, 'keyword'
-  end
-
-
-  def picture_statement_videos_count(picture)
-    pluralize picture.videos_count.to_i, 'video'
-  end
-
-
   def picture_thumbnail_link(picture, html_class: :arl_picture_thumbnail)
     link_to(picture_preferred_tag(picture, html_class: html_class), public_picture_path(picture.id_public))
   end

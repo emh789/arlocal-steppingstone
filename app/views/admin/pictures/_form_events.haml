@@ -1,5 +1,5 @@
 .arl_form_title
-  = picture_statement_events_count(picture)
+  = resource_joined_events_count_statement(picture)
 
 - if picture.does_have_events
   = form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :events), local: true, class: :arl_form) do |f|
