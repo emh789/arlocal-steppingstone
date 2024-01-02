@@ -3,18 +3,6 @@
 
 ## HIGHEST priority
 
-Migration for "catalog/imported" and "attachment/uploaded"
-  - update the data
-    - audio
-    - picture
-    - arlocal_settings icon_source_type
-  - 20230521021626_source_catalog_source_uploaded.rb
-    - see 20230405010631_resource_visibility.rb for example
-  - **OK now I think.**
-  - *Not yet. Somehow the visibility value bleeds into source_type*
-  - ***REALLY FREAKING WEIRD.***
-    - Migrations can run separately, but in a single roll they mess with data values.
-
 `QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few different places.
 
 page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
@@ -23,7 +11,6 @@ page html_head titles are inconsistent. Maybe just a single method ONE TIME, not
 finish admin renovation
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
-  - `admin/#{resource}/edit` category panes have crazy border
   - `admin/isrc/edit` narrow view buttons overflow right
   - give a title to nested_picture uploads/imports
   - More useful 'index' action for resources *working on it*
@@ -33,8 +20,6 @@ finish admin renovation
       - refactor index_joined_resource view templates
         fallout: keyword_statement_items_count methods might be unused now
         (replaced by resource_statement_items_count)
-  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
-    - live trials suggest this is complete.
 
 video#show css
   text_data, does it need a min-width?
@@ -143,6 +128,26 @@ look into other ways to generate/metaprogram the javascript for jplayer
 
 ## Possibly finished
 
+I think the only test use cases are complete:
+Migration for "catalog/imported" and "attachment/uploaded"
+  - update the data
+    - audio
+    - picture
+    - arlocal_settings icon_source_type
+  - 20230521021626_source_catalog_source_uploaded.rb
+    - see 20230405010631_resource_visibility.rb for example
+  - **OK now I think.**
+  - *Not yet. Somehow the visibility value bleeds into source_type*
+  - ***REALLY FREAKING WEIRD.***
+    - Migrations can run separately, but in a single roll they mess with data values.
+
+
+finish admin renovation:
+  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
+    - live trials suggest this is complete.
+  - `admin/#{resource}/edit` category panes have crazy border
+
+    
 Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
 

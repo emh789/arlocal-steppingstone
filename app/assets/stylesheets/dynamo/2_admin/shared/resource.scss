@@ -166,13 +166,19 @@
   }
   .arl_admin_resource_edit_nav_item {
     border-bottom-width: $border-width;
-    border-style: $border-style;
+    border-bottom-style: $border-style;
+    margin-bottom: $border-width; // this ensures visible outline for active nav_item_links
     text-align: center;
   }
   .arl_admin_resource_edit_nav_item_current {
     border-bottom-width: $border-width;
-    border-style: $border-style;
+    border-bottom-style: $border-style;
     text-align: center;
+  }
+  .arl_admin_resource_edit_nav_item_link {
+    &:active {
+      // outline: none;
+    }
   }
 }
 
