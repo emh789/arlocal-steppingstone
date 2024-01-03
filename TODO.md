@@ -3,10 +3,8 @@
 
 ## HIGHEST priority
 
-page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
-`HtmlHelper.html_head_title_extend!` line 37
-
 finish admin renovation
+  - admin pages: html subtitle could benefit from including resource class ("editing album @album.title")
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
   - `admin/isrc/edit` narrow view buttons overflow right
@@ -20,6 +18,7 @@ finish admin renovation
         - **Finish implementation of video joins submenus; look across resources; also within video#edit**
       - #show missing _narrow viewport_ directive
     - Links_helpers need some review for currency and effectiveness
+    - why does infopages have an infex_dup? is that project complete?
 
 video#show css
   text_data, does it need a min-width?
@@ -209,3 +208,8 @@ Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loa
 
 jplayer_playlist
   - uploaded attachment gives null filename
+
+page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
+`HtmlHelper.html_head_title_extend!` line 37
+  - where does yield(:html_head_meta_description) get value?
+    - look for `content_for :html_head_meta_description`
