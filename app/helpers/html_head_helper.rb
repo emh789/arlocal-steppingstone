@@ -48,12 +48,6 @@ module HtmlHeadHelper
   end
 
 
-  # extends the HTML title appearing in browser title or tab
-  # def html_head_title_extend!(*subtitle_array)
-    # content_for :html_head_title_subtitle, (' / ' + subtitle_array.join(' / '))
-  # end
-
-
   def html_head_subtitle_set(subtitle)
     content_for :html_head_title_subtitle, subtitle
   end
