@@ -16,9 +16,10 @@ module HtmlHeadHelper
   end
 
 
-  def html_head_meta_description(text)
-    tag.meta(name: 'description', content: sanitize(text)).html_safe
-  end
+  # NYI
+  # def html_head_meta_description(text)
+  #   tag.meta(name: 'description', content: sanitize(text)).html_safe
+  # end
 
 
   def html_head_meta_viewport_tags
@@ -27,7 +28,7 @@ module HtmlHeadHelper
 
 
   def html_head_title(arlocal_settings, html_head_title_subtitle)
-    title_string = "#{arlocal_settings.artist_name} #{html_head_title_subtitle}"
+    title_string = "#{html_head_title_subtitle} | #{arlocal_settings.artist_name}"
     result = tag.title(sanitize(title_string)).html_safe
     result.html_safe
   end
@@ -35,7 +36,12 @@ module HtmlHeadHelper
 
   # extends the HTML title appearing in browser title or tab
   def html_head_title_extend!(*subtitle_array)
-    content_for :html_head_title_subtitle, (' / ' + subtitle_array.join(' / '))
+    # content_for :html_head_title_subtitle, (' / ' + subtitle_array.join(' / '))
+  end
+
+
+  def html_head_subtitle_set(subtitle)
+    content_for :html_head_title_subtitle, subtitle
   end
 
 
