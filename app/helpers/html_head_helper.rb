@@ -34,7 +34,7 @@ module HtmlHeadHelper
   end
 
 
-  def html_head_title_admin(arlocal_settings, html_head_title_subtitle)
+  def html_head_title_admin(html_head_title_subtitle)
     title_string = "#{html_head_title_subtitle} | A&R.local admin"
     result = tag.title(sanitize(title_string)).html_safe
     result.html_safe
