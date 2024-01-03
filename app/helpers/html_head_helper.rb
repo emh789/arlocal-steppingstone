@@ -41,6 +41,13 @@ module HtmlHeadHelper
   end
 
 
+  def html_head_title_neutral(html_head_title_subtitle)
+    title_string = "#{html_head_title_subtitle} | A&R.local"
+    result = tag.title(sanitize(title_string)).html_safe
+    result.html_safe
+  end
+
+
   # extends the HTML title appearing in browser title or tab
   # def html_head_title_extend!(*subtitle_array)
     # content_for :html_head_title_subtitle, (' / ' + subtitle_array.join(' / '))
