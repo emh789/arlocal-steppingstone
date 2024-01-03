@@ -1,4 +1,4 @@
-= html_head_title_extend! :stream
+= html_head_subtitle_set @stream.title
 
 .arl_streams_show
   .arl_streams_show_title
@@ -6,4 +6,4 @@
   .arl_streams_show_html_element
     = @stream.html_element_conditionally
   .arl_streams_show_description
-    = parser_div @stream.description
+    = parser_div @stream.description_props
