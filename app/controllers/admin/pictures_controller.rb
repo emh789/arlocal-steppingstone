@@ -171,7 +171,7 @@ class Admin::PicturesController < AdminController
 
   def new_import_to_album
     @picture = PictureBuilder.build_with_defaults
-    @albums = QueryAlbums.new.order_by_title_asc
+    @albums = QueryAlbums.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
@@ -180,7 +180,7 @@ class Admin::PicturesController < AdminController
 
   def new_import_to_event
     @picture = PictureBuilder.build_with_defaults
-    @events = QueryEvents.new.order_by_start_time_asc
+    @events = QueryEvents.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
@@ -201,7 +201,7 @@ class Admin::PicturesController < AdminController
 
   def new_upload_to_album
     @picture = PictureBuilder.build_with_defaults
-    @albums = QueryAlbums.new.order_by_title_asc
+    @albums = QueryAlbums.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
@@ -210,7 +210,7 @@ class Admin::PicturesController < AdminController
 
   def new_upload_to_event
     @picture = PictureBuilder.build_with_defaults
-    @events = QueryEvents.new.order_by_start_time_asc
+    @events = QueryEvents.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
