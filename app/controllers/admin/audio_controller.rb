@@ -173,7 +173,7 @@ def create
 
   def new_import_to_event
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
-    @events = QueryEvents.new.order_by_start_time_asc
+    @events = QueryEvents.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
@@ -194,7 +194,7 @@ def create
 
   def new_upload_to_album
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
-    @albums = QueryAlbums.new.order_by_title_asc
+    @albums = QueryAlbums.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
@@ -203,7 +203,7 @@ def create
 
   def new_upload_to_event
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
-    @events = QueryEvents.new.order_by_start_time_asc
+    @events = QueryEvents.options_for_select_admin
     if @arlocal_settings.admin_forms_auto_keyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
