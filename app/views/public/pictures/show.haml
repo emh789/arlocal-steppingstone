@@ -1,10 +1,8 @@
-= html_head_title_extend! :pictures, @picture.slug
+= html_head_subtitle_set @picture.slug
 
 .arl_pictures_show
   = render 'show_picture_img', picture: @picture
   = render 'show_picture_text', picture: @picture
-  
+
   - if @picture_neighbors
     = render 'show_nav_neighbors', picture_neighbors: @picture_neighbors
-  
-  

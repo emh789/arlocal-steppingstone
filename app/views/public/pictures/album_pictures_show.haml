@@ -1,11 +1,11 @@
-= html_head_title_extend! @album.title, :pictures, @picture.slug
+= html_head_subtitle_set @picture.slug
 
 %p.title
   %span
     = link_to 'Pictures from', album_pictures_path(@album.id_public)
   %span.album
     = link_to @album.title, album_path(@album.id_public)
-    
+
 %div#pictures_show
   %section.picture
     = render 'show_picture', picture: @picture, picture_neighbors: @picture_neighbors

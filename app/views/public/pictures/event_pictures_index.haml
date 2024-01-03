@@ -1,4 +1,4 @@
-= html_head_title_extend! :events, @event.date_and_venue, :pictures
+= html_head_subtitle_set "#{event.date_and_venue} :pictures"
 
 %div#pictures_index
   = render 'shared/selector_list', selectors_hash: @selectors, all_link: true, nil_link: false
