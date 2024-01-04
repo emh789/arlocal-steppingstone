@@ -4,7 +4,6 @@
 ## HIGHEST priority
 
 finish admin renovation
-  - admin pages: html subtitle could benefit from including resource class ("editing album @album.title")
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - _Grid layout fixes many of the other welcome content pages._
@@ -19,6 +18,7 @@ finish admin renovation
         - **Finish implementation of video joins submenus; look across resources; also within video#edit**
       - #show missing _narrow viewport_ directive
     - Links_helpers need some review for currency and effectiveness
+    - picture title_without_markup has trailing spaces?
 
 video#show css
   text_data, does it need a min-width?
@@ -86,15 +86,14 @@ autokeyword smells bad.
 
 Had AudioHelper.audio_read_source_metadata been refactored into a builder method? *no* If not, should it be? *no, if anywhere then into the Album model*
   - used in `app/views/admin/audio/_form_id3.haml`
+- admin:audio#edit?id3 needs some refinement.
+  - columns
+  - is audio_helper the best place for the method?
 
 - import/upload video via `keywords/_form_video_import`
 
 - change the Calendar model from a module to a class
   - **Compare with video_group.** Maybe it's best as a query method?
-
-- admin:audio#edit?id3 needs some refinement.
-  - columns
-  - is audio_helper the best place for the method?
 
 + Note where the selectable value source_type comes from the model, not via FormMetadata::Selectable
   - ***Refactoring these has low priority because there is only one @selectable item.***
@@ -144,18 +143,18 @@ Migration for "catalog/imported" and "attachment/uploaded"
   - ***REALLY FREAKING WEIRD.***
     - Migrations can run separately, but in a single roll they mess with data values.
 
-
-finish admin renovation:
-  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
-    - live trials suggest this is complete.
-  - `admin/#{resource}/edit` category panes have crazy border
-
-
 Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
 
 
 ## Probably finished
+
+finish admin renovation:
+  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
+    - live trials suggest this is complete.
+  - `admin/#{resource}/edit` category panes have crazy border
+  - admin pages: html subtitle could benefit from including resource class ("editing album @album.title")
+
 
 - admin display review
   - refactor index_joined_resource view templates
