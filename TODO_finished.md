@@ -140,3 +140,47 @@ pictures -> video **DONE**
     - **NO. IT GETS TOO COMPLICATED.**
       - keep ['public','unlisted','private']
       - add a disclaimer
+
+javascript_helper could be split into jplayer_helper. *No. Just remove obsolete google analytics methods.*
+would be nice to look into other ways to generate/metaprogram the javascript for jplayer *Yes, but low priority.* **It's easy. `require 'json'` do it**
+
+keyword scopes
+Picture queries rely on instance methods rather than databse attributes
+    effective datetime value, for example, selects from a hierarchy of three values (manual entry, exif, file)
+  harder to refactor into model scopes w/o corresponding database attribute
+    **Maybe bypass model scopes and just use a sorted array?**
+  should this change?
+Video scope
+  sort_by_keyword -> can this be refactored into model scope?
+**Some complex queries return a hash rather than an ActiveRecord::Association array.**
+**Maybe they should be kept separate from the ActiveRecord#scope methods?**
+***Conclusion***
+  - keep scopes for visibility: indexable, linkable, published, etc.
+  - use collection variable in `fields_for` blocks, &c.
+  - assume that the query will deliver an enumerable
+
+Ongoing debate:
+**When to use model scope vs. When to use Query method?**
+  - some query results depend on values from instance methods rather than activerecord:query interface
+  - some queries return a hash with result from database attribute or instance method as its keys
+    - for example, calendar of events by year
+  - compare picture (Query) w audio (scope)
+  - Since we're using additional Query classes, move display-order methods to the Query class for consistency
+    and reserve scopes for categorical distinctions (e.g. visibility)
+**Still needs:**
+  - Album v-
+  - Event v-
+  - Keyword v-
+  - Video v-
+**Possible fallout from removing scopes. Especially `Class.options_for_select_admin`**
+  which itself could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
+*Comment out scopes but don't remove yet.*
+
+Why does VideoBuilder include CatalogHelper? It seems unneeded and it breaks loading.
+
+page html_head titles are inconsistent. Maybe just a single method ONE TIME, not a cumulative array.
+`HtmlHelper.html_head_title_extend!` line 37
+  - where does yield(:html_head_meta_description) get value?
+    - look for `content_for :html_head_meta_description`
+
+- why does infopages have an index_dup? is that project complete?
