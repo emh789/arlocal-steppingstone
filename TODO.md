@@ -7,6 +7,7 @@ finish admin renovation
   - admin pages: html subtitle could benefit from including resource class ("editing album @album.title")
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
+    - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
   - give a title to nested_picture uploads/imports
   - More useful 'index' action for resources *working on it*
