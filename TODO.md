@@ -19,7 +19,6 @@ finish admin renovation
         - **Finish implementation of video joins submenus; look across resources; also within video#edit**
       - #show missing _narrow viewport_ directive
     - Links_helpers need some review for currency and effectiveness
-    - why does infopages have an infex_dup? is that project complete?
 
 video#show css
   text_data, does it need a min-width?
@@ -214,3 +213,5 @@ page html_head titles are inconsistent. Maybe just a single method ONE TIME, not
 `HtmlHelper.html_head_title_extend!` line 37
   - where does yield(:html_head_meta_description) get value?
     - look for `content_for :html_head_meta_description`
+
+- why does infopages have an index_dup? is that project complete?
