@@ -2,82 +2,60 @@
 
 .arl_admin_help_basic
   %h2.arl_admin_help_basic_title Icons
-  %table.admin_help_basic_icons
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_new
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title New
-        %p.arl_admin_help_basic_icon_text_description Create a new resource item in the database.
+  .arl_admin_help_icons
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title New
+      .arl_admin_help_icons_example_icon= button_admin_to_new
+      .arl_admin_help_icons_example_description Create a new resource item in the database.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_next
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Next
-        %p.arl_admin_help_basic_icon_text_description Open the next resource item, as ordered by the index.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Next
+      .arl_admin_help_icons_example_icon= button_admin_to_next
+      .arl_admin_help_icons_example_description Open the next indexed resource item.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_previous
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Previous
-        %p.arl_admin_help_basic_icon_text_description Open the previous resource item, as ordered by the index.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Previous
+      .arl_admin_help_icons_example_icon= button_admin_to_previous
+      .arl_admin_help_icons_example_description Open the previous indexed resource item.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_edit
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Edit
-        %p.arl_admin_help_basic_icon_text_description Open the chosen resource item for changes.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Edit
+      .arl_admin_help_icons_example_icon= button_admin_to_edit
+      .arl_admin_help_icons_example_description Open the resource item to make changes.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_done_editing
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Done Editing
-        %p.arl_admin_help_basic_icon_text_description Close the chosen resource item from changes.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Done Editing
+      .arl_admin_help_icons_example_icon= button_admin_to_done_editing
+      .arl_admin_help_icons_example_description Close the chosen resource to prevent changes.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_index
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Index
-        %p.arl_admin_help_basic_icon_text_description List all resource items of a category.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Index
+      .arl_admin_help_icons_example_icon= button_admin_to_index
+      .arl_admin_help_icons_example_description List all items of a resource class.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_public
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Public View
-        %p.arl_admin_help_basic_icon_text_description View the page as it appears publicly. Opens in a new browser tab.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Public View
+      .arl_admin_help_icons_example_icon= button_admin_to_public
+      .arl_admin_help_icons_example_description View the page as it appears publicly. Opens in a new browser tab.
 
-  %table.admin_help_basic_icons
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_new_join_single
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Join
-        %p.arl_admin_help_basic_icon_text_description Associate the current item with another resource. Opens a new page to make a selection.
+  .arl_admin_help_icons
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Join
+      .arl_admin_help_icons_example_icon= button_admin_to_new_join_single
+      .arl_admin_help_icons_example_description Associate the current item with another resource. Opens a new page to make a selection.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_new_import
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Import
-        %p.arl_admin_help_basic_icon_text_description Build a new resource from a file on the server in the <em>imported</em> folder. Opens a new page to enter a filepath.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Import
+      .arl_admin_help_icons_example_icon= button_admin_to_new_import
+      .arl_admin_help_icons_example_description Build a new resource from a file on the server in the <em>imported</em> folder. Opens a new page to enter a filepath.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_new_upload
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Upload
-        %p.arl_admin_help_basic_icon_text_description Build a new resource by uploading a file from the local computer. Opens a new page to select a file.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Upload
+      .arl_admin_help_icons_example_icon= button_admin_to_new_upload
+      .arl_admin_help_icons_example_description Build a new resource by uploading a file from the local computer. Opens a new page to select a file.
 
-    %tr.admin_help_basic_icons_example
-      %td.arl_admin_help_basic_icon
-        = button_admin_to_new_join_by_keyword
-      %td.arl_admin_help_basic_icon_text
-        %h3.arl_admin_help_basic_icon_text_title Join by keyword
-        %p.arl_admin_help_basic_icon_text_description Associate the current item with a collection of resources chosen by keyword. Opens a new page to choose a keyword.
+    .arl_admin_help_icons_example
+      .arl_admin_help_icons_example_title Join by keyword
+      .arl_admin_help_icons_example_icon= button_admin_to_new_join_by_keyword
+      .arl_admin_help_icons_example_description Associate the current item with a collection of resources chosen by keyword. Opens a new page to choose a keyword.

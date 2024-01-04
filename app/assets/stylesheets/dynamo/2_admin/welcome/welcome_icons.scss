@@ -1,0 +1,27 @@
+.arl_admin_help_icons {
+}
+.arl_admin_help_icons:first-of-type {
+  padding-bottom: $arl-margin-narrow;
+}
+.arl_admin_help_icons_example {
+  align-content: start;
+  column-gap: $arl-spacing;
+  display: grid;
+  grid-template-areas: 'icon title' 'icon description';
+  grid-template-columns: min-content auto;
+  margin: $arl-spacing-wide 0;
+}
+.arl_admin_help_icons_example_icon {
+  grid-area: icon;
+}
+.arl_admin_help_icons_example_title {
+  font-family: $font-family-data;
+  font-weight: bold;
+  grid-area: title;
+  margin: 0rem;
+}
+.arl_admin_help_icons_example_description {
+  font-family: $font-family-data;
+  grid-area: description;
+  margin: 0rem;
+}
