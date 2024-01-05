@@ -4,7 +4,7 @@
 ## HIGHEST priority
 
 finish admin renovation
-  - picture title_without_markup has trailing "\n"
+  - pictures without titles show empty quotes in html title tag
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - _Grid layout fixes many of the other welcome content pages._

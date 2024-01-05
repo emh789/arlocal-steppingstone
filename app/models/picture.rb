@@ -572,7 +572,7 @@ class Picture < ApplicationRecord
 
 
   def create_attr_title_without_markup
-    self.title_without_markup = ApplicationController.helpers.parser_remove_markup(self.title_props)
+    self.title_without_markup = ApplicationController.helpers.parser_remove_markup(self.title_props).strip.to_s
   end
 
 
