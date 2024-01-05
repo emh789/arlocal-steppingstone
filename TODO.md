@@ -17,7 +17,6 @@ finish admin renovation
       - #edit margins too big? _(narrow viewport)_
       - #edit?videos missing buttons
         - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-      - #show missing _narrow viewport_ directive
     - Links_helpers need some review for currency and effectiveness
 
 Not sure what these were from: _(but probably from the EventVideo addenda)_:
@@ -170,3 +169,7 @@ because Audio.file_exists? is dependent on both the source type and the config.x
 
 jplayer_playlist
   - uploaded attachment gives null filename
+
+- Keyword Admin:
+  - #edit margins too big? _(narrow viewport)_
+  - #show missing _narrow viewport_ directive

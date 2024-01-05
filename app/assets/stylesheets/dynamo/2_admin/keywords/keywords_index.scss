@@ -1,5 +1,5 @@
 .arl_keywords_index {
-  margin: $arl-margin-wide 0rem;
+  margin: $arl-margin-wide $arl-spacing-wide;
   max-width: 40rem;
 }
 .arl_keywords_index_keyword {
@@ -13,4 +13,9 @@
   font-family: $font-family-data;
   font-size: 1.1em;
   font-weight: bold;
+}
+
+@media #{$media-screen-1} {
+  .arl_keywords_index {
+  }
 }
