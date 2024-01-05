@@ -81,7 +81,6 @@
     grid-template-areas: 'title attributes joins' 'picture attributes joins' 'etc etc etc';
     grid-template-columns: 20rem 25rem 22rem;
     grid-template-rows: min-content 1fr min-content;
-    // row-gap: $arl-spacing;
   }
   .arl_admin_albums_show_etc {
     border-top-style: $border-style;
