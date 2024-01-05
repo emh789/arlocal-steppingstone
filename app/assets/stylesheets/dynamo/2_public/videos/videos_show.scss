@@ -73,7 +73,7 @@
     flex-direction: column;
     justify-content: flex-start;
     padding: $arl-spacing-wide;
-    width: 30rem;
+    width: 25rem;
   }
   .arl_videos_show_nav_neighbors {
     margin: $arl-margin-wide;
@@ -86,7 +86,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-align: center;
+    text-align: left;
     margin: $arl-spacing-wide 0rem;
   }
   .arl_videos_show_text_copyright {
@@ -97,12 +97,12 @@
   }
   .arl_video_embed iframe {
     display: block;
-    max-width: 480px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
   }
   .arl_video_player {
-    width: 480px;
+    width: 400px;
   }
 }
 

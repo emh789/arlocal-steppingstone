@@ -20,10 +20,6 @@ finish admin renovation
       - #show missing _narrow viewport_ directive
     - Links_helpers need some review for currency and effectiveness
 
-video#show css
-  text_data, does it need a min-width?
-Video index needs headings
-
 Not sure what these were from: _(but probably from the EventVideo addenda)_:
   + form_metadata
   + partials
@@ -145,6 +141,9 @@ Migration for "catalog/imported" and "attachment/uploaded"
 
 Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
+video#show css
+  text_data, does it need a min-width?
+Video index needs headings
 
 
 ## Probably finished
