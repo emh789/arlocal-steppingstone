@@ -206,6 +206,9 @@ class Infopage < ApplicationRecord
   end
 
 
+  ### :title
+
+
   ### updated_at
 
 
