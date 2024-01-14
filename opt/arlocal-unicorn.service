@@ -1,0 +1,28 @@
+[Unit]
+Description=A&R.local Unicorn Server
+After=network.target
+
+[Service]
+Type=simple
+User=arlocal
+WorkingDirectory=/home/arlocal
+Environment='RAILS_ENV=production'
+
+# The following Environment attributes are designed for use with ruby-install and chruby
+Environment='PATH=/home/arlocal/.gem/ruby/3.3.0/bin:/home/arlocal/.rubies/ruby-3.3.0/lib/ruby/gems/3.3.0/bin:/home/arlocal/.rubies/ruby-3.3.0/bin:/usr/bin:/usr/local/bin'
+Environment='GEM_ROOT=/home/arlocal/.rubies/ruby-3.3.0/lib/ruby/gems/3.3.0'
+Environment='GEM_PATH=/home/arlocal/.gem/ruby/3.3.0:/home/arlocal/.rubies/ruby-3.3.0/lib/ruby/gems/3.3.0'
+Environment='GEM_HOME=/home/arlocal/.gem/ruby/3.3.0'
+Environment='RUBY_ROOT=/home/carlocal/.rubies/ruby-3.3.0'
+
+PIDFile=/home/arlocal/shared/unicorn.pid
+ExecStart=/bin/bash -c 'bundle exec unicorn -c config/unicorn.rb'
+ExecReload=/bin/kill -HUP $MAINPID
+
+KillMode=process
+KillSignal=SIGQUIT
+Restart=on-failure
+SyslogIdentifier=arlocal-unicorn
+
+[Install]
+WantedBy=multi-user.target
