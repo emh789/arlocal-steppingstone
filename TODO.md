@@ -4,6 +4,7 @@
 ## HIGHEST priority
 
 finish admin renovation
+  - Link.name should be Link.title for consistency.
   - pictures without titles show empty quotes in html title tag
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
