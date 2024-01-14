@@ -14,9 +14,9 @@ finish admin renovation
     - **Audio is the model for Picture.**
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - Keyword Admin:
-      - #edit margins too big? _(narrow viewport)_
       - #edit?videos missing buttons
         - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+      - joined pictures lack 'remove' box
     - Links_helpers need some review for currency and effectiveness
 
 Not sure what these were from: _(but probably from the EventVideo addenda)_:
@@ -84,6 +84,7 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
   - see Picture for code
 
 autokeyword smells bad.
+_Could be replaced by `Add [resource] to Keyword`_
 
 Had AudioHelper.audio_read_source_metadata been refactored into a builder method? *no* If not, should it be? *no, if anywhere then into the Album model*
   - used in `app/views/admin/audio/_form_id3.haml`
@@ -177,7 +178,7 @@ jplayer_playlist
   - uploaded attachment gives null filename
 
 - Keyword Admin:
-  - #edit margins too big? _(narrow viewport)_
+  - #edit margins too big? _(narrow viewport)_ `.arm_forms` needed a width declaration
   - #show missing _narrow viewport_ directive
 
 - pictures without titles show empty quotes in html title tag
