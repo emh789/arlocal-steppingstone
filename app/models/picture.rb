@@ -39,6 +39,9 @@ class Picture < ApplicationRecord
   has_many :keywords, through: :picture_keywords
   has_many :videos,   through: :video_pictures
 
+  has_many :infopage_items, -> { where infopageable_type: 'Picture' }, foreign_key: :infopageable_id, dependent: :destroy
+  has_many :infopages, through: :infopage_items
+
   has_one_attached :source_uploaded
 
   accepts_nested_attributes_for :album_pictures,    allow_destroy: true
