@@ -5,7 +5,6 @@
 
 finish admin renovation
   - Link.name should be Link.title for consistency.
-  - pictures without titles show empty quotes in html title tag
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - _Grid layout fixes many of the other welcome content pages._
@@ -77,6 +76,12 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 
 
 ## Medium priority
+
+- Should html_head title elements include the resource type? Would help add clarity to browser history.
+  - examples:
+    - picture: album cover
+    - album: Diamonds in the Ruff
+  - see Picture for code
 
 autokeyword smells bad.
 
@@ -174,3 +179,5 @@ jplayer_playlist
 - Keyword Admin:
   - #edit margins too big? _(narrow viewport)_
   - #show missing _narrow viewport_ directive
+
+- pictures without titles show empty quotes in html title tag

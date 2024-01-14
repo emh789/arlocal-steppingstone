@@ -510,6 +510,16 @@ class Picture < ApplicationRecord
   end
 
 
+
+  def title_for_html_head
+    if title_without_markup.to_s == ''
+      'picture: untitled'
+    else
+      "picture: #{title_without_markup}"
+    end
+  end
+
+
   def title_for_select
     if title_without_markup.to_s == ''
       '(untitled)'
@@ -568,7 +578,6 @@ class Picture < ApplicationRecord
 
 
   ### visibility
-
 
 
   private
