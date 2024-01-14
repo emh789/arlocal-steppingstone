@@ -10,9 +10,11 @@ class Link < ApplicationRecord
 
   validates :details_parser_id, presence: true
 
-  has_many :info_page_links, dependent: :destroy
+  has_many :infopage_items, foreign_key: 'infopageable_id', dependent: :destroy
 
-  accepts_nested_attributes_for :info_page_links, allow_destroy: true
+  has_many :infopages, through: :infopage_items, source: :infopageable, source_type: 'Infopage'
+
+  accepts_nested_attributes_for :infopage_items, allow_destroy: true
 
 
 
