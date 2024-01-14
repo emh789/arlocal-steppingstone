@@ -3,6 +3,9 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # SQLite is sufficient for this application.
+  config.active_record.sqlite3_production_warning = false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
