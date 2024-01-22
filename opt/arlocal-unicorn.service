@@ -22,7 +22,7 @@ ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 KillSignal=SIGQUIT
 Restart=on-failure
-SyslogIdentifier=arlocal-unicorn
+SyslogIdentifier=arlocal
 
 [Install]
 WantedBy=multi-user.target
