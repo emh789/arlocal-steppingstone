@@ -13,7 +13,7 @@ Environment='PATH=/home/arlocal/.gem/ruby/3.3.0/bin:/home/arlocal/.rubies/ruby-3
 Environment='GEM_ROOT=/home/arlocal/.rubies/ruby-3.3.0/lib/ruby/gems/3.3.0'
 Environment='GEM_PATH=/home/arlocal/.gem/ruby/3.3.0:/home/arlocal/.rubies/ruby-3.3.0/lib/ruby/gems/3.3.0'
 Environment='GEM_HOME=/home/arlocal/.gem/ruby/3.3.0'
-Environment='RUBY_ROOT=/home/carlocal/.rubies/ruby-3.3.0'
+Environment='RUBY_ROOT=/home/arlocal/.rubies/ruby-3.3.0'
 
 PIDFile=/home/arlocal/shared/unicorn.pid
 ExecStart=/bin/bash -c 'bundle exec unicorn -c config/unicorn.rb'
