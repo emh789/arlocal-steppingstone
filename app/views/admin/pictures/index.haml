@@ -12,21 +12,25 @@
       = picture_admin_filter_select(f, params)
       = f.submit icon_pin, class: :arl_button_form_aux_submit
 
-%table.arl_admin_pictures_index_pictures
+.arl_admin_pictures_index_pictures
   - @pictures.each do |picture|
-    %tr.arl_admin_pictures_index_picture.arl_active_link_container{data: {url: admin_picture_path(picture.id_admin)}}
-      %td.arl_admin_pictures_index_picture_image
-        = picture_preferred_tag picture, html_class: :arl_admin_pictures_index_picture_image_thumbnail
-      %td.arl_admin_pictures_index_picture_summary
-        .arl_admin_pictures_index_picture_summary_title= picture_title_link picture, admin_picture_path(picture.id_admin), html_class: :arl_admin_pictures_index_picture_summary_title_link
-        .arl_admin_pictures_index_picture_summary_filepath= picture_file_path_div_with_indicators(picture)
-        .arl_admin_pictures_index_picture_resources
-          %dl.arl_admin_joined_resources
-            = render 'admin/shared/index_joined_albums', resource: picture
-            = render 'admin/shared/index_joined_events', resource: picture
-            = render 'admin/shared/index_joined_keywords', resource: picture
-            = render 'admin/shared/index_joined_videos', resource: picture
-        .arl_admin_pictures_index_picture_summary_datetime= picture.datetime
+    .arl_admin_pictures_index_picture.arl_active_link_container{data: {url: admin_picture_path(picture.id_admin)}}
+      .arl_admin_pictures_index_picture_image
+        = picture_preferred_tag(picture, html_class: :arl_admin_pictures_index_picture_image_thumbnail)
+      .arl_admin_pictures_index_picture_title
+        = picture_admin_title_link(picture)
+      .arl_admin_pictures_index_picture_filepath
+        = picture_admin_filepath_with_indicators(picture)
+      .arl_admin_pictures_index_picture_datetime
+        = picture.datetime
+      .arl_admin_pictures_index_picture_resources
+        %dl.arl_admin_joined_resources
+          = render 'admin/shared/index_joined_albums', resource: picture
+          = render 'admin/shared/index_joined_events', resource: picture
+          = render 'admin/shared/index_joined_keywords', resource: picture
+          = render 'admin/shared/index_joined_videos', resource: picture
+      .arl_admin_pictures_index_picture_visibility
+        = visibility_icon(picture.visibility)
 
-  - if @page_nav_data
-    = render 'shared/nav_page', controller: 'pictures', page: @page_nav_data
+- if @page_nav_data
+  = render 'shared/nav_page', controller: 'pictures', page: @page_nav_data

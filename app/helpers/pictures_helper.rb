@@ -104,6 +104,11 @@ module PicturesHelper
   end
 
 
+  def picture_admin_title_link(picture)
+    link_to parser_div(picture.title_props), admin_picture_path(picture.id_admin)
+  end
+
+
   def picture_album_admin_button_to_new_join_single(picture)
     button_admin_to_new_join_single edit_admin_picture_path(picture.id_admin, pane: :album_join_single)
   end
@@ -123,6 +128,9 @@ module PicturesHelper
     "#{picture.datetime_effective_value} (#{picture.datetime_effective_method})"
   end
 
+  def picture_admin_filepath_with_indicators(picture, html_class: [])
+    picture_file_path_div_with_indicators(picture, html_class: html_class)
+  end
 
   def picture_file_path_div_with_indicators(picture, html_class: [])
     filename = picture.source_file_path

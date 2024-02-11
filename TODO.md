@@ -4,7 +4,9 @@
 ## HIGHEST priority
 
 finish admin renovation
-  - Link.name should be Link.title for consistency.
+  - Link.name should be Link.title for consistency. _wait to llok for add'l migrations, do all together_
+  - Links_helpers need some review for currency and effectiveness
+    - first glance looks okay, but seems overly complicated
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - _Grid layout fixes many of the other welcome content pages._
@@ -13,11 +15,10 @@ finish admin renovation
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
   - *Review helper methods for currency in light of recent refactoring frenzy.*
-    - Keyword Admin:
-      - #edit?videos missing buttons
-        - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-      - joined pictures lack 'remove' box
-    - Links_helpers need some review for currency and effectiveness
+  - Keyword Admin:
+    - #edit?videos missing buttons
+      - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+    - joined pictures lack 'remove' box
 
 Not sure what these were from: _(but probably from the EventVideo addenda)_:
   + form_metadata
@@ -47,7 +48,8 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 ## HIGH priority
 
 - datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
-  - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
+- why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
+  - for example `admin/isrc/edit` overflows at narrow widths.
 
 
 - check various `form_pictures`
@@ -64,8 +66,6 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 
 - form_elements/picture_select: should it receive selectable or selectable.pictures?
   - _Check this throughout. Might be best to start with seeing what variables each form_elements requires._
-
-- eventshelper:158 why assign js empty?
 
 - pictures_helper picture_preferred_url
   - check if picture exists (add file_exists? method to model)
@@ -122,11 +122,13 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 **Continue to be mindful about including `autocomplete: false` in form elements.**
 
-look into other ways to generate/metaprogram the javascript for jplayer
-
 
 
 ## Possibly finished
+
+- admin/pictures#index needs visibility indicator
+
+- eventshelper:158 why assign js empty?
 
 `QueryVideos.sort_public_videos_by_keyword` seems like logic could be refactored into a few different places.
   - Maybe not. It's a specific collection.
@@ -182,3 +184,6 @@ jplayer_playlist
   - #show missing _narrow viewport_ directive
 
 - pictures without titles show empty quotes in html title tag
+
+look into other ways to generate/metaprogram the javascript for jplayer
+_No, wait to see if a switch to videojs ensures future operability before working on jplayer scripts_
