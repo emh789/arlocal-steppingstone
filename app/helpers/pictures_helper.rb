@@ -84,12 +84,8 @@ module PicturesHelper
   end
 
 
-  def picture_admin_header_nav_buttons
-    [ picture_admin_button_to_index,
-      picture_admin_button_to_new,
-      picture_admin_button_to_new_import,
-      picture_admin_button_to_new_upload,
-    ].join("\n").html_safe
+  def picture_admin_filepath_with_indicators(picture, html_class: [])
+    picture_file_path_div_with_indicators(picture, html_class: html_class)
   end
 
 
@@ -101,6 +97,15 @@ module PicturesHelper
       { include_blank: false, selected: selected },
       { class: [:arl_active_refine_selection, :arl_button_select, :arl_admin_pictures_index_filter] }
     )
+  end
+
+
+  def picture_admin_header_nav_buttons
+    [ picture_admin_button_to_index,
+      picture_admin_button_to_new,
+      picture_admin_button_to_new_import,
+      picture_admin_button_to_new_upload,
+    ].join("\n").html_safe
   end
 
 
@@ -128,9 +133,6 @@ module PicturesHelper
     "#{picture.datetime_effective_value} (#{picture.datetime_effective_method})"
   end
 
-  def picture_admin_filepath_with_indicators(picture, html_class: [])
-    picture_file_path_div_with_indicators(picture, html_class: html_class)
-  end
 
   def picture_file_path_div_with_indicators(picture, html_class: [])
     filename = picture.source_file_path

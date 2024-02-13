@@ -8,10 +8,13 @@
   margin: $arl-margin-wide;
 }
 .arl_admin_pictures_index_picture {
+  align-content: start;
+  align-items: start;
+  column-gap: $arl-margin;
   display: grid;
-  grid-template-areas: 'image title title' 'image filepath filepath' 'image visibility datetime' 'image resources resources';
-  grid-template-columns: 7rem 2rem auto;
-  margin: $arl-margin-wide 0;
+  grid-template-areas: 'image title' 'image filepath' 'image datetime' 'image resources' 'image visibility';
+  grid-template-columns: 7rem auto;
+  margin: $arl-spacing 0;
 }
 .arl_admin_pictures_index_picture_datetime {
   grid-area: datetime;
@@ -23,7 +26,7 @@
 }
 .arl_admin_pictures_index_picture_image {
   grid-area: image;
-  padding: $arl-spacing-narrow $arl-margin;
+  height: 7rem;
 }
 .arl_admin_pictures_index_picture_image_thumbnail {
   border-radius: $border-radius-narrow;
