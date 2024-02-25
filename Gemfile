@@ -13,6 +13,7 @@ gem 'friendly_id', '~> 5.5', '>= 5.5.1'
 gem 'haml', '~> 6.2'
 gem 'jquery-rails', '~> 4.6'   # jPlayer requires jquery
 gem 'mediainfo', '~> 1.5'
+gem 'pg', '~> 1.5'
 gem 'puma', '~> 6.4'
 gem 'rails', '~> 7.1'
 gem 'rb-readline', '~> 0.5'
