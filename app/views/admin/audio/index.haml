@@ -13,10 +13,10 @@
   .arl_admin_audio_index_audios
     - @audio.each do |audio|
       .arl_admin_audio_index_audio
-        .arl_admin_audio_index_audio_visibility= visibility_icon(audio.visibility)
-        .arl_admin_audio_index_audio_title= audio_admin_title_link(audio)
-        .arl_admin_audio_index_audio_exists= icon_question
-        .arl_admin_audio_index_audio_source= audio_file_source_path_with_indicator_class(audio)
+        .arl_admin_audio_index_audio_title
+          = audio_admin_title_link(audio)
+        .arl_admin_audio_index_audio_source
+          = audio_file_source_path_with_indicator_class(audio)
         .arl_admin_audio_index_audio_joins
           %dl.arl_admin_joined_resources
             = render 'admin/shared/index_joined_albums', resource: audio
@@ -25,3 +25,5 @@
         .arl_admin_audio_index_audio_date= audio.date_released
         .arl_admin_audio_index_audio_duration= audio.duration
         .arl_admin_audio_index_audio_isrc= audio.isrc_hyphenated
+        .arl_admin_audio_index_audio_visibility
+          = visibility_description(audio.visibility)

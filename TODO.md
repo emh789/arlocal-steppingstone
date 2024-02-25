@@ -3,18 +3,30 @@
 
 ## HIGHEST priority
 
+drop info_page_links
+
 finish admin renovation
+  - MarkupParser makes more sense with simplified symbols than with numeric id
+
   - Link.name should be Link.title for consistency. _wait to llok for add'l migrations, do all together_
+    - **But `#name` is the name of the destination, not the title of the link.**
+    - _Visited this topic before, and kept name._
+    - Create semantic sugar method if needed.
   - Links_helpers need some review for currency and effectiveness
     - first glance looks okay, but seems overly complicated
+
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
+
   - give a title to nested_picture uploads/imports
+
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
+
   - *Review helper methods for currency in light of recent refactoring frenzy.*
+
   - Keyword Admin:
     - #edit?videos missing buttons
       - **Finish implementation of video joins submenus; look across resources; also within video#edit**

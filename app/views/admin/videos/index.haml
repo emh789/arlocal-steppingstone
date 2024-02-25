@@ -7,11 +7,18 @@
     = video_admin_button_to_public
 
 .arl_admin_videos_index
-  %table.arl_admin_videos_index
+  .arl_admin_videos_index_videos
     - @videos.each do |video|
-      %tr.arl_admin_videos_index_video.arl_active_link_container{data: {url: admin_video_path(video.id_admin)}}
-        %td.arl_videos_index_video_picture
-          = render 'index_video_picture_img', video: video
-        %td.arl_videos_index_video_text
-          = render 'index_video_text_title', video: video
-          = render 'index_video_text_year', video: video
+      .arl_admin_videos_index_video
+        .arl_admin_videos_index_video_coverpicture
+          = picture_preferred_tag(video.coverpicture, html_class: :arl_admin_videos_index_video_coverpicture_thumbnail)
+        .arl_admin_videos_index_video_title
+          = video.title
+        .arl_admin_videos_index_video_datetime
+          = video.year
+        .arl_admin_videos_index_video_resources
+          %dl.arl_admin_joined_resources
+            = render 'admin/shared/index_joined_keywords', resource: video
+            = render 'admin/shared/index_joined_pictures', resource: video
+        .arl_admin_videos_index_video_visibility
+          = visibility_description(video.visibility)

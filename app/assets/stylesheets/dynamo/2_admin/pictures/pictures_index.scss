@@ -1,11 +1,15 @@
 .arl_admin_pictures_index {
   margin: $arl-margin-wide;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .arl_admin_pictures_index_filter {
   margin: $arl-margin-wide 0rem;
 }
 .arl_admin_pictures_index_pictures {
   margin: $arl-margin-wide;
+  max-width: 45rem;
 }
 .arl_admin_pictures_index_picture {
   align-content: start;

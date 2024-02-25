@@ -235,6 +235,16 @@ class Video < ApplicationRecord
   ### keywords_count
 
 
+  def keywords_sorted
+    keywords_sorted_by_title_asc
+  end
+
+
+  def keywords_sorted_by_title_asc
+    keywords.to_a.sort_by! { |keyword| keyword.title }
+  end
+
+
   ### personnel_parser_id
 
 
@@ -247,6 +257,16 @@ class Video < ApplicationRecord
 
 
   ### pictures_count
+
+
+  def pictures_sorted
+    pictures_sorted_by_title_asc
+  end
+
+
+  def pictures_sorted_by_title_asc
+    pictures.to_a.sort_by! { |picture| picture.title }
+  end
 
 
   def published
