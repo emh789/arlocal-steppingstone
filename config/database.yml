@@ -21,5 +21,11 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: utf8
+  database: <%= Rails.application.credentials[:postgres_database] %>
+  host: localhost
+  pool: 5
+  prepared_statements: false
+  username: <%= Rails.application.credentials[:postgres_username] %>
+  password: <%= Rails.application.credentials[:postgres_password] %>
