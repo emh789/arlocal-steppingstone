@@ -139,11 +139,17 @@ class Link < ApplicationRecord
 
 
   def strip_whitespace_edges_from_entered_text
-    [ self.address_href,
-      self.address_inline_text,
-      self.details_text_markup,
-      self.name
-    ].each { |a| a.to_s.strip! }
+    strippable_attributes = [
+      'address_href',
+      'address_inline_text',
+      'details_text_markup',
+      'name'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
   end
 
 

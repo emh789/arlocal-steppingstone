@@ -3,6 +3,7 @@ class ArlocalSettings < ApplicationRecord
   has_one_attached :icon_image
 
   before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_any_leading_slash_from_icon_source_imported_file_path
 
   validates :admin_forms_auto_keyword_id, presence: true, if: :admin_forms_auto_keyword_enabled
 
@@ -254,11 +255,25 @@ class ArlocalSettings < ApplicationRecord
   private
 
 
+  def strip_any_leading_slash_from_icon_source_imported_file_path
+    if self.icon_source_imported_file_path_changed? && self0.icon_source_imported_file_path[0] == File::SEPARATOR
+      self.icon_source_imported_file_path[0] = ''
+    end
+  end
+
+
   def strip_whitespace_edges_from_entered_text
-    [ self.artist_name,
-      self.icon_source_imported_file_path,
-      self.marquee_text_markup,
-    ].each { |a| a.to_s.strip! }
+    strippable_attributes = [
+      'artist_name',
+      'icon_source_imported_file_path',
+      'marquee_text_markup'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
+
   end
 
 

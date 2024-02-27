@@ -15,6 +15,7 @@ class Article < ApplicationRecord
   has_many :infopage_items, -> { where infopageable_type: 'Article' }, foreign_key: :infopageable_id, dependent: :destroy
   has_many :infopages, through: :infopage_items
 
+  before_validation :strip_whitespace_edges_from_entered_text
 
   validates :content_parser_id, presence: true
   validates :copyright_parser_id, presence: true
@@ -112,6 +113,24 @@ class Article < ApplicationRecord
 
 
   ### visibility
+
+
+  private
+
+
+  def strip_whitespace_edges_from_entered_text
+    strippable_attributes = [
+      'author',
+      'content_text_markup',
+      'copyright_text_markup',
+      'title',
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
+  end
 
 
 end

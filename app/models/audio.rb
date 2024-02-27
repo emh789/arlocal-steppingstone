@@ -21,6 +21,7 @@ class Audio < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
 
   before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_any_leading_slash_from_source_imported_file_path
 
   validates :duration_hrs,           allow_blank: true, numericality: { only_integer: true }
   validates :duration_mins,          allow_blank: true, length: { maximum: 3 }, numericality: { only_integer: true }
@@ -529,17 +530,30 @@ class Audio < ApplicationRecord
   end
 
 
+  def strip_any_leading_slash_from_source_imported_file_path
+    if self.source_imported_file_path_changed? && self.source_imported_file_path[0] == File::SEPARATOR
+      self.source_imported_file_path[0] = ''
+    end
+  end
+
+
   def strip_whitespace_edges_from_entered_text
-    [ self.audio_artist,
-      self.composer,
-      self.copyright_text_markup,
-      self.description_text_markup,
-      self.musicians_text_markup,
-      self.personnel_text_markup,
-      self.source_imported_file_path,
-      self.subtitle,
-      self.title
-    ].select { |a| String === a }.each { |a| a.strip! }
+    strippable_attributes = [
+      'audio_artist',
+      'composer',
+      'copyright_text_markup',
+      'description_text_markup',
+      'musicians_text_markup',
+      'personnel_text_markup',
+      'source_imported_file_path',
+      'subtitle',
+      'title'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
   end
 
 

@@ -3,6 +3,8 @@
 
 ## HIGHEST priority
 
+check attribute callbacks, add if_changed clause
+
 drop info_page_links
 
 finish admin renovation

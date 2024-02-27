@@ -610,18 +610,24 @@ class Picture < ApplicationRecord
 
 
   def strip_any_leading_slash_from_source_imported_file_path
-    if self.source_imported_file_path[0] == '/'
+    if self.source_imported_file_path_changed? && self.source_imported_file_path[0] == File::SEPARATOR
       self.source_imported_file_path[0] = ''
     end
   end
 
 
   def strip_whitespace_edges_from_entered_text
-    [ self.credits_text_markup,
-      self.description_text_markup,
-      self.source_imported_file_path,
-      self.title_text_markup,
-    ].each { |a| a.to_s.strip! }
+    strippable_attributes = [
+      'credits_text_markup',
+      'description_text_markup',
+      'source_imported_file_path',
+      'title_text_markup'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
   end
 
 

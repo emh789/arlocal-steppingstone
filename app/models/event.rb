@@ -464,14 +464,20 @@ class Event < ApplicationRecord
 
 
   def strip_whitespace_edges_from_entered_text
-    [ self.alert,
-      self.city,
-      self.details_text_markup,
-      self.map_url,
-      self.title_text_markup,
-      self.venue,
-      self.venue_url
-    ].each { |a| a.to_s.strip! }
+    strippable_attributes = [
+      'alert',
+      'city',
+      'details_text_markup',
+      'map_url',
+      'title_text_markup',
+      'venue',
+      'venue_url'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
   end
 
 

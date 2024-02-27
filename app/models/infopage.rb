@@ -9,6 +9,8 @@ class Infopage < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+  before_validation :strip_whitespace_edges_from_entered_text
+
   has_many :infopage_items, dependent: :destroy
   has_many :items, class_name: 'InfopageItem', dependent: :destroy
 
@@ -206,13 +208,28 @@ class Infopage < ApplicationRecord
   end
 
 
-  ### :title
+  ### title
 
 
   ### updated_at
 
 
   ### visibility
+
+
+  private
+
+
+  def strip_whitespace_edges_from_entered_text
+    strippable_attributes = [
+      'title'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
+  end
 
 
 end

@@ -94,9 +94,15 @@ class Stream < ApplicationRecord
 
 
   def strip_whitespace_edges_from_entered_text
-    [ self.html_element,
-      self.title,
-    ].select{ |a| a.to_s != '' }.each { |a| a.to_s.strip! }
+    strippable_attributes = [
+      'html_element',
+      'title'
+    ]
+    changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
+    changed_strippable_attributes.each do |a|
+      stripped_attribute = self.read_attribute(a).to_s.strip
+      self.write_attribute(a, stripped_attribute)
+    end
   end
 
 
