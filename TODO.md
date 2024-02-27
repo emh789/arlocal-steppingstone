@@ -3,9 +3,9 @@
 
 ## HIGHEST priority
 
-check attribute callbacks, add if_changed clause
-
-drop info_page_links
+drop table info_page_links
+drop column article#text_markup, #markup_parser
+  (was replaced by #content_*)
 
 finish admin renovation
   - MarkupParser makes more sense with simplified symbols than with numeric id
@@ -139,6 +139,8 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 
 ## Possibly finished
+
+- check attribute callbacks, add if_changed clause
 
 - admin/pictures#index needs visibility indicator
 
