@@ -114,7 +114,7 @@
     flex-direction: column;
     justify-content: stretch;
     padding: $arl-margin-wide;
-    max-width: 40rem;
+    width: min-content;
   }
   .arl_videos_show_nav_neighbors {
     margin: $arl-margin-wide;
@@ -126,7 +126,7 @@
     align-content: start;
     display: flex;
     flex-direction: column;
-    justify-content: stretch;
+    justify-content: start;
     padding: $arl-spacing $arl-margin;
     width: 100%;
   }
