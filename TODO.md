@@ -3,9 +3,8 @@
 
 ## HIGHEST priority
 
-drop table info_page_links
-drop column article#text_markup, #markup_parser
-  (was replaced by #content_*)
+migrations:
+ - drop table info_page_links
 
 finish admin renovation
   - MarkupParser makes more sense with simplified symbols than with numeric id
@@ -203,3 +202,6 @@ jplayer_playlist
 
 look into other ways to generate/metaprogram the javascript for jplayer
 _No, wait to see if a switch to videojs ensures future operability before working on jplayer scripts_
+
+- drop column article#text_markup, #markup_parser
+ (was replaced by #content_*)

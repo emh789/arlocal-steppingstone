@@ -13,9 +13,9 @@
         .arl_admin_videos_index_video_coverpicture
           = picture_preferred_tag(video.coverpicture, html_class: :arl_admin_videos_index_video_coverpicture_thumbnail)
         .arl_admin_videos_index_video_title
-          = video.title
+          = video_reference_admin_link(video)
         .arl_admin_videos_index_video_datetime
-          = video.year
+          = video.date_released
         .arl_admin_videos_index_video_resources
           %dl.arl_admin_joined_resources
             = render 'admin/shared/index_joined_keywords', resource: video
