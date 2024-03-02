@@ -101,7 +101,11 @@ class QueryVideos
 
 
   def neighborhood_public(video, distance: 1)
-    Video.neighborhood(video, collection: index_public, distance: distance)
+    collection = index_public
+    if (Hash === collection)
+      collection = collection.values.flatten!
+    end
+    Video.neighborhood(video, collection: collection, distance: distance)
   end
 
 

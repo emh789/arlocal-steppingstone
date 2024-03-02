@@ -6,9 +6,9 @@
 migrations:
  - drop table info_page_links
  - {}_parser_id => {}_parser_type
+    - MarkupParser makes more sense with simplified symbols than with numeric id
 
 finish admin renovation
-  - MarkupParser makes more sense with simplified symbols than with numeric id
 
   - Link.name should be Link.title for consistency. _wait to llok for add'l migrations, do all together_
     - **But `#name` is the name of the destination, not the title of the link.**
@@ -22,8 +22,6 @@ finish admin renovation
     - panes: summary, simpleformat, markdown, none
     - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
-
-  - give a title to nested_picture uploads/imports
 
   - More useful 'index' action for resources *working on it*
     - **Audio is the model for Picture.**
@@ -61,6 +59,9 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 
 
 ## HIGH priority
+
+**- Video player layout could be improved at narrow widths.**
+***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
 
 - datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
@@ -140,6 +141,8 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 
 ## Possibly finished
+
+- give a title to nested_picture uploads/imports
 
 - check attribute callbacks, add if_changed clause
 

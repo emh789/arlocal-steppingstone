@@ -47,7 +47,7 @@
     border-top-style: $border-style;
     border-top-width: $border-width;
     font-size: 0.9rem;
-    padding: 1rem 1.25rem;
+    padding: $arl-spacing;
   }
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
@@ -88,6 +88,7 @@
     justify-content: center;
     text-align: left;
     margin: $arl-spacing-wide 0rem;
+    width: 24rem;
   }
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
@@ -127,6 +128,7 @@
     flex-direction: column;
     justify-content: center;
     margin: $arl-spacing-wide 0rem;
+    width: 38rem;
   }
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
