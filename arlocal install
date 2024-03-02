@@ -2,7 +2,7 @@
 bundl
 ## Get the software
 
-sudo apt install build-essential 
+sudo apt install build-essential
 
 ___Requires: ruby___
     ruby-install
@@ -16,11 +16,11 @@ for example, nginx:
     sudo apt install certbot python3-certbot-nginx
 
 ___Requires packaged dependencies___
-   sudo apt install mediainfo libsqlite3-dev nodejs sqlite3 
+   sudo apt install mediainfo libsqlite3-dev nodejs sqlite3 libpg-dev libpg
 
 
 1. git init
-2. git pull 
+2. git pull
 3. bundle install
 
 
@@ -49,5 +49,3 @@ NO CREDENTIALS:
 7.2.2. remove/rename existing catalog/ folder
 7.2.3. soft-link catalog/ to soft-link directory
 7.2.3.a. !!! creating catalog/ as a soft-link directly to your folder may result in data deletion if catalog/ is replaced or deleted.
-
-
