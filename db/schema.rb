@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_021626) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_02_233905) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -430,7 +430,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_021626) do
     t.integer "personnel_parser_id"
     t.text "personnel_text_markup"
     t.string "slug"
-    t.string "source_catalog_file_path"
+    t.string "source_imported_file_path"
     t.integer "source_dimension_height"
     t.integer "source_dimension_width"
     t.string "source_type"

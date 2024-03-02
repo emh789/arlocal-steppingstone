@@ -4,8 +4,8 @@
 ## HIGHEST priority
 
 migrations:
- - drop table info_page_links
- - {}_parser_id => {}_parser_type
+  - drop table info_page_links
+  - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
 
 finish admin renovation
@@ -212,3 +212,5 @@ _No, wait to see if a switch to videojs ensures future operability before workin
  (was replaced by #content_*)
 
 Why don't video coverpictures show in the index?
+
+migration:   - video rename_column source_catalog_file_path source_imported_file_path
