@@ -112,9 +112,9 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: stretch;
     padding: $arl-margin-wide;
-    width: 40rem;
+    max-width: 40rem;
   }
   .arl_videos_show_nav_neighbors {
     margin: $arl-margin-wide;
@@ -123,12 +123,12 @@
     margin: $arl-spacing-wide 0rem $arl-margin-wide 0rem;
   }
   .arl_videos_show_text {
-    align-items: stretch;
+    align-content: start;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin: $arl-spacing-wide 0rem;
-    width: 38rem;
+    justify-content: stretch;
+    padding: $arl-spacing $arl-margin;
+    width: 100%;
   }
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
