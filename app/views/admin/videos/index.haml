@@ -11,7 +11,7 @@
     - @videos.each do |video|
       .arl_admin_videos_index_video
         .arl_admin_videos_index_video_coverpicture
-          = picture_preferred_tag(video.coverpicture, html_class: :arl_admin_videos_index_video_coverpicture_thumbnail)
+          = resource_coverpicture_tag(video, html_class: :arl_admin_videos_index_video_coverpicture_thumbnail)
         .arl_admin_videos_index_video_title
           = video_reference_admin_link(video)
         .arl_admin_videos_index_video_datetime

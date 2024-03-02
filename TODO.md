@@ -5,6 +5,7 @@
 
 migrations:
  - drop table info_page_links
+ - {}_parser_id => {}_parser_type
 
 finish admin renovation
   - MarkupParser makes more sense with simplified symbols than with numeric id
@@ -18,6 +19,7 @@ finish admin renovation
 
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
+    - panes: summary, simpleformat, markdown, none
     - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
 
@@ -205,3 +207,5 @@ _No, wait to see if a switch to videojs ensures future operability before workin
 
 - drop column article#text_markup, #markup_parser
  (was replaced by #content_*)
+
+Why don't video coverpictures show in the index?
