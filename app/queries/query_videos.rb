@@ -109,9 +109,9 @@ class QueryVideos
     public_videos_by_keyword = Hash.new
 
     keyword_collection = Keyword.only_that_will_select_videos
-    video_collection = Video.publicly_indexable.joins(:keywords)
+    video_collection = Video.publicly_indexable
     keyword_collection.each do |keyword|
-      public_videos_by_keyword[keyword.title] = video_collection.where(keywords: keyword)
+      public_videos_by_keyword[keyword.title] = video_collection.joins(:keywords).where(keywords: keyword)
     end
 
     video_without_keyword_collection = video_collection.reject{ |video| video.keywords.map { |keyword| keyword.can_select_videos }.include?(true) }
@@ -129,6 +129,7 @@ class QueryVideos
 
     public_videos_by_keyword
   end
+
 
 
   private

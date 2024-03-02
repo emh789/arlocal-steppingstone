@@ -8,7 +8,20 @@ class VideoPicture < ApplicationRecord
   ### created_at
 
 
+  def does_have_order
+    order.to_s.length > 0
+  end
+
+
   ### id
+
+
+  ### is_coverpicture
+
+
+  def order
+    video_order
+  end
 
 
   ### picture_id
@@ -18,6 +31,9 @@ class VideoPicture < ApplicationRecord
 
 
   ### video_id
+
+
+  ### video_order
 
 
 end

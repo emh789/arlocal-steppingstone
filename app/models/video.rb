@@ -148,11 +148,21 @@ class Video < ApplicationRecord
   end
 
 
+  def does_have_source_uploaded
+    self.source_uploaded.attached? == true
+  end
+
+
   def does_not_have_attached(attribute)
     case attribute
     when :source_uploaded
       self.source_uploaded.attached? == false
     end
+  end
+
+
+  def does_not_have_source_uploaded
+    self.source_uploaded.attached? == false
   end
 
 
