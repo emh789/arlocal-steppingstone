@@ -9,6 +9,7 @@ migrations:
     - MarkupParser makes more sense with simplified symbols than with numeric id
 
 finish admin renovation
+  - Article#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
 
   - Link.name should be Link.title for consistency. _wait to llok for add'l migrations, do all together_
     - **But `#name` is the name of the destination, not the title of the link.**

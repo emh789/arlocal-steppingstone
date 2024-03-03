@@ -4,11 +4,20 @@
   .arl_admin_resource_header_category
     Articles Index
 
-.arl_articles_index
-  %table.arl_articles_index_articles
+.arl_admin_articles_index
+  .arl_admin_articles_index_articles
     - @articles.each do |article|
-      %tr.arl_articles_index_article
-        -# %td.arl_articles_index_article_admin_actions
-        -# = render 'index_article_admin_buttons', article: article
-        %td.arl_articles_index_article_details
-          = render 'index_article_details', article: article
+      .arl_admin_articles_index_article
+        .arl_admin_articles_index_article_title
+          = article_admin_title_link(article)
+        .arl_admin_articles_index_article_author
+          = article.author
+        .arl_admin_articles_index_article_summary
+          = parser_div(article.content_beginning_props)
+        .arl_admin_articles_index_article_joins
+          %dl.arl_admin_joined_resources
+            = render 'admin/shared/index_joined_infopages', resource: article
+        .arl_admin_articles_index_article_copyright
+          = parser_div(article.copyright_props)
+        .arl_admin_articles_index_article_visibility
+          = visibility_description(article.visibility)

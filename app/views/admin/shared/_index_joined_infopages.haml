@@ -1,0 +1,4 @@
+.arl_admin_joined_resource
+  %dh.arl_admin_joined_resource_heading= resource_joined_infopages_count_statement(resource, punctuated: true)
+  - resource.infopages_sorted.each do |infopage|
+    %dd.arl_admin_joined_resource_data= infopage.title

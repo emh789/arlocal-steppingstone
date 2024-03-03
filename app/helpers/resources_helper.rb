@@ -91,6 +91,16 @@ module ResourcesHelper
   end
 
 
+  def resource_joined_infopages_count_statement(resource, punctuated: false)
+    count = resource.infopages.length.to_i
+    result = pluralize count, 'infopage'
+    if punctuated && (count > 0)
+      result = result.concat(':')
+    end
+    result
+  end
+
+
   def resource_joined_links_count_statement(resource, punctuated: false)
     count = resource.links_count.to_i
     result = pluralize count, 'link'
