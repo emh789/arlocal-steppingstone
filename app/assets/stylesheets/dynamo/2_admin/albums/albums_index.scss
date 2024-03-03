@@ -18,7 +18,7 @@
   display: grid;
   grid-template-areas: 'image title title' 'image artist artist' 'image resources resources' 'image date duration' 'image visibility visibility' 'image . .';
   grid-template-columns: 7rem 7rem auto;
-  margin: $arl-spacing 0;
+  margin: $arl-spacing-wide 0;
   row-gap: ($arl-margin-narrow / 2);
 }
 .arl_admin_albums_index_album_artist {
