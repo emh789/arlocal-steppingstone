@@ -27,6 +27,11 @@ class Article < ApplicationRecord
   ### author
 
 
+  def content_beginning_props
+    { parser_id: content_parser_id, text_markup: content_text_markup[0..250].gsub(/[\n\r]+/,' ').concat('…') }
+  end
+
+
   ### content_parser_id
 
 
@@ -73,12 +78,19 @@ class Article < ApplicationRecord
   end
 
 
-  def joined_infopages
-    infopage_items
+  def infopages_sorted
+    infopages_sorted_by_order
   end
 
 
-  ### parser_id
+  def infopages_sorted_by_order
+    infopages.to_a.sort_by! { |i| i.index_order }
+  end
+
+
+  def joined_infopages
+    infopage_items
+  end
 
 
   def published
@@ -103,9 +115,6 @@ class Article < ApplicationRecord
   end
 
 
-  ### text_markup
-
-
   ### title
 
 
@@ -113,6 +122,7 @@ class Article < ApplicationRecord
 
 
   ### visibility
+
 
 
   private
