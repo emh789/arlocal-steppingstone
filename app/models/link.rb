@@ -123,6 +123,16 @@ class Link < ApplicationRecord
   end
 
 
+  def infopages_sorted
+    infopages_sorted_by_order
+  end
+
+
+  def infopages_sorted_by_order
+    infopages.to_a.sort_by! { |i| i.index_order }
+  end
+
+
   ### name
 
 
@@ -133,6 +143,10 @@ class Link < ApplicationRecord
 
   ### updated_at
 
+
+  def visibility
+    'unlisted'
+  end
 
 
   private

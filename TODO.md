@@ -11,7 +11,7 @@ migrations:
 finish admin renovation
   - Article#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
 
-  - Link.name should be Link.title for consistency. _wait to llok for add'l migrations, do all together_
+  - Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
     - **But `#name` is the name of the destination, not the title of the link.**
     - _Visited this topic before, and kept name._
     - Create semantic sugar method if needed.
@@ -24,8 +24,9 @@ finish admin renovation
     - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - More useful 'index' action for resources *working on it*
-    - **Audio is the model for Picture.**
+  - More useful 'index' action for resources **almost done**
+    - *Links#index* doesn't see joined infopages
+    - *Links#show* needs standardization.
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
 

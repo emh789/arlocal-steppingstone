@@ -70,6 +70,11 @@ module LinksHelper
   end
 
 
+  def link_admin_name_link(link)
+    link_to link.name, admin_link_path(link.id_admin)
+  end
+
+
   def link_parse(link, include_details: true)
     case link.address_type
     when :email

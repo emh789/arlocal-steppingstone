@@ -66,7 +66,7 @@ module EventsHelper
 
 
   def event_admin_datetime_link(event)
-    link_to (event.datetime_friendly).html_safe, admin_event_path(event.id_admin)
+    link_to event.datetime_friendly, admin_event_path(event.id_admin)
   end
 
 

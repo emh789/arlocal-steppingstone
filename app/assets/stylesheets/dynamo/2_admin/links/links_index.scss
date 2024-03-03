@@ -1,6 +1,24 @@
 .arl_admin_links_index {
-  padding: $arl-spacing-wide;
+  margin: $arl-margin-wide $arl-spacing-wide;
+  max-width: 40rem;
 }
-.arl_admin_links_index_link_info {
-  padding: $arl-margin 0rem;
+.arl_admin_links_index_link {
+  display: grid;
+  grid-template-areas: 'name' 'address' 'resources';
+  row-gap: ($arl-margin-narrow / 2);
+  margin: $arl-spacing-wide 0rem;
+}
+.arl_admin_links_index_link_address {
+  grid-area: address;
+  font-family: $font-family-data;
+}
+.arl_admin_links_index_link_resources {
+  grid-area: resources;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+}
+.arl_admin_links_index_link_name {
+  grid-area: name;
+  font-family: $font-family-title;
+  font-weight: bold;
 }
