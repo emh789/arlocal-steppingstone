@@ -81,6 +81,11 @@ module AlbumsHelper
   end
 
 
+  def album_admin_title_link(album)
+    link_to (album.title).gsub('/','/&shy;').html_safe, admin_album_path(album.id_admin)
+  end
+
+
   def album_audio_admin_button_to_new_import(album)
     button_admin_to_new_import edit_admin_album_path(album.id_admin, pane: :audio_import)
   end

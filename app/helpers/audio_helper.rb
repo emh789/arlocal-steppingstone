@@ -107,6 +107,11 @@ module AudioHelper
   end
 
 
+  def audio_admin_title_link(audio)
+    link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin)
+  end
+
+
   def audio_album_admin_button_to_new_join_single(audio)
     button_admin_to_new_join_single edit_admin_audio_path(audio.id_admin, pane: :album_join_single)
   end
@@ -189,11 +194,6 @@ module AudioHelper
     audio_json = js_fragment_jp_audio_unordered(audio)
     js = js_function_jp_single_onready(audio_json)
     app_script_element_for(js)
-  end
-
-
-  def audio_admin_title_link(audio)
-    link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin)
   end
 
 

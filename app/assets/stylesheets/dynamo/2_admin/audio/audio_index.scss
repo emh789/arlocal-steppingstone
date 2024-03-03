@@ -1,17 +1,18 @@
 .arl_admin_audio_index {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: $arl-margin-wide;
 }
 .arl_admin_audio_index_audio {
+  column-gap: $arl-margin;
   display: grid;
   font-family: $font-family-data;
   grid-template-areas: 'title title title' 'source source source' 'joins joins joins' 'date duration isrc' 'visibility visibility visibility';
   grid-template-columns: 5rem 5rem auto;
-  column-gap: $arl-margin-narrow;
-  margin: $arl-spacing 0rem;
+  margin: $arl-spacing-wide 0rem;
   max-width: 45rem;
+  row-gap: ($arl-margin-narrow / 2);
 }
 .arl_admin_audio_index_audio_date {
   grid-area: date;

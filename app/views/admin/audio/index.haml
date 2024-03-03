@@ -22,8 +22,11 @@
             = render 'admin/shared/index_joined_albums', resource: audio
             = render 'admin/shared/index_joined_events', resource: audio
             = render 'admin/shared/index_joined_keywords', resource: audio
-        .arl_admin_audio_index_audio_date= audio.date_released
-        .arl_admin_audio_index_audio_duration= audio.duration
-        .arl_admin_audio_index_audio_isrc= audio.isrc_hyphenated
+        .arl_admin_audio_index_audio_date
+          = audio.date_released
+        .arl_admin_audio_index_audio_duration
+          = audio.duration
+        .arl_admin_audio_index_audio_isrc
+          = audio.isrc_hyphenated
         .arl_admin_audio_index_audio_visibility
           = visibility_description(audio.visibility)

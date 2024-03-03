@@ -6,14 +6,25 @@
   .arl_admin_resource_header_nav
     = album_admin_button_to_public
 
-.arl_albums_index
-  %table.arl_albums_index_albums
+.arl_admin_albums_index
+
+  .arl_admin_albums_index_albums
     - @albums.each do |album|
-      %tr.arl_albums_index_album.arl_active_link_container{data: {url: admin_album_path(album.id_admin)}}
-        %td.arl_albums_index_album_picture
-          = render 'index_album_picture_img', album: album
-        %td.arl_albums_index_album_text
-          = render 'index_album_text_album_artist', album: album
-          = render 'index_album_text_title', album: album
-          = render 'index_album_text_tracks', album: album
-          = render 'index_album_text_year', album: album
+      .arl_admin_albums_index_album
+        .arl_admin_albums_index_album_title
+          = album_admin_title_link(album)
+        .arl_admin_albums_index_album_image
+          = resource_coverpicture_tag(album, html_class: :arl_admin_albums_index_album_image_thumbnail)
+        .arl_admin_albums_index_album_artist
+          = album.album_artist
+        .arl_admin_albums_index_album_joins
+          %dl.arl_admin_joined_resources
+            = render 'admin/shared/index_joined_audio', resource: album
+            = render 'admin/shared/index_joined_keywords', resource: album
+            = render 'admin/shared/index_joined_pictures', resource: album
+        .arl_admin_albums_index_album_date
+          = album.date_released
+        .arl_admin_albums_index_album_duration
+          = album.duration
+        .arl_admin_albums_index_album_visibility
+          = visibility_description(album.visibility)

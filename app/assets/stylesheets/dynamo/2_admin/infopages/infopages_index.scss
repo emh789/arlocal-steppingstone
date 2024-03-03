@@ -1,8 +1,9 @@
 .arl_admin_infopages_index_infopage {
-  margin: $arl-spacing;
   column-gap: $arl-margin-narrow;
   display: grid;
-  grid-template-areas: 'order title' 'order resources'
+  grid-template-areas: 'order title' 'order resources';
+  margin: $arl-spacing-wide;
+  row-gap: ($arl-margin-narrow / 2);
 }
 .arl_admin_infopages_index_infopage_order {
   grid-area: order;
@@ -11,6 +12,7 @@
 .arl_admin_infopages_index_infopage_title {
   grid-area: title;
   font-family: $font-family-data;
+  font-weight: bold
 }
 .arl_admin_infopages_index_infopage_resources {
   grid-area: resources;

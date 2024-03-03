@@ -21,14 +21,14 @@
           = picture_admin_title_link(picture)
         .arl_admin_pictures_index_picture_filepath
           = picture_admin_filepath_with_indicators(picture)
-        .arl_admin_pictures_index_picture_datetime
-          = picture.datetime
         .arl_admin_pictures_index_picture_resources
           %dl.arl_admin_joined_resources
             = render 'admin/shared/index_joined_albums', resource: picture
             = render 'admin/shared/index_joined_events', resource: picture
             = render 'admin/shared/index_joined_keywords', resource: picture
             = render 'admin/shared/index_joined_videos', resource: picture
+        .arl_admin_pictures_index_picture_datetime
+          = picture.datetime
         .arl_admin_pictures_index_picture_visibility
           = visibility_description(picture.visibility)
 

@@ -1,8 +1,8 @@
 .arl_admin_pictures_index {
-  margin: $arl-margin-wide;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: $arl-margin-wide;
 }
 .arl_admin_pictures_index_filter {
   margin: $arl-margin-wide 0rem;
@@ -16,9 +16,10 @@
   align-items: start;
   column-gap: $arl-margin;
   display: grid;
-  grid-template-areas: 'image title' 'image filepath' 'image datetime' 'image resources' 'image visibility';
+  grid-template-areas: 'image title' 'image filepath' 'image resources' 'image datetime' 'image visibility' 'image .';
   grid-template-columns: 7rem auto;
-  margin: $arl-spacing 0;
+  margin: $arl-spacing-wide 0;
+  row-gap: ($arl-margin-narrow / 2);
 }
 .arl_admin_pictures_index_picture_datetime {
   grid-area: datetime;

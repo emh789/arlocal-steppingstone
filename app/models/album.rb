@@ -106,6 +106,16 @@ class Album < ApplicationRecord
   end
 
 
+  def audio_sorted
+    audio_sorted_by_title_asc
+  end
+
+
+  def audio_sorted_by_title_asc
+    audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+  end
+
+
   ### copyright_parser_id
 
 
@@ -287,7 +297,7 @@ class Album < ApplicationRecord
       secs -= 60
       mins += 1
     end
-    "#{mins}:#{secs.to_s.rjust(2, '0')}:#{mils.to_s.rjust(3, '0')}"
+    "#{mins}:#{secs.to_s.rjust(2, '0')}.#{mils.to_s.rjust(3, '0')}"
   end
 
 
@@ -333,9 +343,11 @@ class Album < ApplicationRecord
     album_audio_sorted
   end
 
+
   def joined_keywords
     album_keywords_sorted
   end
+
 
   def joined_pictures
     album_pictures_sorted
@@ -346,6 +358,16 @@ class Album < ApplicationRecord
 
 
   ### keywords_count
+
+
+  def keywords_sorted
+    keywords_sorted_by_title_asc
+  end
+
+
+  def keywords_sorted_by_title_asc
+    keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
+  end
 
 
   ### musicians_parser_id

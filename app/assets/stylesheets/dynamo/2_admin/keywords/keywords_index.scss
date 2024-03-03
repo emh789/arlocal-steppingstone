@@ -3,13 +3,18 @@
   max-width: 40rem;
 }
 .arl_keywords_index_keyword {
-  margin: $arl-margin-wide 0rem;
+  display: grid;
+  grid-template-areas: 'title' 'resources';
+  row-gap: ($arl-margin-narrow / 2);
+  margin: $arl-spacing-wide 0rem;
 }
 .arl_keywords_index_keyword_resources {
+  grid-area: resources;
   font-family: $font-family-data;
   font-size: 0.875em;
 }
 .arl_keywords_index_keyword_title {
+  grid-area: title;
   font-family: $font-family-data;
   font-size: 1.1em;
   font-weight: bold;
