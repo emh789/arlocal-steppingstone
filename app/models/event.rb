@@ -75,6 +75,15 @@ class Event < ApplicationRecord
   end
 
 
+  def audio_sorted
+    audio_sorted_by_title_asc
+  end
+
+
+  def audio_sorted_by_title_asc
+    audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+  end
+
   ### city
 
 
@@ -291,21 +300,6 @@ class Event < ApplicationRecord
   end
 
 
-  def joined_audio
-    event_audio_sorted
-  end
-
-
-  def joined_keywords
-    event_keywords_sorted
-  end
-
-
-  def joined_pictures
-    event_pictures_sorted
-  end
-
-
   ### id
 
 
@@ -324,7 +318,32 @@ class Event < ApplicationRecord
   end
 
 
+  def joined_audio
+    event_audio_sorted
+  end
+
+
+  def joined_keywords
+    event_keywords_sorted
+  end
+
+
+  def joined_pictures
+    event_pictures_sorted
+  end
+
+
   ### keywords_count
+
+
+  def keywords_sorted
+    keywords_sorted_by_title_asc
+  end
+
+
+  def keywords_sorted_by_title_asc
+    keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
+  end
 
 
   ### map_url

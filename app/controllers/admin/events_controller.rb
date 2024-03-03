@@ -93,8 +93,7 @@ class Admin::EventsController < AdminController
 
 
   def index
-    @events_calendar = Calendar.by_year(QueryEvents.index_admin(@arlocal_settings, params))
-    render :index_hash
+    @events = QueryEvents.index_admin(@arlocal_settings, params)
   end
 
 

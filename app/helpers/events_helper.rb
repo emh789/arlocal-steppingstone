@@ -65,6 +65,11 @@ module EventsHelper
   end
 
 
+  def event_admin_datetime_link(event)
+    link_to (event.datetime_friendly).html_safe, admin_event_path(event.id_admin)
+  end
+
+
   def event_admin_header_nav_buttons
     [ event_admin_button_to_index,
       event_admin_button_to_new

@@ -1,0 +1,74 @@
+.arl_admin_events_index {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: $arl-margin-wide;
+}
+.arl_admin_events_index_filter {
+  margin: $arl-margin-wide 0rem;
+}
+.arl_admin_events_index_events {
+  margin: $arl-margin-wide;
+  max-width: 45rem;
+}
+.arl_admin_events_index_event {
+  align-content: start;
+  align-items: start;
+  column-gap: $arl-margin-narrow;
+  display: grid;
+  grid-template-areas: 'image datetime datetime' 'image title title' 'image resources resources' 'image city venue' 'image venue_url venue_url' 'image visibility visibility' 'image . .';
+  grid-template-columns: 7rem 7rem auto;
+  margin: $arl-spacing-wide 0;
+  row-gap: ($arl-margin-narrow / 2);
+}
+.arl_admin_events_index_event_city {
+  grid-area: city;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+}
+.arl_admin_events_index_event_datetime {
+  grid-area: datetime;
+  font-family: $font-family-title;
+  font-weight: bold;
+}
+.arl_admin_events_index_event_image {
+  grid-area: image;
+  height: 7rem;
+}
+.arl_admin_events_index_event_image_thumbnail {
+  border-radius: $border-radius-narrow;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 7rem;
+  max-width: 7rem;
+}
+.arl_admin_events_index_event_image_missing {
+  height: 7rem;
+  width: 7rem;
+}
+.arl_admin_events_index_event_joins {
+  grid-area: resources;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+}
+.arl_admin_events_index_event_title {
+  grid-area: title;
+  font-family: $font-family-title;
+  font-style: italic;
+}
+.arl_admin_events_index_event_venue_url {
+  grid-area: venue_url;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+}
+.arl_admin_events_index_event_venue {
+  grid-are: venue;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+}
+.arl_admin_events_index_event_visibility {
+  grid-area: visibility;
+  font-family: $font-family-data;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
