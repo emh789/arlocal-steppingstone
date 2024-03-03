@@ -24,6 +24,7 @@
 .arl_admin_videos_index_video_datetime {
   grid-area: datetime;
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_videos_index_video_filepath {
   grid-area: filepath;
@@ -47,6 +48,7 @@
 .arl_admin_videos_index_video_resources {
   grid-area: resources;
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_videos_index_video_title {
   grid-area: title;
@@ -59,4 +61,6 @@
 .arl_admin_videos_index_video_visibility {
   grid-area: visibility;
   font-family: $font-family-data;
+  font-size: 0.9rem;
+  font-weight: bold;
 }

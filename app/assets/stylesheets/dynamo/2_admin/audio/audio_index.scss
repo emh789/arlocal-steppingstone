@@ -16,17 +16,21 @@
 }
 .arl_admin_audio_index_audio_date {
   grid-area: date;
+  font-size: 0.9rem;
 }
 .arl_admin_audio_index_audio_duration {
   grid-area: duration;
   text-align: right;
+  font-size: 0.9rem;
 }
 .arl_admin_audio_index_audio_isrc {
   grid-area: isrc;
   margin-left: $arl-spacing;
+  font-size: 0.9rem;
 }
 .arl_admin_audio_index_audio_joins {
   grid-area: joins;
+  font-size: 0.9rem;
 }
 .arl_admin_audio_index_audio_source {
   grid-area: source;
@@ -38,6 +42,8 @@
 }
 .arl_admin_audio_index_audio_visibility {
   grid-area: visibility;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
 .arl_admin_audio_index_filter {
   margin: $arl-margin-wide 0rem;

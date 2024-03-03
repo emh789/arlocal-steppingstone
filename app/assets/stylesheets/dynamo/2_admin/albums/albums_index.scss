@@ -29,10 +29,12 @@
 .arl_admin_albums_index_album_date {
   grid-area: date;
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_albums_index_album_duration {
   grid-area: duration;
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_albums_index_album_image {
   grid-area: image;
@@ -52,6 +54,7 @@
 .arl_admin_albums_index_album_joins {
   grid-area: resources;
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_albums_index_album_title {
   grid-area: title;
@@ -64,4 +67,6 @@
 .arl_admin_albums_index_album_visibility {
   grid-area: visibility;
   font-family: $font-family-data;
+  font-weight: bold;
+  font-size: 0.9rem;
 }

@@ -17,12 +17,15 @@
 }
 .arl_admin_articles_index_article_copyright {
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_articles_index_article_joins {
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_articles_index_article_summary {
   font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_articles_index_article_title {
   font-family: $font-family-title;
@@ -30,6 +33,8 @@
 }
 .arl_admin_articles_index_article_visibility {
   font-family: $font-family-data;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 @media #{$media-screen-1} {
