@@ -11,12 +11,11 @@
 .arl_keywords_index_keyword_resources {
   grid-area: resources;
   font-family: $font-family-data;
-  font-size: 0.875em;
+  font-size: 0.9rem;
 }
 .arl_keywords_index_keyword_title {
   grid-area: title;
-  font-family: $font-family-data;
-  font-size: 1.1em;
+  font-family: $font-family-title;
   font-weight: bold;
 }
 
