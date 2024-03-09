@@ -4,7 +4,7 @@
 }
 .arl_admin_links_index_link {
   display: grid;
-  grid-template-areas: 'name' 'address' 'resources';
+  grid-template-areas: 'name' 'address' 'resources' 'visibility';
   row-gap: ($arl-margin-narrow / 2);
   margin: $arl-spacing-wide 0rem;
 }
@@ -20,5 +20,11 @@
 .arl_admin_links_index_link_name {
   grid-area: name;
   font-family: $font-family-title;
+  font-weight: bold;
+}
+.arl_admin_links_index_link_visibility {
+  grid-area: visibility;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
   font-weight: bold;
 }

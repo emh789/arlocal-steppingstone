@@ -11,8 +11,7 @@ class Link < ApplicationRecord
   validates :details_parser_id, presence: true
 
   has_many :infopage_items, -> { where infopageable_type: 'Link' }, foreign_key: :infopageable_id, dependent: :destroy
-
-  has_many :infopages, through: :infopage_items, source: :infopageable, source_type: 'Infopage'
+  has_many :infopages, through: :infopage_items
 
   accepts_nested_attributes_for :infopage_items, allow_destroy: true
 
@@ -96,6 +95,11 @@ class Link < ApplicationRecord
   end
 
 
+  def does_have_infopages
+    infopages.length > 0
+  end
+
+
   def does_not_have_address_inline_text
     address_inline_text.to_s == ''
   end
@@ -132,6 +136,11 @@ class Link < ApplicationRecord
     infopages.to_a.sort_by! { |i| i.index_order }
   end
 
+
+  def joined_infopages
+    infopage_items
+  end
+  
 
   ### name
 

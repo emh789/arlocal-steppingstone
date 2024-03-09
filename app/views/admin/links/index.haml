@@ -15,5 +15,5 @@
         .arl_admin_links_index_link_resources
           %dl.arl_admin_joined_resources
             = render 'admin/shared/index_joined_infopages', resource: link
-        -#.arl_admin_links_index_link_visibility
-        -#  = visibility_description(link.visibility)
+        .arl_admin_links_index_link_visibility
+          = visibility_description(link.visibility)

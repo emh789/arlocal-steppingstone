@@ -1,60 +1,143 @@
 .arl_admin_links_show {
+  align-items: start;
+  column-gap: $arl-spacing-wide * 2;
+  display: grid;
+  padding: $arl-margin $arl-spacing;
 }
-.arl_admin_links_show_inline {
-  text-align: left;
+.arl_admin_links_show_attributes {
+  font-size: 0.9em;
+  grid-area: attributes;
+  padding: $arl-margin 0rem;
 }
-.arl_admin_links_show_title {
-  font-family: $font-family-title;
-  font-weight: bold;
-  margin-bottom: $arl-margin;
-  text-align: center;
+.arl_admin_links_show_display {
+  margin-left: -($arl-spacing);
+  padding: $arl-spacing;
+  border-width: 1px;
+  border-style: solid;
 }
-.arl_admin_links_show_player {
-  margin-bottom: $arl-margin;
+.arl_admin_links_show_etc {
+  grid-area: etc;
+  padding: $arl-margin 0rem;
+}
+.arl_admin_links_show_joins {
+  align-items: start;
+  display: grid;
+  font-size: 0.9em;
+  grid-area: joins;
+  grid-template-areas: 'infopages';
+  grid-template-rows: min-content;
+  padding: $arl-margin 0rem;
+  row-gap: $arl-spacing;
+}
+.arl_admin_links_show_name {
+  grid-area: name;
+  padding:  0rem;
 }
 
 @media #{$media-screen-1} {
   .arl_admin_links_show {
-    align-items: stretch;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 20rem;
+    grid-template-areas: 'name' 'display' 'attributes' 'joins' 'etc';
   }
-  .arl_admin_links_show_inline {
-    padding: $arl-spacing;
-    text-align: center;
+  .arl_admin_links_show_joins {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+    border-bottom-style: $border-style;
+    border-bottom-width: $border-width;
+    padding: $arl-spacing 0;
   }
 }
 
 @media #{$media-screen-2} {
   .arl_admin_links_show {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    grid-template-areas: 'name' 'display' 'attributes' 'joins' 'etc';
+    grid-template-columns: 25rem;
   }
-  .arl_admin_links_show_inline {
-    margin-top: $arl-spacing-wide;
-    margin-bottom: none;
-    padding: 1rem;
-    text-align: center;
-    width: 18rem;
+  .arl_admin_links_show_joins {
+    border-top-style: $border-style;
+    border-top-width: $border-width;
+    border-bottom-style: $border-style;
+    border-bottom-width: $border-width;
+    padding: $arl-spacing 0;
   }
 }
 
-@media #{$media-screen-3} {
+@media #{$media-screen-3-only} {
   .arl_admin_links_show {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .arl_admin_links_show_inline {
-    margin-top: $arl-spacing-wide;
-    margin-bottom: none;
-    padding: 1rem;
-    text-align: center;
-    width: 18rem;
+    grid-template-areas: 'name attributes joins' 'display attributes joins' 'etc etc etc';
+    grid-template-rows: min-content 1fr;
+    margin: $arl-margin-wide 0rem;
+    row-gap: $arl-spacing;
   }
 }
+
+@media #{$media-screen-4} {
+  .arl_admin_links_show {
+    grid-template-areas: 'name attributes joins' 'display attributes joins' 'etc etc etc';
+    grid-template-rows: min-content 1fr;
+    margin: $arl-margin-wide 0rem;
+    row-gap: $arl-spacing;
+  }
+}
+
+
+
+// .arl_admin_links_show {
+// }
+// .arl_admin_links_show_inline {
+//   text-align: left;
+// }
+// .arl_admin_links_show_title {
+//   font-family: $font-family-title;
+//   font-weight: bold;
+//   margin-bottom: $arl-margin;
+//   text-align: center;
+// }
+// .arl_admin_links_show_player {
+//   margin-bottom: $arl-margin;
+// }
+//
+// @media #{$media-screen-1} {
+//   .arl_admin_links_show {
+//     align-items: stretch;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     width: 20rem;
+//   }
+//   .arl_admin_links_show_inline {
+//     padding: $arl-spacing;
+//     text-align: center;
+//   }
+// }
+//
+// @media #{$media-screen-2} {
+//   .arl_admin_links_show {
+//     align-items: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//   }
+//   .arl_admin_links_show_inline {
+//     margin-top: $arl-spacing-wide;
+//     margin-bottom: none;
+//     padding: 1rem;
+//     text-align: center;
+//     width: 18rem;
+//   }
+// }
+//
+// @media #{$media-screen-3} {
+//   .arl_admin_links_show {
+//     align-items: center;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: flex-start;
+//   }
+//   .arl_admin_links_show_inline {
+//     margin-top: $arl-spacing-wide;
+//     margin-bottom: none;
+//     padding: 1rem;
+//     text-align: center;
+//     width: 18rem;
+//   }
+// }
