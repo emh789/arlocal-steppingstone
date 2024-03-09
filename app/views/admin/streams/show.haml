@@ -11,12 +11,12 @@
     -# stream_admin_button_to_next(@stream_neighbors.next)
 
 .arl_admin_streams_show
-  %dl.arl_admin_streams_show_title
+  .arl_admin_streams_show_title
     = render 'admin/shared/metadata_pair', key: 'Title', value: @stream.title
     = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @stream.visibility
-  %dl.arl_admin_streams_show_atributes
-    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @stream.description_props
+  .arl_admin_streams_show_attributes
     = render 'admin/shared/metadata_pair', key: 'HTML element', value: @stream.html_element
-  %dl.arl_admin_streams_show_etc
+    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @stream.description_props
+  .arl_admin_streams_show_etc
     = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_stream_path(@stream.id_public))
     = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @stream.updated_at

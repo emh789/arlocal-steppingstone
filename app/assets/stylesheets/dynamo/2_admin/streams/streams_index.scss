@@ -2,14 +2,29 @@
   padding: $arl-spacing-wide;
   max-width: 50rem;
 }
+.arl_admin_streams_index_stream {
+  display: grid;
+  grid-template-areas: 'title' 'html_element' 'visibility';
+  row-gap: ($arl-margin-narrow / 2);
+  margin: $arl-spacing-wide 0rem;
+}
 .arl_admin_streams_index_stream_html_element {
-  padding: $arl-margin;
+  grid-area: html_element;
   font-family: $font-family-data;
-  vertical-align: top;
+  font-size: 0.9rem;
+}
+.arl_admin_streams_index_stream_resources {
+  grid-area: resources;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
 }
 .arl_admin_streams_index_stream_title {
   font-weight: bold;
-  font-family: $font-family-description;
-  padding: $arl-margin;
-  vertical-align: top;
+  font-family: $font-family-title;
+}
+.arl_admin_streams_index_stream_visibility {
+  grid-area: visibility;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+  font-weight: bold;
 }

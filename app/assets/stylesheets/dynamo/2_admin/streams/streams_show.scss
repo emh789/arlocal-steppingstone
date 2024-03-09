@@ -5,9 +5,8 @@
   padding: $arl-margin $arl-spacing;
 }
 .arl_admin_streams_show_attributes {
-  font-size: 0.9em;
+  font-size: 0.9rem;
   grid-area: attributes;
-  padding: $arl-margin 0rem;
 }
 .arl_admin_streams_show_title {
   grid-area: title;
@@ -25,6 +24,7 @@
 }
 .arl_admin_streams_show_etc {
   grid-area: etc;
+  margin-top: $arl-margin;
   padding: $arl-margin 0rem;
 }
 
