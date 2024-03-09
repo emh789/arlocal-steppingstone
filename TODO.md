@@ -11,31 +11,20 @@ migrations:
     - add_column :visibility, 'unlisted'
 
 finish admin renovation
-  - Article#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
-
-  - Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
-    - **But `#name` is the name of the destination, not the title of the link.**
-    - _Visited this topic before, and kept name._
-    - Create semantic sugar method if needed.
-  - Links_helpers need some review for currency and effectiveness
-    - first glance looks okay, but seems overly complicated
-
   - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
     - **Might need a rewrite with a `param` and `<select>`**
     - panes: summary, simpleformat, markdown, none
     - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - More useful 'index' action for resources **almost done**
-    - Articles, Links, and Pictures lack a pane for infopages.
-    - **Remove `_index` and `_show` partials when done.**
-
   - *Review helper methods for currency in light of recent refactoring frenzy.*
+    - `resource_admin_title_link` vs `resource_reference_admin_link`
 
   - Keyword Admin:
     - #edit?videos missing buttons
       - **Finish implementation of video joins submenus; look across resources; also within video#edit**
     - joined pictures lack 'remove' box
+
 
 Not sure what these were from: _(but probably from the EventVideo addenda)_:
   + form_metadata
@@ -67,6 +56,14 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
 
+- Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
+  - **But `#name` is the name of the destination, not the title of the link.**
+  - _Visited this topic before, and kept name._
+  - Create semantic sugar method if needed.
+- Links_helpers need some review for currency and effectiveness
+  - first glance looks okay, but seems overly complicated
+
+
 - datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
   - for example `admin/isrc/edit` overflows at narrow widths.
@@ -96,6 +93,10 @@ Not sure what these were from _(but probably from the EventVideo addenda)_:
 
 
 ## Medium priority
+
+- Admin::Articles#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
+
+- Articles, Links, and Pictures lack a pane for infopages.
 
 - Should html_head title elements include the resource type? Would help add clarity to browser history.
   - examples:
@@ -221,3 +222,6 @@ migration:   - video rename_column source_catalog_file_path source_imported_file
 
 - *Links#index* doesn't see joined infopages
 - *Links#show* needs standardization.
+
+- More useful 'index' action for resources **almost done**
+  - **Remove `_index` and `_show` partials when done.**
