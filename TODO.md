@@ -7,6 +7,8 @@ migrations:
   - drop table info_page_links
   - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
+  - link
+    - add_column :visibility, 'unlisted'
 
 finish admin renovation
   - Article#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
@@ -25,8 +27,8 @@ finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - More useful 'index' action for resources **almost done**
-    - *Links#index* doesn't see joined infopages
-    - *Links#show* needs standardization.
+    - Articles, Links, and Pictures lack a pane for infopages.
+    - **Remove `_index` and `_show` partials when done.**
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
 
@@ -216,3 +218,6 @@ _No, wait to see if a switch to videojs ensures future operability before workin
 Why don't video coverpictures show in the index?
 
 migration:   - video rename_column source_catalog_file_path source_imported_file_path
+
+- *Links#index* doesn't see joined infopages
+- *Links#show* needs standardization.
