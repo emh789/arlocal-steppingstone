@@ -1,6 +1,33 @@
 # A&R.Local To-Do List
-
 ## Addenda
+
+
+### Unknown Origin Comments
+
+Not sure what these were from: _(but probably from the EventVideo addenda)_:
+  + form_metadata
+  + partials
+    + event _form_join_by_keyword,
+      + method keyword.title_with_video_count
+    + event _form_join_single
+    + video join_single
+
+
+Not sure what these were from _(but probably from the EventVideo addenda)_:
+---
+  - Fallout
+    - models/event_audio.rb: what is self.event_hash and why?
+    - FormVideoMetadata:
+      - look for 'selectable: { :@pictures => lambda { |arlocal_settings| QueryPictures.options_for_select_admin_with_nil(arlocal_settings) } }'
+      - no need for lambda? **probably not.**
+      - do we even need it in pictures: ?  line 51
+    - event datetime
+      model: datetime_zone not applies anymore?
+             datetime_formatted.to_s(format) doesn't accept format variable?
+###     !!! `Time.zone = datetime_zone; Time.zone.local(**).to_fs(format)`
+---
+
+
 
 ### EventVideo
 
