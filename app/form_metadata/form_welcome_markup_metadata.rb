@@ -5,20 +5,24 @@ class FormWelcomeMarkupMetadata
 
 
   DATA = {
+    overview: {
+      navbar: 0,
+      partial: 'markup_overview'
+    },
     markdown: {
       navbar: 1,
-      partial: 'markdown',
-      selectable: { :@markup_parsers => proc { MarkupParser.options_for_select } }
+      partial: 'markup_example_markdown',
+      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:markdown] } }
     },
     none: {
       navbar: 1,
-      partial: 'none',
-      selectable: { :@markup_parsers => proc { MarkupParser.options_for_select } }
+      partial: 'markup_example_none',
+      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:none] } }
     },
     simpleformat: {
       navbar: 1,
-      partial: 'simpleformat',
-      selectable: { :@markup_parsers => proc { MarkupParser.options_for_select } }
+      partial: 'markup_example_simple_format',
+      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:simple_format] } }
     }
   }
 
@@ -26,21 +30,21 @@ class FormWelcomeMarkupMetadata
   attr_reader :current_pane, :navbar_categories, :partial_name, :selectables
 
 
-  def initialize(pane: :simpleformat)
+  def initialize(pane: :overview)
     pane = pane.to_s.downcase.to_sym
 
     if FormWelcomeMarkupMetadata::DATA.has_key?(pane)
       form = FormWelcomeMarkupMetadata::DATA[pane]
       current_pane = pane
     else
-      form = FormWelcomeMarkupMetadata::DATA[:simpleformat]
-      current_pane = :simpleformat
+      form = FormWelcomeMarkupMetadata::DATA[:overview]
+      current_pane = :overview
     end
 
     @current_pane = current_pane
     @navbar_categories = FormWelcomeMarkupMetadata.navbar_categories
     @partial_name = form[:partial]
-    @selectables = FormWelcomeMarkupMetadata.new(form[:selectable], arlocal_settings)
+    @selectables = {}
   end
 
 

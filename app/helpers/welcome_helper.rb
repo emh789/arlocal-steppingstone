@@ -12,4 +12,12 @@ module WelcomeHelper
   end
 
 
+  def welcome_markup_admin_nav_button(category: nil, current_pane: nil)
+      button_admin_to_edit_pane(
+        current_pane: current_pane,
+        target_link: admin_welcome_markup_types_path(pane: category),
+        target_pane: category
+      )
+  end
+
 end

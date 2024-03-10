@@ -1,6 +1,6 @@
 module ArlocalMarkupExamples
   MARKUP_EXAMPLES = {
-    markdown_commonmarker: {
+    markdown: {
       title: 'markdown (commonmarker)',
       description: ['Markdown is a method of writing plain text that conveys presentation details.','CommonMarker is the name of the parser utility gem.'],
       examples: {
@@ -16,23 +16,23 @@ module ArlocalMarkupExamples
         ul: '1. list item' + "\n" + '2. list item' + "\n" + '3. list item'
       }
     },
-    simple_format_rails: {
-      title: 'simple_format (rails)',
-      description: ['simple_format is a utility in the underlying Rails framework that interprets paragraphs without additional markup (inline HTML optional)'],
-      examples: {
-        p_br: 'Paragraphs are divided by a blank line.' + "\n\n" + 'Linebreaks are indicated' + "\n" + 'simply by starting a new line.',
-        inline: '<i>Valid</i> inline <tt>HTML</tt> syntax is interpreted.'
-      }
-    },
-    no_formatting: {
-      title: 'No formatting; as-is',
-      description: ['HTML is the language of the web and offers more complexity than markdown and simple_format.'],
+    none: {
+      title: 'No formatting',
+      description: 'No formatting',
       examples: {
         hx: '<h1>Heading</h1>' + "\n" + '<h2>Heading 2</h2>',
         i: '<i>italics</i>',
         b: '<b>bold</b>',
         a: 'link to <a href="http://arlocal.info" target="_blank">about A&R.local</a>',
         p_br: '<p>Paragraph</p>' + "\n\n" + '<p>Paragraphs won\'t have' + "\n" + 'linebreaks' + "\n" + '<br>' + "\n" + 'unless specifically coded.</p>',
+      }
+    },
+    simple_format: {
+      title: 'simple_format (rails)',
+      description: ['simple_format is a utility in the underlying Rails framework that interprets paragraphs without additional markup (inline HTML optional)'],
+      examples: {
+        p_br: 'Paragraphs are divided by a blank line.' + "\n\n" + 'Linebreaks are indicated' + "\n" + 'simply by starting a new line.',
+        inline: '<i>Valid</i> inline <tt>HTML</tt> syntax is interpreted.'
       }
     }
   }

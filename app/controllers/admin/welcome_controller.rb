@@ -10,7 +10,8 @@ class Admin::WelcomeController < AdminController
 
 
   def markup_types
-    @markup_examples = ArlocalMarkupExamples::MARKUP_EXAMPLES
+    @form_metadata = FormWelcomeMarkupMetadata.new(pane: params[:pane])
+    render 'admin/welcome/markup_index'
   end
 
 
@@ -25,7 +26,7 @@ class Admin::WelcomeController < AdminController
   def visibility
   end
 
-  
+
   def whats_new
   end
 
