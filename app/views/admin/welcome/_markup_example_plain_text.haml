@@ -1,12 +1,10 @@
-%h2.arl_admin_markup_types_heading Markdown
-%p.arl_admin_markup_types_aside
-  For a more complete guide on Markdown, see <a href="https://commonmark.org/help/">https://commonmark.org/help/</a>
+%h2.arl_admin_markup_types_heading Plain Text
 %table.arl_admin_markup_types_demo
   %tr
-    %th.arl_admin_markup_types_demo_heading.color_bg_th markdown
+    %th.arl_admin_markup_types_demo_heading.color_bg_th plain text
     %th.arl_admin_markup_types_demo_heading.color_bg_th result
   - markup_examples.each do |markup_example|
-    %tr.arl_admin_markup_type_demo_example
+    %tr
       %td.arl_admin_markup_types_demo_text_markup
         = simple_format(markup_example)
       %td.arl_admin_markup_types_demo_parsed

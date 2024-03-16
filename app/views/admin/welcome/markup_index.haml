@@ -8,5 +8,5 @@
   - @form_metadata.navbar_categories.each do |category|
     = welcome_markup_admin_nav_button(category: category, current_pane: @form_metadata.current_pane)
 
-.arl_admin_videos_edit
-  = render @form_metadata.partial_name, selectable: @form_metadata.selectables
+.arl_admin_markup_types
+  = render @form_metadata.partial_name, markup_examples: @form_metadata.markup_examples, parser: @form_metadata.parser

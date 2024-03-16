@@ -1,64 +1,51 @@
 .arl_admin_markup_types {
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  font-family: $font-family-application;
-  justify-content: center;
-  padding: $arl-spacing-wide;
+  margin: $arl-margin-wide;
 }
-.arl_admin_markup_types_example {
-  border-style: $border-style;
-  border-width: $border-width;
-  margin: $arl-spacing-wide 0rem;
-  width: 100%;
-}
-.arl_admin_markup_types_example_details {}
-.arl_admin_markup_types_example_heading {
-  border-style: $border-style;
-  border-width: $border-width;
-  font-size: 0.8em;
-  padding: $arl-margin-narrow $arl-margin;
-  width: 33%;
-}
-.arl_admin_markup_types_example_title {
-  font-family: $font-family-title;
-  font-weight: bold;
-  margin-top: $arl-margin;
-}
-.arl_admin_markup_types_example_value_entered {
-  border-style: $border-style;
-  border-width: $border-width;
-  font-size: 0.8em;
-  font-family: $font-family-monospace;
-  padding: $arl-margin-narrow $arl-margin;
-  white-space: pre-wrap;
-  width: 33%;
-}
-.arl_admin_markup_types_example_value_displayed {
-  border-style: $border-style;
-  border-width: $border-width;
-  font-size: 0.8em;
-  padding: $arl-margin-narrow $arl-margin;
-  width: 33%;
-}
-.arl_admin_markup_types_example_value_html_source {
-  border-style: $border-style;
-  border-width: $border-width;
-  font-family: monospace;
-  font-size: 0.8em;
-  padding: $arl-margin-narrow $arl-margin;
-  white-space: pre-wrap;
-  width: 33%;
-}
-.arl_admin_markup_types_heading_summary {
-  align-self: center;
-  font-family: $font-family-application;
-  margin-bottom: $arl-margin;
-  max-width: 45rem;
-}
-.arl_admin_markup_types_heading_title {
-  font-size: 1.25rem;
-  font-weight: bold;
-  margin-bottom: $arl-margin;
+.arl_admin_markup_types_aside {
   text-align: center;
+  font-family: $font-family-application;
+  font-size: 0.9rem;
+  padding-bottom: $arl-spacing-wide;
+}
+.arl_admin_markup_types_overview {
+  font-family: $font-family-application;
+  margin-bottom: $arl-spacing-wide;
+}
+.arl_admin_markup_types_overview_case {
+  margin-bottom: $arl-margin;
+}
+.arl_admin_markup_types_overview_case_header {
+  font-weight: bold;
+}
+.arl_admin_markup_types_heading {
+  text-align: center;
+  font-family: $font-family-application;
+}
+.arl_admin_markup_types_demo {
+  display: flex;
+  flex-direction: row;
+  margin: 0rem $arl-margin-wide;
+}
+.arl_admin_markup_types_demo_heading {
+  font-family: $font-family-application;
+  padding: $arl-margin 0rem;
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+}
+.arl_admin_markup_types_demo_text_markup {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+  font-family: $font-family-monospace;
+  font-size: 0.9rem;
+  max-width: 30rem;
+  padding: 0rem $arl-spacing-wide;
+  width: 50%;
+}
+.arl_admin_markup_types_demo_parsed {
+  border-bottom-style: solid;
+  border-bottom-width: $border-width;
+  font-family: $font-family-text;
+  max-width: 30rem;
+  padding: 0rem $arl-spacing-wide;
+  width: 50%;
 }

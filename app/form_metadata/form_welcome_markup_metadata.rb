@@ -9,25 +9,28 @@ class FormWelcomeMarkupMetadata
       navbar: 0,
       partial: 'markup_overview'
     },
-    markdown: {
+    'markdown': {
       navbar: 1,
       partial: 'markup_example_markdown',
-      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:markdown] } }
+      markup_examples: proc { ArlocalMarkupExamples::examples },
+      parser: proc { MarkupParser.find_by_symbol(:markdown) }
     },
-    none: {
+    'plain text': {
       navbar: 1,
-      partial: 'markup_example_none',
-      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:none] } }
+      partial: 'markup_example_plain_text',
+      markup_examples: proc { ArlocalMarkupExamples::examples },
+      parser: proc { MarkupParser.find_by_symbol(:simple_format) }
     },
-    simpleformat: {
+    'single line': {
       navbar: 1,
-      partial: 'markup_example_simple_format',
-      selectable: { :@markup_parsers => proc { ArlocalMarkupExamples::MARKUP_EXAMPLES[:simple_format] } }
-    }
+      partial: 'markup_example_single_line',
+      markup_examples: proc { ArlocalMarkupExamples::examples },
+      parser: proc { MarkupParser.find_by_symbol(:none) }
+    },
   }
 
 
-  attr_reader :current_pane, :navbar_categories, :partial_name, :selectables
+  attr_reader :current_pane, :navbar_categories, :partial_name, :markup_examples, :parser
 
 
   def initialize(pane: :overview)
@@ -44,7 +47,12 @@ class FormWelcomeMarkupMetadata
     @current_pane = current_pane
     @navbar_categories = FormWelcomeMarkupMetadata.navbar_categories
     @partial_name = form[:partial]
-    @selectables = {}
+    if form.has_key?(:markup_examples)
+      @markup_examples = form[:markup_examples].call
+    end
+    if form.has_key?(:parser)
+      @parser = form[:parser].call
+    end
   end
 
 

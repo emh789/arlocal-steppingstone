@@ -9,31 +9,23 @@ class MarkupParser
       description: 'No formatting',
       method_parse: lambda { |text| text.to_s },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-      symbol: :no_formatting
+      symbol: :none
     },
     {
       id: 3,
       categories: [:admin, :public],
-      description: 'Markdown (commonmarker)',
+      description: 'Markdown',
       method_parse: lambda { |text| CommonMarker.render_html(text.to_s) },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-      symbol: :markdown_commonmarker
+      symbol: :markdown
     },
     {
       id: 4,
       categories: [:admin, :public],
-      description: 'Simple Format (rails)',
+      description: 'Simple Format',
       method_parse: lambda { |text| ApplicationController.helpers.simple_format(text.to_s) },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-      symbol: :simple_format_rails
-    },
-    {
-      id: 5,
-      categories: [:admin],
-      description: 'HTML embed',
-      method_parse: lambda { |text| text.to_s },
-      method_sanitize: lambda { |text| text.html_safe },
-      symbol: :html_embed
+      symbol: :simple_format
     }
   ]
 
