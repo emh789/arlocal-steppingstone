@@ -28,7 +28,7 @@ module ArlocalMarkupExamples
 <<EXAMPLE_3
 Vocals: Singer Chanson
 Piano: Keys Forte
-Drumms: Paddy Membrane
+Drums: Paddy Membrane
 EXAMPLE_3
   end
 

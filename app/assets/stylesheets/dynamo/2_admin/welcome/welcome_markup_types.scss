@@ -37,15 +37,23 @@
   border-bottom-width: $border-width;
   font-family: $font-family-monospace;
   font-size: 0.9rem;
-  max-width: 30rem;
-  padding: 0rem $arl-spacing-wide;
+  max-width: 32rem;
+  padding: 0 $arl-spacing-wide;
+  vertical-align: top;
   width: 50%;
 }
 .arl_admin_markup_types_demo_parsed {
   border-bottom-style: solid;
   border-bottom-width: $border-width;
   font-family: $font-family-text;
-  max-width: 30rem;
-  padding: 0rem $arl-spacing-wide;
+  max-width: 32rem;
+  padding: 0 $arl-spacing-wide;
   width: 50%;
+  vertical-align: top;
+}
+.arl_admin_markup_types_demo_example:last-child .arl_admin_markup_types_demo_text_markup {
+  border-bottom: none;
+}
+.arl_admin_markup_types_demo_example:last-child .arl_admin_markup_types_demo_parsed {
+  border-bottom: none;
 }
