@@ -7,14 +7,13 @@ migrations:
   - drop table info_page_links
   - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
+      - markdown
+      - plain text
+      - single line
   - link
     - add_column :visibility, 'unlisted'
 
 finish admin renovation
-  - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
-    - **Might need a rewrite with a `param` and `<select>`**
-    - panes: summary, simpleformat, markdown, none
-    - _Grid layout fixes many of the other welcome content pages._
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
@@ -121,6 +120,11 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 
 ## Possibly finished
+
+- `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
+  - **Might need a rewrite with a `param` and `<select>`**
+  - panes: summary, simpleformat, markdown, none
+  - _Grid layout fixes many of the other welcome content pages._
 
 - give a title to nested_picture uploads/imports
 
