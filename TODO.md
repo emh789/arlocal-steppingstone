@@ -4,7 +4,6 @@
 ## HIGHEST priority
 
 migrations:
-  - drop table info_page_links
   - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
       - markdown
@@ -204,3 +203,5 @@ migration:   - video rename_column source_catalog_file_path source_imported_file
 
 - More useful 'index' action for resources **almost done**
   - **Remove `_index` and `_show` partials when done.**
+
+- drop table info_page_links

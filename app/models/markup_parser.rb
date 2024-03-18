@@ -4,14 +4,6 @@ class MarkupParser
 
   DATA = [
     {
-      id: 0,
-      categories: [:admin, :public],
-      description: 'No formatting',
-      method_parse: lambda { |text| text.to_s },
-      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-      symbol: :none
-    },
-    {
       id: 3,
       categories: [:admin, :public],
       description: 'Markdown',
@@ -22,10 +14,18 @@ class MarkupParser
     {
       id: 4,
       categories: [:admin, :public],
-      description: 'Simple Format',
+      description: 'Plain text',
       method_parse: lambda { |text| ApplicationController.helpers.simple_format(text.to_s) },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-      symbol: :simple_format
+      symbol: :plaintext
+    },
+    {
+      id: 0,
+      categories: [:admin, :public],
+      description: 'Single line',
+      method_parse: lambda { |text| text.to_s },
+      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
+      symbol: :string
     }
   ]
 

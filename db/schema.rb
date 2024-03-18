@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_233905) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_18_020341) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -287,16 +287,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_233905) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
-  end
-
-  create_table "info_page_links", force: :cascade do |t|
-    t.string "display_type"
-    t.boolean "info_page_can_display_details"
-    t.integer "info_page_order"
-    t.integer "info_page_id"
-    t.integer "link_id"
-    t.index ["info_page_id"], name: "index_info_page_links_on_info_page_id"
-    t.index ["link_id"], name: "index_info_page_links_on_link_id"
   end
 
   create_table "infopage_items", force: :cascade do |t|
