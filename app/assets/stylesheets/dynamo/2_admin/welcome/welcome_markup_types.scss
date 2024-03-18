@@ -8,14 +8,20 @@
   padding-bottom: $arl-spacing-wide;
 }
 .arl_admin_markup_types_overview {
-  font-family: $font-family-application;
   margin-bottom: $arl-spacing-wide;
 }
 .arl_admin_markup_types_overview_case {
   margin-bottom: $arl-margin;
 }
+.arl_admin_markup_types_overview_case_example {
+  font-family: $font-family-data;
+}
 .arl_admin_markup_types_overview_case_header {
+  font-family: $font-family-application;
   font-weight: bold;
+}
+.arl_admin_markup_types_overview_summary {
+  font-family: $font-family-data;
 }
 .arl_admin_markup_types_heading {
   text-align: center;
