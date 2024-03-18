@@ -19,13 +19,13 @@ class FormWelcomeMarkupMetadata
       navbar: 1,
       partial: 'markup_example_plain_text',
       markup_examples: proc { ArlocalMarkupExamples::examples },
-      parser: proc { MarkupParser.find_by_symbol(:simple_format) }
+      parser: proc { MarkupParser.find_by_symbol(:plaintext) }
     },
     'single line': {
       navbar: 1,
       partial: 'markup_example_single_line',
       markup_examples: proc { ArlocalMarkupExamples::examples },
-      parser: proc { MarkupParser.find_by_symbol(:none) }
+      parser: proc { MarkupParser.find_by_symbol(:string) }
     },
   }
 
