@@ -14,9 +14,9 @@ migrations:
 
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
-
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - `resource_admin_title_link` vs `resource_reference_admin_link`
+  - _Grid layout fixes many of the other welcome content pages._
 
   - Keyword Admin:
     - #edit?videos missing buttons
@@ -111,9 +111,6 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 - Audio index
 
-- about_arlocal
-  - formatting for markup types, esp. for narrow width
-
 **Continue to be mindful about including `autocomplete: false` in form elements.**
 
 
@@ -123,7 +120,9 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
   - **Might need a rewrite with a `param` and `<select>`**
   - panes: summary, simpleformat, markdown, none
-  - _Grid layout fixes many of the other welcome content pages._
+  - about_arlocal
+    - formatting for markup types, esp. for narrow width
+
 
 - give a title to nested_picture uploads/imports
 
@@ -158,50 +157,3 @@ Video index needs headings
 
 
 ## Probably finished
-
-finish admin renovation:
-  - TEST EVERY ACTION. LOTS OF CODE GOT RENAMED.
-    - live trials suggest this is complete.
-  - `admin/#{resource}/edit` category panes have crazy border
-  - admin pages: html subtitle could benefit from including resource class ("editing album @album.title")
-
-
-- admin display review
-  - refactor index_joined_resource view templates
-    fallout: keyword_statement_items_count methods might be unused now
-    (replaced by resource_statement_items_count)
-    - looks like it from Album and Picture helpers
-    - in `_form_[resource]`
-
-_Looks related to migrations; keep as a reminder_
-Renaming source_imported etc resulted in a naming collision
-  - resource_model: audio.source_imported_file_path for relative to public/portfolio
-  - source_imported_helper: source_imported_file_path(audio) for absolute path to look for file
-because Audio.file_exists? is dependent on both the source type and the config.x.arlocal configuration setting for public/portfolio
-
-jplayer_playlist
-  - uploaded attachment gives null filename
-
-- Keyword Admin:
-  - #edit margins too big? _(narrow viewport)_ `.arm_forms` needed a width declaration
-  - #show missing _narrow viewport_ directive
-
-- pictures without titles show empty quotes in html title tag
-
-look into other ways to generate/metaprogram the javascript for jplayer
-_No, wait to see if a switch to videojs ensures future operability before working on jplayer scripts_
-
-- drop column article#text_markup, #markup_parser
- (was replaced by #content_*)
-
-Why don't video coverpictures show in the index?
-
-migration:   - video rename_column source_catalog_file_path source_imported_file_path
-
-- *Links#index* doesn't see joined infopages
-- *Links#show* needs standardization.
-
-- More useful 'index' action for resources **almost done**
-  - **Remove `_index` and `_show` partials when done.**
-
-- drop table info_page_links
