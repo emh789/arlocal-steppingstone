@@ -3,6 +3,10 @@
 
 ## HIGHEST priority
 
+- Keyword Admin:
+  - #edit?videos missing buttons
+    - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+
 migrations:
   - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
@@ -14,14 +18,24 @@ migrations:
 
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
-  - *Review helper methods for currency in light of recent refactoring frenzy.*
-    - `resource_admin_title_link` vs `resource_reference_admin_link`
-  - _Grid layout fixes many of the other welcome content pages._
 
-  - Keyword Admin:
-    - #edit?videos missing buttons
-      - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-    - joined pictures lack 'remove' box
+  - *Review helper methods for currency in light of recent refactoring frenzy.*
+    - Administrators OK
+    - Albums OK
+
+  - `[resource]_admin_title_link` vs `[resource]_reference_admin_link`
+    - title vs functional slug/datetime
+    - *call it what it does*
+      - why `gsub('/','/&shy;')` in album_*_title?
+        **Soft hyphen after a forward slash**
+        *For what resource was this designed (and afterwards copypasta-ed)*
+    - Why the triage method in resources_helper #resource_reference_admin_link?
+      - to manage differing _reference_ attributes across shared partials?
+      - was this approach ever implemented, or was it a demo method?
+    - **should get renamed in a way similar to each other**
+      - `Album` is model.
+      - Administrators N/A
+      - Album no longer needs _slug (was _reference)
 
 
 ## HIGH priority
@@ -126,8 +140,6 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 - give a title to nested_picture uploads/imports
 
-- check attribute callbacks, add if_changed clause
-
 - admin/pictures#index needs visibility indicator
 
 - eventshelper:158 why assign js empty?
@@ -157,3 +169,7 @@ Video index needs headings
 
 
 ## Probably finished
+
+- check attribute callbacks, add if_changed clause
+
+- admin:keyword#edit joined pictures lack 'remove' box

@@ -3,6 +3,8 @@
 
 ## Possibly finished
 
+- _Grid layout fixes many of the other admin:welcome content pages._
+
 Album.duration(round_to_seconds) should have new option variable instead of boolean. And should be properly written.
 **Not sure what the problem was here, or if anything short of a `Duration` object would be a *proper* fix.**
 album.duration(rounded_to: :seconds) is better syntax/semantics
