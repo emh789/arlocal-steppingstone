@@ -17,7 +17,7 @@
         %tbody
           = f.fields_for :infopage_links, infopage.infopage_links_sorted do |il|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= link_reference_admin_link(il.object.infopageable)
+              %td.arl_form_data_joins_value= link_admin_link_name(il.object.infopageable)
               %td.arl_form_data_joins_value= il.select :infopage_group, @form_metadata.selectables.item_groups, { selected: il.object.infopage_group }, { class: :arl_form_data_attr_input_select }
               %td.arl_form_data_joins_value= il.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field
               %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: il

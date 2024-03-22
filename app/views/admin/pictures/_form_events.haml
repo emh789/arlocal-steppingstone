@@ -12,7 +12,7 @@
         %tbody
           = f.fields_for :event_pictures, picture.event_pictures_sorted do |ep|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= event_reference_admin_link(ep.object.event)
+              %td.arl_form_data_joins_value= event_admin_link_date_and_venue(ep.object.event)
               %td.arl_form_data_joins_value= ep.check_box :_destroy
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

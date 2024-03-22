@@ -24,7 +24,7 @@
           = f.fields_for :infopage_items, infopage.infopage_items_sorted do |i|
             %tr.arl_form_data_joins_values
               %td.arl_form_data_joins_value= i.object.type_of
-              %td.arl_form_data_joins_value= infopageable_reference_admin_link(i.object)
+              %td.arl_form_data_joins_value= infopageable_admin_link_titleish(i.object)
               %td.arl_form_data_joins_value= i.select :infopage_group, @form_metadata.selectables.item_groups, { selected: i.object.infopage_group }, class: :arl_form_data_attr_input_select
               %td.arl_form_data_joins_value= i.text_field :infopage_group_order, size: 4, class: :arl_form_data_attr_input_text_field
               %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: i

@@ -6,6 +6,6 @@
       - resource.joined_events.each do |joined_event|
         %tr
           %td.arl_metadata_table_value
-            = event_reference_admin_link(joined_event.event)
+            = event_admin_link_date_and_venue(joined_event.event)
           %td.arl_metadata_table_value
             = visibility_description(joined_event.event.visibility)

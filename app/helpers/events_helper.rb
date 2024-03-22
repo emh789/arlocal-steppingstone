@@ -65,11 +65,6 @@ module EventsHelper
   end
 
 
-  def event_admin_datetime_link(event)
-    link_to event.datetime_friendly, admin_event_path(event.id_admin)
-  end
-
-
   def event_admin_header_nav_buttons
     [ event_admin_button_to_index,
       event_admin_button_to_new
@@ -83,6 +78,16 @@ module EventsHelper
       target_link: edit_admin_event_path(event.id_admin, pane: category),
       target_pane: category
     )
+  end
+
+
+  def event_admin_link_date_and_venue(event)
+    link_to event.date_and_venue, admin_event_path(event.id_admin)
+  end
+
+
+  def event_admin_link_datetime(event)
+    link_to event.datetime_friendly, admin_event_path(event.id_admin)
   end
 
 
@@ -178,11 +183,6 @@ module EventsHelper
       { include_blank: false, selected: selected },
       { class: [:arl_active_refine_selection, :arl_button_select, :arl_events_index_filter] }
     )
-  end
-
-
-  def event_reference_admin_link(event)
-    link_to event.date_and_venue, admin_event_path(event.id_admin)
   end
 
 

@@ -12,7 +12,7 @@
     - @albums.each do |album|
       .arl_admin_albums_index_album
         .arl_admin_albums_index_album_title
-          = album_admin_title_link(album)
+          = album_admin_link_title(album)
         .arl_admin_albums_index_album_image
           = resource_coverpicture_tag(album, html_class: :arl_admin_albums_index_album_image_thumbnail)
         .arl_admin_albums_index_album_artist

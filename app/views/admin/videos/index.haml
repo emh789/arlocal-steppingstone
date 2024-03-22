@@ -13,7 +13,7 @@
         .arl_admin_videos_index_video_coverpicture
           = resource_coverpicture_tag(video, html_class: :arl_admin_videos_index_video_coverpicture_thumbnail)
         .arl_admin_videos_index_video_title
-          = video_reference_admin_link(video)
+          = video_admin_link_title(video)
         .arl_admin_videos_index_video_resources
           %dl.arl_admin_joined_resources
             = render 'admin/shared/index_joined_keywords', resource: video

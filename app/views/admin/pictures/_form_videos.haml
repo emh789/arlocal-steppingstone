@@ -12,7 +12,7 @@
         %tbody
           = f.fields_for :video_pictures, picture.video_pictures_sorted do |vp|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= video_reference_admin_link(vp.object.video)
+              %td.arl_form_data_joins_value= video_admin_link_title(vp.object.video)
               %td.arl_form_data_joins_value= vp.check_box :_destroy, class: :arl_form_data_joins_value_destroy
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

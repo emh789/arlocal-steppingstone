@@ -67,12 +67,7 @@ module ArticlesHelper
   end
 
 
-  def article_admin_title_link(article)
-    link_to (article.title).gsub('/','/&shy;').html_safe, admin_article_path(article.id_admin)
-  end
-
-
-  def article_reference_admin_link(article)
+  def article_admin_link_title(article)
     link_to(article.title, admin_article_path(article.id_admin))
   end
 

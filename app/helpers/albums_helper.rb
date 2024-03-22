@@ -81,7 +81,13 @@ module AlbumsHelper
   end
 
 
-  def album_admin_title_link(album)
+  ### TODO: no longer used.
+  # def album_admin_link_slug(album)
+  #   link_to album.slug, admin_album_path(album.id_admin)
+  # end
+
+
+  def album_admin_link_title(album)
     link_to (album.title).gsub('/','/&shy;').html_safe, admin_album_path(album.id_admin)
   end
 
@@ -128,11 +134,6 @@ module AlbumsHelper
 
   def album_picture_admin_button_to_new_upload(album)
     button_admin_to_new_upload edit_admin_album_path(album.id_admin, pane: :picture_upload)
-  end
-
-
-  def album_reference_admin_link(album)
-    link_to album.slug, admin_album_path(album.id_admin)
   end
 
 

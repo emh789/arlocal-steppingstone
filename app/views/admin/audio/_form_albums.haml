@@ -16,7 +16,7 @@
         %tbody
           = f.fields_for :album_audio, audio.album_audio_sorted do |aa|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= album_reference_admin_link(aa.object.album)
+              %td.arl_form_data_joins_value= album_admin_link_title(aa.object.album)
               %td.arl_form_data_joins_value= aa.text_field :album_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field_inline
               %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: aa
     .arl_form_actions

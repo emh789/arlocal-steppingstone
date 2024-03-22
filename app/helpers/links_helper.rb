@@ -70,7 +70,7 @@ module LinksHelper
   end
 
 
-  def link_admin_name_link(link)
+  def link_admin_link_name(link)
     link_to link.name, admin_link_path(link.id_admin)
   end
 
@@ -122,13 +122,6 @@ module LinksHelper
     result = tag.div(result_heading + result_description)
     result
   end
-
-
-
-  def link_reference_admin_link(link)
-    link_to(link.title, admin_link_path(link.id_admin))
-  end
-
 
 
   def link_to_admin_about_arlocal_markup_types(text)

@@ -15,7 +15,7 @@
         %tbody
           = f.fields_for :album_keywords, keyword.album_keywords_sorted do |ak|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= album_reference_admin_link(ak.object.album)
+              %td.arl_form_data_joins_value= album_admin_link_title(ak.object.album)
               %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: ak
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

@@ -67,7 +67,7 @@ module StreamsHelper
   end
 
 
-  def stream_admin_title_link(stream)
+  def stream_admin_link_title(stream)
     link_to(stream.title, admin_stream_path(stream.id_admin))
   end
 

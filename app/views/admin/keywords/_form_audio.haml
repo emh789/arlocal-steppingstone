@@ -17,7 +17,7 @@
         %tbody
           = f.fields_for :audio_keywords, keyword.audio_keywords_sorted do |ak|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= audio_reference_admin_link(ak.object.audio)
+              %td.arl_form_data_joins_value= audio_admin_link_title(ak.object.audio)
               %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: ak
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

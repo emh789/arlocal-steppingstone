@@ -107,9 +107,19 @@ module AudioHelper
   end
 
 
-  def audio_admin_title_link(audio)
-    link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin)
+  def audio_admin_link_title(audio)
+    link_to(audio.full_title, admin_audio_path(audio.id_admin))
   end
+
+
+  ### TODO: no longer used
+  # def audio_admin_link_title_with_indicator(audio, html_class: [])
+  #   html_class = [html_class].flatten
+  #   if audio.indexed == false
+  #     html_class << :arl_error_not_indexed
+  #   end
+  #   link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin), class: html_class
+  # end
 
 
   def audio_album_admin_button_to_new_join_single(audio)
@@ -185,24 +195,10 @@ module AudioHelper
   end
 
 
-  def audio_reference_admin_link(audio)
-    link_to(audio.full_title, admin_audio_path(audio.id_admin))
-  end
-
-
   def audio_script_jPlayer_single(audio)
     audio_json = js_fragment_jp_audio_unordered(audio)
     js = js_function_jp_single_onready(audio_json)
     app_script_element_for(js)
-  end
-
-
-  def audio_title_link_with_indicator(audio, html_class: [])
-    html_class = [html_class].flatten
-    if audio.indexed == false
-      html_class << :arl_error_not_indexed
-    end
-    link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin), class: html_class
   end
 
 

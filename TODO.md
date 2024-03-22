@@ -6,6 +6,7 @@
 - Keyword Admin:
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+  - admin#show &c:  text_props fields have extra margin
 
 migrations:
   - {}_parser_id => {}_parser_type
@@ -20,23 +21,26 @@ finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
-    - Administrators OK
-    - Albums OK
+    - administrators ok
+    - albums ok
+    - articles ok
+    - audio_file_source_path etc. is still chaotic
+    - events ok
+    - infopages ok
+    - links ok
+    - pictures could use a closer look
+    - streams ok
+    - videos ok
 
-  - `[resource]_admin_title_link` vs `[resource]_reference_admin_link`
-    - title vs functional slug/datetime
-    - *call it what it does*
+    - `[resource]_admin_link_title`
       - why `gsub('/','/&shy;')` in album_*_title?
         **Soft hyphen after a forward slash**
         *For what resource was this designed (and afterwards copypasta-ed)*
+          - Filepaths?
     - Why the triage method in resources_helper #resource_reference_admin_link?
       - to manage differing _reference_ attributes across shared partials?
+        - i think so. title vs slug vs date_and_venue vs destination_name
       - was this approach ever implemented, or was it a demo method?
-    - **should get renamed in a way similar to each other**
-      - `Album` is model.
-      - Administrators N/A
-      - Album no longer needs _slug (was _reference)
-
 
 ## HIGH priority
 
@@ -173,3 +177,20 @@ Video index needs headings
 - check attribute callbacks, add if_changed clause
 
 - admin:keyword#edit joined pictures lack 'remove' box
+
+- `[resource]_admin_title_link` vs `[resource]_reference_admin_link`
+  - **should get renamed in a way similar to each other**
+    - `Album` is model.
+    - administrators N/A
+    - album ok, no longer needs _slug (was _reference)
+    - articles ok
+    - audio ok
+    - events ok
+    - infopages ok
+    - links ok
+    - pictures ok
+    - streams ok
+    - videos ok
+  - `[resource]_admin_title_link` vs `[resource]_reference_admin_link`
+    - title vs functional slug/datetime
+    - *call it what it does*

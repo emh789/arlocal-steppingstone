@@ -109,7 +109,7 @@ module PicturesHelper
   end
 
 
-  def picture_admin_title_link(picture)
+  def picture_admin_link_title(picture)
     link_to parser_div(picture.title_props), admin_picture_path(picture.id_admin)
   end
 
@@ -188,19 +188,15 @@ module PicturesHelper
   end
 
 
-  def picture_reference_admin_link(picture)
-    link_to(picture.title, admin_picture_path(picture.id_admin))
-  end
-
-
   def picture_thumbnail_link(picture, html_class: :arl_picture_thumbnail)
     link_to(picture_preferred_tag(picture, html_class: html_class), public_picture_path(picture.id_public))
   end
 
 
-  def picture_title_link(picture, path, html_class: nil)
-    link_to parser_div(picture.title_props), path, class: html_class
-  end
+  ## TODO: not used
+  # def picture_title_link(picture, path, html_class: nil)
+  #   link_to parser_div(picture.title_props), path, class: html_class
+  # end
 
 
   def picture_video_admin_button_to_new_join_single(picture)

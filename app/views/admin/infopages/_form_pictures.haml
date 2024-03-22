@@ -22,7 +22,7 @@
           = f.fields_for :infopage_pictures, infopage.infopage_pictures_sorted do |ip|
             %tr.arl_form_data_joins_values
               %td.arl_form_data_joins_value= picture_preferred_tag(ip.object.picture, html_class: :arl_form_data_joins_picture_thumbnail_image)
-              %td.arl_form_data_joins_value= picture_reference_admin_link(ip.object.infopageable)
+              %td.arl_form_data_joins_value= picture_admin_link_title(ip.object.infopageable)
               %td.arl_form_data_joins_value= ip.select :infopage_group, @form_metadata.selectables.item_groups, { selected: ip.object.infopage_group }, { class: :arl_form_data_attr_input_select }
               %td.arl_form_data_joins_value= ip.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_text_field
               %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ip

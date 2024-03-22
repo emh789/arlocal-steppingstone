@@ -81,6 +81,11 @@ module InfopagesHelper
   end
 
 
+  def infopage_admin_link_title(infopage)
+    link_to infopage.title, admin_infopage_path(infopage.id_admin)
+  end
+
+
   def infopage_article_admin_button_to_new_join_single(infopage)
     button_admin_to_new_join_single edit_admin_infopage_path(infopage.id_admin, pane: :article_join_single)
   end
@@ -112,19 +117,14 @@ module InfopagesHelper
   end
 
 
-  def infopage_reference_admin_link(infopage)
-    link_to infopage.title, admin_infopage_path(infopage.id_admin)
-  end
-
-
-  def infopageable_reference_admin_link(infopage_item)
+  def infopageable_admin_link_titleish(infopage_item)
     case infopage_item.type_of
     when 'Article'
-      article_reference_admin_link(infopage_item.infopageable)
+      article_admin_link_title(infopage_item.infopageable)
     when 'Link'
-      link_reference_admin_link(infopage_item.infopageable)
+      link_admin_link_name(infopage_item.infopageable)
     when 'Picture'
-      picture_reference_admin_link(infopage_item.infopageable)
+      picture_admin_link_title(infopage_item.infopageable)
     end
   end
 

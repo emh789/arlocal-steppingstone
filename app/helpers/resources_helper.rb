@@ -149,9 +149,9 @@ module ResourcesHelper
   def resource_reference_admin_link(resource)
     case resource
     when Audio
-      audio_reference_admin_link(resource)
+      audio_admin_link_title(resource)
     when Video
-      video_reference_admin_link(resource)
+      video_admin_link_title(resource)
     end
   end
 

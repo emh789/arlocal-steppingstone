@@ -81,6 +81,11 @@ module VideosHelper
   end
 
 
+  def video_admin_link_title(video)
+    link_to video.full_title, admin_video_path(video.id_admin)
+  end
+
+
   def video_event_admin_button_to_new_join_single(video)
     button_admin_to_new_join_single edit_admin_video_path(video.id_admin, pane: :event_join_single)
   end
@@ -113,11 +118,6 @@ module VideosHelper
     when 'imported'
       source_imported_url(video)
     end
-  end
-
-
-  def video_reference_admin_link(video)
-    link_to video.full_title, admin_video_path(video.id_admin)
   end
 
 

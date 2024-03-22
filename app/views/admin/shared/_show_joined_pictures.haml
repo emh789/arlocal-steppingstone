@@ -8,7 +8,7 @@
           %td.arl_metadata_table_value_right
             = "#{joined_picture.order}." if joined_picture.does_have_order
           %td.arl_metadata_table_value
-            = picture_reference_admin_link(joined_picture.picture)
+            = picture_admin_link_title(joined_picture.picture)
           %td.arl_metadata_table_value_right
             = "cover" if joined_picture.is_coverpicture
           %td.arl_metadata_table_value

@@ -12,7 +12,7 @@
         %tbody
           = f.fields_for :album_pictures, picture.album_pictures_sorted do |ap|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= album_reference_admin_link(ap.object.album)
+              %td.arl_form_data_joins_value= album_admin_link_title(ap.object.album)
               %td.arl_form_data_joins_value= ap.check_box :_destroy, class: :arl_form_data_joins_value_destroy
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

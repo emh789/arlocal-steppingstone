@@ -6,6 +6,6 @@
       - resource.joined_albums.each do |joined_album|
         %tr
           %td.arl_metadata_table_value
-            = album_reference_admin_link(joined_album.album)
+            = album_admin_link_title(joined_album.album)
           %td.arl_metadata_table_value
             = visibility_description(joined_album.album.visibility)

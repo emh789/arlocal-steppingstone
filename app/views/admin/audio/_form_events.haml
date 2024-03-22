@@ -16,7 +16,7 @@
         %tbody
           = f.fields_for :event_audio, audio.event_audio_sorted do |ea|
             %tr.arl_form_data_hoins_values
-              %td.arl_form_data_joins_value= event_reference_admin_link(ea.object.event)
+              %td.arl_form_data_joins_value= event_admin_link_date_and_venue(ea.object.event)
               %td.arl_form_data_joins_value= ea.text_field :event_order, size: 4, class: :arl_form_data_attr_input_number_field
               %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ea
     .arl_form_actions

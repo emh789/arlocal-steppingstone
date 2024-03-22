@@ -19,7 +19,7 @@
         %tbody
           = f.fields_for :event_videos, event.event_videos_sorted do |ev|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= ev.label :video_title, video_reference_admin_link(ev.object.video)
+              %td.arl_form_data_joins_value= ev.label :video_title, video_admin_link_title(ev.object.video)
               %td.arl_form_data_joins_value= ev.text_field :event_order, autocomplete: :off, size: 4, class: :arl_form_data_attr_input_number_field
               %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ev
     .arl_form_actions
