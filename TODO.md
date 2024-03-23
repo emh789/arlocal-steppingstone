@@ -18,7 +18,7 @@ finish admin renovation
   - add commented attribute names in arlocal_settings
 
   - `admin/isrc/edit` narrow view buttons overflow right
-  - ISRC sort_order selection on isrc#index
+  - ISRC sort_order selection on isrc#index and #show
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok

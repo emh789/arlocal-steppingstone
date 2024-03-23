@@ -1,4 +1,7 @@
 .arl_admin_isrc_index {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   padding: $arl-spacing;
 }
 .arl_admin_isrc_index_isrcs {
@@ -12,4 +15,7 @@
 }
 .arl_admin_isrc_index_isrcs_item_isrc {
   padding: $arl-margin-narrow;
+}
+.arl_admin_isrc_index_filter {
+  margin: $arl-spacing 0rem;
 }

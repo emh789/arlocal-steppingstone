@@ -51,12 +51,15 @@ class SorterIndexAdminIsrc
   end
 
 
-
   public
 
 
   def url
     case @symbol
+    when :class_title_asc
+      admin_isrc_index_path({filter: 'class_title_asc'})
+    when :class_title_desc
+      admin_isrc_index_path({filter: 'class_title_desc'})
     when :isrc_asc
       admin_isrc_index_path({filter: 'isrc_asc'})
     when :isrc_desc
