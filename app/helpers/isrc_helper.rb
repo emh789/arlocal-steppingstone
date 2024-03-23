@@ -1,13 +1,21 @@
 module IsrcHelper
 
 
-  def isrc_admin_button_to_edit
-    button_admin_to_edit admin_isrc_edit_path
+  def isrc_admin_button_to_edit(filter: nil)
+    if filter
+      button_admin_to_edit admin_isrc_edit_path({filter: filter})
+    else
+      button_admin_to_edit admin_isrc_edit_path
+    end
   end
 
 
-  def isrc_admin_button_to_done_editing
-    button_admin_to_done_editing admin_isrc_index_path
+  def isrc_admin_button_to_done_editing(filter: nil)
+    if filter
+      button_admin_to_done_editing admin_isrc_index_path({filter: filter})
+    else
+      button_admin_to_done_editing admin_isrc_index_path
+    end
   end
 
 

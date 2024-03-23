@@ -10,15 +10,15 @@
 migrations:
   - {}_parser_id => {}_parser_type
     - MarkupParser makes more sense with simplified symbols than with numeric id
-      - markdown
-      - plain text
-      - single line
+      - markdown      - `markdown`
+      - plain text    - `plaintext`
+      - single line   - `string`
 
 finish admin renovation
   - add commented attribute names in arlocal_settings
 
   - `admin/isrc/edit` narrow view buttons overflow right
-  - ISRC sort_order selection on isrc#index and #show
+  - ISRC form doesn't update; 'unpermitted attribute: id'
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
@@ -211,3 +211,4 @@ Video index needs headings
   - link
     - add_column :visibility, 'unlisted'
   - why called `admin_review_isrc_sorter_id` and not `admin_index_isrc_sorter_id`
+  - ISRC sort_order selection on isrc#index and #show

@@ -2,15 +2,11 @@ class Admin::IsrcController < AdminController
 
 
   def edit
-    # @resources = (Audio.all.map { |a| a }) + (Video.all.map { |v| v })
-    # @resources.sort_by!{ |a| a.isrc }
     @resources = QueryIsrc.all(@arlocal_settings, params)
   end
 
 
   def index
-    # @resources = (Audio.all.map { |a| a }) + (Video.all.map { |v| v })
-    # @resources.sort_by!{ |a| a.isrc }
     @resources = QueryIsrc.all(@arlocal_settings, params)
   end
 
@@ -31,10 +27,9 @@ class Admin::IsrcController < AdminController
       flash[:notice] = 'Audio was successfully updated.'
       redirect_to admin_isrc_review_path
     else
-      @resources = (Audio.all.map { |a| a }) + (Video.all.map { |v| v })
-      @resources.sort_by!{ |a| a.isrc }
+      @resources = QueryIsrc.all(@arlocal_settings, params)
       flash[:notice] = 'Audio could not be updated.'
-      render 'review'
+      render 'edit'
     end
   end
 
@@ -45,10 +40,9 @@ class Admin::IsrcController < AdminController
       flash[:notice] = 'Video was successfully updated.'
       redirect_to admin_isrc_review_path
     else
-      @resources = (Audio.all.map { |a| a }) + (Video.all.map { |v| v })
-      @resources.sort_by!{ |a| a.isrc }
+      @resources = QueryIsrc.all(@arlocal_settings, params)
       flash[:notice] = 'Video could not be updated.'
-      render 'review'
+      render 'edit'
     end
   end
 
@@ -70,6 +64,7 @@ class Admin::IsrcController < AdminController
 
   def params_video_permitted
     params.require(:video).permit(
+      :id,
       :isrc_country_code,
       :isrc_designation_code,
       :isrc_registrant_code,

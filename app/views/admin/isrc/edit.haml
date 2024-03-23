@@ -6,13 +6,18 @@
   .arl_admin_resource_header_title
     Edit ISRC data
   .arl_admin_resource_header_buttons
-    = isrc_admin_button_to_done_editing
+    = isrc_admin_button_to_done_editing(filter: params[:filter])
 
-.arl_admin_isrc_bulk
+.arl_admin_isrc_edit
+  .arl_admin_isrc_edit_filter
+    = form_with model: @arlocal_settings, url: admin_arlocal_settings_update_and_return_path, local: true do |f|
+      = isrc_admin_filter_select(f, params)
+      = f.submit icon_pin, class: :arl_button_form_aux_submit
+
   %table.arl_form_bulk
     - @resources.each do |resource|
       %tr.arl_form_bulk_item_data
-        = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource, type: resource.class), class: :arl_form_bulk_item do |f|
+        = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource, type: resource.class, filter: params[:filter]), class: :arl_form_bulk_item do |f|
           = f.hidden_field :id
           %td.arl_form_bulk_item_data_attr= f.object.class
           %td.arl_form_bulk_item_data_attr= resource_isrcable_admin_link(f.object)
