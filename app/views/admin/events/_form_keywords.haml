@@ -15,7 +15,7 @@
         %tbody
           = f.fields_for :event_keywords, event.event_keywords_sorted do |ek|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= ek.label :keyword_title, keyword_reference_admin_link(ek.object.keyword)
+              %td.arl_form_data_joins_value= ek.label :keyword_title, keyword_admin_link_title(ek.object.keyword)
               %td.arl_form_data_joins_destroy= render 'form_elements/destroy_box', form: ek
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

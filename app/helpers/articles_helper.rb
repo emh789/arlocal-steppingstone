@@ -68,7 +68,7 @@ module ArticlesHelper
 
 
   def article_admin_link_title(article)
-    link_to(article.title, admin_article_path(article.id_admin))
+    link_to article.title, admin_article_path(article.id_admin)
   end
 
 

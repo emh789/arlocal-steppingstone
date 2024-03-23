@@ -88,7 +88,7 @@ module AlbumsHelper
 
 
   def album_admin_link_title(album)
-    link_to (album.title).gsub('/','/&shy;').html_safe, admin_album_path(album.id_admin)
+    link_to album.title, admin_album_path(album.id_admin)
   end
 
 

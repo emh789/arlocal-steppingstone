@@ -67,6 +67,11 @@ module KeywordsHelper
   end
 
 
+  def keyword_admin_link_title(keyword)
+    link_to keyword.title, admin_keyword_path(keyword.id_admin)
+  end
+
+
   def keyword_album_admin_button_to_new_join_single(keyword)
     button_admin_to_new_join_single edit_admin_keyword_path(keyword.id_admin, pane: :album_join_single)
   end
@@ -109,11 +114,6 @@ module KeywordsHelper
 
   def keyword_video_admin_button_to_new_join_single(keyword)
     button_admin_to_new_join_single edit_admin_keyword_path(keyword.id_admin, pane: :video_join_single)
-  end
-
-
-  def keyword_reference_admin_link(keyword)
-    link_to(keyword.title, admin_keyword_path(keyword.id_admin))
   end
 
 

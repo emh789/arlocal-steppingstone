@@ -6,7 +6,7 @@
 - Keyword Admin:
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-  - admin#show &c:  text_props fields have extra margin
+  - !!! admin#show &c:  text_props fields have extra margin
 
 migrations:
   - {}_parser_id => {}_parser_type
@@ -30,14 +30,9 @@ finish admin renovation
     - infopages ok
     - links ok
     - pictures could use a closer look
+    - resources ok
     - streams ok
     - videos ok
-
-    - `[resource]_admin_link_title`
-      - why `gsub('/','/&shy;')` in album_*_title?
-        **Soft hyphen after a forward slash**
-        *For what resource was this designed (and afterwards copypasta-ed)*
-          - Filepaths?
 
 
 ## HIGH priority
@@ -132,6 +127,15 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 
 ## Possibly finished
+
+- `[resource]_admin_link_title`
+  - why `gsub('/','/&shy;')` in album_*_title?
+    **Soft hyphen after a forward slash**
+    *For what resource was this designed (and afterwards copypasta-ed)*
+      - Filepaths?
+  - Removing it to see what happens.
+  - Replace if needed.
+
 
 - `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
   - **Might need a rewrite with a `param` and `<select>`**

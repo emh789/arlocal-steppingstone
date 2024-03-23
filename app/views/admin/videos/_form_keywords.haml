@@ -12,7 +12,7 @@
         %tbody
           = f.fields_for :video_keywords do |vk|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= keyword_reference_admin_link(vk.object.keyword)
+              %td.arl_form_data_joins_value= keyword_admin_link_title(vk.object.keyword)
               %td.arl_form_data_joins_value= vk.check_box :_destroy
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

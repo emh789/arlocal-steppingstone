@@ -12,7 +12,7 @@
         %tbody
           = f.fields_for :picture_keywords, picture.picture_keywords_sorted do |pk|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= keyword_reference_admin_link(pk.object.keyword)
+              %td.arl_form_data_joins_value= keyword_admin_link_title(pk.object.keyword)
               %td.arl_form_data_joins_value= pk.check_box :_destroy
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
