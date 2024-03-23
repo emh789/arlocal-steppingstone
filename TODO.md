@@ -19,6 +19,7 @@ migrations:
 
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
+  - ISRC sort_order
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
@@ -37,10 +38,7 @@ finish admin renovation
         **Soft hyphen after a forward slash**
         *For what resource was this designed (and afterwards copypasta-ed)*
           - Filepaths?
-    - Why the triage method in resources_helper #resource_reference_admin_link?
-      - to manage differing _reference_ attributes across shared partials?
-        - i think so. title vs slug vs date_and_venue vs destination_name
-      - was this approach ever implemented, or was it a demo method?
+
 
 ## HIGH priority
 
@@ -194,3 +192,10 @@ Video index needs headings
   - `[resource]_admin_title_link` vs `[resource]_reference_admin_link`
     - title vs functional slug/datetime
     - *call it what it does*
+
+    - Why the triage method in resources_helper #resource_reference_admin_link?
+      - to manage differing _reference_ attributes across shared partials?
+        - i think so. title vs slug vs date_and_venue vs destination_name
+        - ISRC.
+        - Keep the method but rename it more clearly.
+      - was this approach ever implemented YES.

@@ -15,7 +15,7 @@
         = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource, type: resource.class), class: :arl_form_bulk_item do |f|
           = f.hidden_field :id
           %td.arl_form_bulk_item_data_attr= f.object.class
-          %td.arl_form_bulk_item_data_attr= resource_reference_admin_link(f.object)
+          %td.arl_form_bulk_item_data_attr= resource_isrcable_admin_link(f.object)
           %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_country_code, autocomplete: :off, size: 2, class: :arl_form_bulk_item_data_text_field
           %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_registrant_code, autocomplete: :off, size: 3, class: :arl_form_bulk_item_data_text_field
           %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_year_of_reference, autocomplete: :off, size: 2, class: :arl_form_bulk_item_data_text_field

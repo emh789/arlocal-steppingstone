@@ -146,7 +146,7 @@ module ResourcesHelper
   end
 
 
-  def resource_reference_admin_link(resource)
+  def resource_isrcable_admin_link(resource)
     case resource
     when Audio
       audio_admin_link_title(resource)
