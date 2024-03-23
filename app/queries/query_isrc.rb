@@ -5,7 +5,7 @@ class QueryIsrc
 
 
   def self.all(arlocal_settings, params)
-    new(arlocal_settings: arlocal_settings, params: params).review_admin
+    new(arlocal_settings: arlocal_settings, params: params).index_admin
   end
 
 
@@ -21,6 +21,26 @@ class QueryIsrc
 
   def all
     all_isrcable
+  end
+
+
+  def index_admin
+    case determine_filter_method_admin
+    when 'class_title_asc'
+      order_by_class_title_asc
+    when 'class_title_desc'
+      order_by_class_title_desc
+    when 'isrc_asc'
+      order_by_isrc_asc
+    when 'isrc_desc'
+      order_by_isrc_desc
+    when 'title_asc'
+      order_by_title_asc
+    when 'title_desc'
+      order_by_title_desc
+    else
+      all
+    end
   end
 
 
@@ -54,26 +74,6 @@ class QueryIsrc
   end
 
 
-  def review_admin
-    case determine_filter_method_admin
-    when 'class_title_asc'
-      order_by_class_title_asc
-    when 'class_title_desc'
-      order_by_class_title_desc
-    when 'isrc_asc'
-      order_by_isrc_asc
-    when 'isrc_desc'
-      order_by_isrc_desc
-    when 'title_asc'
-      order_by_title_asc
-    when 'title_desc'
-      order_by_title_desc
-    else
-      all
-    end
-  end
-
-
   private
 
 
@@ -95,7 +95,7 @@ class QueryIsrc
 
 
   def index_sorter_admin
-    SorterReviewAdminIsrc.find(@arlocal_settings.admin_review_isrc_sorter_id)
+    SorterIndexAdminIsrc.find(@arlocal_settings.admin_index_isrc_sorter_id)
   end
 
 

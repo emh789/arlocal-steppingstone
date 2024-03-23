@@ -1,4 +1,4 @@
-class SorterReviewAdminIsrc
+class SorterIndexAdminIsrc
 
 
   extend InactiveRecordSingleton
@@ -58,15 +58,15 @@ class SorterReviewAdminIsrc
   def url
     case @symbol
     when :isrc_asc
-      admin_isrc_review_path({filter: 'isrc_asc'})
+      admin_isrc_index_path({filter: 'isrc_asc'})
     when :isrc_desc
-      admin_isrc_review_path({filter: 'isrc_desc'})
+      admin_isrc_index_path({filter: 'isrc_desc'})
     when :title_asc
-      admin_isrc_review_path({filter: 'title_asc'})
+      admin_isrc_index_path({filter: 'title_asc'})
     when :title_desc
-      admin_isrc_review_path({filter: 'title_desc'})
+      admin_isrc_index_path({filter: 'title_desc'})
     else
-      public_videos_path
+      admin_isrc_index_path
     end
   end
 

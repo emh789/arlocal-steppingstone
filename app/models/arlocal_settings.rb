@@ -47,10 +47,10 @@ class ArlocalSettings < ApplicationRecord
   ### admin_index_audio_sorter_id
 
 
+  ### admin_index_isrc_sorter_id
+
+
   ### admin_index_pictures_sorter_id
-
-
-  ### admin_review_isrc_sorter_id
 
 
   ### artist_content_copyright_year_earliest

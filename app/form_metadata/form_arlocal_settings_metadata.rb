@@ -11,8 +11,8 @@ class FormArlocalSettingsMetadata
       selectable: {
         :@albums_index_sorters => proc { SorterIndexAdminAlbums.options_for_select },
         :@audio_index_sorters => proc { SorterIndexAdminAudio.options_for_select },
+        :@isrc_index_sorters => proc { SorterIndexAdminIsrc.options_for_select },
         :@events_index_sorters => proc { SorterIndexAdminEvents.options_for_select },
-        :@isrc_review_sorters => proc { SorterReviewAdminIsrc.options_for_select },
         :@keywords => proc { QueryKeywords.options_for_select_admin },
         :@pictures_index_sorters => proc { SorterIndexAdminPictures.options_for_select },
         :@videos_index_sorters => proc { SorterIndexAdminVideos.options_for_select },
