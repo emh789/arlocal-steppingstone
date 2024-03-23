@@ -6,7 +6,6 @@
 - Keyword Admin:
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-  - !!! admin#show &c:  text_props fields have extra margin
 
 migrations:
   - {}_parser_id => {}_parser_type
@@ -203,3 +202,7 @@ Video index needs headings
         - ISRC.
         - Keep the method but rename it more clearly.
       - was this approach ever implemented YES.
+
+- !!! admin#show &c:  text_props fields have extra margin
+  - `parsers_helper#parser_div` adds a `.arl_markup_parser_markdown` class wrapper
+  - does `.arl_markup_parser_markdown` class still negate the default margin?
