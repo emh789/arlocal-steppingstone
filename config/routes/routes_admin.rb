@@ -37,22 +37,22 @@ namespace :admin do
 
 
   resources :audio
-  get   'audio_import_menu',          to: 'audio#new_import_menu',              as: 'audio_new_import_menu'
-  get   'audio_import_single',        to: 'audio#new_import_single',            as: 'audio_new_import_single'
-  post  'audio_import_single',        to: 'audio#create_from_import',           as: 'audio_create_from_import'
-  get   'audio_import_to_album',      to: 'audio#new_import_to_album',          as: 'audio_new_import_to_album'
-  post  'audio_import_to_album',      to: 'audio#create_from_import_to_album',  as: 'audio_create_from_import_to_album'
-  get   'audio_import_to_event',      to: 'audio#new_import_to_event',          as: 'audio_new_import_to_event'
-  post  'audio_import_to_event',      to: 'audio#create_from_import_to_event',  as: 'audio_create_from_import_to_event'
-  patch 'audio_refresh_id3/:id',      to: 'audio#refresh_id3',                  as: 'audio_refresh_id3'
-  get   'audio_upload_menu',          to: 'audio#new_upload_menu',              as: 'audio_new_upload_menu'
-  get   'audio_upload_single',        to: 'audio#new_upload_single',            as: 'audio_new_upload_single'
-  post  'audio_upload_single',        to: 'audio#create_from_upload',           as: 'audio_create_from_upload'
-  get   'audio_upload_to_album',      to: 'audio#new_upload_to_album',          as: 'audio_new_upload_to_album'
-  post  'audio_upload_to_album',      to: 'audio#create_from_upload_to_album',  as: 'audio_create_from_upload_to_album'
-  get   'audio_upload_to_event',      to: 'audio#new_upload_to_event',          as: 'audio_new_upload_to_event'
-  post  'audio_upload_to_event',      to: 'audio#create_from_upload_to_event',  as: 'audio_create_from_upload_to_event'
-  patch 'audio/:id/purge_attachment', to: 'audio#purge_source_attachment',      as: 'audio_purge_source_attachment'
+  get   'audio_import_menu',          to: 'audio#new_import_menu',              as: :audio_new_import_menu
+  get   'audio_import_single',        to: 'audio#new_import_single',            as: :audio_new_import_single
+  post  'audio_import_single',        to: 'audio#create_from_import',           as: :audio_create_from_import
+  get   'audio_import_to_album',      to: 'audio#new_import_to_album',          as: :audio_new_import_to_album
+  post  'audio_import_to_album',      to: 'audio#create_from_import_to_album',  as: :audio_create_from_import_to_album
+  get   'audio_import_to_event',      to: 'audio#new_import_to_event',          as: :audio_new_import_to_event
+  post  'audio_import_to_event',      to: 'audio#create_from_import_to_event',  as: :audio_create_from_import_to_event
+  patch 'audio_refresh_id3/:id',      to: 'audio#refresh_id3',                  as: :audio_refresh_id3
+  get   'audio_upload_menu',          to: 'audio#new_upload_menu',              as: :audio_new_upload_menu
+  get   'audio_upload_single',        to: 'audio#new_upload_single',            as: :audio_new_upload_single
+  post  'audio_upload_single',        to: 'audio#create_from_upload',           as: :audio_create_from_upload
+  get   'audio_upload_to_album',      to: 'audio#new_upload_to_album',          as: :audio_new_upload_to_album
+  post  'audio_upload_to_album',      to: 'audio#create_from_upload_to_album',  as: :audio_create_from_upload_to_album
+  get   'audio_upload_to_event',      to: 'audio#new_upload_to_event',          as: :audio_new_upload_to_event
+  post  'audio_upload_to_event',      to: 'audio#create_from_upload_to_event',  as: :audio_create_from_upload_to_event
+  patch 'audio/:id/purge_attachment', to: 'audio#purge_source_attachment',      as: :audio_purge_source_attachment
 
 
 
@@ -97,22 +97,22 @@ namespace :admin do
 
 
   resources :pictures
-  patch     'picture_refresh_exif/:id',     to: 'pictures#refresh_exif',                   as: 'picture_refresh_exif'
-  get       'picture_import_menu',          to: 'pictures#new_import_menu',                as: 'picture_new_import_menu'
-  get       'picture_import_single',        to: 'pictures#new_import_single',              as: 'picture_new_import_single'
-  post      'picture_import_single',        to: 'pictures#create_from_import',             as: 'picture_create_from_import'
-  get       'picture_import_to_album',      to: 'pictures#new_import_to_album',            as: 'picture_new_import_to_album'
-  post      'picture_import_to_album',      to: 'pictures#create_from_import_to_album',    as: 'picture_create_from_import_to_album'
-  get       'picture_import_to_event',      to: 'pictures#new_import_to_event',            as: 'picture_new_import_to_event'
-  post      'picture_import_to_event',      to: 'pictures#create_from_import_to_event',    as: 'picture_create_from_import_to_event'
-  get       'picture_upload_menu',          to: 'pictures#new_upload_menu',                as: 'picture_new_upload_menu'
-  get       'picture_upload_single',        to: 'pictures#new_upload_single',              as: 'picture_new_upload_single'
-  post      'picture_upload_single',        to: 'pictures#create_from_upload',             as: 'picture_create_from_upload'
-  get       'picture_upload_to_album',      to: 'pictures#new_upload_to_album',            as: 'picture_new_upload_to_album'
-  post      'picture_upload_to_album',      to: 'pictures#create_from_upload_to_album',    as: 'picture_create_from_upload_to_album'
-  get       'picture_upload_to_event',      to: 'pictures#new_upload_to_event',            as: 'picture_new_upload_to_event'
-  post      'picture_upload_to_event',      to: 'pictures#create_from_upload_to_event',    as: 'picture_create_from_upload_to_event'
-  patch     'picture/:id/purge_attachment', to: 'pictures#purge_source_attachment',        as: 'picture_purge_source_attachment'
+  patch     'picture_refresh_exif/:id',     to: 'pictures#refresh_exif',                   as: :picture_refresh_exif
+  get       'picture_import_menu',          to: 'pictures#new_import_menu',                as: :picture_new_import_menu
+  get       'picture_import_single',        to: 'pictures#new_import_single',              as: :picture_new_import_single
+  post      'picture_import_single',        to: 'pictures#create_from_import',             as: :picture_create_from_import
+  get       'picture_import_to_album',      to: 'pictures#new_import_to_album',            as: :picture_new_import_to_album
+  post      'picture_import_to_album',      to: 'pictures#create_from_import_to_album',    as: :picture_create_from_import_to_album
+  get       'picture_import_to_event',      to: 'pictures#new_import_to_event',            as: :picture_new_import_to_event
+  post      'picture_import_to_event',      to: 'pictures#create_from_import_to_event',    as: :picture_create_from_import_to_event
+  get       'picture_upload_menu',          to: 'pictures#new_upload_menu',                as: :picture_new_upload_menu
+  get       'picture_upload_single',        to: 'pictures#new_upload_single',              as: :picture_new_upload_single
+  post      'picture_upload_single',        to: 'pictures#create_from_upload',             as: :picture_create_from_upload
+  get       'picture_upload_to_album',      to: 'pictures#new_upload_to_album',            as: :picture_new_upload_to_album
+  post      'picture_upload_to_album',      to: 'pictures#create_from_upload_to_album',    as: :picture_create_from_upload_to_album
+  get       'picture_upload_to_event',      to: 'pictures#new_upload_to_event',            as: :picture_new_upload_to_event
+  post      'picture_upload_to_event',      to: 'pictures#create_from_upload_to_event',    as: :picture_create_from_upload_to_event
+  patch     'picture/:id/purge_attachment', to: 'pictures#purge_source_attachment',        as: :picture_purge_source_attachment
 
 
   resources :streams
