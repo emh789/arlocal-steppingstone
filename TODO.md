@@ -17,19 +17,22 @@ migrations:
     - add_column :visibility, 'unlisted'
 
 finish admin renovation
+  - add commented attribute names in arlocal_settings
+
   - `admin/isrc/edit` narrow view buttons overflow right
-  - ISRC sort_order
+  - ISRC sort_order selection on isrc#index
+   - why called `admin_review_isrc_sorter_id` and not `admin_index_isrc_sorter_id`
 
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
     - albums ok
     - articles ok
-    - audio_file_source_path etc. is still chaotic
+    - audio some bad smells: []_file_source_path etc. []_read metadata
     - events ok
     - infopages ok
     - links ok
-    - pictures could use a closer look
-    - resources ok
+    - pictures ok
+    - resources ok(?)
     - streams ok
     - videos ok
 
