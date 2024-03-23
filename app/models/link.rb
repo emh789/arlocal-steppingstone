@@ -140,7 +140,7 @@ class Link < ApplicationRecord
   def joined_infopages
     infopage_items
   end
-  
+
 
   ### name
 
@@ -153,9 +153,10 @@ class Link < ApplicationRecord
   ### updated_at
 
 
-  def visibility
-    'unlisted'
-  end
+  ### visibility
+  # def visibility
+  #   'unlisted'
+  # end
 
 
   private

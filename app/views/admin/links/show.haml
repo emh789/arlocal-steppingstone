@@ -13,6 +13,7 @@
 .arl_admin_links_show
   .arl_admin_links_show_name
     = render 'admin/shared/metadata_pair', key: 'Name', value: @link.name
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @link.visibility
   .arl_admin_links_show_display
     = link_parse(@link)
   .arl_admin_links_show_attributes

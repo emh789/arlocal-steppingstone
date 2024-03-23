@@ -69,7 +69,8 @@ class Admin::LinksController < AdminController
       :address_inline_text,
       :details_parser_id,
       :details_text_markup,
-      :name
+      :name,
+      :visibility
     )
   end
 
