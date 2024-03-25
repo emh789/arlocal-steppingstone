@@ -11,18 +11,18 @@
 .arl_admin_isrc_edit
   .arl_admin_isrc_edit_filter
     = form_with model: @arlocal_settings, url: admin_arlocal_settings_update_and_return_path, local: true do |f|
-      = isrc_admin_filter_select(f, params)
+      = isrc_admin_filter_select(f, params, action: :edit)
       = f.submit icon_pin, class: :arl_button_form_aux_submit
 
   %table.arl_form_bulk
     - @resources.each do |resource|
       %tr.arl_form_bulk_item_data
-        = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource, type: resource.class, filter: params[:filter]), class: :arl_form_bulk_item do |f|
-          = f.hidden_field :id
+        = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource.id_admin, type: resource.class, filter: params[:filter]), class: :arl_form_bulk_item do |f|
+          -# f.hidden_field :id
           %td.arl_form_bulk_item_data_attr= f.object.class
           %td.arl_form_bulk_item_data_attr= resource_isrcable_admin_link(f.object)
-          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_country_code, autocomplete: :off, size: 2, class: :arl_form_bulk_item_data_text_field
-          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_registrant_code, autocomplete: :off, size: 3, class: :arl_form_bulk_item_data_text_field
+          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_country_code,      autocomplete: :off, size: 2, class: :arl_form_bulk_item_data_text_field
+          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_registrant_code,   autocomplete: :off, size: 3, class: :arl_form_bulk_item_data_text_field
           %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_year_of_reference, autocomplete: :off, size: 2, class: :arl_form_bulk_item_data_text_field
-          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_designation_code, autocomplete: :off, size: 5, class: :arl_form_bulk_item_data_text_field
+          %td.arl_form_bulk_item_data_attr_multi= f.text_field :isrc_designation_code,  autocomplete: :off, size: 5, class: :arl_form_bulk_item_data_text_field
           %td.arl_form_bulk_item_action= f.submit class: :arl_form_bulk_item_button_submit

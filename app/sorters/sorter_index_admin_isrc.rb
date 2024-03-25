@@ -5,6 +5,16 @@ class SorterIndexAdminIsrc
   include Rails.application.routes.url_helpers
 
 
+  def self.url_options_for_select_contextual(action: :index)
+    case action
+    when :edit
+      self.all_order_by_description.map { |record| [record.description, record.id, {data: {url: record.url_edit}}] }
+    when :index
+      self.all_order_by_description.map { |record| [record.description, record.id, {data: {url: record.url_index}}] }
+    end
+  end
+
+
   DATA = [
     {
       id: 0,
@@ -54,7 +64,27 @@ class SorterIndexAdminIsrc
   public
 
 
-  def url
+  def url_edit
+    case @symbol
+    when :class_title_asc
+      admin_isrc_edit_path({filter: 'class_title_asc'})
+    when :class_title_desc
+      admin_isrc_edit_path({filter: 'class_title_desc'})
+    when :isrc_asc
+      admin_isrc_edit_path({filter: 'isrc_asc'})
+    when :isrc_desc
+      admin_isrc_edit_path({filter: 'isrc_desc'})
+    when :title_asc
+      admin_isrc_edit_path({filter: 'title_asc'})
+    when :title_desc
+      admin_isrc_edit_path({filter: 'title_desc'})
+    else
+      admin_isrc_edit_path
+    end
+  end
+
+
+  def url_index
     case @symbol
     when :class_title_asc
       admin_isrc_index_path({filter: 'class_title_asc'})
@@ -72,6 +102,8 @@ class SorterIndexAdminIsrc
       admin_isrc_index_path
     end
   end
+
+
 
 
 end
