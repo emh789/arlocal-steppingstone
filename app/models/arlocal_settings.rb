@@ -32,9 +32,6 @@ class ArlocalSettings < ApplicationRecord
   ### admin_forms_auto_keyword_id
 
 
-  ### admin_forms_edit_external_media_player_fields
-
-
   ### admin_forms_edit_slug_field
 
 
@@ -44,13 +41,22 @@ class ArlocalSettings < ApplicationRecord
   ### admin_forms_selectable_pictures_sorter_id
 
 
+  ### admin_index_albums_sorter_id
+
+
   ### admin_index_audio_sorter_id
+
+
+  ### admin_index_events_sorter_id
 
 
   ### admin_index_isrc_sorter_id
 
 
   ### admin_index_pictures_sorter_id
+
+
+  ### admin_index_videos_sorter_id
 
 
   ### artist_content_copyright_year_earliest
@@ -71,6 +77,12 @@ class ArlocalSettings < ApplicationRecord
     names = artist_name.to_s.split(' ')
     names.map{ |name| name.capitalize }.join(' ')
   end
+
+
+  ### audio_default_date_released
+
+
+  ### audio_default_date_released_enabled
 
 
   ### audio_default_isrc_country_code
@@ -96,12 +108,6 @@ class ArlocalSettings < ApplicationRecord
       self.icon_image.attached? == false
     end
   end
-
-
-  ### html_head_google_analytics_id
-
-
-  ### html_head_public_can_include_google_analytics
 
 
   ### html_head_public_can_include_meta_description
@@ -204,7 +210,16 @@ class ArlocalSettings < ApplicationRecord
   ### public_index_albums_sorter_id
 
 
+  ### public_index_audio_sorter_id
+
+
+  ### public_index_events_sorter_id
+
+
   ### public_index_pictures_sorter_id
+
+
+  ### public_index_videos_sorter_id
 
 
   def public_layout_will_have_nav
