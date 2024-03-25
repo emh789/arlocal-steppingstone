@@ -14,18 +14,18 @@ class Admin::IsrcController < AdminController
   def update
     case params['type']
     when 'Audio'
-      update_audio
+      update_audio(params)
     when 'Video'
-      update_video
+      update_video(params)
     end
   end
 
 
-  def update_audio
-    @audio = QueryAudio.find_admin(params[:audio][:id])
+  def update_audio(params)
+    @audio = QueryAudio.find_admin(params[:id])
     if @audio.update_and_recount_joined_resources(params_audio_permitted)
       flash[:notice] = 'Audio was successfully updated.'
-      redirect_to admin_isrc_review_path
+      redirect_to admin_isrc_edit_path
     else
       @resources = QueryIsrc.all(@arlocal_settings, params)
       flash[:notice] = 'Audio could not be updated.'
@@ -34,11 +34,11 @@ class Admin::IsrcController < AdminController
   end
 
 
-  def update_video
-    @video = QueryVideos.find_admin(params[:video][:id])
+  def update_video(params)
+    @video = QueryVideos.find_admin(params[:id])
     if @video.update_and_recount_joined_resources(params_video_permitted)
       flash[:notice] = 'Video was successfully updated.'
-      redirect_to admin_isrc_review_path
+      redirect_to admin_isrc_edit_path
     else
       @resources = QueryIsrc.all(@arlocal_settings, params)
       flash[:notice] = 'Video could not be updated.'
@@ -64,7 +64,6 @@ class Admin::IsrcController < AdminController
 
   def params_video_permitted
     params.require(:video).permit(
-      :id,
       :isrc_country_code,
       :isrc_designation_code,
       :isrc_registrant_code,
