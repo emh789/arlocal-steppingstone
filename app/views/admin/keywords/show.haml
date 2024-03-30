@@ -15,6 +15,7 @@
     = render 'admin/shared/metadata_pair', key: 'Title', value: @keyword.title
   %dl.arl_admin_keywords_show_attributes
     = render 'admin/shared/metadata_pair', key: 'Can select albums', boolean: @keyword.can_select_albums
+    = render 'admin/shared/metadata_pair', key: 'Can select audio', boolean: @keyword.can_select_audio
     = render 'admin/shared/metadata_pair', key: 'Can select events', boolean: @keyword.can_select_events
     = render 'admin/shared/metadata_pair', key: 'Can select pictures', boolean: @keyword.can_select_pictures
     = render 'admin/shared/metadata_pair', key: 'Can select videos', boolean: @keyword.can_select_videos

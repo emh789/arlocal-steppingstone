@@ -83,7 +83,7 @@ class Keyword < ApplicationRecord
 
 
   def can_select
-    ['albums', 'events', 'pictures', 'videos'].select{ |attr| can_select?(attr) == true }
+    ['albums', 'audio', 'events', 'pictures', 'videos'].select{ |attr| can_select?(attr) == true }
   end
 
 
@@ -100,12 +100,7 @@ class Keyword < ApplicationRecord
     when 'videos'
       can_select_videos
     when ''
-      [ can_select_albums,
-        can_select_audio,
-        can_select_events,
-        can_select_pictures,
-        can_select_videos
-      ].any?
+      can_select_any?
     end
   end
 
@@ -113,9 +108,17 @@ class Keyword < ApplicationRecord
   ### can_select_albums
 
 
-  def can_select_audio
-    false
+  def can_select_any?
+    [ can_select_albums,
+      can_select_audio,
+      can_select_events,
+      can_select_pictures,
+      can_select_videos
+    ].any?
   end
+
+
+  ### can_select_audio
 
 
   ### can_select_events

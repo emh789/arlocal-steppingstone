@@ -16,7 +16,7 @@ migrations:
 
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
-  - Keyword index needs indicators for "can_select_[resource]"
+  - *Review builder methods for currency**
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
     - albums ok
@@ -211,3 +211,6 @@ Video index needs headings
   - ISRC sort_order selection on isrc#index and #show
   - ISRC form doesn't update; 'unpermitted attribute: id'
   - add commented attribute names in arlocal_settings
+
+  - Keyword index needs indicators for "can_select_[resource]"
+    - and migration to add  can_select_audio
