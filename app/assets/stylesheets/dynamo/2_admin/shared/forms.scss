@@ -66,7 +66,7 @@
   font-family: $font-family-data;
   grid-area: input;
 }
-.arl_form_data_attr_can_select_x {
+.arl_form_data_attr_can_select {
   align-items: center;
   display: grid;
   grid-template-areas: 'inline label label_b input';
@@ -74,12 +74,13 @@
   column-gap: $arl-margin / 2;
   margin: $arl-margin-wide 0;
 }
-.arl_form_data_attr_can_select_x_label_a {
-  font-family: $font-family-description;
-  font-weight: bold;
-  grid-area: label_a;
-}
-.arl_form_data_attr_can_select_x_label_b {
+  // // TODO: not used
+  // .arl_form_data_attr_can_select_label_a {
+  //   font-family: $font-family-description;
+  //   font-weight: bold;
+  //   grid-area: label_a;
+  // }
+.arl_form_data_attr_can_select_label_b {
   font-family: $font-family-description;
   font-weight: bold;
   grid-area: label_b;

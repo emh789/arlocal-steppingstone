@@ -16,7 +16,7 @@ migrations:
 
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
-
+  - Keyword index needs indicators for "can_select_[resource]"
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
     - albums ok

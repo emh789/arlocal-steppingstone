@@ -82,7 +82,40 @@ class Keyword < ApplicationRecord
   end
 
 
+  def can_select
+    ['albums', 'events', 'pictures', 'videos'].select{ |attr| can_select?(attr) == true }
+  end
+
+
+  def can_select?(resource_type = nil)
+    case resource_type.to_s.downcase.pluralize
+    when 'albums'
+      can_select_albums
+    when 'audio'
+      can_select_audio
+    when 'events'
+      can_select_events
+    when 'pictures'
+      can_select_pictures
+    when 'videos'
+      can_select_videos
+    when ''
+      [ can_select_albums,
+        can_select_audio,
+        can_select_events,
+        can_select_pictures,
+        can_select_videos
+      ].any?
+    end
+  end
+
+
   ### can_select_albums
+
+
+  def can_select_audio
+    false
+  end
 
 
   ### can_select_events
@@ -92,20 +125,6 @@ class Keyword < ApplicationRecord
 
 
   ### can_select_videos
-
-
-  def can_select(resource_type)
-    case resource_type.to_s.downcase.pluralize
-    when 'albums'
-      can_select_albums
-    when 'events'
-      can_select_albums
-    when 'pictures'
-      can_select_pictures
-    when 'videos'
-      can_select_videos
-    end
-  end
 
 
   ### created_at

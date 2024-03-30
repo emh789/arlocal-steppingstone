@@ -4,15 +4,20 @@
   .arl_admin_resource_header_category
     Keywords Index
 
-.arl_keywords_index
+.arl_admin_keywords_index
   - @keywords.each do |keyword|
-    .arl_keywords_index_keyword
-      .arl_keywords_index_keyword_title
+    .arl_admin_keywords_index_keyword
+      .arl_admin_keywords_index_keyword_title
         = link_to keyword.title, admin_keyword_path(keyword.id_public), class: :arl_keywords_index_keyword_title_link
-      .arl_keywords_index_keyword_resources
+      .arl_admin_keywords_index_keyword_resources
         %dl.arl_admin_joined_resources
           = render 'admin/shared/index_joined_albums', resource: keyword
           = render 'admin/shared/index_joined_audio', resource: keyword
           = render 'admin/shared/index_joined_events', resource: keyword
           = render 'admin/shared/index_joined_pictures', resource: keyword
           = render 'admin/shared/index_joined_videos', resource: keyword
+      - if keyword.can_select?
+        %dl.arl_admin_keywords_index_keyword_can_select
+          %dh.arl_admin_keywords_index_keyword_can_select_title Can select
+          - keyword.can_select.each do |cs|
+            %dd.arl_admin_keywords_index_keyword_can_select_resource= cs
