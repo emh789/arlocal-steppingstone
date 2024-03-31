@@ -8,8 +8,8 @@ module AttributeHelper
   #   - duration_mins
   #   - etc.
   # - object.description (which is a pseudo-attribute display element, reliant upon:)
-  #   - object.description_parser_id
-  #   - object.description_text_markup
+  #   - object.description_markup_type
+  #   - object.description_markup_text
 
 
 
@@ -54,18 +54,18 @@ module AttributeHelper
   ## Parseables:
   #
   # Many objects have attributes that are extended text with an accomanying option to parse markup.
-  # For example: picture.description_parser_id; picture.description_text_markup
+  # For example: picture.description_markup_type; picture.description_markup_text
   # In these cases, the text/parser combination is a property of a renderable psuedo-attribute presented as a display element: picture.description (so to speak)
   #
 
 
-  def attribute_parser_id(attribute)
-    attribute.to_s.concat('_parser_id').to_sym
+  def attribute_markup_type(attribute)
+    attribute.to_s.concat('_markup_type').to_sym
   end
 
 
-  def attribute_text_markup(attribute)
-    attribute.to_s.concat('_text_markup').to_sym
+  def attribute_markup_text(attribute)
+    attribute.to_s.concat('_markup_text').to_sym
   end
 
 

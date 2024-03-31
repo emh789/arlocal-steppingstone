@@ -2,8 +2,8 @@ class SorterIndexAdminPictures
 
 
   extend InactiveRecordSingleton
-  include Rails.application.routes.url_helpers  
-  
+  include Rails.application.routes.url_helpers
+
 
   DATA = [
     {

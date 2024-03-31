@@ -1,7 +1,7 @@
 - unless (local_assigns[:optional] == true) && (value.to_s == '')
   .arl_metadata_pair.arl_metadata_layout_parser
     %dt.arl_metadata_key= key
-    - if text_props[:text_markup].to_s != ''
+    - if text_props[:markup_text].to_s != ''
       %dd.arl_metadata_value_parser= parser_div(text_props)
     - else
       %dd.arl_metadata_value_parser_nil= '(none)'

@@ -107,17 +107,17 @@ class Admin::VideosController < AdminController
 
   def params_video_permitted
     params.require(:video).permit(
-      :copyright_parser_id,
-      :copyright_text_markup,
+      :copyright_markup_type,
+      :copyright_markup_text,
       :date_released,
-      :description_parser_id,
-      :description_text_markup,
+      :description_markup_type,
+      :description_markup_text,
       :isrc_country_code,
       :isrc_designation_code,
       :isrc_registrant_code,
       :isrc_year_of_reference,
-      :personnel_parser_id,
-      :personnel_text_markup,
+      :personnel_markup_type,
+      :personnel_markup_text,
       :source_uploaded,
       :source_imported_file_path,
       :source_dimension_height,

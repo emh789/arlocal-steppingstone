@@ -1,7 +1,7 @@
 /*
-Views for resources with _text_markup attributes use ParserHelper to generate
+Views for resources with _markup_text attributes use ParserHelper to generate
 HTML from markup. The MarkupParser instance variable @html_class assigns the
-class attribute from a resource's _parser_id attribute.
+class attribute from a resource's _markup_type attribute.
 
 The generic <P> element defined in `__reset/elements.scss` includes top and
 bottom margins by default, making the effective margin between any container

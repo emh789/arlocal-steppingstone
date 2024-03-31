@@ -285,7 +285,7 @@ class PictureBuilder
   def metadata_assign
     @picture.datetime_from_exif = determine_time_from_exif_formatting(@metadata.raw[:date_time_original])
     @picture.datetime_from_file = determine_time_from_exif_formatting(@metadata.raw[:file_modify_date])
-    @picture.title_text_markup = @picture.source_file_basename
+    @picture.title_markup_text = @picture.source_file_basename
   end
 
 
@@ -346,14 +346,14 @@ class PictureBuilder
 
   def params_default
     {
-      credits_parser_id: MarkupParser.find_by_symbol(:simple_format_rails).id,
-      credits_text_markup: '',
-      description_parser_id: MarkupParser.find_by_symbol(:simple_format_rails).id,
-      description_text_markup: '',
+      credits_markup_type: 'plaintext',
+      credits_markup_text: '',
+      description_markup_type: 'plaintext',
+      description_markup_text: '',
       show_can_display_title: true,
       source_imported_file_path: '',
-      title_parser_id: MarkupParser.find_by_symbol(:no_formatting).id,
-      title_text_markup: '',
+      title_markup_type: 'string',
+      title_markup_text: '',
       visibility: 'private'
     }
   end

@@ -251,7 +251,7 @@ class AudioBuilder
 
   def metadata_assign
     @audio.audio_artist = "#{@metadata.general.performer}"
-    @audio.copyright_text_markup = "© #{@metadata.general.recorded_date}"
+    @audio.copyright_markup_text = "© #{@metadata.general.recorded_date}"
     @audio.title = @metadata.general.track ? "#{@metadata.general.track}" : "#{@audio.source_file_path}"
     @audio.duration_mins = @metadata.general.duration.divmod(1000)[0].divmod(60)[0]
     @audio.duration_secs = @metadata.general.duration.divmod(1000)[0].divmod(60)[1]
@@ -359,13 +359,13 @@ class AudioBuilder
   def params_default
     {
       artist: params_default_artist,
-      copyright_parser_id: MarkupParser.find_by_symbol(:no_formatting).id,
+      copyright_markup_type: 'string',
       date_released: params_default_date_released,
-      description_parser_id: MarkupParser.find_by_symbol(:simple_format_rails).id,
+      description_markup_type: 'plaintext',
       isrc_country_code: params_default_isrc_country_code,
       isrc_registrant_code: params_default_isrc_registrant_code,
-      musicians_parser_id: MarkupParser.find_by_symbol(:no_formatting).id,
-      personnel_parser_id: MarkupParser.find_by_symbol(:no_formatting).id,
+      musicians_markup_type: 'string',
+      personnel_markup_type: 'string',
       visibility: 'private'
     }
   end

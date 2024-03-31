@@ -107,15 +107,15 @@ class Audio < ApplicationRecord
   ### composer
 
 
-  ### copright_parser_id
+  ### copright_markup_type
 
 
   def copyright_props
-    { parser_id: copyright_parser_id, text_markup: copyright_text_markup }
+    { markup_type: copyright_markup_type, markup_text: copyright_markup_text }
   end
 
 
-  ### copyright_text_markup
+  ### copyright_markup_text
 
 
   ### created_at
@@ -124,15 +124,15 @@ class Audio < ApplicationRecord
   ### date_released
 
 
-  ### description_parser_id
+  ### description_markup_type
 
 
   def description_props
-    { parser_id: description_parser_id, text_markup: description_text_markup }
+    { markup_type: description_markup_type, markup_text: description_markup_text }
   end
 
 
-  ### description_text_markup
+  ### description_markup_text
 
 
   def does_have_albums
@@ -343,26 +343,26 @@ class Audio < ApplicationRecord
   end
 
 
-  ### musicians_parser_id
+  ### musicians_markup_type
 
 
   def musicians_props
-    { parser_id: musicians_parser_id, text_markup: musicians_text_markup }
+    { markup_type: musicians_markup_type, markup_text: musicians_markup_text }
   end
 
 
-  ### musicians_text_markup
+  ### musicians_markup_text
 
 
-  ### personnel_parser_id
+  ### personnel_markup_type
 
 
   def personnel_props
-    { parser_id: personnel_parser_id, text_markup: personnel_text_markup }
+    { markup_type: personnel_markup_type, markup_text: personnel_markup_text }
   end
 
 
-  ### personnel_text_markup
+  ### personnel_markup_text
 
 
   def published
@@ -541,10 +541,10 @@ class Audio < ApplicationRecord
     strippable_attributes = [
       'audio_artist',
       'composer',
-      'copyright_text_markup',
-      'description_text_markup',
-      'musicians_text_markup',
-      'personnel_text_markup',
+      'copyright_markup_text',
+      'description_markup_text',
+      'musicians_markup_text',
+      'personnel_markup_text',
       'source_imported_file_path',
       'subtitle',
       'title'

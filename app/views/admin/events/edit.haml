@@ -4,7 +4,7 @@
   .arl_admin_resource_header_category
     Editing Event
   .arl_admin_resource_header_title
-    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_text_markup}"
+    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_markup_text}"
   .arl_admin_resource_header_buttons
     = event_admin_button_to_edit_previous(@event_neighbors.previous, arlocal_settings: @arlocal_settings, current_pane: @form_metadata.current_pane)
     = event_admin_button_to_done_editing(@event)

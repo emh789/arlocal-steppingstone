@@ -253,22 +253,22 @@ class Admin::PicturesController < AdminController
 
   def params_picture_permitted
     params.require(:picture).permit(
-      :credits_parser_id,
-      :credits_text_markup,
+      :credits_markup_type,
+      :credits_markup_text,
       :datetime_from_manual_entry_year,
       :datetime_from_manual_entry_month,
       :datetime_from_manual_entry_day,
       :datetime_from_manual_entry_hour,
       :datetime_from_manual_entry_minute,
       :datetime_from_manual_entry_second,
-      :description_parser_id,
-      :description_text_markup,
+      :description_markup_type,
+      :description_markup_text,
       :show_can_display_title,
       :source_imported_file_path,
       :source_type,
       :source_uploaded,
-      :title_parser_id,
-      :title_text_markup,
+      :title_markup_type,
+      :title_markup_text,
       :visibility,
       album_pictures_attributes: [
         :id,

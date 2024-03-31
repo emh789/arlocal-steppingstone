@@ -20,10 +20,10 @@ class Event < ApplicationRecord
   validates :datetime_year,            presence: true
   validates :datetime_month,           presence: true
   validates :datetime_day,             presence: true
-  validates :details_parser_id,        presence: true
+  validates :details_markup_type,        presence: true
   validates :event_pictures_sorter_id, presence: true
-  validates :title_parser_id,          presence: true
-  validates :title_text_markup,        presence: true
+  validates :title_markup_type,          presence: true
+  validates :title_markup_text,        presence: true
   validates :venue,                    presence: true
 
   before_save :create_attr_title_without_markup
@@ -155,15 +155,15 @@ class Event < ApplicationRecord
   end
 
 
-  ### details_parser_id
+  ### details_markup_type
 
 
   def details_props
-    { parser_id: details_parser_id, text_markup: details_text_markup  }
+    { markup_type: details_markup_type, markup_text: details_markup_text  }
   end
 
 
-  ### details_text_markup
+  ### details_markup_text
 
 
   def does_have_audio
@@ -428,14 +428,14 @@ class Event < ApplicationRecord
 
 
   def title_props
-    { parser_id: title_parser_id, text_markup: title_text_markup }
+    { markup_type: title_markup_type, markup_text: title_markup_text }
   end
 
 
-  ### title_parser_id
+  ### title_markup_type
 
 
-  ### title_text_markup
+  ### title_markup_text
 
 
   ### title_without_markup
@@ -486,9 +486,9 @@ class Event < ApplicationRecord
     strippable_attributes = [
       'alert',
       'city',
-      'details_text_markup',
+      'details_markup_text',
       'map_url',
-      'title_text_markup',
+      'title_markup_text',
       'venue',
       'venue_url'
     ]

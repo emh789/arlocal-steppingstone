@@ -17,8 +17,8 @@ class Article < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
 
-  validates :content_parser_id, presence: true
-  validates :copyright_parser_id, presence: true
+  validates :content_markup_type, presence: true
+  validates :copyright_markup_type, presence: true
 
 
   public
@@ -28,30 +28,30 @@ class Article < ApplicationRecord
 
 
   def content_beginning_props
-    { parser_id: content_parser_id, text_markup: content_text_markup[0..250].gsub(/[\n\r]+/,' ').concat('…') }
+    { markup_type: content_markup_type, markup_text: content_markup_text[0..250].gsub(/[\n\r]+/,' ').concat('…') }
   end
 
 
-  ### content_parser_id
+  ### content_markup_type
 
 
   def content_props
-    { parser_id: content_parser_id, text_markup: content_text_markup }
+    { markup_type: content_markup_type, markup_text: content_markup_text }
   end
 
 
-  ### content_text_markup
+  ### content_markup_text
 
 
-  ### copyright_parser_id
+  ### copyright_markup_type
 
 
   def copyright_props
-    { parser_id: copyright_parser_id, text_markup: copyright_text_markup }
+    { markup_type: copyright_markup_type, markup_text: copyright_markup_text }
   end
 
 
-  ### copyright_text_markup
+  ### copyright_markup_text
 
 
   ### created_at
@@ -131,8 +131,8 @@ class Article < ApplicationRecord
   def strip_whitespace_edges_from_entered_text
     strippable_attributes = [
       'author',
-      'content_text_markup',
-      'copyright_text_markup',
+      'content_markup_text',
+      'copyright_markup_text',
       'title',
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }

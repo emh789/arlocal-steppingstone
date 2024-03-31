@@ -66,13 +66,13 @@ class Admin::ArticlesController < AdminController
   def params_article_permitted
     params.require(:article).permit(
       :author,
-      :content_parser_id,
-      :content_text_markup,
-      :copyright_parser_id,
-      :copyright_text_markup,
+      :content_markup_type,
+      :content_markup_text,
+      :copyright_markup_type,
+      :copyright_markup_text,
       :date_released,
-      :summary_parser_id,
-      :summary_text_markup,
+      :summary_markup_type,
+      :summary_markup_text,
       :title,
       :visibility
     )

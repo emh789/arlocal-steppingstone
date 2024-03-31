@@ -190,19 +190,19 @@ class ArlocalSettings < ApplicationRecord
   ### marquee_enabled
 
 
-  ### marquee_parser_id
+  ### marquee_markup_type
 
 
   def marquee_props
-    { parser_id: marquee_parser_id, text_markup: marquee_text_markup }
+    { markup_type: marquee_markup_type, markup_text: marquee_markup_text }
   end
 
 
-  ### marquee_text_markup
+  ### marquee_markup_text
 
 
   def marquee_will_render
-    (marquee_enabled) && (marquee_text_markup.to_s != '')
+    (marquee_enabled) && (marquee_markup_text.to_s != '')
   end
 
 
@@ -266,12 +266,16 @@ class ArlocalSettings < ApplicationRecord
   end
 
 
+  def title
+    'A&R.local Settings'
+  end
+
 
   private
 
 
   def strip_any_leading_slash_from_icon_source_imported_file_path
-    if self.icon_source_imported_file_path_changed? && self0.icon_source_imported_file_path[0] == File::SEPARATOR
+    if self.icon_source_imported_file_path_changed? && self.icon_source_imported_file_path[0] == File::SEPARATOR
       self.icon_source_imported_file_path[0] = ''
     end
   end
@@ -281,7 +285,7 @@ class ArlocalSettings < ApplicationRecord
     strippable_attributes = [
       'artist_name',
       'icon_source_imported_file_path',
-      'marquee_text_markup'
+      'marquee_markup_text'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
     changed_strippable_attributes.each do |a|

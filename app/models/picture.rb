@@ -15,15 +15,15 @@ class Picture < ApplicationRecord
   before_validation :strip_whitespace_edges_from_entered_text
   before_validation :strip_any_leading_slash_from_source_imported_file_path
 
-  validates :credits_parser_id,                 presence: true
+  validates :credits_markup_type,                 presence: true
   validates :datetime_from_manual_entry_year,   allow_blank: true, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_month,  allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_day,    allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_hour,   allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_minute, allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
   validates :datetime_from_manual_entry_second, allow_blank: true, length: { maximum: 2 }, numericality: { only_integer: true }
-  validates :description_parser_id,             presence: true
-  validates :title_parser_id,                   presence: true
+  validates :description_markup_type,             presence: true
+  validates :title_markup_type,                   presence: true
 
   validate :datetime_is_valid?
 
@@ -92,15 +92,15 @@ class Picture < ApplicationRecord
   ### created_at
 
 
-  ### credits_parser_id
+  ### credits_markup_type
 
 
   def credits_props
-    { parser_id: credits_parser_id, text_markup: credits_text_markup }
+    { markup_type: credits_markup_type, markup_text: credits_markup_text }
   end
 
 
-  ### credits_text_markup
+  ### credits_markup_text
 
 
   def datetime
@@ -215,15 +215,15 @@ class Picture < ApplicationRecord
   end
 
 
-  ### description_parser_id
+  ### description_markup_type
 
 
   def description_props
-    { parser_id: description_parser_id, text_markup: description_text_markup }
+    { markup_type: description_markup_type, markup_text: description_markup_text }
   end
 
 
-  ### description_text_markup
+  ### description_markup_text
 
 
   ### events_count
@@ -235,7 +235,7 @@ class Picture < ApplicationRecord
 
 
   def does_have_credits
-    credits_text_markup.to_s != ''
+    credits_markup_text.to_s != ''
   end
 
 
@@ -245,7 +245,7 @@ class Picture < ApplicationRecord
 
 
   def does_have_description
-    description_text_markup != ''
+    description_markup_text != ''
   end
 
 
@@ -265,7 +265,7 @@ class Picture < ApplicationRecord
 
 
   def does_have_title
-    title_text_markup.to_s != ''
+    title_markup_text.to_s != ''
   end
 
 
@@ -529,15 +529,15 @@ class Picture < ApplicationRecord
   end
 
 
-  ### title_parser_id
+  ### title_markup_type
 
 
   def title_props
-    { parser_id: title_parser_id, text_markup: title_text_markup }
+    { markup_type: title_markup_type, markup_text: title_markup_text }
   end
 
 
-  ### title_text_markup
+  ### title_markup_text
 
 
   ### title_without_markup
@@ -618,10 +618,10 @@ class Picture < ApplicationRecord
 
   def strip_whitespace_edges_from_entered_text
     strippable_attributes = [
-      'credits_text_markup',
-      'description_text_markup',
+      'credits_markup_text',
+      'description_markup_text',
       'source_imported_file_path',
-      'title_text_markup'
+      'title_markup_text'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
     changed_strippable_attributes.each do |a|

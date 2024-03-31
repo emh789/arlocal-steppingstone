@@ -39,11 +39,12 @@ class MarkupParser
 
 
   def self.parse_sanitize_class(resource_text_props)
-    parser = MarkupParser.find(resource_text_props[:parser_id])
+    # TODO: remove `find_by_symbol` and `to_sym` method after standardizing all the `InactiveRecord.find` queries
+    parser = MarkupParser.find_by_symbol(resource_text_props[:markup_type].to_sym)
     if parser == false
-      parser = MarkupParser.find(4)
+      parser = MarkupParser.find_by_symbol(:plaintext)
     end
-    { html_class: parser.html_class, sanitized_text: parser.parse_and_sanitize(resource_text_props[:text_markup]) }
+    { html_class: parser.html_class, sanitized_text: parser.parse_and_sanitize(resource_text_props[:markup_text]) }
   end
 
 

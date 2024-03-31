@@ -8,7 +8,7 @@ class Link < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
 
-  validates :details_parser_id, presence: true
+  validates :details_markup_type, presence: true
 
   has_many :infopage_items, -> { where infopageable_type: 'Link' }, foreign_key: :infopageable_id, dependent: :destroy
   has_many :infopages, through: :infopage_items
@@ -48,8 +48,8 @@ class Link < ApplicationRecord
       address_href: address_href,
       address_inline_text: address_inline_text,
       # address_type: address_type,
-      details_parser_id: details_parser_id,
-      details_text_markup: details_text_markup,
+      details_markup_type: details_markup_type,
+      details_markup_text: details_markup_text,
       name: name,
     }
   end
@@ -73,15 +73,15 @@ class Link < ApplicationRecord
   ### created_at
 
 
-  ### details_parser_id
+  ### details_markup_type
 
 
   def details_props
-    { parser_id: details_parser_id, text_markup: details_text_markup }
+    { markup_type: details_markup_type, markup_text: details_markup_text }
   end
 
 
-  ### details_text_markup
+  ### details_markup_text
 
 
   # => ### display_method
@@ -166,7 +166,7 @@ class Link < ApplicationRecord
     strippable_attributes = [
       'address_href',
       'address_inline_text',
-      'details_text_markup',
+      'details_markup_text',
       'name'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }

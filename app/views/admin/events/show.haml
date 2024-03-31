@@ -7,7 +7,7 @@
   .arl_admin_resource_header_category
     Event
   .arl_admin_resource_header_title
-    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_text_markup}"
+    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_markup_text}"
   .arl_admin_resource_header_buttons
     = event_admin_button_to_previous(@event_neighbors.previous)
     = event_admin_button_to_edit(@event)

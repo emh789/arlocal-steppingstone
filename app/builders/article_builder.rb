@@ -55,8 +55,8 @@ class ArticleBuilder
 
   def params_default
     {
-      copyright_parser_id: MarkupParser.find_by_symbol(:no_formatting).id,
-      content_parser_id: MarkupParser.find_by_symbol(:simple_format_rails).id,
+      copyright_markup_type: 'string',
+      content_markup_type: 'plaintext',
       visibility: 'private'
     }
   end

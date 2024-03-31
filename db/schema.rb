@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_30_171804) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -87,18 +87,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.integer "album_pictures_sorter_id"
     t.string "artist"
     t.integer "audio_count"
-    t.integer "copyright_parser_id"
-    t.text "copyright_text_markup"
+    t.string "copyright_markup_type"
+    t.text "copyright_markup_text"
     t.date "date_released"
-    t.integer "description_parser_id"
-    t.text "description_text_markup"
+    t.string "description_markup_type"
+    t.text "description_markup_text"
     t.boolean "index_can_display_tracklist"
     t.boolean "index_tracklist_audio_includes_subtitles"
-    t.integer "personnel_parser_id"
-    t.text "personnel_text_markup"
+    t.string "personnel_markup_type"
+    t.text "personnel_markup_text"
     t.integer "keywords_count"
-    t.integer "musicians_parser_id"
-    t.text "musicians_text_markup"
+    t.string "musicians_markup_type"
+    t.text "musicians_markup_text"
     t.integer "pictures_count"
     t.boolean "show_can_cycle_pictures"
     t.boolean "show_can_have_more_pictures_link"
@@ -125,8 +125,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.string "artist_name"
     t.string "audio_default_isrc_country_code"
     t.string "audio_default_isrc_registrant_code"
-    t.integer "marquee_parser_id"
-    t.string "marquee_text_markup"
+    t.string "marquee_markup_type"
+    t.string "marquee_markup_text"
     t.string "icon_source_imported_file_path"
     t.boolean "html_head_public_can_include_meta_description"
     t.string "public_index_albums_sorter_id"
@@ -155,17 +155,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
 
   create_table "articles", force: :cascade do |t|
     t.string "author"
-    t.text "copyright_text_markup"
-    t.integer "content_parser_id"
+    t.text "copyright_markup_text"
+    t.string "content_markup_type"
     t.datetime "date_released", precision: nil
-    t.text "content_text_markup"
+    t.text "content_markup_text"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "copyright_parser_id"
+    t.string "copyright_markup_type"
     t.string "slug"
-    t.integer "summary_parser_id"
-    t.text "summary_text_markup"
+    t.string "summary_markup_type"
+    t.text "summary_markup_text"
     t.string "visibility"
     t.index ["slug"], name: "index_articles_on_slug"
   end
@@ -176,24 +176,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.integer "albums_count"
     t.string "source_imported_file_path"
     t.string "composer"
-    t.integer "copyright_parser_id"
-    t.text "copyright_text_markup"
+    t.string "copyright_markup_type"
+    t.text "copyright_markup_text"
     t.date "date_released"
-    t.integer "description_parser_id"
-    t.text "description_text_markup"
+    t.string "description_markup_type"
+    t.text "description_markup_text"
     t.integer "duration_hrs"
     t.integer "duration_mins"
     t.integer "duration_secs"
     t.integer "duration_mils"
-    t.integer "personnel_parser_id"
-    t.text "personnel_text_markup"
+    t.string "personnel_markup_type"
+    t.text "personnel_markup_text"
     t.string "isrc_country_code"
     t.string "isrc_registrant_code"
     t.string "isrc_year_of_reference"
     t.string "isrc_designation_code"
     t.integer "keywords_count"
-    t.integer "musicians_parser_id"
-    t.text "musicians_text_markup"
+    t.string "musicians_markup_type"
+    t.text "musicians_markup_text"
     t.string "subtitle"
     t.string "title"
     t.datetime "created_at", null: false
@@ -247,8 +247,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
 
   create_table "events", force: :cascade do |t|
     t.string "city"
-    t.integer "details_parser_id"
-    t.text "details_text_markup"
+    t.string "details_markup_type"
+    t.text "details_markup_text"
     t.string "event_pictures_sorter_id"
     t.integer "keywords_count"
     t.text "map_url"
@@ -256,7 +256,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.boolean "show_can_cycle_pictures"
     t.boolean "show_can_have_more_pictures_link"
     t.string "slug"
-    t.text "title_text_markup"
+    t.text "title_markup_text"
     t.text "venue_url"
     t.string "venue"
     t.boolean "visible_in_public_events_index"
@@ -271,7 +271,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.string "datetime_zone"
     t.datetime "datetime_utc", precision: nil
     t.string "alert"
-    t.integer "title_parser_id"
+    t.string "title_markup_type"
     t.text "title_without_markup"
     t.integer "videos_count"
     t.string "visibility"
@@ -336,8 +336,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
   create_table "links", force: :cascade do |t|
     t.string "address_href"
     t.string "address_inline_text"
-    t.integer "details_parser_id"
-    t.text "details_text_markup"
+    t.string "details_markup_type"
+    t.text "details_markup_text"
     t.string "display_method"
     t.string "name"
     t.datetime "created_at", null: false
@@ -355,8 +355,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
   create_table "pictures", force: :cascade do |t|
     t.integer "albums_count"
     t.string "source_imported_file_path"
-    t.integer "credits_parser_id"
-    t.text "credits_text_markup"
+    t.string "credits_markup_type"
+    t.text "credits_markup_text"
     t.string "datetime_cascade_method"
     t.string "datetime_cascade_value"
     t.string "datetime_from_exif"
@@ -367,15 +367,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
     t.integer "datetime_from_manual_entry_hour"
     t.integer "datetime_from_manual_entry_minute"
     t.integer "datetime_from_manual_entry_second"
-    t.integer "description_parser_id"
-    t.text "description_text_markup"
+    t.string "description_markup_type"
+    t.text "description_markup_text"
     t.integer "events_count"
     t.integer "keywords_count"
     t.boolean "show_can_display_title"
     t.boolean "show_credit_uses_label"
     t.string "slug"
-    t.integer "title_parser_id"
-    t.text "title_text_markup"
+    t.string "title_markup_type"
+    t.text "title_markup_text"
     t.string "title_without_markup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -387,8 +387,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
   end
 
   create_table "streams", force: :cascade do |t|
-    t.integer "description_parser_id"
-    t.text "description_text_markup"
+    t.string "description_markup_type"
+    t.text "description_markup_text"
     t.text "html_element"
     t.string "slug"
     t.string "title"
@@ -414,13 +414,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171758) do
   end
 
   create_table "videos", force: :cascade do |t|
-    t.integer "copyright_parser_id"
-    t.text "copyright_text_markup"
+    t.string "copyright_markup_type"
+    t.text "copyright_markup_text"
     t.date "date_released"
-    t.integer "description_parser_id"
-    t.text "description_text_markup"
-    t.integer "personnel_parser_id"
-    t.text "personnel_text_markup"
+    t.string "description_markup_type"
+    t.text "description_markup_text"
+    t.string "personnel_markup_type"
+    t.text "personnel_markup_text"
     t.string "slug"
     t.string "source_imported_file_path"
     t.integer "source_dimension_height"

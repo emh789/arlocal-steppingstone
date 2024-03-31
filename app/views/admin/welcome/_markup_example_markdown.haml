@@ -7,7 +7,7 @@
     %th.arl_admin_markup_types_demo_heading.color_bg_th result
   - markup_examples.each do |markup_example|
     %tr.arl_admin_markup_types_demo_example
-      %td.arl_admin_markup_types_demo_text_markup
+      %td.arl_admin_markup_types_demo_markup_text
         = simple_format(markup_example)
       %td.arl_admin_markup_types_demo_parsed
         = parser.parse_and_sanitize(markup_example)

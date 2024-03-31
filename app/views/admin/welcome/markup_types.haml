@@ -15,8 +15,8 @@
         %th.color_bg_th.arl_admin_markup_types_example_heading entered text
         %th.color_bg_th.arl_admin_markup_types_example_heading displayed
         %th.color_bg_th.arl_admin_markup_types_example_heading resulting HTML code
-      - details[:examples].each_pair do |html_tag, text_markup|
+      - details[:examples].each_pair do |html_tag, markup_text|
         %tr
-          %td.color_bg_td.arl_admin_markup_types_example_value_entered= text_markup
-          %td.color_bg_td.arl_admin_markup_types_example_value_displayed= parser_result({parser_id: parser, text_markup: text_markup})
-          %td.color_bg_td.arl_admin_markup_types_example_value_html_source= sanitize CGI::escape_html(parser_result({parser_id: parser, text_markup: text_markup}))
+          %td.color_bg_td.arl_admin_markup_types_example_value_entered= markup_text
+          %td.color_bg_td.arl_admin_markup_types_example_value_displayed= parser_result({markup_type: parser, markup_text: markup_text})
+          %td.color_bg_td.arl_admin_markup_types_example_value_html_source= sanitize CGI::escape_html(parser_result({markup_type: parser, markup_text: markup_text}))

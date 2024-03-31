@@ -65,8 +65,8 @@ class Admin::StreamsController < AdminController
 
   def params_stream_permitted
     params.require(:stream).permit(
-      :description_parser_id,
-      :description_text_markup,
+      :description_markup_type,
+      :description_markup_text,
       :html_element,
       :title,
       :visibility

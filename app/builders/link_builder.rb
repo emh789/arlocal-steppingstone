@@ -55,7 +55,7 @@ class LinkBuilder
 
   def params_default
     {
-      details_parser_id: MarkupParser.find_by_symbol(:simple_format_rails).id,
+      details_markup_type: 'plaintext'
     }
   end
 

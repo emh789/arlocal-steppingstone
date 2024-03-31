@@ -67,8 +67,8 @@ class Admin::LinksController < AdminController
     params.require(:link).permit(
       :address_href,
       :address_inline_text,
-      :details_parser_id,
-      :details_text_markup,
+      :details_markup_type,
+      :details_markup_text,
       :name,
       :visibility
     )

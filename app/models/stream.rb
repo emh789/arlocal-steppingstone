@@ -22,14 +22,14 @@ class Stream < ApplicationRecord
 
 
   def description_props
-    { parser_id: description_parser_id, text_markup: description_text_markup }
+    { markup_type: description_markup_type, markup_text: description_markup_text }
   end
 
 
-  ### description_parser_id
+  ### description_markup_type
 
 
-  ### description_text_markup
+  ### description_markup_text
 
 
   ### html_element

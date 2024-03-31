@@ -57,15 +57,15 @@ class Video < ApplicationRecord
   public
 
 
-  ### copyright_parser_id
+  ### copyright_markup_type
 
 
   def copyright_props
-    { parser_id: copyright_parser_id, text_markup: copyright_text_markup }
+    { markup_type: copyright_markup_type, markup_text: copyright_markup_text }
   end
 
 
-  ### copyright_text_markup
+  ### copyright_markup_text
 
 
   def coverpicture_source_imported_file_path
@@ -99,15 +99,15 @@ class Video < ApplicationRecord
   ### date_released
 
 
-  ### description_parser_id
+  ### description_markup_type
 
 
   def description_props
-    { parser_id: description_parser_id, text_markup: description_text_markup }
+    { markup_type: description_markup_type, markup_text: description_markup_text }
   end
 
 
-  ### description_text_markup
+  ### description_markup_text
 
 
   def display_dimension_width
@@ -255,15 +255,15 @@ class Video < ApplicationRecord
   end
 
 
-  ### personnel_parser_id
+  ### personnel_markup_type
 
 
   def personnel_props
-    { parser_id: personnel_parser_id, text_markup: personnel_text_markup }
+    { markup_type: personnel_markup_type, markup_text: personnel_markup_text }
   end
 
 
-  ### personnel_text_markup
+  ### personnel_markup_text
 
 
   ### pictures_count
@@ -436,9 +436,9 @@ class Video < ApplicationRecord
 
   def strip_whitespace_edges_from_entered_text
     strippable_attributes = [
-      'copyright_text_markup',
-      'description_text_markup',
-      'personnel_text_markup',
+      'copyright_markup_text',
+      'description_markup_text',
+      'personnel_markup_text',
       'title',
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
