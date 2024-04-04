@@ -32,5 +32,3 @@
   %dl.arl_admin_pictures_show_etc
     = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_picture_path(@picture.id_public))
     = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @picture.updated_at
-
-    = console
