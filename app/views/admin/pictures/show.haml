@@ -13,7 +13,7 @@
 
 .arl_admin_pictures_show
   %dl.arl_admin_pictures_show_title
-    = render 'admin/shared/metadata_pair', key: 'Title', value: @picture.title
+    = render 'admin/shared/metadata_pair', key: 'Title', text_props: @picture.title_props
     = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @picture.visibility
   %div.arl_admin_pictures_show_picture
     = render 'show_image', picture: @picture
@@ -32,3 +32,5 @@
   %dl.arl_admin_pictures_show_etc
     = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_picture_path(@picture.id_public))
     = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @picture.updated_at
+
+    = console

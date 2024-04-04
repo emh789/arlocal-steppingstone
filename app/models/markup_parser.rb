@@ -1,10 +1,10 @@
 class MarkupParser
   extend InactiveRecordSingleton
 
-
+  # TODO: `[:symbol]` is deprecated and will be removed once other InactiveRecord datasets use symbolic id
   DATA = [
     {
-      id: 3,
+      id: :markdown,
       categories: [:admin, :public],
       description: 'Markdown',
       method_parse: lambda { |text| CommonMarker.render_html(text.to_s) },
@@ -12,7 +12,7 @@ class MarkupParser
       symbol: :markdown
     },
     {
-      id: 4,
+      id: :plaintext,
       categories: [:admin, :public],
       description: 'Plain text',
       method_parse: lambda { |text| ApplicationController.helpers.simple_format(text.to_s) },
@@ -20,7 +20,7 @@ class MarkupParser
       symbol: :plaintext
     },
     {
-      id: 0,
+      id: :string,
       categories: [:admin, :public],
       description: 'Single line',
       method_parse: lambda { |text| text.to_s },
@@ -40,6 +40,7 @@ class MarkupParser
 
   def self.parse_sanitize_class(resource_text_props)
     # TODO: remove `find_by_symbol` and `to_sym` method after standardizing all the `InactiveRecord.find` queries
+    # TODO: Change method once symbol: is deprecated
     parser = MarkupParser.find_by_symbol(resource_text_props[:markup_type].to_sym)
     if parser == false
       parser = MarkupParser.find_by_symbol(:plaintext)
