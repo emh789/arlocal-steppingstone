@@ -8,12 +8,11 @@
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
 migrations:
-  - {}_parser_id => {}_parser_type
-    - MarkupParser makes more sense with simplified symbols than with numeric id
-      - markdown      - `markdown`
-      - plain text    - `plaintext`
-      - single line   - `string`
-
+  - {}_sorter_id => {}_sort_method
+    - mostly arlocal_settings
+    - album and event
+  - delete old migrations and lib/* migration-related classes
+  
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
   - *Review builder methods for currency**
@@ -211,6 +210,10 @@ Video index needs headings
   - ISRC sort_order selection on isrc#index and #show
   - ISRC form doesn't update; 'unpermitted attribute: id'
   - add commented attribute names in arlocal_settings
-
   - Keyword index needs indicators for "can_select_[resource]"
     - and migration to add  can_select_audio
+  - {}_parser_id => {}_parser_type
+    - MarkupParser makes more sense with simplified symbols than with numeric id
+      - markdown      - `markdown`
+      - plain text    - `plaintext`
+      - single line   - `string`

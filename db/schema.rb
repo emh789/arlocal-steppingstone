@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_30_171804) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,6 +109,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171804) do
     t.string "vendor_widget_gumroad"
     t.boolean "show_can_have_vendor_widget_gumroad"
     t.string "visibility"
+    t.string "album_pictures_sort_method"
     t.index ["slug"], name: "index_albums_on_slug"
   end
 
@@ -151,6 +152,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171804) do
     t.boolean "public_nav_can_include_videos"
     t.string "icon_source_type"
     t.integer "admin_index_isrc_sorter_id"
+    t.string "admin_forms_selectable_pictures_sort_method"
+    t.string "admin_index_albums_sort_method"
+    t.string "admin_index_audio_sort_method"
+    t.string "admin_index_events_sort_method"
+    t.string "admin_index_isrc_sort_method"
+    t.string "admin_index_pictures_sort_method"
+    t.string "admin_index_videos_sort_method"
+    t.string "public_index_albums_sort_method"
+    t.string "public_index_audio_sort_method"
+    t.string "public_index_events_sort_method"
+    t.string "public_index_pictures_sort_method"
+    t.string "public_index_videos_sort_method"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -275,6 +288,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_30_171804) do
     t.text "title_without_markup"
     t.integer "videos_count"
     t.string "visibility"
+    t.string "event_pictures_sort_method"
+    t.string "string"
     t.index ["slug"], name: "index_events_on_slug"
   end
 
