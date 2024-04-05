@@ -1,28 +1,32 @@
 class SorterEventPictures
   extend InactiveRecordSingleton
-  
+
 
   DATA = [
     {
-      id: 0,
+      # id: 0,
+      id: 'cover_datetime_asc',
       description: 'coverpicture first, then date/time cascade (old - new)',
       method: lambda { |event_pictures| SorterEventPictures.cover_datetime_asc(event_pictures) },
       symbol: :cover_datetime_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'cover_datetime_desc',
       description: 'coverpicture first, then date/time cascade (new - old)',
       method: lambda { |event_pictures| SorterEventPictures.cover_datetime_desc(event_pictures) },
       symbol: :cover_datetime_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'cover_manual_asc',
       description: 'coverpicture first, then manual order (low - high)',
       method: lambda { |event_pictures| SorterEventPictures.cover_manual_asc(event_pictures) },
       symbol: :cover_manual_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'cover_manual_desc',
       description: 'coverpicture first, then manual order (high - low)',
       method: lambda { |event_pictures| SorterEventPictures.cover_manual_desc(event_pictures) },
       symbol: :cover_manual_desc
@@ -59,8 +63,8 @@ class SorterEventPictures
 
 
   protected
-  
-  
+
+
   def self.cover_datetime_asc(event_pictures)
     event_pictures.order('event_pictures.is_coverpicture DESC').joins(:picture).order('pictures.datetime_cascade_value ASC')
   end
@@ -69,16 +73,16 @@ class SorterEventPictures
   def self.cover_datetime_desc(event_pictures)
     event_pictures.order('event_pictures.is_coverpicture DESC').joins(:picture).order('pictures.datetime_cascade_value DESC')
   end
-  
-  
+
+
   def self.cover_manual_asc(event_pictures)
     event_pictures.order('event_pictures.is_coverpicture DESC').order('event_pictures.event_order ASC')
   end
-  
-  
+
+
   def self.cover_manual_desc(event_pictures)
     event_pictures.order('event_pictures.is_coverpicture DESC').order('event_pictures.event_order DESC')
   end
-  
+
 
 end

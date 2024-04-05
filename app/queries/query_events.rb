@@ -108,7 +108,7 @@ class QueryEvents
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_admin.symbol.to_s.downcase
+      index_sorter_admin.id
     end
   end
 
@@ -117,18 +117,18 @@ class QueryEvents
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_public.symbol.to_s.downcase
+      index_sorter_public.id
     end
   end
 
 
   def index_sorter_admin
-    SorterIndexAdminEvents.find(@arlocal_settings.admin_index_events_sorter_id)
+    SorterIndexAdminEvents.find(@arlocal_settings.admin_index_events_sort_method)
   end
 
 
   def index_sorter_public
-    SorterIndexPublicEvents.find(@arlocal_settings.public_index_events_sorter_id)
+    SorterIndexPublicEvents.find(@arlocal_settings.public_index_events_sort_method)
   end
 
 

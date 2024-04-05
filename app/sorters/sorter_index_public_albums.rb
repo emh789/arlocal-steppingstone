@@ -2,27 +2,31 @@ class SorterIndexPublicAlbums
 
 
   extend InactiveRecordSingleton
-  include Rails.application.routes.url_helpers  
-  
+  include Rails.application.routes.url_helpers
+
 
   DATA = [
     {
-      id: 0,
+      # id: 0,
+      id: 'datetime_asc',
       description: 'by release date (old - new)',
       symbol: :datetime_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'datetime_desc',
       description: 'by release date (new - old)',
       symbol: :datetime_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'title_asc',
       description: 'by title (forward)',
       symbol: :title_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'title_desc',
       description: 'by title (reverse)',
       symbol: :title_desc
     }
@@ -45,20 +49,28 @@ class SorterIndexPublicAlbums
   public
 
 
+  # def url
+  #   case @symbol
+  #   when :datetime_asc
+  #     public_albums_path({filter: 'datetime_asc'})
+  #   when :datetime_desc
+  #     public_albums_path({filter: 'datetime_desc'})
+  #   when :title_asc
+  #     public_albums_path({filter: 'title_asc'})
+  #   when :title_desc
+  #     public_albums_path({filter: 'title_desc'})
+  #   else
+  #     public_albums_path
+  #   end
+  # end
+
   def url
-    case @symbol
-    when :datetime_asc
-      public_albums_path({filter: 'datetime_asc'})
-    when :datetime_desc
-      public_albums_path({filter: 'datetime_desc'})
-    when :title_asc
-      public_albums_path({filter: 'title_asc'})
-    when :title_desc
-      public_albums_path({filter: 'title_desc'})
+    if @id
+      public_albums_path({filter: @id})
     else
       public_albums_path
     end
   end
-  
 
+  
 end

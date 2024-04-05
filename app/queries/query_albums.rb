@@ -102,7 +102,7 @@ class QueryAlbums
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_admin.symbol.to_s.downcase
+      index_sorter_admin.id
     end
   end
 
@@ -111,18 +111,18 @@ class QueryAlbums
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_public.symbol.to_s.downcase
+      index_sorter_public.id
     end
   end
 
 
   def index_sorter_admin
-    SorterIndexAdminAlbums.find(@arlocal_settings.admin_index_albums_sorter_id)
+    SorterIndexAdminAlbums.find(@arlocal_settings.admin_index_albums_sort_method)
   end
 
 
   def index_sorter_public
-    SorterIndexPublicAlbums.find(@arlocal_settings.public_index_albums_sorter_id)
+    SorterIndexPublicAlbums.find(@arlocal_settings.public_index_albums_sort_method)
   end
 
 

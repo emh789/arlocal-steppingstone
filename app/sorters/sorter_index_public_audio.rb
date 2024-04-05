@@ -2,27 +2,31 @@ class SorterIndexPublicAudio
 
 
   extend InactiveRecordSingleton
-  include Rails.application.routes.url_helpers  
+  include Rails.application.routes.url_helpers
 
 
   DATA = [
     {
-      id: 0,
+      # id: 0,
+      id: 'filepath_asc',
       description: 'by filepath (ascending)',
       symbol: :filepath_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'filepath_desc',
       description: 'by filepath (descending)',
       symbol: :filepath_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'title_asc',
       description: 'by title (forward)',
       symbol: :title_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'title_desc',
       description: 'by title (reverse)',
       symbol: :title_desc
     }
@@ -45,20 +49,29 @@ class SorterIndexPublicAudio
   public
 
 
+  # def url
+  #   case @symbol
+  #   when :filepath_asc
+  #     public_audio_index_path({filter: 'filepath_asc'})
+  #   when :filepath_desc
+  #     public_audio_index_path({filter: 'filepath_desc'})
+  #   when :title_asc
+  #     public_audio_index_path({filter: 'title_asc'})
+  #   when :title_desc
+  #     public_audio_index_path({filter: 'title_desc'})
+  #   else
+  #     public_audio_path
+  #   end
+  # end
+
+
   def url
-    case @symbol
-    when :filepath_asc
-      public_audio_index_path({filter: 'filepath_asc'})
-    when :filepath_desc
-      public_audio_index_path({filter: 'filepath_desc'})
-    when :title_asc
-      public_audio_index_path({filter: 'title_asc'})
-    when :title_desc
-      public_audio_index_path({filter: 'title_desc'})
+    if @id
+      public_audio_index_path({filter: @id})
     else
-      public_audio_path
+      public_audio_index_path
     end
   end
-    
+
 
 end

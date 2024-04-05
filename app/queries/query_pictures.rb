@@ -181,7 +181,7 @@ class QueryPictures
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_admin.symbol.to_s.downcase
+      index_sorter_admin.id
     end
   end
 
@@ -195,23 +195,23 @@ class QueryPictures
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_public.symbol.to_s.downcase
+      index_sorter_public.id
     end
   end
 
 
   def index_sorter_admin
-    SorterIndexAdminPictures.find(@arlocal_settings.admin_index_pictures_sorter_id)
+    SorterIndexAdminPictures.find(@arlocal_settings.admin_index_pictures_sort_method)
   end
 
 
   def index_sorter_form_selectable
-    SorterFormSelectablePictures.find(@arlocal_settings.admin_forms_selectable_pictures_sorter_id)
+    SorterFormSelectablePictures.find(@arlocal_settings.admin_forms_selectable_pictures_sort_method)
   end
 
 
   def index_sorter_public
-    SorterIndexPublicPictures.find(@arlocal_settings.public_index_pictures_sorter_id)
+    SorterIndexPublicPictures.find(@arlocal_settings.public_index_pictures_sort_method)
   end
 
 

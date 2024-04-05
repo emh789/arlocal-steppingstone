@@ -7,32 +7,38 @@ class SorterIndexAdminPictures
 
   DATA = [
     {
-      id: 0,
+#      id: 0,
+      id: 'datetime_asc',
       description: 'by date/time cascade (old - new)',
       symbol: :datetime_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'datetime_desc',
       description: 'by date/time cascade (new - old)',
       symbol: :datetime_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'filepath_asc',
       description: 'by filepath (ascending)',
       symbol: :filepath_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'filepath_desc',
       description: 'by filepath (descending)',
       symbol: :filepath_desc
     },
     {
-      id: 4,
+      # id: 4,
+      id: 'title_asc',
       description: 'by title (ascending)',
       symbol: :title_asc
     },
     {
-      id: 5,
+      # id: 5,
+      id: 'title_desc',
       description: 'by title (descending)',
       symbol: :title_desc
     }
@@ -55,24 +61,33 @@ class SorterIndexAdminPictures
   public
 
 
+  # def url
+  #   case @id
+  #   when 'datetime_asc'
+  #     admin_pictures_path({filter: 'datetime_asc'})
+  #   when 'datetime_desc'
+  #     admin_pictures_path({filter: 'datetime_desc'})
+  #   when 'filepath_asc'
+  #     admin_pictures_path({filter: 'filepath_asc'})
+  #   when 'filepath_desc'
+  #     admin_pictures_path({filter: 'filepath_desc'})
+  #   when 'title_asc'
+  #     admin_pictures_path({filter: 'title_asc'})
+  #   when 'title_desc'
+  #     admin_pictures_path({filter: 'title_desc'})
+  #   else
+  #     admin_pictures_path
+  #   end
+  # end
+
+
   def url
-    case @symbol
-    when :datetime_asc
-      admin_pictures_path({filter: 'datetime_asc'})
-    when :datetime_desc
-      admin_pictures_path({filter: 'datetime_desc'})
-    when :filepath_asc
-      admin_pictures_path({filter: 'filepath_asc'})
-    when :filepath_desc
-      admin_pictures_path({filter: 'filepath_desc'})
-    when :title_asc
-      admin_pictures_path({filter: 'title_asc'})
-    when :title_desc
-      admin_pictures_path({filter: 'title_desc'})
+    if @id
+      admin_pictures_path({filter: @id})
     else
       admin_pictures_path
     end
   end
 
-
+  
 end

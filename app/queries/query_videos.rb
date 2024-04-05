@@ -148,7 +148,7 @@ class QueryVideos
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_admin.symbol.to_s.downcase
+      index_sorter_admin.id
     end
   end
 
@@ -157,18 +157,18 @@ class QueryVideos
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_public.symbol.to_s.downcase
+      index_sorter_public.id
     end
   end
 
 
   def index_sorter_admin
-    SorterIndexAdminVideos.find(@arlocal_settings.admin_index_videos_sorter_id)
+    SorterIndexAdminVideos.find(@arlocal_settings.admin_index_videos_sort_method)
   end
 
 
   def index_sorter_public
-    SorterIndexPublicVideos.find(@arlocal_settings.public_index_videos_sorter_id)
+    SorterIndexPublicVideos.find(@arlocal_settings.public_index_videos_sort_method)
   end
 
 

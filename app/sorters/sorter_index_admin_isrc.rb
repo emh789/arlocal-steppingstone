@@ -17,32 +17,38 @@ class SorterIndexAdminIsrc
 
   DATA = [
     {
-      id: 0,
+      # id: 0,
+      id: 'isrc_asc',
       description: 'by isrc (ascending)',
       symbol: :isrc_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'isrc_desc',
       description: 'by isrc (descending)',
       symbol: :isrc_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'title_asc',
       description: 'by title (ascending)',
       symbol: :title_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'title_desc',
       description: 'by title (descending)',
       symbol: :title_desc
     },
     {
-      id: 4,
+      # id: 4,
+      id: 'class_title_asc',
       description: 'by class, then title (ascending)',
       symbol: :class_title_asc
     },
     {
-      id: 5,
+      # id: 5,
+      id: 'class_title_desc',
       description: 'by class, then title (descending)',
       symbol: :class_title_desc
     }
@@ -64,45 +70,62 @@ class SorterIndexAdminIsrc
   public
 
 
+  # def url_edit
+  #   case @symbol
+  #   when :class_title_asc
+  #     admin_isrc_edit_path({filter: 'class_title_asc'})
+  #   when :class_title_desc
+  #     admin_isrc_edit_path({filter: 'class_title_desc'})
+  #   when :isrc_asc
+  #     admin_isrc_edit_path({filter: 'isrc_asc'})
+  #   when :isrc_desc
+  #     admin_isrc_edit_path({filter: 'isrc_desc'})
+  #   when :title_asc
+  #     admin_isrc_edit_path({filter: 'title_asc'})
+  #   when :title_desc
+  #     admin_isrc_edit_path({filter: 'title_desc'})
+  #   else
+  #     admin_isrc_edit_path
+  #   end
+  # end
+
+
   def url_edit
-    case @symbol
-    when :class_title_asc
-      admin_isrc_edit_path({filter: 'class_title_asc'})
-    when :class_title_desc
-      admin_isrc_edit_path({filter: 'class_title_desc'})
-    when :isrc_asc
-      admin_isrc_edit_path({filter: 'isrc_asc'})
-    when :isrc_desc
-      admin_isrc_edit_path({filter: 'isrc_desc'})
-    when :title_asc
-      admin_isrc_edit_path({filter: 'title_asc'})
-    when :title_desc
-      admin_isrc_edit_path({filter: 'title_desc'})
+    if @id
+      admin_isrc_edit_path({filter: @id})
     else
       admin_isrc_edit_path
     end
   end
 
 
+  # def url_index
+  #   case @symbol
+  #   when :class_title_asc
+  #     admin_isrc_index_path({filter: 'class_title_asc'})
+  #   when :class_title_desc
+  #     admin_isrc_index_path({filter: 'class_title_desc'})
+  #   when :isrc_asc
+  #     admin_isrc_index_path({filter: 'isrc_asc'})
+  #   when :isrc_desc
+  #     admin_isrc_index_path({filter: 'isrc_desc'})
+  #   when :title_asc
+  #     admin_isrc_index_path({filter: 'title_asc'})
+  #   when :title_desc
+  #     admin_isrc_index_path({filter: 'title_desc'})
+  #   else
+  #     admin_isrc_index_path
+  #   end
+  # end
+
+
   def url_index
-    case @symbol
-    when :class_title_asc
-      admin_isrc_index_path({filter: 'class_title_asc'})
-    when :class_title_desc
-      admin_isrc_index_path({filter: 'class_title_desc'})
-    when :isrc_asc
-      admin_isrc_index_path({filter: 'isrc_asc'})
-    when :isrc_desc
-      admin_isrc_index_path({filter: 'isrc_desc'})
-    when :title_asc
-      admin_isrc_index_path({filter: 'title_asc'})
-    when :title_desc
-      admin_isrc_index_path({filter: 'title_desc'})
+    if @id
+      admin_isrc_index_path({filter: @id})
     else
       admin_isrc_index_path
     end
   end
-
 
 
 

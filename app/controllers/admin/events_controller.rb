@@ -208,6 +208,7 @@ class Admin::EventsController < AdminController
       :details_markup_type,
       :details_markup_text,
       :event_pictures_sorter_id,
+      :event_pictures_sort_method,
       :map_url,
       :show_can_cycle_pictures,
       :show_can_have_more_pictures_link,

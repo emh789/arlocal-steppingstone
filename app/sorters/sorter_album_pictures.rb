@@ -1,28 +1,32 @@
 class SorterAlbumPictures
   extend InactiveRecordSingleton
-  
+
 
   DATA = [
     {
-      id: 0,
+      # id: 0,
+      id: 'cover_datetime_asc',
       description: 'coverpicture first, then date/time cascade (old - new)',
       method: lambda { |album_pictures| SorterAlbumPictures.cover_datetime_asc(album_pictures) },
       symbol: :cover_datetime_asc
     },
     {
-      id: 1,
+      # id: 1,
+      id: 'cover_datetime_desc',
       description: 'coverpicture first, then date/time cascade (new - old)',
       method: lambda { |album_pictures| SorterAlbumPictures.cover_datetime_desc(album_pictures) },
       symbol: :cover_datetime_desc
     },
     {
-      id: 2,
+      # id: 2,
+      id: 'cover_manual_asc',
       description: 'coverpicture first, then manual order (low - high)',
       method: lambda { |album_pictures| SorterAlbumPictures.cover_manual_asc(album_pictures) },
       symbol: :cover_manual_asc
     },
     {
-      id: 3,
+      # id: 3,
+      id: 'cover_manual_desc',
       description: 'coverpicture first, then manual order (high - low)',
       method: lambda { |album_pictures| SorterAlbumPictures.cover_manual_desc(album_pictures) },
       symbol: :cover_manual_desc
@@ -57,10 +61,10 @@ class SorterAlbumPictures
   end
 
 
-  
+
   protected
-  
-  
+
+
   def self.cover_datetime_asc(album_pictures)
     album_pictures.order('album_pictures.is_coverpicture DESC').joins(:picture).order('pictures.datetime_cascade_value ASC')
   end
@@ -69,16 +73,16 @@ class SorterAlbumPictures
   def self.cover_datetime_desc(album_pictures)
     album_pictures.order('album_pictures.is_coverpicture DESC').joins(:picture).order('pictures.datetime_cascade_value DESC')
   end
-  
-  
+
+
   def self.cover_manual_asc(album_pictures)
     album_pictures.order('album_pictures.is_coverpicture DESC').order('album_pictures.album_order ASC')
   end
-  
-  
+
+
   def self.cover_manual_desc(album_pictures)
     album_pictures.order('album_pictures.is_coverpicture DESC').order('album_pictures.album_order DESC')
   end
-  
-  
+
+
 end

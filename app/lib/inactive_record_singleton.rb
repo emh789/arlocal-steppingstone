@@ -32,7 +32,7 @@ module InactiveRecordSingleton
 
 
   def find_by_id(id)
-    record = self.inactive_records.select { |record| record[:id] == id.to_i }[0]
+    record = self.inactive_records.select { |record| record[:id] == id }[0]
     if record
       self.new(record)
     else

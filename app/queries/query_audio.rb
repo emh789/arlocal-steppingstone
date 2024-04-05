@@ -106,7 +106,7 @@ class QueryAudio
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_admin.symbol.to_s.downcase
+      index_sorter_admin.id
     end
   end
 
@@ -115,18 +115,18 @@ class QueryAudio
     if @params[:filter]
       @params[:filter].downcase
     else
-      index_sorter_public.symbol.to_s.downcase
+      index_sorter_public.id
     end
   end
 
 
   def index_sorter_admin
-    SorterIndexAdminAudio.find(@arlocal_settings.admin_index_audio_sorter_id)
+    SorterIndexAdminAudio.find(@arlocal_settings.admin_index_audio_sort_method)
   end
 
 
   def index_sorter_public
-    SorterIndexPublicAudio.find(@arlocal_settings.public_index_audio_sorter_id)
+    SorterIndexPublicAudio.find(@arlocal_settings.public_index_audio_sort_method)
   end
 
 
