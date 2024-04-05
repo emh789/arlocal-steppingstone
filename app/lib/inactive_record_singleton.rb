@@ -20,14 +20,7 @@ module InactiveRecordSingleton
 
 
   def find(key)
-    case key
-    when Integer
-      self.find_by_id(key)
-    when String
-      self.find_by_id(key)
-    when Symbol
-      self.find_by_symbol(key)
-    end
+    self.find_by_id(key)
   end
 
 
@@ -38,22 +31,6 @@ module InactiveRecordSingleton
     else
       false
     end
-  end
-
-
-  def find_by_symbol(symbol)
-    record = self.inactive_records.select { |record| record[:symbol] == symbol }[0]
-    if record
-      self.new(record)
-    else
-      false
-    end
-  end
-
-
-  def find_id_from_param(param)
-    symbol = param.to_sym
-    self.find_by_symbol(symbol).id
   end
 
 

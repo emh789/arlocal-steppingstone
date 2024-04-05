@@ -11,8 +11,9 @@ migrations:
   - {}_sorter_id => {}_sort_method
     - mostly arlocal_settings
     - album and event
+    - Done, just remove `{}_sorter_id` database columns
   - delete old migrations and lib/* migration-related classes
-  
+
 finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
   - *Review builder methods for currency**

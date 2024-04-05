@@ -97,7 +97,7 @@ module AudioHelper
 
 
   def audio_admin_filter_select(form, params)
-    selected = params[:filter] ? SorterIndexAdminAudio.find_id_from_param(params[:filter]) : form.object.admin_index_audio_sort_method
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_audio_sort_method
     form.select(
       :admin_index_audio_sort_method,
       SorterIndexAdminAudio.options_for_select(:url),

@@ -90,7 +90,7 @@ module PicturesHelper
 
 
   def picture_admin_filter_select(form, params)
-    selected = params[:filter] ? SorterIndexAdminPictures.find_id_from_param(params[:filter]) : form.object.admin_index_pictures_sort_method
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_pictures_sort_method
     form.select(
       :admin_index_pictures_sort_method,
       SorterIndexAdminPictures.options_for_select(:url),

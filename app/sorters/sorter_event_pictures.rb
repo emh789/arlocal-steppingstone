@@ -4,37 +4,29 @@ class SorterEventPictures
 
   DATA = [
     {
-      # id: 0,
       id: 'cover_datetime_asc',
       description: 'coverpicture first, then date/time cascade (old - new)',
       method: lambda { |event_pictures| SorterEventPictures.cover_datetime_asc(event_pictures) },
-      symbol: :cover_datetime_asc
     },
     {
-      # id: 1,
       id: 'cover_datetime_desc',
       description: 'coverpicture first, then date/time cascade (new - old)',
       method: lambda { |event_pictures| SorterEventPictures.cover_datetime_desc(event_pictures) },
-      symbol: :cover_datetime_desc
     },
     {
-      # id: 2,
       id: 'cover_manual_asc',
       description: 'coverpicture first, then manual order (low - high)',
       method: lambda { |event_pictures| SorterEventPictures.cover_manual_asc(event_pictures) },
-      symbol: :cover_manual_asc
     },
     {
-      # id: 3,
       id: 'cover_manual_desc',
       description: 'coverpicture first, then manual order (high - low)',
       method: lambda { |event_pictures| SorterEventPictures.cover_manual_desc(event_pictures) },
-      symbol: :cover_manual_desc
     }
   ]
 
 
-  attr_reader :id, :description, :method, :symbol
+  attr_reader :id, :description, :method
 
 
   def initialize(sorter)
@@ -42,7 +34,6 @@ class SorterEventPictures
       @id = sorter[:id]
       @description = sorter[:description]
       @method = sorter[:method]
-      @symbol = sorter[:symbol]
     end
   end
 

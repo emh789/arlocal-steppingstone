@@ -25,9 +25,9 @@ module IsrcHelper
 
 
   def isrc_admin_filter_select(form, params, action: :index)
-    selected = params[:filter] ? SorterIndexAdminIsrc.find_id_from_param(params[:filter]) : form.object.admin_index_isrc_sorter_id
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_isrc_sort_method
     form.select(
-      :admin_index_isrc_sorter_id,
+      :admin_index_isrc_sort_method,
       SorterIndexAdminIsrc.url_options_for_select_contextual(action: action),
       { include_blank: false, selected: selected },
       { class: [:arl_active_refine_selection, :arl_button_select, :arl_isrc_index_filter] }
