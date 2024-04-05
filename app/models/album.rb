@@ -14,10 +14,10 @@ class Album < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
 
-  validates :album_pictures_sorter_id, presence: true
-  validates :date_released,            presence: true
-  validates :description_markup_type,    presence: true
-  validates :title,                    presence: true
+  validates :album_pictures_sort_method, presence: true
+  validates :date_released, presence: true
+  validates :description_markup_type, presence: true
+  validates :title, presence: true
 
   has_many :album_audio,    -> { includes(:audio)   }, dependent: :destroy
   has_many :album_keywords, -> { includes(:keyword) }, dependent: :destroy
@@ -75,6 +75,9 @@ class Album < ApplicationRecord
   end
 
 
+  ### album_pictures_sort_method
+
+
   def album_pictures_sorted
     if album_pictures_sorter
       album_pictures_sorter.call(album_pictures)
@@ -85,11 +88,8 @@ class Album < ApplicationRecord
 
 
   def album_pictures_sorter
-    SorterAlbumPictures.find(album_pictures_sorter_id)
+    SorterAlbumPictures.find(album_pictures_sort_method)
   end
-
-
-  ### album_pictures_sorter_id
 
 
   ### artist

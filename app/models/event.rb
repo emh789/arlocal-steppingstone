@@ -17,14 +17,14 @@ class Event < ApplicationRecord
 
   before_validation :strip_whitespace_edges_from_entered_text
 
-  validates :datetime_year,            presence: true
-  validates :datetime_month,           presence: true
-  validates :datetime_day,             presence: true
-  validates :details_markup_type,        presence: true
-  validates :event_pictures_sorter_id, presence: true
-  validates :title_markup_type,          presence: true
-  validates :title_markup_text,        presence: true
-  validates :venue,                    presence: true
+  validates :datetime_year,               presence: true
+  validates :datetime_month,              presence: true
+  validates :datetime_day,                presence: true
+  validates :details_markup_type,         presence: true
+  validates :event_pictures_sort_method,  presence: true
+  validates :title_markup_type,           presence: true
+  validates :title_markup_text,           presence: true
+  validates :venue,                       presence: true
 
   before_save :create_attr_title_without_markup
   before_save :convert_datetime_to_utc
@@ -265,6 +265,9 @@ class Event < ApplicationRecord
   end
 
 
+  ### event_pictures_sort_method
+
+
   def event_pictures_sorted
     if event_pictures_sorter
       event_pictures_sorter.call(event_pictures)
@@ -275,11 +278,8 @@ class Event < ApplicationRecord
 
 
   def event_pictures_sorter
-    SorterEventPictures.find(event_pictures_sorter_id)
+    SorterEventPictures.find(event_pictures_sort_method)
   end
-
-
-  ### event_pictures_sorter_id
 
 
   ### event_videos

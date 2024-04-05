@@ -158,7 +158,6 @@ class Admin::AlbumsController < AdminController
   def params_album_permitted
     params.require(:album).permit(
       :album_artist,
-      :album_pictures_sorter_id,
       :album_pictures_sort_method,
       :artist,
       :copyright_markup_type,

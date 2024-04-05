@@ -38,25 +38,25 @@ class ArlocalSettings < ApplicationRecord
   ### admin_forms_retain_pane_for_neighbors
 
 
-  ### admin_forms_selectable_pictures_sorter_id
+  ### admin_forms_selectable_pictures_sort_method
 
 
-  ### admin_index_albums_sorter_id
+  ### admin_index_albums_sort_method
 
 
-  ### admin_index_audio_sorter_id
+  ### admin_index_audio_sort_method
 
 
-  ### admin_index_events_sorter_id
+  ### admin_index_events_sort_method
 
 
-  ### admin_index_isrc_sorter_id
+  ### admin_index_isrc_sort_method
 
 
-  ### admin_index_pictures_sorter_id
+  ### admin_index_pictures_sort_method
 
 
-  ### admin_index_videos_sorter_id
+  ### admin_index_videos_sort_method
 
 
   ### artist_content_copyright_year_earliest
@@ -207,19 +207,19 @@ class ArlocalSettings < ApplicationRecord
 
 
 
-  ### public_index_albums_sorter_id
+  ### public_index_albums_sort_method
 
 
-  ### public_index_audio_sorter_id
+  ### public_index_audio_sort_method
 
 
-  ### public_index_events_sorter_id
+  ### public_index_events_sort_method
 
 
-  ### public_index_pictures_sorter_id
+  ### public_index_pictures_sort_method
 
 
-  ### public_index_videos_sorter_id
+  ### public_index_videos_sort_method
 
 
   def public_layout_will_have_nav

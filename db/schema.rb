@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_05_233404) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,7 +84,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
 
   create_table "albums", force: :cascade do |t|
     t.string "album_artist"
-    t.integer "album_pictures_sorter_id"
     t.string "artist"
     t.integer "audio_count"
     t.string "copyright_markup_type"
@@ -114,12 +113,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
   end
 
   create_table "arlocal_settings", force: :cascade do |t|
-    t.string "admin_index_audio_sorter_id"
     t.boolean "admin_forms_auto_keyword_enabled"
     t.integer "admin_forms_auto_keyword_id"
     t.boolean "admin_forms_edit_slug_field"
-    t.string "admin_forms_selectable_pictures_sorter_id"
-    t.string "admin_index_pictures_sorter_id"
     t.boolean "marquee_enabled"
     t.integer "artist_content_copyright_year_earliest"
     t.integer "artist_content_copyright_year_latest"
@@ -130,28 +126,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
     t.string "marquee_markup_text"
     t.string "icon_source_imported_file_path"
     t.boolean "html_head_public_can_include_meta_description"
-    t.string "public_index_albums_sorter_id"
     t.boolean "public_nav_can_include_albums"
     t.boolean "public_nav_can_include_events"
     t.boolean "public_nav_can_include_info"
     t.boolean "public_nav_can_include_pictures"
-    t.string "public_index_pictures_sorter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public_nav_can_include_audio"
-    t.integer "admin_index_albums_sorter_id"
-    t.integer "admin_index_events_sorter_id"
-    t.integer "public_index_audio_sorter_id"
-    t.integer "public_index_events_sorter_id"
     t.boolean "audio_default_date_released_enabled"
     t.date "audio_default_date_released"
     t.boolean "admin_forms_retain_pane_for_neighbors"
     t.boolean "public_nav_can_include_stream"
-    t.integer "admin_index_videos_sorter_id"
-    t.integer "public_index_videos_sorter_id"
     t.boolean "public_nav_can_include_videos"
     t.string "icon_source_type"
-    t.integer "admin_index_isrc_sorter_id"
     t.string "admin_forms_selectable_pictures_sort_method"
     t.string "admin_index_albums_sort_method"
     t.string "admin_index_audio_sort_method"
@@ -262,7 +249,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_145809) do
     t.string "city"
     t.string "details_markup_type"
     t.text "details_markup_text"
-    t.string "event_pictures_sorter_id"
     t.integer "keywords_count"
     t.text "map_url"
     t.integer "pictures_count"
