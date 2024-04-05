@@ -175,7 +175,7 @@ module EventsHelper
 
 
   def event_public_filter_select(arlocal_settings, params)
-    selected = params[:filter] ? SorterIndexPublicEvents.find_id_from_param(params[:filter]) : arlocal_settings.public_index_events_sorter_id
+    selected = params[:filter] ? (params[:filter]) : arlocal_settings.public_index_events_sort_method
     select(
       :events_index,
       :filter,
