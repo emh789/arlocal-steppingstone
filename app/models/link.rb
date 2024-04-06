@@ -6,9 +6,9 @@ class Link < ApplicationRecord
   include Seedable
 
 
-  # before_validation :strip_whitespace_edges_from_entered_text
+  before_validation :strip_whitespace_edges_from_entered_text
 
-  # validates :details_markup_type, presence: true
+  validates :details_markup_type, presence: true
 
   has_many :infopage_items, -> { where infopageable_type: 'Link' }, foreign_key: :infopageable_id, dependent: :destroy
   has_many :infopages, through: :infopage_items

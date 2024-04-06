@@ -3,21 +3,12 @@
 
 ## HIGHEST priority
 
-- ArlocalSettings
-  - AutoKeyword attributes are [FILTERED], but why/how?
-
-- Builder methods
-  - some specify empty string for _markup_text; others are nil. What difference?
-
-- Keyword Admin:
-  - #edit?videos missing buttons
-    - **Finish implementation of video joins submenus; look across resources; also within video#edit**
-
-migrations:
-  - delete old migrations and lib/* migration-related classes
-
 finish admin renovation
+
+  - index filter selects
+
   - `admin/isrc/edit` narrow view buttons overflow right
+
   - *Review builder methods for currency**
   - *Review helper methods for currency in light of recent refactoring frenzy.*
     - administrators ok
@@ -31,6 +22,19 @@ finish admin renovation
     - resources ok(?)
     - streams ok
     - videos ok
+
+  - ArlocalSettings
+    - AutoKeyword attributes are [FILTERED], but why/how?
+
+  - Builder methods
+    - some specify empty string for _markup_text; others are nil. What difference?
+
+  - Keyword Admin:
+    - #edit?videos missing buttons
+      - **Finish implementation of video joins submenus; look across resources; also within video#edit**
+
+  migrations:
+    - delete old migrations and lib/* migration-related classes
 
 
 ## HIGH priority
@@ -229,3 +233,5 @@ Video index needs headings
   - build_picture
 - fix http://localhost:3000/admin/albums/amidst/edit?pane=picture_join_by_keyword
   - pictures_count
+
+- re-enable link validations
