@@ -187,7 +187,7 @@ class QueryPictures
 
 
   def determine_filter_method_form_selectable
-    index_sorter_form_selectable.symbol.to_s.downcase
+    index_sorter_form_selectable.id
   end
 
 
