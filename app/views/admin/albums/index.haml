@@ -7,6 +7,10 @@
     = album_admin_button_to_public
 
 .arl_admin_albums_index
+  .arl_admin_albums_index_filter
+    = form_with model: @arlocal_settings, url: admin_arlocal_settings_update_and_return_path, local: true do |f|
+      = album_admin_filter_select(f, params)
+      = f.submit icon_pin, class: :arl_button_form_aux_submit
 
   .arl_admin_albums_index_albums
     - @albums.each do |album|

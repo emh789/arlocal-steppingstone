@@ -5,8 +5,6 @@
 
 finish admin renovation
 
-  - index filter selects
-
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - *Review builder methods for currency**
@@ -38,6 +36,13 @@ finish admin renovation
 
 
 ## HIGH priority
+
+Admin Resource Indexes are starting to have 'selectable' components and forms in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules inherently imply the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods.
+
+Where to Sort vs Where to Query
+  - previously depended more on a variety of singleton scopes chained in the controller
+  - current scopes are for public/private visibility
+  - Most sort methods are held in the Query; exceptions are album_ and event_pictures
 
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
@@ -235,3 +240,5 @@ Video index needs headings
   - pictures_count
 
 - re-enable link validations
+
+- index filter selects

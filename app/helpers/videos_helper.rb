@@ -74,6 +74,17 @@ module VideosHelper
   end
 
 
+  def video_admin_filter_select(form, params)
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_videos_sort_method
+    form.select(
+      :admin_index_videos_sort_method,
+      SorterIndexAdminVideos.options_for_select(:url),
+      { include_blank: false, selected: selected },
+      { class: [:arl_active_refine_selection, :arl_button_select, :arl_audio_index_filter] }
+    )
+  end
+
+
   def video_admin_header_nav_buttons
     [ video_admin_button_to_index,
       video_admin_button_to_new

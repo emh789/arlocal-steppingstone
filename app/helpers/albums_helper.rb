@@ -74,6 +74,17 @@ module AlbumsHelper
   end
 
 
+  def album_admin_filter_select(form, params)
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_albums_sort_method
+    form.select(
+      :admin_index_albums_sort_method,
+      SorterIndexAdminAlbums.options_for_select(:url),
+      { include_blank: false, selected: selected },
+      { class: [:arl_active_refine_selection, :arl_button_select, :arl_audio_index_filter] }
+    )
+  end
+
+
   def album_admin_header_nav_buttons
     [ album_admin_button_to_index,
       album_admin_button_to_new

@@ -65,19 +65,30 @@ module EventsHelper
   end
 
 
-  def event_admin_header_nav_buttons
-    [ event_admin_button_to_index,
-      event_admin_button_to_new
-    ].join("\n").html_safe
-  end
-
-
   def event_admin_edit_nav_button(event: nil, category: nil, current_pane: nil)
     button_admin_to_edit_pane(
       current_pane: current_pane,
       target_link: edit_admin_event_path(event.id_admin, pane: category),
       target_pane: category
     )
+  end
+
+
+  def event_admin_filter_select(form, params)
+    selected = params[:filter] ? (params[:filter]) : form.object.admin_index_events_sort_method
+    form.select(
+      :admin_index_events_sort_method,
+      SorterIndexAdminEvents.options_for_select(:url),
+      { include_blank: false, selected: selected },
+      { class: [:arl_active_refine_selection, :arl_button_select, :arl_audio_index_filter] }
+    )
+  end
+
+
+  def event_admin_header_nav_buttons
+    [ event_admin_button_to_index,
+      event_admin_button_to_new
+    ].join("\n").html_safe
   end
 
 
