@@ -224,3 +224,8 @@ Video index needs headings
     - mostly arlocal_settings
     - album and event
     - Done, just remove `{}_sorter_id` database columns
+
+- fix http://localhost:3000/admin/albums/:id/edit?pane=picture_import
+  - build_picture
+- fix http://localhost:3000/admin/albums/amidst/edit?pane=picture_join_by_keyword
+  - pictures_count

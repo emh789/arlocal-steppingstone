@@ -20,7 +20,7 @@ class QueryKeywords
 
 
   def self.options_for_select_admin
-    Keyword.select(:id, :title).sort_by{ |k| k.title.downcase }
+    Keyword.all.sort_by{ |k| k.title.downcase }
   end
 
 

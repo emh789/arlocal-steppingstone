@@ -296,12 +296,12 @@ class Keyword < ApplicationRecord
 
   # returns a string with title and number of joined pictures
   def title_with_pictures_count
-    "#{self.title} (#{self.pictures_count})"
+    "#{title} (#{pictures_count})"
   end
 
 
   def title_with_videos_count
-    "#{self.title} (#{self.videos_count})"
+    "#{title} (#{videos_count})"
   end
 
 
