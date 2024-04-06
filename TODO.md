@@ -3,15 +3,14 @@
 
 ## HIGHEST priority
 
+- ArlocalSettings
+  - AutoKeyword attributes are [FILTERED], but why/how?
+  
 - Keyword Admin:
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
 migrations:
-  - {}_sorter_id => {}_sort_method
-    - mostly arlocal_settings
-    - album and event
-    - Done, just remove `{}_sorter_id` database columns
   - delete old migrations and lib/* migration-related classes
 
 finish admin renovation
@@ -218,3 +217,7 @@ Video index needs headings
       - markdown      - `markdown`
       - plain text    - `plaintext`
       - single line   - `string`
+  - {}_sorter_id => {}_sort_method
+    - mostly arlocal_settings
+    - album and event
+    - Done, just remove `{}_sorter_id` database columns
