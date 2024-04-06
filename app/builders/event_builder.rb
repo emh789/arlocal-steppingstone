@@ -56,11 +56,11 @@ class EventBuilder
   def params_default
     {
       details_markup_type: 'plaintext',
-      event_pictures_sorter_id: SorterEventPictures.find_by_symbol(:cover_manual_asc).id,
+      event_pictures_sort_method: 'cover_manual_asc',
       show_can_cycle_pictures: true,
       show_can_have_more_pictures_link: true,
-      title_markup_type: 'string',
       title_markup_text: '',
+      title_markup_type: 'string',
       visibility: 'private'
     }
   end

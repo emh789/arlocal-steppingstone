@@ -360,8 +360,8 @@ class AudioBuilder
     {
       artist: params_default_artist,
       copyright_markup_type: 'string',
-      date_released: params_default_date_released,
       description_markup_type: 'plaintext',
+      date_released: params_default_date_released,
       isrc_country_code: params_default_isrc_country_code,
       isrc_registrant_code: params_default_isrc_registrant_code,
       musicians_markup_type: 'string',

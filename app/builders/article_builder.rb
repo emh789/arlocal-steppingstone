@@ -55,8 +55,8 @@ class ArticleBuilder
 
   def params_default
     {
-      copyright_markup_type: 'string',
       content_markup_type: 'plaintext',
+      copyright_markup_type: 'string',
       visibility: 'private'
     }
   end

@@ -5,7 +5,10 @@
 
 - ArlocalSettings
   - AutoKeyword attributes are [FILTERED], but why/how?
-  
+
+- Builder methods
+  - some specify empty string for _markup_text; others are nil. What difference?
+
 - Keyword Admin:
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**

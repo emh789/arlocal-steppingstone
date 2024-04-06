@@ -55,7 +55,7 @@ class AlbumBuilder
   def params_default
     {
       artist: ArlocalSettings.first.artist_name,
-      album_pictures_sorter_id: SorterAlbumPictures.find_by_symbol(:cover_manual_asc).id,
+      album_pictures_sort_method: 'cover_manual_asc',
       copyright_markup_type: 'string',
       description_markup_type: 'plaintext',
       index_can_display_tracklist: true,
