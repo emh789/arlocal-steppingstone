@@ -7,25 +7,16 @@ finish admin renovation
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - *Review builder methods for currency**
-  - *Review helper methods for currency in light of recent refactoring frenzy.*
-    - administrators ok
-    - albums ok
-    - articles ok
-    - audio some bad smells: []_file_source_path etc. []_read metadata
-    - events ok
-    - infopages ok
-    - links ok
-    - pictures ok
-    - resources ok(?)
-    - streams ok
-    - videos ok
+  - *Some helper methods have minor issues*
+    - `audio_helper` some bad smells: []_file_source_path etc. []_read metadata
+    - `form_helper` has one current and several obsolete methods that describe specific form attributes,
 
   - ArlocalSettings
     - AutoKeyword attributes are [FILTERED], but why/how?
 
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?
+      - difference looks like formality and thoroughness, nothing functional
 
   - Keyword Admin:
     - #edit?videos missing buttons
@@ -242,3 +233,38 @@ Video index needs headings
 - re-enable link validations
 
 - index filter selects
+
+- *Review builder methods for currency**
+
+- *Review helper methods for currency in light of recent refactoring frenzy.*
+  - admin_nav ok
+  - administrators ok
+  - albums ok
+  - arlocal ok
+  - articles ok
+  - attribute ok
+  - audio some bad smells: []_file_source_path etc. []_read metadata
+  - button ok
+  - events ok
+  - form_helper has one current and several obsolete methods that previously described some form attributes,
+  - html_head ok
+  - icon ok
+  - infopages ok
+  - isrc ok
+  - javascript ok
+  - keywords ok
+  - links ok
+  - parsers ok
+  - pictures ok
+  - resources ok
+  - routing ok
+  - selectors ok
+  - source_imported ok
+  - streams ok
+  - videos ok
+  - visibility ok
+  - welcome ok
+  - helper methods
+    - source_imported ok; removed obsolete methods that had previously been commented-out
+    - visibility has the same integer/keyword id issue that `_markup_type` and `_sort_method` recently committed to keyword
+      - id is sort order. models and helpers use `.title`
