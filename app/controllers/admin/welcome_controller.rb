@@ -2,6 +2,7 @@ class Admin::WelcomeController < AdminController
 
 
   def content_storage
+    render 'admin/welcome/content'
   end
 
 
@@ -11,7 +12,7 @@ class Admin::WelcomeController < AdminController
 
   def markup_types
     @form_metadata = FormWelcomeMarkupMetadata.new(pane: params[:pane])
-    render 'admin/welcome/markup_index'
+    render 'admin/welcome/markup'
   end
 
 
