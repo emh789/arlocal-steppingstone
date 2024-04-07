@@ -2,7 +2,6 @@ class Stream < ApplicationRecord
 
 
   extend FriendlyId
-  extend MarkupParserUtils
   extend Neighborable
   extend Paginateable
   include Seedable

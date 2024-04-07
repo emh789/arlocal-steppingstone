@@ -2,7 +2,6 @@ class Event < ApplicationRecord
 
 
   extend FriendlyId
-  extend MarkupParserUtils
   extend Neighborable
   include Seedable
 

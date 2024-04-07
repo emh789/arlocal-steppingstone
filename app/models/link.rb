@@ -1,7 +1,6 @@
 class Link < ApplicationRecord
 
 
-  extend MarkupParserUtils
   extend Neighborable
   include Seedable
 

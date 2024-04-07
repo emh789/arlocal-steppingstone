@@ -10,6 +10,10 @@ finish admin renovation
   - *Some helper methods have minor issues*
     - `audio_helper` some bad smells: []_file_source_path etc. []_read metadata
     - `form_helper` has one current and several obsolete methods that describe specific form attributes,
+    - `links_helper` need some review
+      - #link_parse_email
+      - #link_parse_web
+      - redundancy, confusion, could be refactored.
 
   - ArlocalSettings
     - AutoKeyword attributes are [FILTERED], but why/how?
@@ -22,13 +26,9 @@ finish admin renovation
     - #edit?videos missing buttons
       - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
-  migrations:
-    - delete old migrations and lib/* migration-related classes
-
-
 ## HIGH priority
 
-Admin Resource Indexes are starting to have 'selectable' components and forms in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules inherently imply the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods.
+Admin Resource Indexes are starting to have 'selectable' components and forms in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
 Where to Sort vs Where to Query
   - previously depended more on a variety of singleton scopes chained in the controller
@@ -37,14 +37,6 @@ Where to Sort vs Where to Query
 
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
-
-- Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
-  - **But `#name` is the name of the destination, not the title of the link.**
-  - _Visited this topic before, and kept name._
-  - Create semantic sugar method if needed.
-- Links_helpers need some review for currency and effectiveness
-  - first glance looks okay, but seems overly complicated
-
 
 - datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
@@ -125,6 +117,12 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 
 
 ## Possibly finished
+
+- Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
+  - **But `#name` is the name of the destination, not the title of the link.**
+  - _Visited this topic before, and kept name._
+  - Create semantic sugar method if needed.
+
 
 - `[resource]_admin_link_title`
   - why `gsub('/','/&shy;')` in album_*_title?
@@ -268,3 +266,6 @@ Video index needs headings
     - source_imported ok; removed obsolete methods that had previously been commented-out
     - visibility has the same integer/keyword id issue that `_markup_type` and `_sort_method` recently committed to keyword
       - id is sort order. models and helpers use `.title`
+
+migrations:
+  - delete old migrations and lib/* migration-related classes
