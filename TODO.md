@@ -7,14 +7,6 @@ finish admin renovation
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - *Some helper methods have minor issues*
-    - `audio_helper` some bad smells: []_file_source_path etc. []_read metadata
-    - `form_helper` has one current and several obsolete methods that describe specific form attributes,
-    - `links_helper` need some review
-      - #link_parse_email
-      - #link_parse_web
-      - redundancy, confusion, could be refactored.
-
   - ArlocalSettings
     - AutoKeyword attributes are [FILTERED], but why/how?
 
@@ -28,7 +20,7 @@ finish admin renovation
 
 ## HIGH priority
 
-Admin Resource Indexes are starting to have 'selectable' components and forms in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
+Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
 Where to Sort vs Where to Query
   - previously depended more on a variety of singleton scopes chained in the controller
@@ -81,11 +73,14 @@ Where to Sort vs Where to Query
 autokeyword smells bad.
 _Could be replaced by `Add [resource] to Keyword`_
 
-Had AudioHelper.audio_read_source_metadata been refactored into a builder method? *no* If not, should it be? *no, if anywhere then into the Album model*
-  - used in `app/views/admin/audio/_form_id3.haml`
-- admin:audio#edit?id3 needs some refinement.
-  - columns
+
+Audio Id3 tags:
+  - AUdioHelper#audio_read_source_metadata
   - is audio_helper the best place for the method?
+  - used in `app/views/admin/audio/_form_id3.haml`
+
+- `form_helper` has one current and several obsolete methods that describe specific form attributes,
+
 
 - import/upload video via `keywords/_form_video_import`
 
@@ -113,6 +108,12 @@ Had AudioHelper.audio_read_source_metadata been refactored into a builder method
 - Audio index
 
 **Continue to be mindful about including `autocomplete: false` in form elements.**
+
+- `links_helper` need some review
+  - #link_parse_email
+  - #link_parse_web
+  - redundancy, confusion, could be refactored.
+  - _Complicated. Reduce to low priority._
 
 
 
