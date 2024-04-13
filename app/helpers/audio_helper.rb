@@ -150,9 +150,10 @@ module AudioHelper
   end
 
 
-  def audio_file_path_with_indicator_classes(audio, html_class: [])
-    audio_file_source_path_with_indicators(audio, html_class: html_class)
-  end
+  # TODO: Obsolete
+  # def audio_file_path_with_indicator_classes(audio, html_class: [])
+  #   audio_file_source_path_with_indicators(audio, html_class: html_class)
+  # end
 
 
   def audio_preferred_url(audio)
@@ -167,6 +168,7 @@ module AudioHelper
   end
 
   # used by app/views/admin/audio/_form_id3.haml
+  # TODO: Consider whether this should belong to a builder method.
   def audio_read_source_metadata(audio)
     metadata = nil
     result = {}
