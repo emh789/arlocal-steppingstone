@@ -82,6 +82,7 @@
   }
 }
 .arl_admin_resource_header_buttons {
+  cursor: default;
   grid-area: buttons;
 }
 .arl_admin_resource_header_category {
@@ -155,6 +156,19 @@
   margin-right: auto;
   margin-top: $arl-margin-narrow / 2;
   max-width: 16rem;
+}
+.arl_admin_resource_joins_button {
+  border-radius: $border-radius;
+  border-style: $border-style;
+  border-width: $border-width-wide;
+  display: inline-block;
+  height: 1.5em;
+  margin-right: 0.5rem;
+  min-width: 1.5em;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  &:last-child {
+    margin-right: 0rem;
+  }
 }
 
 

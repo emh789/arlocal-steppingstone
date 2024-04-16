@@ -34,22 +34,22 @@ module ButtonHelper
 
 
   def button_admin_to_new_import(path = nil)
-    content_tag(:a, icon_new_import, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_new_import, class: :arl_admin_resource_joins_button, href: path)
   end
 
 
   def button_admin_to_new_join_by_keyword(path = nil)
-    content_tag(:a, icon_new_join_by_keyword, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_new_join_by_keyword, class: :arl_admin_resource_joins_button, href: path)
   end
 
 
   def button_admin_to_new_join_single(path = nil)
-    content_tag(:a, icon_new_join_single, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_new_join_single, class: :arl_admin_resource_joins_button, href: path)
   end
 
 
   def button_admin_to_new_upload(path = nil)
-    content_tag(:a, icon_new_upload, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_new_upload, class: :arl_admin_resource_joins_button, href: path)
   end
 
 

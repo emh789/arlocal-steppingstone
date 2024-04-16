@@ -1,0 +1,50 @@
+.arl_fa_icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.75, 0.75);
+  transform-origin: center center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.fa_done_editing {
+  background-image: asset_url('font-awesome/lock.svg');
+}
+.fa_edit {
+  background-image: asset_url('font-awesome/pen.svg');
+}
+.fa_import {
+  background-image: asset_url('font-awesome/right-to-bracket.svg');
+}
+.fa_index {
+  background-image: asset_url('font-awesome/bars.svg');
+}
+.fa_join_by_keyword {
+  background-image: asset_url('font-awesome/arrows-to-circle.svg');
+}
+.fa_join_single {
+  background-image: asset_url('font-awesome/link.svg');
+  transform: scale(0.9, 0.9);
+}
+.fa_new {
+  background-image: asset_url('font-awesome/plus.svg');
+}
+.fa_next {
+  background-image: asset_url('font-awesome/right-long.svg');
+}
+.fa_previous {
+  background-image: asset_url('font-awesome/left-long.svg');
+}
+.fa_private {
+  background-image: asset_url('font-awesome/eye-slash.svg');
+}
+.fa_public {
+  background-image: asset_url('font-awesome/eye.svg');
+}
+.fa_upload {
+  background-image: asset_url('font-awesome/upload.svg');
+  margin-top: -1px;
+}

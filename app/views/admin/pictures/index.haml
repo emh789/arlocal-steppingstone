@@ -6,8 +6,8 @@
   .arl_admin_resource_header_buttons
     = picture_admin_button_to_public
 
-.arl_admin_pictures_index
-  .arl_admin_pictures_index_filter
+.arl_admin_pictures_index_filter
+  .arl_admin_pictures_index
     = form_with model: @arlocal_settings, url: admin_arlocal_settings_update_and_return_path, local: true do |f|
       = picture_admin_filter_select(f, params)
       = f.submit icon_pin, class: :arl_button_form_aux_submit

@@ -23,7 +23,8 @@ module VisibilityHelper
 
 
   def visibility_description(id)
-    visibilities.select { |v| v[:id] == id }[0][:description]
+    # visibilities.select { |v| v[:id] == id }[0][:description]
+    visibilities.select { |v| v[:id] == id }[0][:id]
   end
 
 
@@ -35,7 +36,7 @@ module VisibilityHelper
   def visibility_options_for_select
     options = []
     visibilities.each do |vis|
-      options << [vis[:description], vis[:id]]
+      options << [vis[:id], vis[:id]]
     end
     options
   end

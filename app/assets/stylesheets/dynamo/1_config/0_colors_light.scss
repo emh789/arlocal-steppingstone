@@ -52,11 +52,14 @@ $light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
   }
   .arl_admin_header_nav_button {
     background-color: $light-button-bg;
-    box-shadow: 0rem 0rem 1px $light-border;
+    // box-shadow: 0rem 0rem 1px $light-border;
   }
   .arl_admin_header_nav_select {
     background-color: $light-button-bg;
-    box-shadow: 0rem 0rem 1px $light-border;
+    // box-shadow: 0rem 0rem 1px $light-border;
+  }
+  .arl_admin_resource_joins_button {
+    background-color: $light-button-bg;
   }
   .arl_admin_resource_header, .arl_admin_resource_header_with_thumbnail {
     background-color: $light-admin-bg2;
@@ -85,6 +88,10 @@ $light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
   }
   .arl_error_file_missing, .arl_error_not_indexed {
     color: mix(red, $light-fg);
+  }
+  .arl_fa_icon {
+    // filter: invert(10%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
+    filter: invert(30%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
   }
   .arl_form_data_attr_input_checkbox_visible {
     background-color: $light-bg;

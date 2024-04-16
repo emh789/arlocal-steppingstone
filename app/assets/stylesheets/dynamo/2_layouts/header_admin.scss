@@ -39,6 +39,8 @@
 }
 .arl_admin_header_nav_button {
   border-radius: $border-radius;
+  border-width: $border-width-wide;
+  border-style: $border-style;
   display: inline-block;
   font-family: $font-family-application;
   font-size: 0.9em;
@@ -57,6 +59,8 @@
 }
 .arl_admin_header_nav_select {
   border-radius: $border-radius;
+  border-width: $border-width-wide;
+  border-style: $border-style;
   display: inline-block;
   font-family: $font-family-application;
   font-weight: bold;

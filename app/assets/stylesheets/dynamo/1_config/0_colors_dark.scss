@@ -52,11 +52,14 @@ $dark-narrow-foundation: black;
   }
   .arl_admin_header_nav_button {
     background-color: $dark-button-bg;
-    box-shadow: 0rem 0rem 1px $dark-border;
+    // box-shadow: 0rem 0rem 1px $dark-border;
   }
   .arl_admin_header_nav_select {
     background-color: $dark-button-bg;
-    box-shadow: 0rem 0rem 1px $dark-border;
+    // box-shadow: 0rem 0rem 1px $dark-border;
+  }
+  .arl_admin_resource_joins_button {
+    background-color: $dark-button-bg;
   }
   .arl_admin_resource_header, .arl_admin_resource_header_with_thumbnail {
     background-color: $dark-admin-bg2;
@@ -85,6 +88,10 @@ $dark-narrow-foundation: black;
   }
   .arl_error_file_missing, .arl_error_not_indexed {
     color: mix(red, $dark-fg);
+  }
+  .arl_fa_icon {
+    // filter: invert(85%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
+    filter: invert(80%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
   }
   .arl_form_data_attr_input_checkbox_visible {
     background-color: $dark-bg;

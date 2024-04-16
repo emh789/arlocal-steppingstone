@@ -36,10 +36,10 @@
 }
 .arl_admin_header_nav_button {
   cursor: pointer;
+  display: block;
 }
-.arl_admin_resource_header_buttons {
-  cursor: default;
-}
+
+
 .arl_button_filter_select {
   @include buttonize_select;
 }
@@ -52,10 +52,13 @@
   @include buttonize_submit;
 }
 
+// This is an Input rather than a stylized archor, so it cannot take a <span> element for font-awesome
+// icons; it would require the webfont. See also `icon_helper#icon_pin`
 .arl_button_form_aux_submit {
   border-style: $border-style;
   border-width: $border-width;
   cursor: pointer;
+  display: inline-block;
   font-family: $font-family-application;
   font-size: 1rem;
   font-weight: bold;

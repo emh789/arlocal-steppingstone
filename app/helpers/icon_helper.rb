@@ -7,60 +7,62 @@ module IconHelper
 
 
   def icon_done_editing
-    '✓'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_done_editing]
   end
 
 
   def icon_edit
-    '✎'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_edit]
   end
 
 
   def icon_index
-    '☰'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_index]
   end
 
 
   def icon_new
-    '+'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_new]
   end
 
 
   def icon_new_import
-    '&'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_import]
   end
 
 
   def icon_new_join_by_keyword
-    '✯'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_join_by_keyword]
   end
 
 
   def icon_new_join_single
-    '⋈'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_join_single]
   end
 
 
   def icon_new_upload
-    '⇪'.html_safe
+    tag.span class: [:arl_fa_icon, :fa_upload]
   end
 
 
   def icon_next
-    '>'
+    tag.span class: [:arl_fa_icon, :fa_next]
   end
 
+  # The element for this is an Input rather than a stylized anchor>, so it cannot take a <span> element for font-awesome
+  # icons; it would require the webfont. See also `stylesheets/.../2_buttons .arl_button_form_aux_submit`
   def icon_pin
     '📌'
   end
 
   def icon_previous
-    '<'
+    tag.span class: [:arl_fa_icon, :fa_previous]
   end
 
 
   def icon_public
-    '👁'
+    tag.span class: [:arl_fa_icon, :fa_public]
   end
 
 
@@ -70,7 +72,7 @@ module IconHelper
 
 
   def icon_private
-    '⊖'
+    tag.span class: [:arl_fa_icon, :fa_private]
   end
 
 
