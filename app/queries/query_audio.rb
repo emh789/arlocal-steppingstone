@@ -49,33 +49,31 @@ class QueryAudio
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
+    @sorter_admin = determine_sorter_admin(arlocal_settings, params)
+    @sorter_public = determine_sorter_public(arlocal_settings, params)
   end
 
 
-  def index_admin(arg = nil)
-    case determine_filter_method_admin
-    when 'datetime_asc'
-      all_audio.sort_by{ |a| a.title.downcase }.sort_by{ |a| a.date_released }
-    when 'datetime_desc'
-      all_audio.sort_by{ |a| a.title.downcase }.reverse.sort_by{ |a| a.date_released }.reverse
-    when 'filepath_asc'
-      all_audio.sort_by{ |a| a.source_file_path }
-    when 'filepath_desc'
-      all_audio.sort_by{ |a| a.source_file_path }.reverse
-    when 'isrc_asc'
-      all_audio.sort_by{ |a| [a.isrc_country_code.to_s, a.isrc_registrant_code.to_s, a.isrc_year_of_reference.to_s, a.isrc_designation_code.to_s] }
-    when 'isrc_desc'
-      all_audio.sort_by{ |a| [a.isrc_country_code.to_s, a.isrc_registrant_code.to_s, a.isrc_year_of_reference.to_s, a.isrc_designation_code.to_s] }.reverse
-    when 'title_asc'
-      all_audio.sort_by{ |a| a.title.downcase }
-    when 'title_desc'
-      all_audio.sort_by{ |a| a.title.downcase }.reverse
+  def index_admin
+    if @sorter_admin
+      index_admin_sorted
     else
-      all_audio
+      index_admin_unsorted
     end
   end
+
+
+  def index_admin_sorted
+    @sorter_admin.sort all_audio
+  end
+
+
+  def index_admin_unsorted
+    all_audio
+  end
+
 
 
   def index_public
@@ -102,31 +100,21 @@ class QueryAudio
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminAudio.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminAudio.find(arlocal_settings.admin_index_albums_sort_method)
     end
   end
 
 
-  def determine_filter_method_public
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_public(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexPublicAudio.find(params[:filter])
     else
-      index_sorter_public.id
+      SorterIndexPublicAudio.find(arlocal_settings.public_index_albums_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminAudio.find(@arlocal_settings.admin_index_audio_sort_method)
-  end
-
-
-  def index_sorter_public
-    SorterIndexPublicAudio.find(@arlocal_settings.public_index_audio_sort_method)
   end
 
 
