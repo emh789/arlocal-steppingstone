@@ -9,6 +9,9 @@ finish admin renovation
 
   - ArlocalSettings
     - AutoKeyword attributes are [FILTERED], but why/how?
+      - `config/initializers/filter_parameter_logging.rb`
+      - config.filter_parameters, partial match on `:_key`
+      - best to change attribute name
 
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?
@@ -98,7 +101,10 @@ Audio Id3 tags:
 
 + Albums#Show: section/div nesting doesn't make sense. **CSS Grid will fix this**
 
-
++ Font-Awesome
+  - buttons that are a stylized anchor use font-awesome svgs as a background image within an inner `<span>`
+  - buttons that are an `<input>`  cannot take innerHTML elements, only text as a `value=` attribute
+  - is using the font-awesome webfont the only way to use fa-icons in the `<input>` buttons?
 
 ## Low Priority
 
