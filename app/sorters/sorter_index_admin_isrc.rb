@@ -19,43 +19,54 @@ class SorterIndexAdminIsrc
     {
       id: 'isrc_asc',
       description: 'by isrc (ascending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase }.sort_by{ |i| i.isrc } }
     },
     {
       id: 'isrc_desc',
       description: 'by isrc (descending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase }.sort_by{ |i| i.isrc }.reverse }
     },
     {
       id: 'title_asc',
       description: 'by title (ascending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase } }
     },
     {
       id: 'title_desc',
       description: 'by title (descending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase }.reverse }
     },
     {
       id: 'class_title_asc',
       description: 'by class, then title (ascending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase }.sort_by{ |i| i.class.to_s } }
     },
     {
       id: 'class_title_desc',
       description: 'by class, then title (descending)',
+      method: Proc.new { |isrcables| isrcables.sort_by{ |i| i.title.downcase }.reverse.sort_by{ |i| i.class.to_s } }
     }
   ]
 
 
-  attr_reader :id, :description
+  attr_reader :id, :description, :method
 
 
   def initialize(sorter)
     if sorter
       @id = sorter[:id]
       @description = sorter[:description]
-      @symbol = sorter[:symbol]
+      @method = sorter[:method]
     end
   end
 
 
   public
+
+
+  def sort(collection)
+    @method.call collection
+  end
 
 
   def url_edit

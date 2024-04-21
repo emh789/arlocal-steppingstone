@@ -14,64 +14,30 @@ class QueryIsrc
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
-  end
-
-
-  def all
-    all_isrcable
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
+    @sorter_admin = determine_sorter_admin(arlocal_settings, params)
   end
 
 
   def index_admin
-    case determine_filter_method_admin
-    when 'class_title_asc'
-      order_by_class_title_asc
-    when 'class_title_desc'
-      order_by_class_title_desc
-    when 'isrc_asc'
-      order_by_isrc_asc
-    when 'isrc_desc'
-      order_by_isrc_desc
-    when 'title_asc'
-      order_by_title_asc
-    when 'title_desc'
-      order_by_title_desc
+    if @sorter_admin
+      index_admin_sorted
     else
-      all
+      index_admin_unsorted
     end
   end
 
 
-  def order_by_class_title_asc
-    order_by_title_asc.sort_by { |i| i.class.to_s }
+  def index_admin_sorted
+    @sorter_admin.sort all_isrcable
   end
 
 
-  def order_by_class_title_desc
-    order_by_title_desc.sort_by { |i| i.class.to_s }
+  def index_admin_unsorted
+    all_isrcable
   end
 
-
-  def order_by_isrc_asc
-    order_by_title_asc.sort_by { |i| i.isrc }
-  end
-
-
-  def order_by_isrc_desc
-    order_by_title_asc.sort_by { |i| i.isrc }.reverse
-  end
-
-
-  def order_by_title_asc
-    all_isrcable.sort_by { |i| i.title.downcase }
-  end
-
-
-  def order_by_title_desc
-    all_isrcable.sort_by { |i| i.title.downcase }.reverse
-  end
 
 
   private
@@ -85,17 +51,12 @@ class QueryIsrc
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminIsrc.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminIsrc.find(arlocal_settings.admin_index_isrc_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminIsrc.find(@arlocal_settings.admin_index_isrc_sort_method)
   end
 
 
