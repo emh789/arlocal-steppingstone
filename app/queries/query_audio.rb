@@ -104,7 +104,7 @@ class QueryAudio
     if params[:filter]
       SorterIndexAdminAudio.find(params[:filter])
     else
-      SorterIndexAdminAudio.find(arlocal_settings.admin_index_albums_sort_method)
+      SorterIndexAdminAudio.find(arlocal_settings.admin_index_audio_sort_method)
     end
   end
 
@@ -113,7 +113,7 @@ class QueryAudio
     if params[:filter]
       SorterIndexPublicAudio.find(params[:filter])
     else
-      SorterIndexPublicAudio.find(arlocal_settings.public_index_albums_sort_method)
+      SorterIndexPublicAudio.find(arlocal_settings.public_index_audio_sort_method)
     end
   end
 
