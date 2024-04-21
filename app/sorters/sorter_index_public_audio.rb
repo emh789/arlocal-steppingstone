@@ -9,22 +9,22 @@ class SorterIndexPublicAudio
     {
       id: 'filepath_asc',
       description: 'by filepath (ascending)',
-      method: Proc.new { |audios| audios.sort_by{ |audio| audio.source_file_path } }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.source_file_path } }
     },
     {
       id: 'filepath_desc',
       description: 'by filepath (descending)',
-      method: Proc.new { |audios| audios.sort_by{ |audio| audio.source_file_path }.reverse }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.source_file_path }.reverse }
     },
     {
       id: 'title_asc',
       description: 'by title (forward)',
-      method: Proc.new { |audios| audios.sort_by{ |audio| audio.title.downcase } }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase } }
     },
     {
       id: 'title_desc',
       description: 'by title (reverse)',
-      method: Proc.new { |audios| audios.sort_by{ |audio| audio.title.downcase }.reverse }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase }.reverse }
     }
   ]
 

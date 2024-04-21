@@ -9,32 +9,32 @@ class SorterIndexAdminEvents
     {
       id: 'datetime_asc',
       description: 'by start time (ascending)',
-      method: Proc.new { |events| events.sort_by{ |event| event.datetime_utc } }
+      method: Proc.new { |events| events.sort_by{ |e| e.datetime_utc } }
     },
     {
       id: 'datetime_desc',
       description: 'by start time (descending)',
-      method: Proc.new { |events| events.sort_by{ |event| event.datetime_utc }.reverse }
+      method: Proc.new { |events| events.sort_by{ |e| e.datetime_utc }.reverse }
     },
     {
       id: 'title_asc',
       description: 'by title (ascending)',
-      method: Proc.new { |events| events.sort_by{ |event| event.title.downcase } }
+      method: Proc.new { |events| events.sort_by{ |e| e.title.downcase } }
     },
     {
       id: 'title_desc',
       description: 'by title (descending)',
-      method: Proc.new { |events| events.sort_by{ |event| event.title.downcase }.reverse }
+      method: Proc.new { |events| events.sort_by{ |e| e.title.downcase }.reverse }
     },
     {
       id: 'only_future',
       description: 'only future',
-      method: Proc.new { |events| events.only_future.sort_by{ |event| event.datetime_utc } }
+      method: Proc.new { |events| events.only_future.sort_by{ |e| e.datetime_utc } }
     },
     {
       id: 'only_past',
       description: 'only past',
-      method: Proc.new { |events| events.only_past.sort_by{ |event| event.datetime_utc }.reverse }
+      method: Proc.new { |events| events.only_past.sort_by{ |e| e.datetime_utc }.reverse }
     }
   ]
 
