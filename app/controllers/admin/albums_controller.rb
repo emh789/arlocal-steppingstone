@@ -27,7 +27,7 @@ class Admin::AlbumsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_album_path(@album.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormAlbumMetadata.new(pane: :audio_import, arlocal_settings: @arlocal_settings)
@@ -53,7 +53,7 @@ class Admin::AlbumsController < AdminController
       redirect_to edit_admin_album_path(@album.id_admin)
     else
       @form_metadata = FormAlbumMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Album could not be created.'
@@ -85,7 +85,7 @@ class Admin::AlbumsController < AdminController
   def new
     @album = AlbumBuilder.build_with_defaults
     @form_metadata = FormAlbumMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @album.album_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -113,7 +113,7 @@ class Admin::AlbumsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_album_path(@album.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormAlbumMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)

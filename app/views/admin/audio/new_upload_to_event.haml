@@ -17,7 +17,7 @@
 
       - if @auto_keyword
         = f.fields_for :audio_keywords, f.object.audio_keywords.build do |ak|
-          = render 'form_elements/auto_keyword', auto_keyword: @auto_keyword, form: ak
+          = render 'form_elements/auto_keyword', attribute: :audio_keywords, auto_keyword: @auto_keyword, form: ak
 
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

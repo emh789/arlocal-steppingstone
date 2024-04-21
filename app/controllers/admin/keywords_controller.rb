@@ -22,7 +22,7 @@ class Admin::KeywordsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_keyword_path(@keyword.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormKeywordMetadata.new(pane: :audio_import, arlocal_settings: @arlocal_settings)
@@ -92,7 +92,7 @@ class Admin::KeywordsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_keyword_path(@keyword.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormKeywordMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)

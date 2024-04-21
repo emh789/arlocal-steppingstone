@@ -51,7 +51,7 @@ class Admin::EventsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_event_path(@event.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormEventMetadata.new(pane: :audio_upload, arlocal_settings: @arlocal_settings)
@@ -68,7 +68,7 @@ class Admin::EventsController < AdminController
       redirect_to edit_admin_event_path(@event.id_admin)
     else
       @form_metadata = FormEventMetadata.new
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Event could not be created.'
@@ -100,7 +100,7 @@ class Admin::EventsController < AdminController
   def new
     @event = EventBuilder.build_with_defaults
     @form_metadata = FormEventMetadata.new
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @event.event_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -128,7 +128,7 @@ class Admin::EventsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_event_path(@event.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormEventMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)
@@ -179,7 +179,7 @@ class Admin::EventsController < AdminController
 #      flash[:notice] = 'Video was successfully uploaded.'
 #      redirect_to edit_admin_event_path(@event.id_admin, pane: :videos)
 #    else
-#      if @arlocal_settings.admin_forms_auto_keyword_enabled
+#      if @arlocal_settings.admin_forms_autokeyword_enabled
 #        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
 #      end
 #      @form_metadata = FormEventMetadata.new(pane: :video_upload, arlocal_settings: @arlocal_settings)

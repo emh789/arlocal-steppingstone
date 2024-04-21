@@ -13,7 +13,7 @@
 
       - if @auto_keyword
         = f.fields_for :picture_keywords, f.object.picture_keywords.build do |pk|
-          = render 'form_elements/auto_keyword', auto_keyword: @auto_keyword, form: pk
+          = render 'form_elements/auto_keyword', attribute: :picture_keywords, auto_keyword: @auto_keyword, form: pk
 
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

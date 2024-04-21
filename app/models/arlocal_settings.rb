@@ -5,7 +5,7 @@ class ArlocalSettings < ApplicationRecord
   before_validation :strip_whitespace_edges_from_entered_text
   before_validation :strip_any_leading_slash_from_icon_source_imported_file_path
 
-  validates :admin_forms_auto_keyword_id, presence: true, if: :admin_forms_auto_keyword_enabled
+  validates :admin_forms_autokeyword_id, presence: true, if: :admin_forms_autokeyword_enabled
 
 
 
@@ -26,10 +26,10 @@ class ArlocalSettings < ApplicationRecord
   public
 
 
-  ### admin_forms_auto_keyword_enabled
+  ### admin_forms_autokeyword_enabled
 
 
-  ### admin_forms_auto_keyword_id
+  ### admin_forms_autokeyword_id
 
 
   ### admin_forms_edit_slug_field

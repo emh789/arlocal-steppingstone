@@ -15,7 +15,7 @@ def create
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
       @form_metadata = FormAudioMetadata.new
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Audio could not be created.'
@@ -32,7 +32,7 @@ def create
     else
       flash[:notice] = 'Audio could not be imported.'
       @form_metadata = FormAudioMetadata.new
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       render 'new'
@@ -46,7 +46,7 @@ def create
       flash[:notice] = 'Audio was successfully imported.'
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @albums = QueryAlbums.options_for_select_admin
@@ -62,7 +62,7 @@ def create
       flash[:notice] = 'Audio was successfully imported.'
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @events = QueryEvents.options_for_select_admin
@@ -78,7 +78,7 @@ def create
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Audio could not be uploaded.'
@@ -93,7 +93,7 @@ def create
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @albums = QueryAlbums.options_for_select_admin
@@ -109,7 +109,7 @@ def create
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_audio_path(@audio.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @events = QueryEvents.options_for_select_admin
@@ -143,7 +143,7 @@ def create
   def new
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
     @form_metadata = FormAudioMetadata.new
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @audio.audio_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -156,7 +156,7 @@ def create
 
   def new_import_single
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -165,7 +165,7 @@ def create
   def new_import_to_album
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
     @albums = QueryAlbums.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -174,7 +174,7 @@ def create
   def new_import_to_event
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
     @events = QueryEvents.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -186,7 +186,7 @@ def create
 
   def new_upload_single
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -195,7 +195,7 @@ def create
   def new_upload_to_album
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
     @albums = QueryAlbums.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -204,7 +204,7 @@ def create
   def new_upload_to_event
     @audio = AudioBuilder.build_with_defaults(arlocal_settings: @arlocal_settings)
     @events = QueryEvents.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end

@@ -15,7 +15,7 @@ class Admin::PicturesController < AdminController
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
       @form_metadata = FormPictureMetadata.new
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Picture could not be created.'
@@ -31,7 +31,7 @@ class Admin::PicturesController < AdminController
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
       @form_metadata = FormPictureMetadata.new
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Picture could not be imprted.'
@@ -46,7 +46,7 @@ class Admin::PicturesController < AdminController
       flash[:notice] = 'Picture was successfully imported.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @albums = QueryAlbums.new.order_by_title_asc
@@ -62,7 +62,7 @@ class Admin::PicturesController < AdminController
       flash[:notice] = 'Picture was successfully imported.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @events = QueryEvents.new.order_by_start_time_asc
@@ -78,7 +78,7 @@ class Admin::PicturesController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Picture could not be uploaded.'
@@ -93,7 +93,7 @@ class Admin::PicturesController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @albums = QueryAlbums.new.order_by_title_asc
@@ -109,7 +109,7 @@ class Admin::PicturesController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @events = QueryEvents.new.order_by_start_time_asc
@@ -150,7 +150,7 @@ class Admin::PicturesController < AdminController
   def new
     @picture = PictureBuilder.build_with_defaults
     @form_metadata = FormPictureMetadata.new
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @picture.picture_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -163,7 +163,7 @@ class Admin::PicturesController < AdminController
 
   def new_import_single
     @picture = PictureBuilder.build_with_defaults
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -172,7 +172,7 @@ class Admin::PicturesController < AdminController
   def new_import_to_album
     @picture = PictureBuilder.build_with_defaults
     @albums = QueryAlbums.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -181,7 +181,7 @@ class Admin::PicturesController < AdminController
   def new_import_to_event
     @picture = PictureBuilder.build_with_defaults
     @events = QueryEvents.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -193,7 +193,7 @@ class Admin::PicturesController < AdminController
 
   def new_upload_single
     @picture = PictureBuilder.build_with_defaults
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -202,7 +202,7 @@ class Admin::PicturesController < AdminController
   def new_upload_to_album
     @picture = PictureBuilder.build_with_defaults
     @albums = QueryAlbums.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end
@@ -211,7 +211,7 @@ class Admin::PicturesController < AdminController
   def new_upload_to_event
     @picture = PictureBuilder.build_with_defaults
     @events = QueryEvents.options_for_select_admin
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
     end
   end

@@ -5,9 +5,9 @@ class AutoKeywordMetadata
 
 
   def initialize(arlocal_settings)
-    @enabled = arlocal_settings.admin_forms_auto_keyword_enabled
+    @enabled = arlocal_settings.admin_forms_autokeyword_enabled
     if @enabled
-      @keyword = Keyword.find(arlocal_settings.admin_forms_auto_keyword_id)
+      @keyword = Keyword.find(arlocal_settings.admin_forms_autokeyword_id)
     end
   end
 

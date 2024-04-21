@@ -8,7 +8,7 @@ class Admin::InfopagesController < AdminController
       redirect_to edit_admin_infopage_path(@infopage.id_admin)
     else
       @form_metadata = FormInfopageMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Info Page could not be created.'
@@ -40,7 +40,7 @@ end
   def new
     @infopage = InfopageBuilder.build_with_defaults
     @form_metadata = FormInfopageMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @infopage.infopage_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -70,7 +70,7 @@ end
         flash[:notice] = 'Picture was successfully uploaded.'
         redirect_to edit_admin_infopage_path(@infopage.id_admin, pane: :pictures)
       else
-        if @arlocal_settings.admin_forms_auto_keyword_enabled
+        if @arlocal_settings.admin_forms_autokeyword_enabled
           @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
         end
         @form_metadata = FormInfopageMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)

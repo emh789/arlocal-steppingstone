@@ -48,8 +48,8 @@ class Admin::ArlocalSettingsController < AdminController
 
   def params_arlocal_settings_permitted
     params.require(:arlocal_settings).permit(
-      :admin_forms_auto_keyword_enabled,
-      :admin_forms_auto_keyword_id,
+      :admin_forms_autokeyword_enabled,
+      :admin_forms_autokeyword_id,
       :admin_forms_edit_slug_field,
       :admin_forms_retain_pane_for_neighbors,
       :admin_forms_selectable_pictures_sort_method,

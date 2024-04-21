@@ -15,6 +15,7 @@ finish admin renovation
       - `config/initializers/filter_parameter_logging.rb`
       - config.filter_parameters, partial match on `:_key`
       - best to change attribute name
+      - _Done. Last, verify that admin view forms are handled and nested correctly._
 
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?

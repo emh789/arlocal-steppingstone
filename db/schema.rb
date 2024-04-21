@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_05_233404) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -113,8 +113,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_05_233404) do
   end
 
   create_table "arlocal_settings", force: :cascade do |t|
-    t.boolean "admin_forms_auto_keyword_enabled"
-    t.integer "admin_forms_auto_keyword_id"
+    t.boolean "admin_forms_autokeyword_enabled"
+    t.integer "admin_forms_autokeyword_id"
     t.boolean "admin_forms_edit_slug_field"
     t.boolean "marquee_enabled"
     t.integer "artist_content_copyright_year_earliest"

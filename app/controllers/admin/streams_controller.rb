@@ -7,7 +7,7 @@ class Admin::StreamsController < AdminController
       flash[:notice] = 'Stream was successfully created.'
       redirect_to edit_admin_stream_path(@stream.id_admin)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormStreamMetadata.new(pane: params[:pane])

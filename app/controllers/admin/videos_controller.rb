@@ -11,7 +11,7 @@ class Admin::VideosController < AdminController
       redirect_to edit_admin_video_path(@video.id_admin)
     else
       @form_metadata = FormVideoMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       flash[:notice] = 'Video could not be created.'
@@ -43,7 +43,7 @@ class Admin::VideosController < AdminController
   def new
     @video = VideoBuilder.build_with_defaults
     @form_metadata = FormVideoMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_auto_keyword_enabled
+    if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       @video.video_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
@@ -71,7 +71,7 @@ class Admin::VideosController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_video_path(@video.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_auto_keyword_enabled
+      if @arlocal_settings.admin_forms_autokeyword_enabled
         @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
       end
       @form_metadata = FormAlbumMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)

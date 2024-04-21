@@ -1,7 +1,7 @@
 .arl_form_data_attr
-  = form.label :admin_forms_auto_keyword_enabled, class: :arl_form_data_attr_label
-  = form.check_box :admin_forms_auto_keyword_enabled, class: :arl_form_data_attr_input_checkbox
-  = form.label :admin_forms_auto_keyword_enabled, '&nbsp;'.html_safe, class: :arl_form_data_attr_input_checkbox_visible, tabindex: 0
+  = form.label :admin_forms_autokeyword_enabled, class: :arl_form_data_attr_label
+  = form.check_box :admin_forms_autokeyword_enabled, class: :arl_form_data_attr_input_checkbox
+  = form.label :admin_forms_autokeyword_enabled, '&nbsp;'.html_safe, class: :arl_form_data_attr_input_checkbox_visible, tabindex: 0
   %aside.arl_form_data_attr_explanation
     Automatically add the following keyword to new resources
-  = form.collection_select :admin_forms_auto_keyword_id, selectable, :id, :title, { include_blank: false }, { class: :arl_form_data_attr_input_select }
+  = form.collection_select :admin_forms_autokeyword_id, selectable, :id, :title, { include_blank: false }, { class: :arl_form_data_attr_input_select }
