@@ -43,46 +43,48 @@ class QueryEvents
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
+    @sorter_admin = determine_sorter_admin(arlocal_settings, params)
+    @sorter_public = determine_sorter_public(arlocal_settings, params)
   end
 
 
   def index_admin
-    case determine_filter_method_admin
-    when 'datetime_asc'
-      all_events.sort_by{ |e| e.datetime_utc }
-    when 'datetime_desc'
-      all_events.sort_by{ |e| e.datetime_utc }.reverse
-    when 'only_future'
-      all_events.only_future.sort_by{ |e| e.datetime_utc }
-    when 'only_past'
-      all_events.only_past.sort_by{ |e| e.datetime_utc }.reverse
-    when 'title_asc'
-      all_events.sort_by{ |e| e.title.downcase }
-    when 'title_desc'
-      all_events.sort_by{ |e| e.title.downcase }.reverse
+    if @sorter_admin
+      index_admin_sorted
     else
-      all_events
+      index_admin_unsorted
     end
   end
 
 
+  def index_admin_sorted
+    @sorter_admin.sort all_events
+  end
+
+
+  def index_admin_unsorted
+    all_events
+  end
+
+
   def index_public
-    case determine_filter_method_public
-    when 'all'
-      all_events.publicly_indexable.sort_by{ |e| e.datetime_utc }
-    when 'future'
-      all_events.publicly_indexable.only_future.sort_by{ |e| e.datetime_utc }
-    when 'past'
-      all_events.publicly_indexable.only_past.sort_by{ |e| e.datetime_utc }.reverse
-    when 'upcoming'
-      all_events.publicly_indexable.only_future_near.sort_by{ |e| e.datetime_utc }
-    when 'with_audio'
-      all_events.publicly_indexable.only_with_audio.sort_by{ |e| e.datetime_utc }.reverse
+    if @sorter_public
+      index_public_sorted
     else
-      all_events.publicly_indexable.sort_by{ |e| e.datetime_utc }
+      index_public_unsorted
     end
+  end
+
+
+  def index_public_sorted
+    @sorter_public.sort all_events.publicly_indexable
+  end
+
+
+  def index_public_unsorted
+    all_events.publicly_indexable
   end
 
 
@@ -104,31 +106,21 @@ class QueryEvents
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminEvents.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminEvents.find(arlocal_settings.admin_index_events_sort_method)
     end
   end
 
 
-  def determine_filter_method_public
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_public(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexPublicEvents.find(params[:filter])
     else
-      index_sorter_public.id
+      SorterIndexPublicEvents.find(arlocal_settings.public_index_events_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminEvents.find(@arlocal_settings.admin_index_events_sort_method)
-  end
-
-
-  def index_sorter_public
-    SorterIndexPublicEvents.find(@arlocal_settings.public_index_events_sort_method)
   end
 
 
