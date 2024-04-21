@@ -7,7 +7,7 @@ finish admin renovation
 
   - picture_options_for_select picture.title_for_select
     - still shows markup
-    
+
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - ArlocalSettings
@@ -27,12 +27,6 @@ finish admin renovation
 ## HIGH priority
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
-
-Where to Sort vs Where to Query
-  - previously depended more on a variety of singleton scopes chained in the controller
-  - current scopes are for public/private visibility
-  - Most sort methods are held in the Query; exceptions are album_ and event_pictures
-    - _`Album` is the model for refactoring._
 
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
@@ -280,3 +274,9 @@ Video index needs headings
 
 migrations:
   - delete old migrations and lib/* migration-related classes
+
+Where to Sort vs Where to Query
+  - previously depended more on a variety of singleton scopes chained in the controller
+  - current scopes are for public/private visibility
+  - Most sort methods are held in the Query; exceptions are album_ and event_pictures
+    - _`Album` is the model for refactoring._
