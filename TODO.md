@@ -5,6 +5,9 @@
 
 finish admin renovation
 
+  - picture_options_for_select picture.title_for_select
+    - still shows markup
+    
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - ArlocalSettings
