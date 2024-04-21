@@ -65,35 +65,20 @@ class QueryPictures
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
-  end
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
 
-
-
-
-
-  def all
-    all_pictures
+    @sorter_admin_index = determine_sorter_admin_index(arlocal_settings, params)
+    @sorter_admin_form_selectable = determine_sorter_admin_form_selectable(arlocal_settings)
+    @sorter_public_index = determine_sorter_public_index(arlocal_settings, params)
   end
 
 
   def index_admin
-    case determine_filter_method_admin
-    when 'datetime_asc'
-      all_pictures.sort_by{ |p| p.datetime_effective_value }
-    when 'datetime_desc'
-      all_pictures.sort_by{ |p| p.datetime_effective_value }.reverse
-    when 'filepath_asc'
-      all_pictures.sort_by{ |p| [p.source_type.to_s, p.source_file_path.to_s] }
-    when 'filepath_desc'
-      all_pictures.sort_by{ |p| [p.source_type.to_s, p.source_file_path.to_s] }.reverse
-    when 'title_asc'
-      all_pictures.sort_by{ |p| p.title_without_markup.downcase }
-    when 'title_desc'
-      all_pictures.sort_by{ |p| p.title_without_markup.downcase }.reverse
+    if @sorter_admin_index
+      index_admin_sorted
     else
-      all_pictures
+      index_admin_unsorted
     end
   end
 
@@ -103,28 +88,37 @@ class QueryPictures
   end
 
 
+  def index_admin_sorted
+    @sorter_admin_index.sort all_pictures
+  end
+
+
+  def index_admin_unsorted
+    all_pictures
+  end
+
+
   def index_public
-    case determine_filter_method_public
-    when 'datetime_asc'
-      all_pictures.publicly_indexable.sort_by{ |p| p.datetime_effective_value }
-    when 'datetime_desc'
-      all_pictures.publicly_indexable.sort_by{ |p| p.datetime_effective_value }.reverse
-    when 'filepath_asc'
-      all_pictures.publicly_indexable.sort_by{ |p| [p.source_type.to_s, p.source_file_path.to_s] }
-    when 'filepath_desc'
-      all_pictures.publicly_indexable.sort_by{ |p| [p.source_type.to_s, p.source_file_path.to_s] }.reverse
-    when 'title_asc'
-      all_pictures.publicly_indexable.sort_by{ |p| p.title_without_markup.downcase }
-    when 'title_desc'
-      all_pictures.publicly_indexable.sort_by{ |p| p.title_without_markup.downcase }.reverse
+    if @sorter_public_index
+      index_public_sorted
     else
-      all_pictures.publicly_indexable
+      index_public_unsorted
     end
   end
 
 
   def index_public_by_page
     Picture.paginate(collection: index_public, limit: @params[:limit], page: @params[:page])
+  end
+
+
+  def index_public_sorted
+    @sorter_public_index.sort all_pictures.publicly_indexable
+  end
+
+
+  def index_public_unsorted
+    all_pictures.publicly_indexable
   end
 
 
@@ -139,22 +133,7 @@ class QueryPictures
 
 
   def options_for_select_admin
-    case determine_filter_method_form_selectable
-    when 'all_title_asc'
-      all_pictures_for_select.sort_by{ |p| p.title_without_markup.downcase }
-    when 'all_title_desc'
-      all_pictures_for_select.sort_by{ |p| p.title_without_markup.downcase }.reverse
-    when 'only_match_keywords'
-      all_pictures_for_select.joins(:keywords).where(keywords: {id: keywords.map{|k| k.id} })
-    when 'only_recent_10'
-      all_pictures_for_select.order(:created_at).limit(10).sort_by{ |p| p.title_without_markup.downcase }
-    when 'only_recent_20'
-      all_pictures_for_select.order(:created_at).limit(20).sort_by{ |p| p.title_without_markup.downcase }
-    when 'only_recent_40'
-      all_pictures_for_select.order(:created_at).limit(40).sort_by{ |p| p.title_without_markup.downcase }
-    else
-      all_pictures_for_select
-    end
+    @sorter_admin_form_selectable.sort all_pictures_for_select
   end
 
 
@@ -177,41 +156,26 @@ class QueryPictures
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin_index(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminPictures.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminPictures.find(arlocal_settings.admin_index_pictures_sort_method)
     end
   end
 
 
-  def determine_filter_method_form_selectable
-    index_sorter_form_selectable.id
+  def determine_sorter_admin_form_selectable(arlocal_settings)
+    SorterFormSelectablePictures.find(arlocal_settings.admin_forms_selectable_pictures_sort_method)
   end
 
 
-  def determine_filter_method_public
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_public_index(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexPublicPictures.find(params[:filter])
     else
-      index_sorter_public.id
+      SorterIndexPublicPictures.find(arlocal_settings.public_index_pictures_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminPictures.find(@arlocal_settings.admin_index_pictures_sort_method)
-  end
-
-
-  def index_sorter_form_selectable
-    SorterFormSelectablePictures.find(@arlocal_settings.admin_forms_selectable_pictures_sort_method)
-  end
-
-
-  def index_sorter_public
-    SorterIndexPublicPictures.find(@arlocal_settings.public_index_pictures_sort_method)
   end
 
 
