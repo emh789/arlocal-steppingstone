@@ -29,6 +29,7 @@ Where to Sort vs Where to Query
   - previously depended more on a variety of singleton scopes chained in the controller
   - current scopes are for public/private visibility
   - Most sort methods are held in the Query; exceptions are album_ and event_pictures
+    - _`Album` is the model for refactoring._
 
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***

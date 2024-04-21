@@ -9,35 +9,45 @@ class SorterIndexAdminAlbums
     {
       id: 'datetime_asc',
       description: 'by release date (old - new)',
+      method: Proc.new { |albums| albums.sort_by{ |album| album.date_released } }
     },
     {
       id: 'datetime_desc',
       description: 'by release date (new - old)',
+      method: Proc.new { |albums| albums.sort_by{ |album| album.date_released }.reverse }
     },
     {
       id: 'title_asc',
       description: 'by title (forward)',
+      method: Proc.new { |albums| albums.sort_by{ |album| album.title.downcase } }
     },
     {
       id: 'title_desc',
       description: 'by title (reverse)',
+      method: Proc.new { |albums| albums.sort_by{ |album| album.title.downcase }.reverse }
     }
   ]
 
 
-  attr_reader :id, :description
+  attr_reader :id, :description, :method
 
 
   def initialize(sorter)
     if sorter
       @id = sorter[:id]
       @description = sorter[:description]
+      @method = sorter[:method]
     end
   end
 
 
 
   public
+
+
+  def sort(collection)
+    @method.call collection
+  end
 
 
   def url

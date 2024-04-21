@@ -39,44 +39,53 @@ class QueryAlbums
   end
 
 
+
   public
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
+    @sorter_admin = determine_sorter_admin(arlocal_settings, params)
+    @sorter_public = determine_sorter_public(arlocal_settings, params)
   end
 
 
   def index_admin
-    case determine_filter_method_admin
-    when 'datetime_asc'
-      all_albums.sort_by{ |a| a.date_released }
-    when 'datetime_desc'
-      all_albums.sort_by{ |a| a.date_released }.reverse
-    when 'title_asc'
-      all_albums.sort_by{ |a| a.title.downcase }
-    when 'title_desc'
-      all_albums.sort_by{ |a| a.title.downcase }.reverse
+    if @sorter_admin
+      index_admin_sorted
     else
-      all_albums
+      index_admin_unsorted
     end
   end
 
 
+  def index_admin_sorted
+    @sorter_admin.sort all_albums
+  end
+
+
+  def index_admin_unsorted
+    all_albums
+  end
+
+
   def index_public
-    case determine_filter_method_public
-    when 'datetime_asc'
-      all_albums.publicly_indexable.sort_by{ |a| a.date_released }
-    when 'datetime_desc'
-      all_albums.publicly_indexable.sort_by{ |a| a.date_released }.reverse
-    when 'title_asc'
-      all_albums.publicly_indexable.sort_by{ |a| a.title.downcase }
-    when 'title_desc'
-      all_albums.publicly_indexable.sort_by{ |a| a.title.downcase }.reverse
+    if @sorter_public
+      index_public_sorted
     else
-      all_albums.publicly_indexable
+      index_public_unsorted
     end
+  end
+
+
+  def index_public_sorted
+    @sorter_public.sort all_albums.publicly_indexable
+  end
+
+
+  def index_public_unsorted
+    all_albums.publicly_indexable
   end
 
 
@@ -90,6 +99,7 @@ class QueryAlbums
   end
 
 
+
   private
 
 
@@ -98,31 +108,21 @@ class QueryAlbums
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminAlbums.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminAlbums.find(arlocal_settings.admin_index_albums_sort_method)
     end
   end
 
 
-  def determine_filter_method_public
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_public(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexPublicAlbums.find(params[:filter])
     else
-      index_sorter_public.id
+      SorterIndexPublicAlbums.find(arlocal_settings.public_index_albums_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminAlbums.find(@arlocal_settings.admin_index_albums_sort_method)
-  end
-
-
-  def index_sorter_public
-    SorterIndexPublicAlbums.find(@arlocal_settings.public_index_albums_sort_method)
   end
 
 
