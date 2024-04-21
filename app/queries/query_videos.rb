@@ -49,49 +49,48 @@ class QueryVideos
 
 
   def initialize(**args)
-    @arlocal_settings = args[:arlocal_settings]
-    @params = args[:params] ? args[:params] : {}
-  end
-
-
-  def all
-    all_videos
+    arlocal_settings = args[:arlocal_settings]
+    params = args[:params] ? args[:params] : {}
+    @sorter_admin = determine_sorter_admin(arlocal_settings, params)
+    @sorter_public = determine_sorter_public(arlocal_settings, params)
   end
 
 
   def index_admin
-    case determine_filter_method_admin
-    when 'datetime_asc'
-      all_videos.sort_by{ |v| v.date_released }
-    when 'datetime_desc'
-      all_videos.sort_by{ |v| v.date_released }.reverse
-    when 'title_asc'
-      all_videos.sort_by{ |v| v.title.downcase }
-    when 'title_desc'
-      all_videos.sort_by{ |v| v.title.downcase }.reverse
+    if @sorter_admin
+      index_admin_sorted
     else
-      all_videos
+      index_admin_unsorted
     end
   end
 
 
+  def index_admin_sorted
+    @sorter_admin.sort all_videos
+  end
+
+
+  def index_admin_unsorted
+    all_videos
+  end
+
+
   def index_public
-    case determine_filter_method_public
-    when 'datetime_asc'
-      all_videos.publicly_indexable.sort_by{ |v| v.date_released }
-    when 'datetime_desc'
-      all_videos.publicly_indexable.sort_by{ |v| v.date_released }.reverse
-    when 'keyword_datetime_desc'
-      sort_public_videos_by_keyword(inner_order: :date_released_desc)
-    when 'keyword_title_asc'
-      sort_public_videos_by_keyword(inner_order: :title_asc)
-    when 'title_asc'
-      all_videos.publicly_indexable.sort_by{ |v| v.title.downcase }
-    when 'title_desc'
-      all_videos.publicly_indexable.sort_by{ |v| v.title.downcase }.reverse
+    if @sorter_public
+      index_public_sorted
     else
-      all_videos.publicly_indexable
+      index_public_unsorted
     end
+  end
+
+
+  def index_public_sorted
+    @sorter_public.sort all_videos.publicly_indexable
+  end
+
+
+  def index_public_unsorted
+    all_videos.publicly_indexable
   end
 
 
@@ -109,33 +108,6 @@ class QueryVideos
   end
 
 
-  def sort_public_videos_by_keyword(inner_order: nil)
-    public_videos_by_keyword = Hash.new
-
-    keyword_collection = Keyword.only_that_will_select_videos
-    video_collection = Video.publicly_indexable
-    keyword_collection.each do |keyword|
-      public_videos_by_keyword[keyword.title] = video_collection.joins(:keywords).where(keywords: keyword)
-    end
-
-    video_without_keyword_collection = video_collection.reject{ |video| video.keywords.map { |keyword| keyword.can_select_videos }.include?(true) }
-    public_videos_by_keyword["more videos"] = video_without_keyword_collection
-
-    public_videos_by_keyword.delete_if { |keyword, videos| videos == [] }
-    public_videos_by_keyword.each_pair do |keyword, videos|
-      case inner_order
-      when :date_released_desc
-        public_videos_by_keyword[keyword] = videos.sort_by{ |video| video.date_released }.reverse
-      when :title_asc
-        public_videos_by_keyword[keyword] = videos.sort_by{ |video| video.title.downcase }
-      end
-    end
-
-    public_videos_by_keyword
-  end
-
-
-
   private
 
 
@@ -144,31 +116,21 @@ class QueryVideos
   end
 
 
-  def determine_filter_method_admin
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_admin(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexAdminVideos.find(params[:filter])
     else
-      index_sorter_admin.id
+      SorterIndexAdminVideos.find(arlocal_settings.admin_index_videos_sort_method)
     end
   end
 
 
-  def determine_filter_method_public
-    if @params[:filter]
-      @params[:filter].downcase
+  def determine_sorter_public(arlocal_settings, params)
+    if params[:filter]
+      SorterIndexPublicVideos.find(params[:filter])
     else
-      index_sorter_public.id
+      SorterIndexPublicVideos.find(arlocal_settings.public_index_videos_sort_method)
     end
-  end
-
-
-  def index_sorter_admin
-    SorterIndexAdminVideos.find(@arlocal_settings.admin_index_videos_sort_method)
-  end
-
-
-  def index_sorter_public
-    SorterIndexPublicVideos.find(@arlocal_settings.public_index_videos_sort_method)
   end
 
 
