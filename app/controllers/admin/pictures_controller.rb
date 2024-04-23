@@ -152,7 +152,6 @@ class Admin::PicturesController < AdminController
     @form_metadata = FormPictureMetadata.new
     if @arlocal_settings.admin_forms_autokeyword_enabled
       @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      @picture.picture_keywords.build(keyword_id: @auto_keyword.keyword_id)
     end
   end
 

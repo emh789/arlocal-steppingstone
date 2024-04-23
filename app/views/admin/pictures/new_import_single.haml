@@ -7,13 +7,9 @@
 
 .arl_admin_picture_edit
   = form_with(model: [:admin, @picture], local: true, url: admin_picture_create_from_import_path, class: :arl_form) do |f|
-
     .arl_form_data
       = render 'form_elements/text_field', attribute: :source_imported_file_path, form: f, aside: "#{source_imported_dirname(trailing_separator: true)}"
-
       - if @auto_keyword
-        = f.fields_for :picture_keywords, f.object.picture_keywords.build do |pk|
-          = render 'form_elements/auto_keyword', attribute: :picture_keywords, auto_keyword: @auto_keyword, form: pk
-
+        = render 'form_elements/auto_keyword', attribute: :picture_keywords, auto_keyword: @auto_keyword, form: f
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

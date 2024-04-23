@@ -7,13 +7,8 @@
 
 .arl_admin_audio_edit
   = form_with(model: [:admin, Audio.new], local: true, url: admin_audio_create_from_upload_path, class: :arl_form) do |f|
-
     .arl_form_data
       = render 'form_elements/file_field', attribute: :source_uploaded, form: f
-
-      - if @auto_keyword
-        = f.fields_for :audio_keywords, f.object.audio_keywords.build do |ak|
-          = render 'form_elements/auto_keyword', attribute: :audio_keywords, auto_keyword: @auto_keyword, form: ak
-
+      = render 'form_elements/auto_keyword', attribute: :audio_keywords, auto_keyword: @auto_keyword, form: f
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

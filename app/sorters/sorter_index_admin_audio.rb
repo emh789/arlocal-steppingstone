@@ -9,12 +9,12 @@ class SorterIndexAdminAudio
     {
       id: 'datetime_asc',
       description: 'by date released (old - new)',
-      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase }.sort_by{ |a| a.date_released } }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase }.sort_by{ |a| a.date_released_sortable } }
     },
     {
       id: 'datetime_desc',
       description: 'by date released (new - old)',
-      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase }.reverse.sort_by{ |a| a.date_released }.reverse }
+      method: Proc.new { |audio| audio.sort_by{ |a| a.title.downcase }.reverse.sort_by{ |a| a.date_released_sortable }.reverse }
     },
     {
       id: 'filepath_asc',

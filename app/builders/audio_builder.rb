@@ -252,7 +252,7 @@ class AudioBuilder
   def metadata_assign
     @audio.audio_artist = "#{@metadata.general.performer}"
     @audio.copyright_markup_text = "© #{@metadata.general.recorded_date}"
-    @audio.title = @metadata.general.track ? "#{@metadata.general.track}" : "#{@audio.source_file_path}"
+    @audio.title = @metadata.general.track ? "#{@metadata.general.track}" : "#{File.basename(@audio.source_file_path, '.*')}"
     @audio.duration_mins = @metadata.general.duration.divmod(1000)[0].divmod(60)[0]
     @audio.duration_secs = @metadata.general.duration.divmod(1000)[0].divmod(60)[1]
     @audio.duration_mils = @metadata.general.duration.divmod(1000)[1]
@@ -381,6 +381,8 @@ class AudioBuilder
   def params_default_date_released
     if params_default_date_released_enabled
       @arlocal_settings.audio_default_date_released
+    else
+      Date.new(0)
     end
   end
 

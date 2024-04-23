@@ -10,12 +10,28 @@ finish admin renovation
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - ArlocalSettings
-    - AutoKeyword attributes are [FILTERED], but why/how?
-      - `config/initializers/filter_parameter_logging.rb`
-      - config.filter_parameters, partial match on `:_key`
-      - best to change attribute name
-      - _Done. Last, verify that admin view forms are handled and nested correctly._
+  - autokeyword not fully implemented
+    - remaining: article, infopage, link, stream
+
+  - picture_keyword checkboxes are still oldschool css
+
+  - **Sorting:**
+    - Time values (date_released, etc) needs a value instead of nil because `nil` does not compare with `Date`
+      - however, a value of Date.new(0) breaks the date-select year field (range: -5...5).
+      - _use a `date_released_sortable` method to wrap the attribute when sorting._
+      - question remains of how to handle `year` parameter
+```
+<select name="person[birth_date(1i)]" id="person_birth_date_1i">
+  <option value="1990">1990</option>
+</select>
+<select name="person[birth_date(2i)]" id="person_birth_date_2i">
+  <option value="1">January</option>
+</select>
+<select name="person[birth_date(3i)]" id="person_birth_date_3i">
+  <option value="1">1</option>
+</select>
+```
+
 
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?
@@ -281,3 +297,12 @@ Where to Sort vs Where to Query
   - current scopes are for public/private visibility
   - Most sort methods are held in the Query; exceptions are album_ and event_pictures
     - _`Album` is the model for refactoring._
+
+- ArlocalSettings
+  - AutoKeyword attributes are [FILTERED], but why/how?
+    - `config/initializers/filter_parameter_logging.rb`
+    - config.filter_parameters, partial match on `:_key`
+    - best to change attribute name
+    - _Done. Last, verify that admin view forms are handled and nested correctly._
+      - some forms need a `fields_for`
+        - No. `fields_for` and `{resource}_keyword` building now happens in the shared `_auto_keyword` partial
