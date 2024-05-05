@@ -10,7 +10,7 @@
     = render 'form_elements/text_field',      attribute: :audio_artist,       form: f
     = render 'form_elements/text_field',      attribute: :composer,           form: f
     = render 'form_elements/parseable_area',  attribute: :copyright,          form: f, selectable: selectable
-    = render 'form_elements/date_select',     attribute: :date_released,      form: f, default_date: Date.current
+    = render 'form_elements/date_field',      attribute: :date_released,      form: f, default_date: Date.current
     = render 'form_elements/parseable_area',  attribute: :description,        form: f, selectable: selectable
     = render 'form_elements/duration',        attribute: :duration,           form: f
     = render 'form_elements/isrc',            attribute: :isrc,               form: f

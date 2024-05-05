@@ -8,7 +8,7 @@
     = render 'form_elements/spacer'
     = render 'form_elements/text_field',      attribute: :album_artist,                             form: f
     = render 'form_elements/parseable_field', attribute: :copyright,                                form: f, selectable: selectable
-    = render 'form_elements/date_select',     attribute: :date_released,                            form: f, default_date: Date.current
+    = render 'form_elements/date_field',      attribute: :date_released,                            form: f, default_date: Date.current
     = render 'form_elements/parseable_area',  attribute: :description,                              form: f, selectable: selectable
     = render 'form_elements/check_box',       attribute: :index_can_display_tracklist,              form: f
     = render 'form_elements/check_box',       attribute: :index_tracklist_audio_includes_subtitles, form: f

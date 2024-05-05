@@ -19,18 +19,13 @@ finish admin renovation
     - Time values (date_released, etc) needs a value instead of nil because `nil` does not compare with `Date`
       - however, a value of Date.new(0) breaks the date-select year field (range: -5...5).
       - _use a `date_released_sortable` method to wrap the attribute when sorting._
-      - question remains of how to handle `year` parameter
-```
-<select name="person[birth_date(1i)]" id="person_birth_date_1i">
-  <option value="1990">1990</option>
-</select>
-<select name="person[birth_date(2i)]" id="person_birth_date_2i">
-  <option value="1">January</option>
-</select>
-<select name="person[birth_date(3i)]" id="person_birth_date_3i">
-  <option value="1">1</option>
-</select>
-```
+        - done: audio
+
+  - question remains of how to handle `year` parameter
+    - multiparameter fields (album.date_released, date_select) cause difficulty validating
+    - multiple attributes (audio.duration) lack elegance & require multiple columns, but fit better with rails conventions
+    - ***wowee zowee date_field helper solves this!***
+      - see if it fixes _datetime_zone.haml
 
 
   - Builder methods
