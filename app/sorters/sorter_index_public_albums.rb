@@ -8,13 +8,13 @@ class SorterIndexPublicAlbums
   DATA = [
     {
       id: 'datetime_asc',
-      description: 'by release date (old - new)',
-      method: Proc.new { |albums| albums.sort_by{ |a| a.date_released } }
+      description: 'by date released (old - new)',
+      method: Proc.new { |albums| albums.sort_by{ |a| a.date_released_sortable } }
     },
     {
       id: 'datetime_desc',
-      description: 'by release date (new - old)',
-      method: Proc.new { |albums| albums.sort_by{ |a| a.date_released }.reverse }
+      description: 'by date released (new - old)',
+      method: Proc.new { |albums| albums.sort_by{ |a| a.date_released_sortable }.reverse }
     },
     {
       id: 'title_asc',

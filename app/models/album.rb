@@ -160,6 +160,11 @@ class Album < ApplicationRecord
   ### date_released
 
 
+  def date_released_sortable
+    date_released ? date_released : Date.new(0)
+  end
+
+
   ### description_markup_type
 
 
