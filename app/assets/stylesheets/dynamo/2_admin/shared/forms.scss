@@ -89,6 +89,7 @@
   font-family: $font-family-description;
   font-size: 0.875em;
   grid-area: explanation;
+  margin-left: ($arl-margin-narrow / 1.5);
 }
 .arl_form_data_attr_input_checkbox {
   align-self: center;
@@ -208,10 +209,11 @@
   padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
 }
 .arl_form_data_attr_label {
-  align-self: center;
+  align-self: left;
   font-family: $font-family-description;
   font-weight: bold;
   grid-area: label;
+  margin-left: ($arl-margin-narrow / 1.5);
   margin-bottom: ($arl-margin-narrow / 2);
 }
 .arl_form_data_attr_multi {
@@ -228,12 +230,14 @@
   font-family: $font-family-data;
   font-size: 0.9rem;
   grid-area: label;
+  margin-left: ($arl-margin-narrow);
 }
 .arl_form_data_attr_multi_spacer {
   align-self: flex-end;
   font-family: $font-family-data;
   font-weight: bold;
-  margin: 0.111em ($arl-margin-narrow / 2);
+  margin: ($arl-margin-narrow / 1.5) ($arl-margin-narrow / 2);
+
 }
 .arl_form_data_attr_thumbnail_image {
   align-self: center;
