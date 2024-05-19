@@ -1,4 +1,4 @@
 .arl_admin_joined_resource
   %dh.arl_admin_joined_resource_heading= resource_joined_pictures_count_statement(resource, punctuated: true)
   - resource.pictures_sorted.each do |picture|
-    %dd.arl_admin_joined_resource_data= picture.title
+    %dd.arl_admin_joined_resource_data= parser_inline(picture.title_props)

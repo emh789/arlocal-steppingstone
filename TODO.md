@@ -5,28 +5,12 @@
 
 finish admin renovation
 
-  - picture_options_for_select picture.title_for_select
-    - still shows markup
-
   - `admin/isrc/edit` narrow view buttons overflow right
 
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
 
   - picture_keyword checkboxes are still oldschool css
-
-  - **Sorting:**
-    - Time values (date_released, etc) needs a value instead of nil because `nil` does not compare with `Date`
-      - however, a value of Date.new(0) breaks the date-select year field (range: -5...5).
-      - _use a `date_released_sortable` method to wrap the attribute when sorting._
-        - done: audio
-
-  - question remains of how to handle `year` parameter
-    - multiparameter fields (album.date_released, date_select) cause difficulty validating
-    - multiple attributes (audio.duration) lack elegance & require multiple columns, but fit better with rails conventions
-    - ***wowee zowee date_field helper solves this!***
-      - see if it fixes _datetime_zone.haml
-
 
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?
@@ -40,13 +24,17 @@ finish admin renovation
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
+- Event datetime could use datetime_field form helper
+  - however, the app assumes the time entered is in the zone local to the event
+  - whereas rails assumes it's local to the app and converts it to UTC
+  - I don't yet see how to preserve the event timezone independently of UTC and local app timezone conversions
+  - will require a database migration to merge separate columns into a single datetime column
+
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
 
-- datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
   - for example `admin/isrc/edit` overflows at narrow widths.
-
 
 - check various `form_pictures`
   - coverpicture=true would slightly obscure the Order field
@@ -149,14 +137,6 @@ Audio Id3 tags:
   - Removing it to see what happens.
   - Replace if needed.
 
-
-- `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
-  - **Might need a rewrite with a `param` and `<select>`**
-  - panes: summary, simpleformat, markdown, none
-  - about_arlocal
-    - formatting for markup types, esp. for narrow width
-
-
 - give a title to nested_picture uploads/imports
 
 - admin/pictures#index needs visibility indicator
@@ -188,6 +168,12 @@ Video index needs headings
 
 
 ## Probably finished
+
+- **Sorting:**
+  - Time values (date_released, etc) needs a value instead of nil because `nil` does not compare with `Date`
+    - however, a value of Date.new(0) breaks the date-select year field (range: -5...5).
+    - _use a `date_released_sortable` method to wrap the attribute when sorting._
+      - done: audio, album, video
 
 - check attribute callbacks, add if_changed clause
 
@@ -301,3 +287,28 @@ Where to Sort vs Where to Query
     - _Done. Last, verify that admin view forms are handled and nested correctly._
       - some forms need a `fields_for`
         - No. `fields_for` and `{resource}_keyword` building now happens in the shared `_auto_keyword` partial
+
+- question remains of how to handle `year` parameter
+  - multiparameter fields (album.date_released, date_select) cause difficulty validating
+  - multiple attributes (audio.duration) lack elegance & require multiple columns, but fit better with rails conventions
+  - ***wowee zowee date_field helper solves this!***
+    - see if it fixes _datetime_zone.haml
+    - *Yes, if I can finally understand how to make the time zones work!!*
+    - datetime to text inputs instead of selects (why? I forget.) _To avoid over/under parametizing._ Maybe just the year field? The others are fixed and cyclical.
+
+- `admin/welcome/markup_types` needs dynamic layout. grid fixes this. _no it doesn't_
+  - **Might need a rewrite with a `param` and `<select>`**
+  - panes: summary, simpleformat, markdown, none
+  - about_arlocal
+    - formatting for markup types, esp. for narrow width
+
+- picture titles show markup in joined_resources
+- picture_options_for_select picture.title_for_select
+  - still shows markup
+  - not sure why/how. re-saving each picture fixes it
+
+- `views/admin/shared/_index_joined_pictures` and `…/_show_join_pictures`
+  - currently using `picture.title_without_markup`
+  - formatting is inconsistent with `parser_div(picture.title_props)`
+  - *title_props would be preferable. fix the formatting.*
+  - *layout glitch comes from nested <p> in parser_result*
