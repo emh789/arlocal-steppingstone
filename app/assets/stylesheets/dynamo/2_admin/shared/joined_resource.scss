@@ -13,7 +13,7 @@
   display: inline;
   font-family: $font-family-data;
   &::after {
-    content: ' / '
+    content: ' • '
   }
   &:last-child::after {
     content: ''
