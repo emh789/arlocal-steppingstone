@@ -22,6 +22,10 @@ finish admin renovation
 
 ## HIGH priority
 
+scope for publicly_indexable looks very complicated
+  - change date_released to a datetime_released; or,
+  - improve method for determining today's date
+
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
 - Event datetime could use datetime_field form helper
