@@ -98,9 +98,9 @@ class Stream < ApplicationRecord
       'title'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
-    changed_strippable_attributes.each do |a|
-      stripped_attribute = self.read_attribute(a).to_s.strip
-      self.write_attribute(a, stripped_attribute)
+    changed_strippable_attributes.each do |attribute|
+      stripped_value = self.read_attribute(attribute).to_s.strip
+      self.write_attribute(attribute, stripped_value)
     end
   end
 

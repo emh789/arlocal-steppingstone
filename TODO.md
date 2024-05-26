@@ -10,8 +10,6 @@ finish admin renovation
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
 
-  - picture_keyword checkboxes are still oldschool css
-
   - Builder methods
     - some specify empty string for _markup_text; others are nil. What difference?
       - difference looks like formality and thoroughness, nothing functional
@@ -29,10 +27,13 @@ scope for publicly_indexable looks very complicated
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
 - Event datetime could use datetime_field form helper
-  - however, the app assumes the time entered is in the zone local to the event
+  - however, the app uses the time entered in the zone local to the event
   - whereas rails assumes it's local to the app and converts it to UTC
   - I don't yet see how to preserve the event timezone independently of UTC and local app timezone conversions
   - will require a database migration to merge separate columns into a single datetime column
+- Same issue with picture datetime_manual_entry
+
+
 
 **- Video player layout could be improved at narrow widths.**
 ***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
@@ -322,3 +323,5 @@ Where to Sort vs Where to Query
   - unindexed   publicly_linkable published
   - unlisted    publicly_linkable
   - private
+
+- picture_keyword checkboxes are still oldschool css
