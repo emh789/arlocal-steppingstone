@@ -10,7 +10,7 @@ class Event < ApplicationRecord
   scope :only_past,           -> { where datetime_utc: (..Time.current) }
   scope :only_with_audio,     -> { where audio_count:  1.. }
   scope :publicly_indexable,  -> { where visibility:   ['public'] }
-  scope :publicly_linkable,   -> { where visibility:   ['public', 'unlisted'] }
+  scope :publicly_linkable,   -> { where visibility:   ['public', 'unindexed', 'unlisted'] }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -312,11 +312,6 @@ class Event < ApplicationRecord
   end
 
 
-  def indexed
-    ['public'].include?(visibility)
-  end
-
-
   def joined_audio
     event_audio_sorted
   end
@@ -380,7 +375,7 @@ class Event < ApplicationRecord
 
 
   def published
-    ['public','unlisted'].include?(visibility)
+    ['public','unindexed'].include?(visibility)
   end
 
 

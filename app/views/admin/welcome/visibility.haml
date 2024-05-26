@@ -4,21 +4,30 @@
   %h2.arl_admin_help_basic_title
     Visibility
   %p.arl_admin_help_basic_content_text
-    The <i>visibility</i> setting of a resource determines how, or if, it will be available to the public. There are three categories: <i>Public</i>, <i>Unlisted</i>, and <i>Private</i>.
-  %p.arl_admin_help_basic_content_text
-    <i>Public</i> and <i>Unlisted</i> are both <b>published</b>, while <i>Private</i> is <b>unpublished</b>.
+    The <i>visibility</i> setting of a resource determines how, or if, it will be available to the public.
   %hr
   %h3.arl_admin_help_basic_content_title
-    = "#{icon_published} Public"
-  %p.arl_admin_help_basic_content_text
-    Public items can be accessed from the resource index, directly by a URL, or indirectly from within a different resource (such as audio within an album).
+    = 'Public'
+  %ul.arl_admin_help_basic_content_text
+    %li url
+    %li associations with other objects
+    %li category index
   %hr
   %h3.arl_admin_help_basic_content_title
-    = "#{icon_published} Unlisted"
-  %p.arl_admin_help_basic_content_text
-    Unlisted items do not appear in the resource index. They can be accessed directly by a URL, and indirectly from within a different resource (such as audio within an album).
+    = 'Unindexed'
+  %ul.arl_admin_help_basic_content_text
+    %li url
+    %li associations with other objects
   %hr
   %h3.arl_admin_help_basic_content_title
-    = "#{icon_private} Private"
+    = 'Unlisted'
+  %ul.arl_admin_help_basic_content_text
+    %li url
+  %hr
+  %h3.arl_admin_help_basic_content_title
+    = 'Private'
+  %ul.arl_admin_help_basic_content_text
+    %em (cannot be publicly accessed)
+  %hr
   %p.arl_admin_help_basic_content_text
-    Private items cannot be publicly accessed from the resource index, nor by a URL, nor from within any other resource. They are only visible to an administrator.
+    Albums, Articles, Audio, and Videos with a future release date will not appear in the category index.

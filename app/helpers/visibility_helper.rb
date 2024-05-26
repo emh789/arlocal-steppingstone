@@ -4,26 +4,26 @@ module VisibilityHelper
   def visibilities
     [
       {
-        description: "#{icon_published} public".html_safe,
-        icon: icon_published,
+        description: 'public &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (url, association, index)',
         id: 'public',
       },
       {
-        description: "#{icon_published} unlisted".html_safe,
-        icon: icon_published,
+        description: 'unindexed (url, association)',
+        id: 'unindexed',
+      },
+      {
+        description: 'unlisted &nbsp;&nbsp;&nbsp;&nbsp; (url)',
         id: 'unlisted',
       },
       {
-        description: "#{icon_private} private".html_safe,
-        icon: icon_private,
+        description: 'private',
         id: 'private',
       }
     ]
   end
 
 
-  def visibility_description(id)
-    # visibilities.select { |v| v[:id] == id }[0][:description]
+  def visibility_id(id)
     visibilities.select { |v| v[:id] == id }[0][:id]
   end
 
@@ -36,7 +36,7 @@ module VisibilityHelper
   def visibility_options_for_select
     options = []
     visibilities.each do |vis|
-      options << [vis[:id], vis[:id]]
+      options << [vis[:description].html_safe, vis[:id]]
     end
     options
   end

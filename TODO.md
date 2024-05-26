@@ -312,3 +312,9 @@ Where to Sort vs Where to Query
   - formatting is inconsistent with `parser_div(picture.title_props)`
   - *title_props would be preferable. fix the formatting.*
   - *layout glitch comes from nested <p> in parser_result*
+
+- visibility touchup
+  - public      publicly_linkable published publicly_indexable
+  - unindexed   publicly_linkable published
+  - unlisted    publicly_linkable
+  - private

@@ -7,7 +7,7 @@ class Picture < ApplicationRecord
   include Seedable
 
   scope :publicly_indexable, -> { where(visibility: ['public']) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
+  scope :publicly_linkable,  -> { where(visibility: ['public', 'unindexed', 'unlisted']) }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -378,7 +378,7 @@ class Picture < ApplicationRecord
 
 
   def published
-    ['public','unlisted'].include?(visibility)
+    ['public','unindexed'].include?(visibility)
   end
 
 

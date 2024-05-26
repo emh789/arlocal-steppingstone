@@ -6,8 +6,8 @@ class Video < ApplicationRecord
   extend Paginateable
   include Seedable
 
-  scope :publicly_indexable, -> { where(visibility: ['public']) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
+  scope :publicly_indexable, -> { where('visibility = ? AND date_released <= ?', 'public', Date.new(*(Time.now.strftime('%Y %m %d').split(' ').map{ |i| i.to_i })) ) }
+  scope :publicly_linkable,  -> { where(visibility: ['public', 'unindexed', 'unlisted']) }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -284,7 +284,7 @@ class Video < ApplicationRecord
 
 
   def published
-    ['public','unlisted'].include?(visibility)
+    ['public','unindexed'].include?(visibility)
   end
 
 

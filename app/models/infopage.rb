@@ -5,7 +5,7 @@ class Infopage < ApplicationRecord
   extend Neighborable
 
   scope :publicly_indexable, -> { where(visibility: ['public']) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
+  scope :publicly_linkable,  -> { where(visibility: ['public', 'unindexed', 'unlisted']) }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -187,7 +187,7 @@ class Infopage < ApplicationRecord
 
 
   def published
-    ['public','unlisted'].include?(visibility)
+    ['public','unindexed'].include?(visibility)
   end
 
 

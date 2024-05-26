@@ -6,16 +6,8 @@ class Audio < ApplicationRecord
   extend Paginateable
   include Seedable
 
-  # scope :order_by_date_released_asc,  -> { order(date_released: :asc ) }
-  # scope :order_by_date_released_desc, -> { order(date_released: :desc) }
-  # scope :order_by_filepath_asc,       -> { order(source_file_path: :asc ) }
-  # scope :order_by_filepath_desc,      -> { order(source_file_path: :desc) }
-  # scope :order_by_isrc_asc,           -> { order(isrc_country_code: :asc ).order(isrc_registrant_code: :asc ).order(isrc_year_of_reference: :asc ).order(isrc_designation_code: :asc ) }
-  # scope :order_by_isrc_desc,          -> { order(isrc_country_code: :desc).order(isrc_registrant_code: :desc).order(isrc_year_of_reference: :desc).order(isrc_designation_code: :desc) }
-  # scope :order_by_title_asc,          -> { order(Audio.arel_table[:title].lower.asc ) }
-  # scope :order_by_title_desc,         -> { order(Audio.arel_table[:title].lower.desc) }
-  scope :publicly_indexable, -> { where(visibility: ['public']) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unlisted']) }
+  scope :publicly_indexable, -> { where('visibility = ? AND date_released <= ?', 'public', Date.new(*(Time.now.strftime('%Y %m %d').split(' ').map{ |i| i.to_i })) ) }
+  scope :publicly_linkable,  -> { where(visibility: ['public', 'unindexed', 'unlisted']) }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -370,7 +362,7 @@ class Audio < ApplicationRecord
 
 
   def published
-    ['public','unlisted'].include?(visibility)
+    ['public','unindexed'].include?(visibility)
   end
 
 

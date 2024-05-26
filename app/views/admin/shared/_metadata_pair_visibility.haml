@@ -2,6 +2,6 @@
   .arl_metadata_pair.arl_metadata_layout_row
     %dt.arl_metadata_key= key
     - if visibility.to_s != ''
-      %dd.arl_metadata_value= visibility_description(visibility)
+      %dd.arl_metadata_value= visibility_id(visibility)
     - else
       %dd.arl_metadata_value_nil (none)
