@@ -10,10 +10,6 @@ finish admin renovation
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
 
-  - Builder methods
-    - some specify empty string for _markup_text; others are nil. What difference?
-      - difference looks like formality and thoroughness, nothing functional
-
   - Keyword Admin:
     - #edit?videos missing buttons
       - **Finish implementation of video joins submenus; look across resources; also within video#edit**
@@ -325,3 +321,9 @@ Where to Sort vs Where to Query
   - private
 
 - picture_keyword checkboxes are still oldschool css
+
+- Builder methods
+  - some specify empty string for _markup_text; others are nil. What difference?
+    - difference looks like formality and thoroughness, nothing functional
+    - keep '' with arlocal_settings because all other options need a starting value
+    - but it looks unnecessary on other resources with fewer required defaults

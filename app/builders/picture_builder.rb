@@ -347,13 +347,9 @@ class PictureBuilder
   def params_default
     {
       credits_markup_type: 'plaintext',
-      credits_markup_text: '',
       description_markup_type: 'plaintext',
-      description_markup_text: '',
       show_can_display_title: true,
-      source_imported_file_path: '',
       title_markup_type: 'string',
-      title_markup_text: '',
       visibility: 'private'
     }
   end
