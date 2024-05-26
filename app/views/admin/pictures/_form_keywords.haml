@@ -1,3 +1,6 @@
+.arl_admin_resource_joins_buttons
+  = picture_keyword_admin_button_to_new_join_single(picture)
+
 .arl_form_title
   = resource_joined_keywords_count_statement(picture)
 
@@ -6,23 +9,14 @@
     .arl_form_data
       %table.arl_form_data_joins
         %thead
-          %tr.arl_form_data_joins_headers
-            %th.arl_form_data_joins_heading keyword title
+          %tr.arl_form_data_joins_headings
+            %th.arl_form_data_joins_heading title
             %th.arl_form_data_joins_heading= icon_remove
         %tbody
           = f.fields_for :picture_keywords, picture.picture_keywords_sorted do |pk|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= keyword_admin_link_title(pk.object.keyword)
-              %td.arl_form_data_joins_value= pk.check_box :_destroy
+              %td.arl_form_data_joins_value= pk.label :keyword_title, keyword_admin_link_title(pk.object.keyword)
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: pk
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
-      %aside.arl_form_action_explanation
-        will also unjoin any keywords with 'remove' box checked
-
-= render 'form_elements/spacer'
-
-.arl_form_title
-  Add to keyword
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = picture_keyword_admin_button_to_new_join_single(picture)
+      %aside.arl_form_action_explanation= "will also detatch any keywords with '#{icon_destroy}' box checked"
