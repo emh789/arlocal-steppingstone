@@ -161,7 +161,7 @@ module ResourcesHelper
     picture_filepaths = Array.new
     case view
     when :all
-      picture_filepaths << resource.pictures_all_sorted.map { |picture| picture_preferred_url(picture) }
+      picture_filepaths << resource.pictures_sorted.map { |picture| picture_preferred_url(picture) }
     when :published
       picture_filepaths << resource.pictures_published_sorted.map { |picture| picture_preferred_url(picture) }
     end

@@ -5,7 +5,62 @@
 
 finish admin renovation
 
+  - scopes intersect with visibility
+    - models will need `does_have_published_{resource}` and counter_cache
+  - match nomenclature in ResourceJoined models with whatever ^^^ decides
+    - # Album v/
+      - has_many
+        - audio_published
+        - pictures_published
+      - joins
+        - album_audio   :album audio_published_count
+        - album_picture :album pictures_published_count
+    - # Audio v/
+      - has_many
+        - albums_published
+      - joins
+        - album_audio :audio album_published_count
+    - # Event *Doesn't use `published` yet*
+    - **Make the infrastructure now, because you *will* use it for v1.**
+      - has_many
+        - audio_published
+        - pictures_published
+        - videos_published
+      - joins
+        - event_audio   :event audio_published_count
+        - event_picture :event pictures_published_count
+        - event_video   :event videos_published_count
+    - # Keyword v/
+      - has_many
+        - albums_published
+        - audio_published
+        - pictures_published
+        - videos_published
+      - joins
+        - album_keyword   :keyword albums_published_count
+        - audio_keyword   :keyword audio_published_count
+        - picture_keyword :keyword pictures_published_count
+        - video_keyword   :keyword videos_published_count
+    - # Picture v/
+      - has_many
+        - albums_published
+        - videos_published
+      - joins
+        - album_picture :picture albums_published_count
+        - video_picture :picture videos_published_count
+    - # Video v/
+      - has_many
+        - pictures_published
+      - joins
+        - video_picture :video pictures_published_count
+
+
+  - video#edit?keyword uses old checkbox
+
   - `admin/isrc/edit` narrow view buttons overflow right
+
+  - `Audio.title` should avoid calling *super*
+    - find why and make a semantic sugar method
 
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
@@ -15,10 +70,6 @@ finish admin renovation
       - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
 ## HIGH priority
-
-scope for publicly_indexable looks very complicated
-  - change date_released to a datetime_released; or,
-  - improve method for determining today's date
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
@@ -32,7 +83,7 @@ Admin Resource Indexes are starting to have 'selectable' components and forms (`
 
 
 **- Video player layout could be improved at narrow widths.**
-***- Audio player has not been updated in 10 yrs. Can videojs replace it?***
+***- jplayer Audio player has not been updated in 10 yrs. Can videojs replace it?***
 
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
   - for example `admin/isrc/edit` overflows at narrow widths.
@@ -327,3 +378,16 @@ Where to Sort vs Where to Query
     - difference looks like formality and thoroughness, nothing functional
     - keep '' with arlocal_settings because all other options need a starting value
     - but it looks unnecessary on other resources with fewer required defaults
+
+- scope for publicly_indexable looks very complicated
+  - change date_released to a datetime_released; or,
+  - improve method for determining today's date
+    `lib/find_published.rb` *FindPublished.date_today*
+  - converted to scopes:
+    - Album etc. **includes OK**
+    - Article (see backtrack via InfoPageItem) **includes OK**
+    - Audio (no current backtracks) **includes OK**
+    - Event **includes OK**
+    - Infopage (scoped, but not implemented in `Link` or public views) **includes OK**
+    - Keyword **includes OK, sort_by_keyword Ok**
+    - Link

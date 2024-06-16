@@ -49,7 +49,7 @@ module AlbumsHelper
   def album_admin_button_to_public(album = nil)
     case album
     when Album
-      if album.published
+      if album.is_published?
         button_admin_to_public public_album_path(album.id_public)
       else
         button_admin_to_public_null

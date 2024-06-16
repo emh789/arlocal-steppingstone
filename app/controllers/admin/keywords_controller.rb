@@ -112,7 +112,7 @@ class Admin::KeywordsController < AdminController
 
   def update
     @keyword = QueryKeywords.find_admin(params[:id])
-    if @keyword.update_and_recount_joined_resources(params_keyword_permitted)
+    if @keyword.update(params_keyword_permitted)
       flash[:notice] = 'Keyword was successfully updated.'
       redirect_to edit_admin_keyword_path(@keyword.id_admin, pane: params[:pane])
     else

@@ -23,7 +23,7 @@ class Admin::IsrcController < AdminController
 
   def update_audio(params)
     @audio = QueryAudio.find_admin(params[:id])
-    if @audio.update_and_recount_joined_resources(params_audio_permitted)
+    if @audio.update(params_audio_permitted)
       flash[:notice] = 'Audio was successfully updated.'
       redirect_to admin_isrc_edit_path
     else
@@ -36,7 +36,7 @@ class Admin::IsrcController < AdminController
 
   def update_video(params)
     @video = QueryVideos.find_admin(params[:id])
-    if @video.update_and_recount_joined_resources(params_video_permitted)
+    if @video.update(params_video_permitted)
       flash[:notice] = 'Video was successfully updated.'
       redirect_to admin_isrc_edit_path
     else

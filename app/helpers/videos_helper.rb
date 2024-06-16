@@ -58,7 +58,7 @@ module VideosHelper
   def video_admin_button_to_public(video = nil)
     case video
     when Video
-      if video.published
+      if video.is_published?
         button_admin_to_public public_video_path(video.id_public)
       else
         button_admin_to_public_null

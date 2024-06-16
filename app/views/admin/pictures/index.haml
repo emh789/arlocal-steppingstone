@@ -30,7 +30,7 @@
         .arl_admin_pictures_index_picture_datetime
           = picture.datetime
         .arl_admin_pictures_index_picture_visibility
-          = visibility_id(picture.visibility)
+          = visibility_description(picture.visibility)
 
   - if @page_nav_data
     = render 'shared/nav_page', controller: 'pictures', page: @page_nav_data

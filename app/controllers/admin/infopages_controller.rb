@@ -83,7 +83,7 @@ end
     def pictures_join_by_keyword
       @keyword = QueryKeywords.find(params[:infopage][:keywords])
       @infopage = QueryInfopages.find_admin(params[:id])
-      @infopage.pictures << QueryPictures.find_with_keyword(@keyword)
+      @infopage.pictures << QueryPictures.find_admin_with_keyword(@keyword)
       flash[:notice] = 'Infopage was successfully updated.'
       redirect_to edit_admin_infopage_path(@infopage, pane: params[:pane])
     end

@@ -49,7 +49,7 @@ module InfopagesHelper
   def infopage_admin_button_to_public(infopage = nil)
     case infopage
     when Infopage
-      if infopage.published
+      if infopage.is_published?
         button_admin_to_public public_infopage_path(infopage.id_public)
       else
         button_admin_to_public_null

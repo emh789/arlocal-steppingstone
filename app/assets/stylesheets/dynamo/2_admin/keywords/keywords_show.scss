@@ -58,7 +58,7 @@
 @media #{$media-screen-3-only} {
   .arl_admin_keywords_show {
     grid-template-areas: 'title joins' 'attributes joins' 'etc etc';
-    grid-template-columns: 15rem 25rem;
+    grid-template-columns: 15rem 30rem;
     grid-template-rows: min-content 1fr;
     margin: $arl-margin-wide 0rem;
     row-gap: $arl-spacing;
@@ -68,7 +68,7 @@
 @media #{$media-screen-4} {
   .arl_admin_keywords_show {
     grid-template-areas: 'title joins' 'attributes joins' 'etc etc';
-    grid-template-columns: 15rem 25rem;
+    grid-template-columns: 15rem 35rem;
     grid-template-rows: min-content 1fr;
     margin: $arl-margin-wide 0rem;
     row-gap: $arl-spacing;

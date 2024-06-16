@@ -1,13 +1,33 @@
 class Audio < ApplicationRecord
 
-
   extend FriendlyId
   extend Neighborable
   extend Paginateable
-  include Seedable
 
-  scope :publicly_indexable, -> { where('visibility = ? AND date_released <= ?', 'public', Date.new(*(Time.now.strftime('%Y %m %d').split(' ').map{ |i| i.to_i })) ) }
-  scope :publicly_linkable,  -> { where(visibility: ['public', 'unindexed', 'unlisted']) }
+  scope :future,    -> { where('date_released >  ?', FindPublished.date_today) }
+  scope :published, -> { any_public_released_joinable }
+  scope :released,  -> { where('date_released <= ?', FindPublished.date_today) }
+
+  scope :all_public_indexable,  -> { where(visibility: ['public_indexable']) }
+  scope :all_public_joinable,   -> { where(visibility: ['public_indexable', 'public_joinable']) }
+  scope :all_public_showable,   -> { where(visibility: ['public_indexable', 'public_joinable', 'public_showable']) }
+
+  scope :any_public_released_indexable,   -> { released.all_public_indexable }
+  scope :any_public_released_joinable,    -> { released.all_public_joinable }
+  scope :any_public_released_or_showable, -> { (Audio.any_public_released_joinable).or(Audio.only_public_showable) }
+
+  scope :any_with_keyword, ->(keyword) { joins(:keyword).where(keywords: keyword) }
+
+  scope :only_public_indexable, -> { where(visibility: 'public_indexable') }
+  scope :only_public_joinable,  -> { where(visibility: 'public_joinable') }
+  scope :only_public_showable,  -> { where(visibility: 'public_showable') }
+  scope :only_admin_only,       -> { where(visibility: 'admin_only') }
+
+  scope :include_everything,  -> { includes_albums.includes_events.includes_keywords.with_attachments }
+  scope :includes_albums,     -> { includes(:albums) }
+  scope :includes_events,     -> { includes(:events) }
+  scope :includes_keywords,   -> { includes(:keywords) }
+  scope :with_attachments,    -> { with_attached_source_uploaded }
 
   friendly_id :slug_candidates, use: :slugged
 
@@ -23,13 +43,19 @@ class Audio < ApplicationRecord
   validates :isrc_registrant_code,   allow_blank: true, length: { is: 3 }
   validates :isrc_year_of_reference, allow_blank: true, length: { is: 2 }
 
-  has_many :album_audio,    dependent: :destroy
-  has_many :audio_keywords, dependent: :destroy
-  has_many :event_audio,    dependent: :destroy
+  has_many :album_audio,    -> { includes_audio   }, dependent: :destroy
+  has_many :audio_keywords, -> { includes_keyword }, dependent: :destroy
+  has_many :event_audio,    -> { includes_event   }, dependent: :destroy
+
+  has_many :album_published_audio, -> { albums_published.includes_album }, class_name: 'AlbumAudio'
+  has_many :event_published_audio, -> { events_published.includes_event }, class_name: 'EventAudio'
 
   has_many :albums,   through: :album_audio
   has_many :events,   through: :event_audio
   has_many :keywords, through: :audio_keywords
+
+  has_many :albums_published, through: :album_published_audio, source: :album
+  has_many :events_published, through: :event_published_audio, source: :event
 
   has_one_attached :source_uploaded
 
@@ -38,128 +64,98 @@ class Audio < ApplicationRecord
   accepts_nested_attributes_for :event_audio,    allow_destroy: true
 
 
-
   protected
-
 
   def self.source_type_options
     [:imported, :uploaded]
   end
-
 
   def self.source_type_options_for_select
     Audio.source_type_options.map { |option| [option, option] }
   end
 
 
-
   public
-
 
   ### artist
 
-
   ### audio_artist
-
 
   def album_audio_sorted
     album_audio_sorted_by_title_asc
   end
 
-
   def album_audio_sorted_by_title_asc
     album_audio.to_a.sort_by! { |aa| aa.album.title.downcase }
   end
 
-
   ### albums_count
-
 
   def albums_sorted
     albums_sorted_by_title_asc
   end
 
-
   def albums_sorted_by_title_asc
     albums.to_a.sort_by! { |album| album.title.downcase }
   end
-
 
   def audio_keywords_sorted
     audio_keywords_sorted_by_title_asc
   end
 
-
   def audio_keywords_sorted_by_title_asc
     audio_keywords.to_a.sort_by! { |ak| ak.keyword.title.downcase }
   end
 
-
   ### composer
 
-
   ### copright_markup_type
-
 
   def copyright_props
     { markup_type: copyright_markup_type, markup_text: copyright_markup_text }
   end
 
-
   ### copyright_markup_text
-
 
   ### created_at
 
-
   ### date_released
-
 
   def date_released_sortable
     date_released ? date_released : Date.new(0)
   end
 
-
   ### description_markup_type
-
 
   def description_props
     { markup_type: description_markup_type, markup_text: description_markup_text }
   end
 
-
   ### description_markup_text
-
 
   def does_have_albums
     albums_count.to_i > 0
   end
 
-
   def does_have_source_uploaded
     self.source_uploaded.attached? == true
   end
-
 
   def does_have_events
     events_count.to_i > 0
   end
 
-
   def does_have_keywords
     keywords_count.to_i > 0
   end
-
 
   def does_have_subtitle
     subtitle.to_s.length > 0
   end
 
-
   def does_not_have_source_uploaded
     self.source_uploaded.attached? == false
   end
-
 
   def duration(rounded_to: nil)
     case rounded_to
@@ -176,7 +172,6 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def duration_rounded_to_minutes
     mins = duration_mins.to_i
     secs = duration_secs.to_i
@@ -185,7 +180,6 @@ class Audio < ApplicationRecord
     end
     "#{mins.to_s}"
   end
-
 
   def duration_rounded_to_seconds
     mins = duration_mins.to_i
@@ -200,7 +194,6 @@ class Audio < ApplicationRecord
     end
     "#{mins}:#{secs.to_s.rjust(2, '0')}"
   end
-
 
   def duration_rounded_to_cents
     mins = duration_mins.to_i
@@ -217,43 +210,33 @@ class Audio < ApplicationRecord
     "#{mins}:#{secs.to_s.rjust(2, '0')}.#{cents.to_s.rjust(2, '0')}"
   end
 
-
   def duration_rounded_to_milliseconds
     "#{duration_mins}:#{duration_secs.to_s.rjust(2, '0')}.#{duration_mils.to_s.rjust(3, '0')}"
   end
 
-
   ### duration_hrs
-
 
   ### duration_mins
 
-
   ### duration_secs
 
-
   ### duration_mils
-
 
   def event_audio_sorted
     event_audio_sorted_by_datetime_asc
   end
 
-
   def event_audio_sorted_by_datetime_asc
     event_audio.to_a.sort_by! { |ea| ea.event.datetime }
   end
-
 
   def events_sorted
     events_sorted_by_datetime_asc
   end
 
-
   def events_sorted_by_datetime_asc
     events.to_a.sort_by! { |event| event.datetime }
   end
-
 
   # combines and formats title, subtitle
   def full_title
@@ -266,27 +249,35 @@ class Audio < ApplicationRecord
     full_title
   end
 
-
   def has_albums
     does_have_albums
   end
 
-
   ### id
-
 
   def id_admin
     friendly_id
   end
 
-
   def id_public
     friendly_id
   end
 
+  # def indexed
+  #   ['public'].include?(visibility)
+  # end
 
-  def indexed
-    ['public'].include?(visibility)
+
+  def is_joinable?
+    ['public_indexable', 'public_joinable'].include?(visibility)
+  end
+
+  def is_published?
+    is_joinable? && is_released?
+  end
+
+  def is_released?
+    date_released <= FindPublished.date_today
   end
 
 
@@ -294,28 +285,21 @@ class Audio < ApplicationRecord
     [isrc_country_code, isrc_registrant_code, isrc_year_of_reference, isrc_designation_code].join
   end
 
-
   def isrc_hyphenated
     [isrc_country_code, isrc_registrant_code, isrc_year_of_reference, isrc_designation_code].join('-')
   end
 
-
   ### isrc_country_code
-
 
   ### isrc_designation_code
 
-
   ### isrc_registrant_code
 
-
   ### isrc_year_of_reference
-
 
   def joined_albums
     album_audio_sorted
   end
-
 
   def joined_events
     event_audio_sorted
@@ -325,49 +309,37 @@ class Audio < ApplicationRecord
     audio_keywords_sorted
   end
 
-
   ### keywords_count
-
 
   def keywords_sorted
     keywords_sorted_by_title_asc
   end
 
-
   def keywords_sorted_by_title_asc
     keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
   end
 
-
   ### musicians_markup_type
-
 
   def musicians_props
     { markup_type: musicians_markup_type, markup_text: musicians_markup_text }
   end
 
-
   ### musicians_markup_text
 
-
   ### personnel_markup_type
-
 
   def personnel_props
     { markup_type: personnel_markup_type, markup_text: personnel_markup_text }
   end
 
-
   ### personnel_markup_text
 
-
-  def published
-    ['public','unindexed'].include?(visibility)
+  def published?
+    is_joinable && is_released
   end
 
-
   ### recording
-
 
   def should_generate_new_friendly_id?
     date_released_changed? ||
@@ -377,7 +349,6 @@ class Audio < ApplicationRecord
     super
   end
 
-
   def slug_candidates
     [
       [:title],
@@ -386,14 +357,12 @@ class Audio < ApplicationRecord
     ]
   end
 
-
   def source_file_does_exist
     case source_type
     when 'imported', 'uploaded'
       File.exist?(source_absolute_path_to_file)
     end
   end
-
 
   def source_file_does_not_exist
     case source_type
@@ -402,16 +371,13 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def source_file_extname
     File::extname(source_file_path.to_s)
   end
 
-
   def source_file_extension
     source_file_extname.to_s.gsub(/\A./,'')
   end
-
 
   def source_file_extension_or_dummy
     if source_file_extname.to_s == ''
@@ -421,11 +387,9 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def source_file_mime_type
     Mime::Type.lookup_by_extension(source_file_extension)
   end
-
 
   def source_file_path
     case source_type
@@ -440,9 +404,7 @@ class Audio < ApplicationRecord
     end
   end
 
-
   ### source_imported_file_path
-
 
   def source_is_file
     case source_type
@@ -455,7 +417,6 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def source_is_url
     case source_type
     when 'url'
@@ -465,9 +426,7 @@ class Audio < ApplicationRecord
     end
   end
 
-
   ### source_type
-
 
   def source_uploaded_file_path
     if source_uploaded.attached?
@@ -475,9 +434,7 @@ class Audio < ApplicationRecord
     end
   end
 
-
   ### subtitle
-
 
   def title
     if super.to_s == ''
@@ -487,23 +444,13 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def title_downcase
     title.downcase
   end
 
-
-  def update_and_recount_joined_resources(audio_params)
-    Audio.reset_counters(id, :albums, :keywords)
-    update(audio_params)
-  end
-
-
   ### updated_at
 
-
   ### visibility
-
 
   def year
     if date_released
@@ -512,9 +459,7 @@ class Audio < ApplicationRecord
   end
 
 
-
   private
-
 
   def source_absolute_path_to_file
     case source_type
@@ -525,13 +470,11 @@ class Audio < ApplicationRecord
     end
   end
 
-
   def strip_any_leading_slash_from_source_imported_file_path
     if self.source_imported_file_path_changed? && self.source_imported_file_path[0] == File::SEPARATOR
       self.source_imported_file_path[0] = ''
     end
   end
-
 
   def strip_whitespace_edges_from_entered_text
     strippable_attributes = [
@@ -551,6 +494,5 @@ class Audio < ApplicationRecord
       self.write_attribute(attribute, stripped_value)
     end
   end
-
 
 end

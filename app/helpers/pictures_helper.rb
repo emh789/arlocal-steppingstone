@@ -59,7 +59,7 @@ module PicturesHelper
   def picture_admin_button_to_public(picture = nil)
     case picture
     when Picture
-      if picture.published
+      if picture.is_published?
         button_admin_to_public public_picture_path(picture.id_public)
       else
         button_admin_to_public_null

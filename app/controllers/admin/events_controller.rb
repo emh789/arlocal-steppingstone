@@ -9,7 +9,7 @@ class Admin::EventsController < AdminController
   def add_audio_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
     @event = QueryEvents.find_admin(params[:id])
-    @event.audio << QueryAudio.find_with_keyword(@keyword)
+    @event.audio << QueryAudio.find_admin_with_keyword(@keyword)
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
 
@@ -17,7 +17,7 @@ class Admin::EventsController < AdminController
   def add_pictures_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
     @event = QueryEvents.find_admin(params[:id])
-    @event.pictures << QueryPictures.find_with_keyword(@keyword)
+    @event.pictures << QueryPictures.find_admin_with_keyword(@keyword)
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
 
@@ -25,7 +25,7 @@ class Admin::EventsController < AdminController
   def add_videos_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
     @event = QueryEvents.find_admin(params[:id])
-    @event.videos << QueryVideos.find_with_keyword(@keyword)
+    @event.videos << QueryVideos.find_admin_with_keyword(@keyword)
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
 
@@ -146,7 +146,7 @@ class Admin::EventsController < AdminController
 
   def update
     @event = QueryEvents.find_admin(params[:id])
-    if @event.update_and_recount_joined_resources(params_event_permitted)
+    if @event.update(params_event_permitted)
       flash[:notice] = 'Event was successfully updated.'
       redirect_to edit_admin_event_path(@event.id_admin, pane: params[:pane])
     else

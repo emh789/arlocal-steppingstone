@@ -40,7 +40,7 @@ class Admin::AlbumsController < AdminController
   def audio_join_by_keyword
     @keyword = QueryKeywords.find(params[:album][:keywords])
     @album = QueryAlbums.find_admin(params[:id])
-    @album.audio << QueryAudio.find_with_keyword(@keyword)
+    @album.audio << QueryAudio.find_admin_with_keyword(@keyword)
     flash[:notice] = 'Album was successfully updated.'
     redirect_to edit_admin_album_path(@album, pane: params[:pane])
   end
@@ -126,7 +126,7 @@ class Admin::AlbumsController < AdminController
   def pictures_join_by_keyword
     @keyword = QueryKeywords.find(params[:album][:keywords])
     @album = QueryAlbums.find_admin(params[:id])
-    @album.pictures << QueryPictures.find_with_keyword(@keyword)
+    @album.pictures << QueryPictures.find_admin_with_keyword(@keyword)
     flash[:notice] = 'Album was successfully updated.'
     redirect_to edit_admin_album_path(@album, pane: params[:pane])
   end
@@ -140,7 +140,7 @@ class Admin::AlbumsController < AdminController
 
   def update
     @album = QueryAlbums.find_admin(params[:id])
-    if @album.update_and_recount_joined_resources(params_album_permitted)
+    if @album.update(params_album_permitted)
       flash[:notice] = 'Album was successfully updated.'
       redirect_to edit_admin_album_path(@album.id_admin, pane: params[:pane])
     else

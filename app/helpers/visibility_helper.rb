@@ -1,7 +1,7 @@
 module VisibilityHelper
 
 
-  def visibilities
+  def old_visibilities
     [
       {
         description: 'public &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (url, association, index)',
@@ -23,6 +23,37 @@ module VisibilityHelper
   end
 
 
+  def visibilities
+    [
+      {
+        description: 'administrators only',
+        id: 'admin_only',
+        order: 0,
+      },
+      {
+        description: 'public – url',
+        id: 'public_showable',
+        order: 1,
+      },
+      {
+        description: 'public – url, join',
+        id: 'public_joinable',
+        order: 2,
+      },
+      {
+        description: 'public – url, join, index',
+        id: 'public_indexable',
+        order: 3,
+      }
+    ]
+  end
+
+
+  def visibility_description(id)
+    visibilities.select { |v| v[:id] == id }[0][:description]
+  end
+
+
   def visibility_id(id)
     visibilities.select { |v| v[:id] == id }[0][:id]
   end
@@ -32,6 +63,15 @@ module VisibilityHelper
     visibilities.select { |v| v[:id] == id }[0][:icon]
   end
 
+
+  # def visibility_options_for_select
+  #   options = []
+  #   visibilities.sort_by!{ |v| v.order }.reverse.each do |vis|
+  #     options << [vis[:description].html_safe, vis[:id]]
+  #   end
+  #   options
+  # end
+  #
 
   def visibility_options_for_select
     options = []

@@ -1,7 +1,7 @@
 class MarkupParser
+
   extend InactiveRecordSingleton
 
-  # TODO: `[:symbol]` is deprecated and will be removed once other InactiveRecord datasets use symbolic id
   DATA = [
     {
       id: 'markdown',
@@ -29,11 +29,9 @@ class MarkupParser
 
   protected
 
-
   def self.html_class_prefix
     'arl_markup_parser'
   end
-
 
   def self.parse_sanitize_class(resource_text_props)
     parser = MarkupParser.find(resource_text_props[:markup_type])
@@ -44,12 +42,9 @@ class MarkupParser
   end
 
 
-
   public
 
-
   attr_reader :id, :description, :html_class, :method_parse, :method_sanitize
-
 
   def initialize(parser)
     if parser
@@ -66,16 +61,13 @@ class MarkupParser
     @method_parse.call(text)
   end
 
-
   def parse_and_sanitize(text)
     sanitize(parse(text))
   end
 
-
   def sanitize(text)
     @method_sanitize.call(text)
   end
-
 
 
 end

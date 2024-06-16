@@ -24,12 +24,12 @@ class SorterIndexPublicEvents
     {
       id: 'upcoming',
       description: 'upcoming events',
-      method: Proc.new { |events| events.only_future_near.sort_by{ |e| e.datetime_utc }.reverse }
+      method: Proc.new { |events| events.upcoming.sort_by{ |e| e.datetime_utc }.reverse }
     },
     {
       id: 'with_audio',
       description: 'past events with audio',
-      method: Proc.new { |events| events.only_with_audio.sort_by{ |e| e.datetime_utc }.reverse }
+      method: Proc.new { |events| events.with_audio.sort_by{ |e| e.datetime_utc }.reverse }
     }
   ]
 

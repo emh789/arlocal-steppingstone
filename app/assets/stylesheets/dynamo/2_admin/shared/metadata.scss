@@ -53,19 +53,19 @@
   width: 100%;
 }
 .arl_metadata_table_value {
-  min-width: 5em;
+  min-width: 8em;
   vertical-align: top;
-  padding: 0rem ($arl-margin-narrow / 4);
+  padding: 0rem ($arl-margin-narrow / 2);
 }
 .arl_metadata_table_value_wrap {
   min-width: 5em;
   vertical-align: top;
   padding-left: 0.5rem;
-  padding-right: ($arl-margin-narrow / 4);
+  padding-right: ($arl-margin-narrow / 2);
   text-indent: -0.5rem;
 }
 .arl_metadata_table_value_right {
   vertical-align: top;
-  padding: 0rem ($arl-margin-narrow / 4);
+  padding: 0rem ($arl-margin-narrow / 2);
   text-align: right;
 }

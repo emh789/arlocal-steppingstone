@@ -3,45 +3,36 @@ class QueryAlbums
 
   protected
 
-
   def self.find_admin(id)
-    Album.friendly.find(id)
+    Album.include_everything.friendly.find(id)
   end
-
 
   def self.find_public(id)
-    Album.publicly_linkable.friendly.find(id)
+    Album.any_public_released_or_showable.include_everything.friendly.find(id)
   end
-
 
   def self.index_admin(arlocal_settings, params)
     new(arlocal_settings: arlocal_settings, params: params).index_admin
   end
 
-
   def self.index_public(arlocal_settings, params)
     new(arlocal_settings: arlocal_settings, params: params).index_public
   end
-
 
   def self.neighborhood_admin(album, arlocal_settings)
     new(arlocal_settings: arlocal_settings).neighborhood_admin(album)
   end
 
-
   def self.neighborhood_public(album, arlocal_settings)
     new(arlocal_settings: arlocal_settings).neighborhood_public(album)
   end
-
 
   def self.options_for_select_admin
     Album.select(:id, :title).sort_by{ |a| a.title.downcase }
   end
 
 
-
   public
-
 
   def initialize(**args)
     arlocal_settings = args[:arlocal_settings]
@@ -52,61 +43,39 @@ class QueryAlbums
 
 
   def index_admin
-    if @sorter_admin
-      index_admin_sorted
-    else
-      index_admin_unsorted
-    end
+    @sorter_admin ? index_admin_sorted : index_admin_unsorted
   end
-
 
   def index_admin_sorted
-    @sorter_admin.sort all_albums
+    @sorter_admin.sort index_admin_unsorted
   end
-
 
   def index_admin_unsorted
-    all_albums
+    Album.all.include_everything
   end
-
 
   def index_public
-    if @sorter_public
-      index_public_sorted
-    else
-      index_public_unsorted
-    end
+    @sorter_public ? index_public_sorted : index_public_unsorted
   end
-
 
   def index_public_sorted
-    @sorter_public.sort all_albums.publicly_indexable
+    @sorter_public.sort index_public_unsorted
   end
-
 
   def index_public_unsorted
-    all_albums.publicly_indexable
+    Album.all_public_indexable.include_everything
   end
-
 
   def neighborhood_admin(album, distance: 1)
     Album.neighborhood(album, collection: index_admin, distance: distance)
   end
-
 
   def neighborhood_public(album, distance: 1)
     Album.neighborhood(album, collection: index_public, distance: distance)
   end
 
 
-
   private
-
-
-  def all_albums
-    Album.includes({ audio: :source_uploaded_attachment }, :keywords, { pictures: :source_uploaded_attachment })
-  end
-
 
   def determine_sorter_admin(arlocal_settings, params)
     if params[:filter]
@@ -115,7 +84,6 @@ class QueryAlbums
       SorterIndexAdminAlbums.find(arlocal_settings.admin_index_albums_sort_method)
     end
   end
-
 
   def determine_sorter_public(arlocal_settings, params)
     if params[:filter]

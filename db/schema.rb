@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_053004) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -109,6 +109,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.boolean "show_can_have_vendor_widget_gumroad"
     t.string "visibility"
     t.string "album_pictures_sort_method"
+    t.integer "audio_published_count"
+    t.integer "pictures_published_count"
     t.index ["slug"], name: "index_albums_on_slug"
   end
 
@@ -151,6 +153,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.string "public_index_events_sort_method"
     t.string "public_index_pictures_sort_method"
     t.string "public_index_videos_sort_method"
+  end
+
+  create_table "article_keywords", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "keyword_id"
+    t.index ["article_id"], name: "index_article_keywords_on_article_id"
+    t.index ["keyword_id"], name: "index_article_keywords_on_keyword_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -202,6 +211,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.string "source_type"
     t.string "slug"
     t.string "visibility"
+    t.integer "albums_published_count"
+    t.integer "events_published_count"
     t.index ["slug"], name: "index_audio_on_slug"
     t.index ["source_imported_file_path"], name: "index_audio_on_source_imported_file_path"
   end
@@ -276,6 +287,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.string "visibility"
     t.string "event_pictures_sort_method"
     t.string "string"
+    t.integer "audio_published_count"
+    t.integer "pictures_published_count"
+    t.integer "videos_published_count"
+    t.date "date_announced"
     t.index ["slug"], name: "index_events_on_slug"
   end
 
@@ -331,6 +346,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.integer "order_selecting_pictures"
     t.integer "order_selecting_videos"
     t.boolean "can_select_audio"
+    t.integer "albums_published_count"
+    t.integer "articles_published_count"
+    t.integer "audio_published_count"
+    t.integer "events_published_count"
+    t.integer "pictures_published_count"
+    t.integer "videos_published_count"
     t.index ["slug"], name: "index_keywords_on_slug"
   end
 
@@ -384,6 +405,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.string "source_type"
     t.integer "videos_count"
     t.string "visibility"
+    t.integer "albums_published_count"
+    t.integer "events_published_count"
+    t.integer "videos_published_count"
     t.index ["slug"], name: "index_pictures_on_slug"
   end
 
@@ -440,6 +464,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_21_181756) do
     t.integer "pictures_count"
     t.integer "events_count"
     t.string "visibility"
+    t.integer "events_published_count"
+    t.integer "pictures_published_count"
     t.index ["slug"], name: "index_videos_on_slug"
   end
 

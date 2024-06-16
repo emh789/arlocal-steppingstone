@@ -232,7 +232,7 @@ class Admin::PicturesController < AdminController
 
   def update
     @picture = QueryPictures.find_admin(params[:id])
-    if @picture.update_and_recount_joined_resources(params_picture_permitted)
+    if @picture.update(params_picture_permitted)
       flash[:notice] = 'Picture was successfully updated.'
       redirect_to edit_admin_picture_path(@picture.id_admin, pane: params[:pane])
     else

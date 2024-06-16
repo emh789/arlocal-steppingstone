@@ -49,7 +49,7 @@ module EventsHelper
   def event_admin_button_to_public(event = nil)
     case event
     when Event
-      if event.published
+      if event.is_published?
         button_admin_to_public public_event_path(event.id_public)
       else
         button_admin_to_public_null

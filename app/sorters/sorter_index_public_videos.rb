@@ -74,19 +74,17 @@ class SorterIndexPublicVideos
   def self.sort_by_keyword(video_collection, inner_order: :title_asc)
     videos_by_keyword = Hash.new
 
-    keyword_collection = Keyword.only_that_will_select_videos
+    keyword_collection = Keyword.will_select_published_videos
     keyword_collection.each do |keyword|
-      videos_by_keyword[keyword.title] = video_collection.joins(:keywords).where(keywords: keyword)
+      videos_by_keyword[keyword.title] = video_collection.with_keywords_matching(keyword_collection)
     end
-
-    videos_without_keyword_collection = video_collection.reject{ |video| video.keywords.map { |keyword| keyword.can_select_videos }.include?(true) }
-    videos_by_keyword["more videos"] = videos_without_keyword_collection
+    videos_by_keyword["more videos"] = video_collection.without_any_or_matching_keywords(keyword_collection)
 
     videos_by_keyword.delete_if { |keyword, videos| videos == [] }
     videos_by_keyword.each_pair do |keyword, videos|
       case inner_order
       when :date_released_desc
-        videos_by_keyword[keyword] = videos.sort_by{ |video| video.date_released }.reverse
+        videos_by_keyword[keyword] = videos.sort_by{ |video| video.date_released_sortable }.reverse
       when :title_asc
         videos_by_keyword[keyword] = videos.sort_by{ |video| video.title.downcase }
       end

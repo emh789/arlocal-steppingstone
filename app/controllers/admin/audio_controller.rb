@@ -239,7 +239,7 @@ def create
 
   def update
     @audio = QueryAudio.find_admin(params[:id])
-    if @audio.update_and_recount_joined_resources(params_audio_permitted)
+    if @audio.update(params_audio_permitted)
       flash[:notice] = 'Audio was successfully updated.'
       redirect_to edit_admin_audio_path(@audio.id_admin, pane: params[:pane])
     else

@@ -67,7 +67,7 @@ module AudioHelper
   def audio_admin_button_to_public(audio = nil)
     case audio
     when Audio
-      if audio.published
+      if audio.is_published?
         button_admin_to_public public_audio_path(audio.id_public)
       else
         button_admin_to_public_null

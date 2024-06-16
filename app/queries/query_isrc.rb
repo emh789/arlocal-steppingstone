@@ -30,7 +30,7 @@ class QueryIsrc
 
 
   def index_admin_sorted
-    @sorter_admin.sort all_isrcable
+    @sorter_admin.sort index_admin_unsorted
   end
 
 
