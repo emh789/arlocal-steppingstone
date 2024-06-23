@@ -15,15 +15,31 @@ module FindPublished
 
 
 
-  def revisibility
+  def revisibility(new_visibility: nil)
     [ Album, Article, Audio, Event, Infopage, Link, Picture, Stream, Video ].each do |resource_class|
       resource_class.all.each do |resource|
-        # new_visibility = FindPublished.revisibility_translation(resource.visibility)
-        new_visibility = 'public_indexable'
+        if new_visibility == nil
+          new_visibility = FindPublished.revisibility_translation(resource.visibility)
+        end
         resource.update(visibility: new_visibility)
       end
     end
+    return nil
   end
+
+
+  def revisibility_test(new_visibility: nil)
+    [ Album, Article, Audio, Event, Infopage, Link, Picture, Stream, Video ].each do |resource_class|
+      resource_class.all.each do |resource|
+        if new_visibility == nil
+          new_visibility = FindPublished.revisibility_translation(resource.visibility)
+        end
+        puts "#{resource.title} => #{new_visibility}"
+      end
+    end
+    return nil
+  end
+
 
   def revisibility_translation(visibility)
     case visibility
