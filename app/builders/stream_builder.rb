@@ -56,7 +56,7 @@ class StreamBuilder
   def params_default
     {
       description_markup_type: 'plaintext',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

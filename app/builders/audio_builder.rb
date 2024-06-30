@@ -366,7 +366,7 @@ class AudioBuilder
       isrc_registrant_code: params_default_isrc_registrant_code,
       musicians_markup_type: 'string',
       personnel_markup_type: 'string',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

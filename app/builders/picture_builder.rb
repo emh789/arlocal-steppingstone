@@ -350,7 +350,7 @@ class PictureBuilder
       description_markup_type: 'plaintext',
       show_can_display_title: true,
       title_markup_type: 'string',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

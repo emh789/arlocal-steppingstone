@@ -57,7 +57,7 @@ class ArticleBuilder
     {
       content_markup_type: 'plaintext',
       copyright_markup_type: 'string',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

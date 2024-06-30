@@ -53,7 +53,7 @@ class InfopageBuilder
 
   def params_default
     {
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

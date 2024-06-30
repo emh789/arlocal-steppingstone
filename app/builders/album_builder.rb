@@ -63,7 +63,7 @@ class AlbumBuilder
       musicians_markup_type: 'plaintext',
       personnel_markup_type: 'plaintext',
       show_can_cycle_pictures: true,
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

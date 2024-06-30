@@ -60,7 +60,7 @@ class EventBuilder
       show_can_cycle_pictures: true,
       show_can_have_more_pictures_link: true,
       title_markup_type: 'string',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 

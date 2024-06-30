@@ -114,7 +114,7 @@ class VideoBuilder
       isrc_country_code: params_default_isrc_country_code,
       isrc_registrant_code: params_default_isrc_registrant_code,
       personnel_markup_type: 'plaintext',
-      visibility: 'private'
+      visibility: 'admin_only'
     }
   end
 
