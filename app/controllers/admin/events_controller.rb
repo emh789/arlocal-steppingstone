@@ -199,6 +199,7 @@ class Admin::EventsController < AdminController
     params.require(:event).permit(
       :alert,
       :city,
+      :date_announced,
       :datetime_year,
       :datetime_month,
       :datetime_day,
