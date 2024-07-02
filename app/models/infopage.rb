@@ -57,12 +57,20 @@ class Infopage < ApplicationRecord
     articles.any?
   end
 
+  def does_have_articles_published
+    articles_published.any?
+  end
+
   def does_have_links
     links.any?
   end
 
   def does_have_pictures
     pictures.any?
+  end
+
+  def does_have_pictures_published
+    pictures_published.any?
   end
 
   def does_have_items

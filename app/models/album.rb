@@ -180,6 +180,10 @@ class Album < ApplicationRecord
     audio_count.to_i > 0
   end
 
+  def does_have_audio_published
+    audio_published_count.to_i > 0
+  end
+
   def does_have_coverpicture
     coverpicture && coverpicture.picture
   end
@@ -211,6 +215,10 @@ class Album < ApplicationRecord
 
   def does_have_pictures
     pictures_count.to_i > 0
+  end
+
+  def does_have_pictures_published
+    pictures_published_count.to_i > 0
   end
 
   def does_have_pictures_sorter_id

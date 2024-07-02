@@ -6,54 +6,8 @@
 finish admin renovation
 
   - scopes intersect with visibility
-    - models will need `does_have_published_{resource}` and counter_cache
-  - match nomenclature in ResourceJoined models with whatever ^^^ decides
-    - # Album v/
-      - has_many
-        - audio_published
-        - pictures_published
-      - joins
-        - album_audio   :album audio_published_count
-        - album_picture :album pictures_published_count
-    - # Audio v/
-      - has_many
-        - albums_published
-      - joins
-        - album_audio :audio album_published_count
-    - # Event *Doesn't use `published` yet*
-    - **Make the infrastructure now, because you *will* use it for v1.**
-      - has_many
-        - audio_published
-        - pictures_published
-        - videos_published
-      - joins
-        - event_audio   :event audio_published_count
-        - event_picture :event pictures_published_count
-        - event_video   :event videos_published_count
-    - # Keyword v/
-      - has_many
-        - albums_published
-        - audio_published
-        - pictures_published
-        - videos_published
-      - joins
-        - album_keyword   :keyword albums_published_count
-        - audio_keyword   :keyword audio_published_count
-        - picture_keyword :keyword pictures_published_count
-        - video_keyword   :keyword videos_published_count
-    - # Picture v/
-      - has_many
-        - albums_published
-        - videos_published
-      - joins
-        - album_picture :picture albums_published_count
-        - video_picture :picture videos_published_count
-    - # Video v/
-      - has_many
-        - pictures_published
-      - joins
-        - video_picture :video pictures_published_count
-
+    - models `does_have_published_{resource}` and counter_cache
+    - [].any vs [].to_count
 
   - video#edit?keyword uses old checkbox
 
@@ -71,7 +25,7 @@ finish admin renovation
 
 ## HIGH priority
 
-Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However,  the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
+Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
 - Event datetime could use datetime_field form helper
   - however, the app uses the time entered in the zone local to the event
@@ -391,3 +345,50 @@ Where to Sort vs Where to Query
     - Infopage (scoped, but not implemented in `Link` or public views) **includes OK**
     - Keyword **includes OK, sort_by_keyword Ok**
     - Link
+
+- match nomenclature in ResourceJoined models with whatever ^^^ decides
+  - # Album v/
+    - has_many
+      - audio_published
+      - pictures_published
+    - joins
+      - album_audio   :album audio_published_count
+      - album_picture :album pictures_published_count
+  - # Audio v/
+    - has_many
+      - albums_published
+    - joins
+      - album_audio :audio album_published_count
+  - # Event *Doesn't use `published` yet*
+  - **Make the infrastructure now, because you *will* use it for v1.**
+    - has_many
+      - audio_published
+      - pictures_published
+      - videos_published
+    - joins
+      - event_audio   :event audio_published_count
+      - event_picture :event pictures_published_count
+      - event_video   :event videos_published_count
+  - # Keyword v/
+    - has_many
+      - albums_published
+      - audio_published
+      - pictures_published
+      - videos_published
+    - joins
+      - album_keyword   :keyword albums_published_count
+      - audio_keyword   :keyword audio_published_count
+      - picture_keyword :keyword pictures_published_count
+      - video_keyword   :keyword videos_published_count
+  - # Picture v/
+    - has_many
+      - albums_published
+      - videos_published
+    - joins
+      - album_picture :picture albums_published_count
+      - video_picture :picture videos_published_count
+  - # Video v/
+    - has_many
+      - pictures_published
+    - joins
+      - video_picture :video pictures_published_count

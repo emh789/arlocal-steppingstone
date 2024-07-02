@@ -225,6 +225,10 @@ class Picture < ApplicationRecord
     albums_count.to_i > 0
   end
 
+  def does_have_albums_published
+    albums_published_count.to_i > 0
+  end
+
   def does_have_credits
     credits_markup_text.to_s != ''
   end
@@ -241,6 +245,10 @@ class Picture < ApplicationRecord
     events_count.to_i > 0
   end
 
+  def does_have_events_published
+    events_published_count.to_i > 0
+  end
+
   def does_have_keywords
     keywords_count.to_i > 0
   end
@@ -255,6 +263,10 @@ class Picture < ApplicationRecord
 
   def does_have_videos
     videos_count.to_i > 0
+  end
+
+  def does_have_videos_published
+    videos_published_count.to_i > 0
   end
 
   def does_not_have_slug

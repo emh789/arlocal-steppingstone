@@ -143,20 +143,40 @@ class Keyword < ApplicationRecord
     albums_count.to_i > 0
   end
 
+  def does_have_albums_published
+    albums_count_published.to_i > 0
+  end
+
   def does_have_audio
     audio_count.to_i > 0
+  end
+
+  def does_have_audio_published
+    audio_count_published.to_i > 0
   end
 
   def does_have_events
     events_count.to_i > 0
   end
 
+  def does_have_events_published
+    events_count_published.to_i > 0
+  end
+
   def does_have_pictures
     pictures_count.to_i > 0
   end
 
+  def does_have_pictures_published
+    pictures_count_published.to_i > 0
+  end
+
   def does_have_videos
     videos_count.to_i > 0
+  end
+
+  def does_have_videos_published
+    videos_count_published.to_i > 0
   end
 
   def event_keywords_sorted

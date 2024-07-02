@@ -34,6 +34,16 @@ class Article < ApplicationRecord
 
   public
 
+  ### article_keywords
+
+  def article_keywords_sorted
+    article_keywords_sorted_by_title_asc
+  end
+
+  def article_keywords_sorted_by_title_asc
+    article_keywords.sort_by! { |ak| ak.keyword.title.downcase }
+  end
+
   ### author
 
   def content_beginning_props
@@ -61,7 +71,11 @@ class Article < ApplicationRecord
   ### date_released
 
   def does_have_infopages
-    infopages.length > 0
+    infopages_count.to_i > 0
+  end
+
+  def does_have_keywords
+    keywords_count.to_i > 0
   end
 
   ### id
@@ -96,6 +110,10 @@ class Article < ApplicationRecord
 
   def joined_infopages
     infopage_items
+  end
+
+  def joined_keywords
+    article_keywords_sorted
   end
 
   def should_generate_new_friendly_id?

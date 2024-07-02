@@ -150,12 +150,20 @@ class Video < ApplicationRecord
     events_count.to_i > 0
   end
 
+  def does_have_events_published
+    events_published_count.to_i > 0
+  end
+
   def does_have_keywords
     keywords_count.to_i > 0
   end
 
   def does_have_pictures
     pictures_count.to_i > 0
+  end
+
+  def does_have_pictures_published
+    pictures_published_count.to_i > 0
   end
 
   def does_have_source_uploaded

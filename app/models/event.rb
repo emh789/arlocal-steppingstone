@@ -169,6 +169,10 @@ class Event < ApplicationRecord
     audio_count.to_i > 0
   end
 
+  def does_have_audio_published
+    audio.published_count.to_i > 0
+  end
+
   def does_have_alert
     alert.to_s != ''
   end
@@ -205,6 +209,10 @@ class Event < ApplicationRecord
     pictures_count.to_i > 0
   end
 
+  def does_have_pictures_published
+    pictures_published_count.to_i > 0
+  end
+
   def does_have_venue
     venue.to_s != ''
   end
@@ -215,6 +223,10 @@ class Event < ApplicationRecord
 
   def does_have_videos
     videos_count.to_i > 0
+  end
+
+  def does_have_videos_published
+    videos_published_count.to_i > 0
   end
 
   ### event_audio

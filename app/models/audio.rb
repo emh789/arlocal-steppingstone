@@ -137,12 +137,20 @@ class Audio < ApplicationRecord
     albums_count.to_i > 0
   end
 
+  def does_have_albums_published
+    albums_published_count.to_i > 0
+  end
+
   def does_have_source_uploaded
     self.source_uploaded.attached? == true
   end
 
   def does_have_events
     events_count.to_i > 0
+  end
+
+  def does_have_events_published
+    events_published_count.to_i > 0
   end
 
   def does_have_keywords
