@@ -12,7 +12,6 @@ finish admin renovation
   - `admin/isrc/edit` narrow view buttons overflow right
 
   -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
-    title_downcase
 
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream

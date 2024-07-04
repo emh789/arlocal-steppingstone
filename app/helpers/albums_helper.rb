@@ -92,12 +92,6 @@ module AlbumsHelper
   end
 
 
-  ### TODO: no longer used.
-  # def album_admin_link_slug(album)
-  #   link_to album.slug, admin_album_path(album.id_admin)
-  # end
-
-
   def album_admin_link_title(album)
     link_to album.title, admin_album_path(album.id_admin)
   end

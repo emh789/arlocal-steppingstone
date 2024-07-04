@@ -270,15 +270,7 @@ class Keyword < ApplicationRecord
     ]
   end
 
-  def slug_downcase
-    slug.downcase
-  end
-
   ### title
-
-  def title_downcase
-    title.downcase
-  end
 
   def title_with_audio_count
     "#{title} (#{audio_count})"

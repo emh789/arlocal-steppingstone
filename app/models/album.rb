@@ -434,14 +434,10 @@ class Album < ApplicationRecord
 
   ### title
 
-  def title_downcase
-    title.downcase
-  end
-
   def title_sortable
     title.to_s
   end
-  
+
   ### updated_at
 
   ### visibility

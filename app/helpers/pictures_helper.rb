@@ -193,12 +193,6 @@ module PicturesHelper
   end
 
 
-  ## TODO: not used
-  # def picture_title_link(picture, path, html_class: nil)
-  #   link_to parser_div(picture.title_props), path, class: html_class
-  # end
-
-
   def picture_video_admin_button_to_new_join_single(picture)
     button_admin_to_new_join_single edit_admin_picture_path(picture.id_admin, pane: :video_join_single)
   end

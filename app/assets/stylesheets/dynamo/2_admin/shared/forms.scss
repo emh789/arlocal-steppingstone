@@ -74,13 +74,7 @@
   column-gap: $arl-margin / 2;
   margin: $arl-margin-wide 0;
 }
-  // // TODO: not used
-  // .arl_form_data_attr_can_select_label_a {
-  //   font-family: $font-family-description;
-  //   font-weight: bold;
-  //   grid-area: label_a;
-  // }
-.arl_form_data_attr_can_select_label_b {
+.arl_form_data_attr_can_select_label {
   font-family: $font-family-description;
   font-weight: bold;
   grid-area: label_b;

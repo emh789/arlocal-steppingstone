@@ -445,10 +445,6 @@ class Audio < ApplicationRecord
     end
   end
 
-  def title_downcase
-    title.downcase
-  end
-
   def title_for_display
     case title_sortable
     when ''

@@ -28,11 +28,6 @@ class Neighborhood
 
 
 
-  # TODO: All this might be obsolete now that individual individual resource helpers explicitly handle buttons.
-  # Correction: this does seem redundant, but it is still in use by `shared/resource_nav_by_item`
-  # for navigating between neighboring resource items.
-
-
   def closest_admin_paths
     { next_path: next_path_admin, previous_path: previous_path_admin }
   end

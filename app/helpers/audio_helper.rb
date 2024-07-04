@@ -112,16 +112,6 @@ module AudioHelper
   end
 
 
-  ### TODO: no longer used
-  # def audio_admin_link_title_with_indicator(audio, html_class: [])
-  #   html_class = [html_class].flatten
-  #   if audio.indexed == false
-  #     html_class << :arl_error_not_indexed
-  #   end
-  #   link_to (audio.full_title).gsub('/','/&shy;').html_safe, admin_audio_path(audio.id_admin), class: html_class
-  # end
-
-
   def audio_album_admin_button_to_new_join_single(audio)
     button_admin_to_new_join_single edit_admin_audio_path(audio.id_admin, pane: :album_join_single)
   end
@@ -148,12 +138,6 @@ module AudioHelper
     end
     tag.div "#{filename}".html_safe, class: html_class
   end
-
-
-  # TODO: Obsolete
-  # def audio_file_path_with_indicator_classes(audio, html_class: [])
-  #   audio_file_source_path_with_indicators(audio, html_class: html_class)
-  # end
 
 
   def audio_preferred_url(audio)
