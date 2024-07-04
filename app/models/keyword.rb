@@ -66,7 +66,7 @@ class Keyword < ApplicationRecord
   end
 
   def album_keywords_sorted_by_title_asc
-    album_keywords.to_a.sort_by! { |ak| ak.album.title.downcase }
+    album_keywords.to_a.sort_by! { |ak| ak.album.title_sortable.downcase }
   end
 
   ### albums_count
@@ -76,7 +76,7 @@ class Keyword < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
   end
 
   ### audio_count
@@ -86,7 +86,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.audio.title.downcase }
+    audio_keywords.to_a.sort_by! { |ak| ak.audio.title_sortable.downcase }
   end
 
   def audio_sorted
@@ -244,7 +244,7 @@ class Keyword < ApplicationRecord
   end
 
   def picture_keywords_sorted_by_title_asc
-    picture_keywords.to_a.sort_by! { |pk| pk.picture.title.downcase }
+    picture_keywords.to_a.sort_by! { |pk| pk.picture.title_sortable.downcase }
   end
 
   ### pictures_count
@@ -299,7 +299,7 @@ class Keyword < ApplicationRecord
   end
 
   def video_keywords_sorted_by_title_asc
-    video_keywords.to_a.sort_by! { |vk| vk.video.title.downcase }
+    video_keywords.to_a.sort_by! { |vk| vk.video.title_sortable.downcase }
   end
 
   ### videos_count
@@ -309,7 +309,7 @@ class Keyword < ApplicationRecord
   end
 
   def videos_sorted_by_title_asc
-    videos.to_a.sort_by! { |video| video.title.downcase }
+    videos.to_a.sort_by! { |video| video.title_sortable.downcase }
   end
 
   def will_select_public_pictures

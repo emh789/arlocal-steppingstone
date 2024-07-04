@@ -27,11 +27,11 @@ class AlbumAudio < ApplicationRecord
 
   ### created_at
 
-  def display_title
+  def title_for_display
     if album.index_tracklist_audio_includes_subtitles
-      audio.full_title
+      audio.title_and_subtitle_for_display
     else
-      audio.title
+      audio.title_for_display
     end
   end
 

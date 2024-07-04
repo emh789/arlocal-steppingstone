@@ -367,6 +367,10 @@ class Video < ApplicationRecord
 
   ### title
 
+  def title_sortable
+    title.to_s
+  end
+
   def video_keywords_sorted
     video_keywords_sorted_by_title_asc
   end

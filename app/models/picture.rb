@@ -492,6 +492,10 @@ class Picture < ApplicationRecord
 
   ### title_markup_text
 
+  def title_sortable
+    title_without_markup.to_s
+  end
+
   ### title_without_markup
 
   def title_without_markup_downcase

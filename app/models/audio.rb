@@ -246,15 +246,8 @@ class Audio < ApplicationRecord
     events.to_a.sort_by! { |event| event.datetime }
   end
 
-  # combines and formats title, subtitle
   def full_title
-    full_title = ''
-    if subtitle && !subtitle.blank?
-      full_title = "#{title} (#{subtitle})"
-    else
-      full_title = title
-    end
-    full_title
+    title_and_subtitle_for_display
   end
 
   def has_albums
@@ -275,7 +268,6 @@ class Audio < ApplicationRecord
   #   ['public'].include?(visibility)
   # end
 
-
   def is_joinable?
     ['public_indexable', 'public_joinable'].include?(visibility)
   end
@@ -287,7 +279,6 @@ class Audio < ApplicationRecord
   def is_released?
     date_released <= FindPublished.date_today
   end
-
 
   def isrc
     [isrc_country_code, isrc_registrant_code, isrc_year_of_reference, isrc_designation_code].join
@@ -444,16 +435,31 @@ class Audio < ApplicationRecord
 
   ### subtitle
 
-  def title
-    if super.to_s == ''
-      '(untitled)'
+  ### title
+
+  def title_and_subtitle_for_display
+    if subtitle && !subtitle.blank?
+      "#{title} (#{subtitle})"
     else
-      super
+      title_for_display
     end
   end
 
   def title_downcase
     title.downcase
+  end
+
+  def title_for_display
+    case title_sortable
+    when ''
+      '(untitled)'
+    else
+      title_sortable
+    end
+  end
+
+  def title_sortable
+    title.to_s
   end
 
   ### updated_at

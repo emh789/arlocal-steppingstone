@@ -11,8 +11,8 @@ finish admin renovation
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
-  - `Audio.title` should avoid calling *super*
-    - find why and make a semantic sugar method
+  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
+    title_downcase
 
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
@@ -392,3 +392,6 @@ Where to Sort vs Where to Query
       - video_picture :video pictures_published_count
 
 - video#edit?keyword uses old checkbox
+
+- `Audio.title` should avoid calling *super*
+  - find why and make a semantic sugar method
