@@ -1,3 +1,6 @@
+.arl_admin_resource_joins_buttons
+  = video_keyword_admin_button_to_new_join_single(video)
+
 .arl_form_title
   = resource_joined_keywords_count_statement(video)
 
@@ -10,19 +13,10 @@
             %th.arl_form_data_joins_heading keyword title
             %th.arl_form_data_joins_heading= icon_remove
         %tbody
-          = f.fields_for :video_keywords do |vk|
+          = f.fields_for :video_keywords, video.video_keywords_sorted do |vk|
             %tr.arl_form_data_joins_values
-              %td.arl_form_data_joins_value= keyword_admin_link_title(vk.object.keyword)
-              %td.arl_form_data_joins_value= vk.check_box :_destroy
+              %td.arl_form_data_joins_value= vk.label :keyword_title, keyword_admin_link_title(vk.object.keyword)
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: vk
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
-      %aside.arl_form_action_explanation
-        will also unjoin any keywords with 'remove' box checked
-
-= render 'form_elements/spacer'
-
-.arl_form_title
-  Add to keyword
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = video_keyword_admin_button_to_new_join_single(video)
+      %aside.arl_form_action_explanation= "will also detach any keywords with 'remove' box checked"

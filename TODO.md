@@ -7,9 +7,7 @@ finish admin renovation
 
   - scopes intersect with visibility
     - models `does_have_published_{resource}` and counter_cache
-    - [].any vs [].to_count
-
-  - video#edit?keyword uses old checkbox
+    - [].any vs [].count
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
@@ -392,3 +390,5 @@ Where to Sort vs Where to Query
       - pictures_published
     - joins
       - video_picture :video pictures_published_count
+
+- video#edit?keyword uses old checkbox
