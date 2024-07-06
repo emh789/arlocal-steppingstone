@@ -22,6 +22,7 @@ class FormMetadataSelectable
     :pictures_index_sorters,
     :selectable_pictures_sorters,
     :source_types,
+    :time_zones,
     :videos,
     :videos_index_sorters
   )

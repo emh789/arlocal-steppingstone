@@ -2,18 +2,18 @@
   .arl_form_title
     Event details
   .arl_form_data
-    = render 'form_elements/parseable_field', attribute: :title,                            form: f, selectable: selectable
-    = render 'form_elements/datetime_zone',   attribute: :datetime,                         form: f
-    = render 'form_elements/visibility',      attribute: :visibility,                       form: f
-    = render 'form_elements/auto_keyword',    attribute: :event_keywords,                   form: f, auto_keyword: @auto_keyword
+    = render 'form_elements/parseable_field',     form: f, attribute: :title, selectable: selectable
+    = render 'form_elements/datetimezone_field',  form: f, attribute: :datetime, heading: 'Date and time of event start', selectable: selectable
+    = render 'form_elements/visibility',          form: f, attribute: :visibility
+    = render 'form_elements/auto_keyword',        form: f, attribute: :event_keywords, auto_keyword: @auto_keyword
     = render 'form_elements/spacer'
-    = render 'form_elements/text_field',      attribute: :alert,                            form: f
-    = render 'form_elements/text_field',      attribute: :city,                             form: f
-    = render 'form_elements/parseable_area',  attribute: :details,                          form: f, selectable: selectable
-    = render 'form_elements/text_field',      attribute: :map_url,                          form: f
-    = render 'form_elements/check_box',       attribute: :show_can_cycle_pictures,          form: f
-    -# render 'form_elements/check_box',      attribute: :show_can_have_more_pictures_link, form: f
-    = render 'form_elements/text_field',      attribute: :venue,                            form: f
-    = render 'form_elements/text_field',      attribute: :venue_url,                        form: f
+    = render 'form_elements/text_field',          form: f, attribute: :alert
+    = render 'form_elements/text_field',          form: f, attribute: :city
+    = render 'form_elements/parseable_area',      form: f, attribute: :details, selectable: selectable
+    = render 'form_elements/text_field',          form: f, attribute: :map_url
+    = render 'form_elements/check_box',           form: f, attribute: :show_can_cycle_pictures
+    -# render 'form_elements/check_box',          form: f, attribute: :show_can_have_more_pictures_link
+    = render 'form_elements/text_field',          form: f, attribute: :venue
+    = render 'form_elements/text_field',          form: f, attribute: :venue_url
   .arl_form_actions
     = f.submit class: :arl_button_form_submit

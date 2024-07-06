@@ -8,7 +8,9 @@ class FormEventMetadata
     event: {
       navbar: 0,
       partial: 'form',
-      selectable: { :@markup_parsers => proc { MarkupParser.options_for_select } }
+      selectable: { :@markup_parsers => proc { MarkupParser.options_for_select },
+                    :@time_zones => proc { ActiveSupport::TimeZone.all.map { |tz| tz.name } }
+                  }
     },
     audio_import: {
       navbar: nil,

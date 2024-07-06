@@ -4,7 +4,7 @@ class Admin::EventsController < AdminController
   before_action :verify_nested_audio_file_exists,   only: [ :audio_create_from_import ]
   before_action :verify_nested_picture_file_exists, only: [ :picture_create_from_import ]
 #  before_action :verify_nested_video_file_exists,   only: [ :video_create_from_import ]
-
+  around_action :set_event_time_zone_from_params, only: [:create, :update]
 
   def add_audio_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
@@ -200,11 +200,7 @@ class Admin::EventsController < AdminController
       :alert,
       :city,
       :date_announced,
-      :datetime_year,
-      :datetime_month,
-      :datetime_day,
-      :datetime_hour,
-      :datetime_min,
+      :datetime_utc,
       :datetime_zone,
       :details_markup_type,
       :details_markup_text,
@@ -281,6 +277,17 @@ class Admin::EventsController < AdminController
 #    filename = helpers.source_imported_file_path(params_event_permitted['videos_attributes']['0']['source_imported_file_path'])
 #    verify_file(filename)
 #  end
+
+
+  def set_event_time_zone_from_params
+    year  = params[:event][:datetime_year]
+    month = params[:event][:datetime_month]
+    day   = params[:event][:datetime_day]
+    hour  = params[:event][:datetime_hour]
+    min   = params[:event][:datetime_min]
+    params[:event][:datetime_utc] = "#{year}-#{month}-#{day}T#{hour}:#{min}"
+    Time.use_zone(params[:event][:datetime_zone]) { yield }
+  end
 
 
 end

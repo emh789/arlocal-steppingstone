@@ -26,12 +26,32 @@ Admin Resource Indexes are starting to have 'selectable' components and forms (`
 
 - Event datetime could use datetime_field form helper
   - however, the app uses the time entered in the zone local to the event
-  - whereas rails assumes it's local to the app and converts it to UTC
+  - whereas rails assumes Time is local to the app and converts it to UTC
   - I don't yet see how to preserve the event timezone independently of UTC and local app timezone conversions
   - will require a database migration to merge separate columns into a single datetime column
 - Same issue with picture datetime_manual_entry
+- maybe use around_action filter in controller
+- see https://api.rubyonrails.org/classes/Time.html#method-c-use_zone
+```
+class ApplicationController < ActionController::Base
+  around_action :set_time_zone
 
+  private
+    def set_time_zone
+      Time.use_zone(current_user.timezone) { yield }
+    end
+end
+```
+- and also for Models/views
+```
+datetime_utc.in_time_zone(datetime_zone)
+datetime_field
+datetime_local_field
+pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required
+```
+- So many contradictions here. Best option seems to be datetime_field despite not having yyyy-mm-dd format
 
+- check Admin:Event#edit and #show for public view button
 
 **- Video player layout could be improved at narrow widths.**
 ***- jplayer Audio player has not been updated in 10 yrs. Can videojs replace it?***

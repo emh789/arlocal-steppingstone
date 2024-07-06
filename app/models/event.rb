@@ -44,7 +44,7 @@ class Event < ApplicationRecord
   validates :venue,                       presence: true
 
   before_save :create_attr_title_without_markup
-  before_save :convert_datetime_to_utc
+  # before_save :convert_datetime_to_utc
 
   has_many :event_audio,    -> { includes_audio },   dependent: :destroy
   has_many :event_keywords, -> { includes_keyword }, dependent: :destroy
@@ -124,33 +124,64 @@ class Event < ApplicationRecord
     datetime_formatted(:year_month_day) + ' @ ' + venue
   end
 
-  # event.datetime has several attributes instead of a single Datetime attribute
-  # to allow for varying precision.
-  def datetime
-    Time.use_zone(datetime_zone) {
-      Time.zone.local(
-        datetime_year.to_i,
-        datetime_month.to_i,
-        datetime_day.to_i,
-        datetime_hour.to_i,
-        datetime_min.to_i
-      )
-    }
-  end
+  # # event.datetime has several attributes instead of a single Datetime attribute
+  # # to allow for varying precision.
+  # def datetime
+  #   Time.use_zone(datetime_zone) {
+  #     Time.zone.local(
+  #       datetime_year.to_i,
+  #       datetime_month.to_i,
+  #       datetime_day.to_i,
+  #       datetime_hour.to_i,
+  #       datetime_min.to_i
+  #     )
+  #   }
+  # end
 
   def datetime_friendly
-    datetime.strftime('%Y-%m-%d %a %l:%M%P %Z')
+    datetime_local.strftime('%Y.%m.%d %a %l:%M%P %Z')
   end
 
   def datetime_formatted(format)
-    datetime.to_fs(format)
+    datetime_local.to_fs(format)
   end
 
-  ### datetime_year
-  ### datetime_month
-  ### datetime_day
-  ### datetime_hour
-  ### datetime_min
+  def datetime_local
+    if datetime_utc
+      datetime_utc.in_time_zone(datetime_zone)
+    end
+  end
+
+  def datetime_year
+    if datetime_local
+      datetime_local.year
+    end
+  end
+
+  def datetime_month
+    if datetime_local
+      datetime_local.month
+    end
+  end
+
+  def datetime_day
+    if datetime_local
+      datetime_local.day
+    end
+  end
+
+  def datetime_hour
+    if datetime_local
+      datetime_local.hour
+    end
+  end
+
+  def datetime_min
+    if datetime_local
+      datetime_local.min
+    end
+  end
+
   ### datetime_zone
 
   def datetime_and_title
@@ -350,11 +381,7 @@ class Event < ApplicationRecord
   end
 
   def should_generate_new_friendly_id?
-    datetime_year_changed? ||
-    datetime_month_changed? ||
-    datetime_day_changed? ||
-    datetime_hour_changed? ||
-    datetime_min_changed? ||
+    datetime_utc_changed? ||
     venue_changed? ||
     super
   end
@@ -375,7 +402,7 @@ class Event < ApplicationRecord
 
   def slug_candidates
     [
-      :start_time_and_venue
+      :date_and_venue
     ]
   end
 

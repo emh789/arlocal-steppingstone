@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_053004) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_051834) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -273,11 +273,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_053004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "audio_count"
-    t.integer "datetime_year"
-    t.integer "datetime_month"
-    t.integer "datetime_day"
-    t.integer "datetime_hour"
-    t.integer "datetime_min"
     t.string "datetime_zone"
     t.datetime "datetime_utc", precision: nil
     t.string "alert"
