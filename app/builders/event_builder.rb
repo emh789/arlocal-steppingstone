@@ -55,6 +55,7 @@ class EventBuilder
 
   def params_default
     {
+      datetime_zone: Rails.application.config.time_zone,
       details_markup_type: 'plaintext',
       event_pictures_sort_method: 'cover_manual_asc',
       show_can_cycle_pictures: true,
