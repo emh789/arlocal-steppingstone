@@ -8,7 +8,7 @@ class QueryPictures
   end
 
   def self.find_public(id)
-    Picture.publicly_linkable.friendly.find(id)
+    Picture.all_public_showable.friendly.find(id)
   end
 
   def self.find_admin_with_keyword(keyword)

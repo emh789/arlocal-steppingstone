@@ -118,6 +118,10 @@ class Picture < ApplicationRecord
 
   ### credits_markup_text
 
+  def date_released
+    Time.new(0)
+  end
+
   def datetime
     datetime_effective_value
   end
@@ -156,6 +160,14 @@ class Picture < ApplicationRecord
       DateTime.new(*datetime_from_manual_entry_array_to_best_precision).strftime('%Y-%m-%d %H:%M:%S')
     end
   end
+
+
+  def datetime_from_override
+  end
+
+  def datetime_from_override_zone
+  end
+
 
   def datetime_from_manual_entry_array
     h = datetime_from_manual_entry_hash
@@ -468,6 +480,20 @@ class Picture < ApplicationRecord
     title_without_markup
   end
 
+  def title_props_for_display
+    case title_markup_text
+    when ''
+      { markup_type: title_markup_type, markup_text: '(untitled)' }
+    else
+      title_props
+    end
+  end
+
+  def title_sortable
+    title_without_markup.to_s
+  end
+
+
   def title_for_html_head
     if title_without_markup.to_s == ''
       'picture: untitled'
@@ -477,10 +503,11 @@ class Picture < ApplicationRecord
   end
 
   def title_for_select
-    if title_without_markup.to_s == ''
+    case title_sortable
+    when ''
       '(untitled)'
     else
-      title_without_markup
+      title_sortable
     end
   end
 

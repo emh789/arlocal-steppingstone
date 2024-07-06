@@ -110,7 +110,7 @@ module PicturesHelper
 
 
   def picture_admin_link_title(picture)
-    link_to parser_inline(picture.title_props), admin_picture_path(picture.id_admin)
+    link_to parser_inline(picture.title_props_for_display), admin_picture_path(picture.id_admin)
   end
 
 
