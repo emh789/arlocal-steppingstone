@@ -280,12 +280,6 @@ class Admin::EventsController < AdminController
 
 
   def set_event_time_zone_from_params
-    year  = params[:event][:datetime_year]
-    month = params[:event][:datetime_month]
-    day   = params[:event][:datetime_day]
-    hour  = params[:event][:datetime_hour]
-    min   = params[:event][:datetime_min]
-    params[:event][:datetime_utc] = "#{year}-#{month}-#{day}T#{hour}:#{min}"
     Time.use_zone(params[:event][:datetime_zone]) { yield }
   end
 
