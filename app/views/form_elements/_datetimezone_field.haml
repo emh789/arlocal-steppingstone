@@ -2,5 +2,4 @@
   = form.label heading, class: :arl_form_data_attr_label
   .arl_form_data_attr_multi
     = form.datetime_field attribute, class: :arl_form_data_attr_input_select_multi
-    = form.select :datetime_zone, selectable.time_zones, {}, class: :arl_form_data_attr_input_select
-= console
+    = form.select zone, selectable.time_zones, {}, class: :arl_form_data_attr_input_select
