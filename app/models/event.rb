@@ -44,7 +44,6 @@ class Event < ApplicationRecord
   validates :venue,                       presence: true
 
   before_save :create_attr_title_without_markup
-  # before_save :convert_datetime_to_utc
 
   has_many :event_audio,    -> { includes_audio },   dependent: :destroy
   has_many :event_keywords, -> { includes_keyword }, dependent: :destroy
@@ -123,20 +122,6 @@ class Event < ApplicationRecord
   def date_and_venue
     datetime_formatted(:year_month_day) + ' @ ' + venue
   end
-
-  # # event.datetime has several attributes instead of a single Datetime attribute
-  # # to allow for varying precision.
-  # def datetime
-  #   Time.use_zone(datetime_zone) {
-  #     Time.zone.local(
-  #       datetime_year.to_i,
-  #       datetime_month.to_i,
-  #       datetime_day.to_i,
-  #       datetime_hour.to_i,
-  #       datetime_min.to_i
-  #     )
-  #   }
-  # end
 
   def datetime_friendly
     datetime_local.strftime('%Y.%m.%d %a %l:%M%P %Z')
@@ -437,10 +422,6 @@ class Event < ApplicationRecord
 
   def create_attr_title_without_markup
     self.title_without_markup = ApplicationController.helpers.parser_remove_markup(self.title_props).strip.to_s
-  end
-
-  def convert_datetime_to_utc
-    self.datetime_utc = self.datetime.utc
   end
 
   def strip_whitespace_edges_from_entered_text
