@@ -7,6 +7,9 @@ class Admin::PicturesController < AdminController
     :create_from_import_to_event
   ]
 
+  around_action :set_datetime_manual_entry_zone_from_params, only: [:create, :update]
+
+
 
   def create
     @picture = PictureBuilder.create(params_picture_permitted)
@@ -254,6 +257,8 @@ class Admin::PicturesController < AdminController
     params.require(:picture).permit(
       :credits_markup_type,
       :credits_markup_text,
+      :datetime_from_manual_entry,
+      :datetime_from_manual_entry_zone,
       :datetime_from_manual_entry_year,
       :datetime_from_manual_entry_month,
       :datetime_from_manual_entry_day,
@@ -290,6 +295,11 @@ class Admin::PicturesController < AdminController
         :_destroy
       ]
     )
+  end
+
+
+  def set_datetime_manual_entry_zone_from_params
+    Time.use_zone(params[:picture][:datetime_from_manual_entry_zone]) { yield }
   end
 
 

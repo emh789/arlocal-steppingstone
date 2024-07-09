@@ -44,7 +44,7 @@ class Picture < ApplicationRecord
   validates :description_markup_type,           presence: true
   validates :title_markup_type,                 presence: true
 
-  validate :datetime_is_valid?
+  # validate :datetime_is_valid?
 
   before_save :create_attr_title_without_markup
 
@@ -128,15 +128,19 @@ class Picture < ApplicationRecord
 
   ### datetime_cascade_method
 
+  def datetime_props
+    { method: datetime_effective_method, value: datetime_effective_value }
+  end
+
   ### datetime_cascade_value
 
   def datetime_effective_method
     if datetime_from_manual_entry.to_s != ''
       'manual entry'
     elsif datetime_from_exif.to_s != ''
-      'picture EXIF data'
+      'image metadata'
     elsif datetime_from_file.to_s != ''
-      'file date/time'
+      'filesystem'
     else
       'unknown'
     end
@@ -145,74 +149,40 @@ class Picture < ApplicationRecord
   def datetime_effective_value
     case datetime_effective_method
     when 'manual entry'
-      datetime_from_manual_entry
-    when 'picture EXIF data'
+      datetime_from_manual_entry.in_time_zone(datetime_from_manual_entry_zone)
+    when 'image metadata'
       datetime_from_exif
-    when 'file date/time'
+    when 'filesystem'
       datetime_from_file
     when 'unknown'
       Time.new(0)
     end
   end
 
-  def datetime_from_manual_entry
-    if datetime_from_manual_entry_array_to_best_precision.any?
-      DateTime.new(*datetime_from_manual_entry_array_to_best_precision).strftime('%Y-%m-%d %H:%M:%S')
-    end
-  end
-
-
-  def datetime_from_override
-  end
-
-  def datetime_from_override_zone
-  end
-
-
-  def datetime_from_manual_entry_array
-    h = datetime_from_manual_entry_hash
-    [
-      h[:year],
-      h[:month],
-      h[:day],
-      h[:hour],
-      h[:minute],
-      h[:second]
-    ]
-  end
-
-  def datetime_from_manual_entry_array_to_best_precision
-    a = datetime_from_manual_entry_array
-    a[0...a.find_index(nil)]
-  end
-
-  def datetime_from_manual_entry_hash
-    h = {
-      year: datetime_from_manual_entry_year,
-      month: datetime_from_manual_entry_month,
-      day: datetime_from_manual_entry_day,
-      hour: datetime_from_manual_entry_hour,
-      minute: datetime_from_manual_entry_minute,
-      second: datetime_from_manual_entry_second
-    }
-    h.delete_if { |k,v| v.to_s == "" }
-  end
-
-  ### datetime_from_manual_entry_year
-
-  ### datetime_from_manual_entry_month
-
-  ### datetime_from_manual_entry_day
-
-  ### datetime_from_manual_entry_hour
-
-  ### datetime_from_manual_entry_minute
-
-  ### datetime_from_manual_entry_second
-
   ### datetime_from_exif
 
   ### datetime_from_file
+
+  ### datetime_from_manual_entry
+
+  ### datetime_from_manual_entry_zone
+
+
+
+
+      ### datetime_from_manual_entry_year
+
+      ### datetime_from_manual_entry_month
+
+      ### datetime_from_manual_entry_day
+
+      ### datetime_from_manual_entry_hour
+
+      ### datetime_from_manual_entry_minute
+
+      ### datetime_from_manual_entry_second
+
+
 
   def datetime_year
     case datetime
@@ -374,12 +344,8 @@ class Picture < ApplicationRecord
   def should_generate_new_friendly_id?
     datetime_from_exif_changed? ||
     datetime_from_file_changed? ||
-    datetime_from_manual_entry_year_changed? ||
-    datetime_from_manual_entry_month_changed? ||
-    datetime_from_manual_entry_day_changed? ||
-    datetime_from_manual_entry_hour_changed? ||
-    datetime_from_manual_entry_minute_changed? ||
-    datetime_from_manual_entry_second_changed? ||
+    datetime_from_manual_entry_changed? ||
+    datetime_from_manual_entry_zone_changed? ||
     source_uploaded.changed? ||
     source_imported_file_path_changed? ||
     source_type_changed? ||
@@ -556,15 +522,15 @@ class Picture < ApplicationRecord
     self.title_without_markup = ApplicationController.helpers.parser_remove_markup(self.title_props).strip.to_s
   end
 
-  def datetime_is_valid?
-    begin
-      if datetime_from_manual_entry_array_to_best_precision.any?
-        DateTime === DateTime.new(*self.datetime_from_manual_entry_array_to_best_precision)
-      end
-    rescue Date::Error
-      self.errors.add :base, :invalid_date, message: 'Invalid date.'
-    end
-  end
+  # def datetime_is_valid?
+  #   begin
+  #     if datetime_from_manual_entry_array_to_best_precision.any?
+  #       DateTime === DateTime.new(*self.datetime_from_manual_entry_array_to_best_precision)
+  #     end
+  #   rescue Date::Error
+  #     self.errors.add :base, :invalid_date, message: 'Invalid date.'
+  #   end
+  # end
 
   def source_absolute_path_to_file
     case source_type

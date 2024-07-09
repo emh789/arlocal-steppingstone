@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_06_051834) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -396,13 +396,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_051834) do
     t.string "title_without_markup"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "datetime_from_manual_entry_zone"
+    t.string "datetime_from_manual_entry_zone"
     t.string "source_type"
     t.integer "videos_count"
     t.string "visibility"
     t.integer "albums_published_count"
     t.integer "events_published_count"
     t.integer "videos_published_count"
+    t.datetime "datetime_from_manual_entry"
     t.index ["slug"], name: "index_pictures_on_slug"
   end
 

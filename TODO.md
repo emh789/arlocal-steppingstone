@@ -24,8 +24,6 @@ finish admin renovation
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
 
-- Picture datetime can be simplified. See `@event.datetime`
-
 - check Admin:Event#edit and #show for public view button
 
 **- Video player layout could be improved at narrow widths.**
@@ -119,6 +117,19 @@ Audio Id3 tags:
 
 
 
+## Might need revisiting
+
+- `[resource]_admin_link_title`
+  - why `gsub('/','/&shy;')` in album_*_title?
+    **Soft hyphen after a forward slash**
+    *For what resource was this designed (and afterwards copypasta-ed)*
+      - Filepaths?
+      ***YES. PICTURE AND AUDIO.***
+  - Removing it to see what happens.
+  - Replace if needed.
+
+
+
 ## Possibly finished
 
 - Link.name should be Link.title for consistency. _wait to look for add'l migrations, do all together_
@@ -126,14 +137,6 @@ Audio Id3 tags:
   - _Visited this topic before, and kept name._
   - Create semantic sugar method if needed.
 
-
-- `[resource]_admin_link_title`
-  - why `gsub('/','/&shy;')` in album_*_title?
-    **Soft hyphen after a forward slash**
-    *For what resource was this designed (and afterwards copypasta-ed)*
-      - Filepaths?
-  - Removing it to see what happens.
-  - Replace if needed.
 
 - give a title to nested_picture uploads/imports
 
@@ -416,3 +419,5 @@ Where to Sort vs Where to Query
   pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" required
   ```
   - So many contradictions here. Best option seems to be datetime_field despite not having yyyy-mm-dd format
+
+- Picture datetime can be simplified. See `@event.datetime`

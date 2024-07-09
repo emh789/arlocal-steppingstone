@@ -23,7 +23,7 @@ class FormPictureMetadata
     datetime: {
       navbar: 1,
       partial: 'form_datetime',
-      selectable: {}
+      selectable: { :@time_zones => proc { ActiveSupport::TimeZone.all.map { |tz| tz.name } } }
     },
     event_join_single: {
       navbar: nil,

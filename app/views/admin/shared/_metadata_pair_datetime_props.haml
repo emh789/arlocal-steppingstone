@@ -1,0 +1,9 @@
+- unless (local_assigns[:optional] == true) && (value.to_s == '')
+  .arl_metadata_pair
+    %dt.arl_metadata_key= key
+    - if datetime_props[:value] != ''
+      %dd
+        .arl_metadata_value_fragment_primary= datetime_props[:value]
+        .arl_metadata_value_fragment_secondary= "from #{datetime_props[:method]}"
+    - else
+      %dd.arl_metadata_value_parser_nil= '(none)'

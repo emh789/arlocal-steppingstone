@@ -129,11 +129,6 @@ module PicturesHelper
   end
 
 
-  def picture_datetime_effective_statement(picture)
-    "#{picture.datetime_effective_value} (#{picture.datetime_effective_method})"
-  end
-
-
   def picture_file_path_div_with_indicators(picture, html_class: [])
     filename = picture.source_file_path
     html_class = [html_class].flatten

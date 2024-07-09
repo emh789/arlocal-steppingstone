@@ -19,7 +19,7 @@
     = render 'show_image', picture: @picture
   %dl.arl_admin_pictures_show_attributes
     = render 'admin/shared/metadata_pair', key: 'Credits', text_props: @picture.credits_props
-    = render 'admin/shared/metadata_pair', key: 'Date/time', value: picture_datetime_effective_statement(@picture)
+    = render 'admin/shared/metadata_pair', key: 'Date/time', datetime_props: @picture.datetime_props
     = render 'admin/shared/metadata_pair', key: 'Description', text_props: @picture.description_props
     = render 'admin/shared/metadata_pair', key: 'Show can display title', boolean: @picture.show_can_display_title
     = render 'admin/shared/metadata_pair', key: 'Source', value: @picture.source_type

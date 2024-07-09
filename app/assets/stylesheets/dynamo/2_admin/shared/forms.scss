@@ -165,7 +165,7 @@
   width: 10em;
   font-size: 0.9em;
   font-family: $font-family-data;
-}
+}c
 .arl_form_data_attr_input_select_inline {
   grid-area: inline;
   justify-self: end;
@@ -245,6 +245,7 @@
 .arl_form_data_attr_value {
   grid-area: input;
   font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
 }
 
 .arl_form_data_joins {

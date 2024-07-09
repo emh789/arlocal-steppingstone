@@ -1,5 +1,5 @@
 - unless (local_assigns[:optional] == true) && (value.to_s == '')
-  .arl_metadata_pair.arl_metadata_layout_row
+  .arl_metadata_pair
     %dt.arl_metadata_key= key
     - if visibility.to_s != ''
       %dd.arl_metadata_value= visibility_description(visibility)

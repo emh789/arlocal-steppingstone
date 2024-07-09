@@ -347,6 +347,7 @@ class PictureBuilder
   def params_default
     {
       credits_markup_type: 'plaintext',
+      datetime_from_manual_entry_zone: Rails.application.config.time_zone,
       description_markup_type: 'plaintext',
       show_can_display_title: true,
       title_markup_type: 'string',
