@@ -107,7 +107,7 @@ Audio Id3 tags:
 
 - Audio index
 
-**Continue to be mindful about including `autocomplete: false` in form elements.**
+**Continue to be mindful about including `autocomplete: :off` in form elements.**
 
 - `links_helper` need some review
   - #link_parse_email
