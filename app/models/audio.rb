@@ -243,7 +243,7 @@ class Audio < ApplicationRecord
   end
 
   def events_sorted_by_datetime_asc
-    events.to_a.sort_by! { |event| event.datetime }
+    events.to_a.sort_by! { |event| event.datetime_utc }
   end
 
   def full_title
