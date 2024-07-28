@@ -3,6 +3,10 @@
 
 ## HIGHEST priority
 
+rake catalog push
+
+arlocal_settings => user.settings has_one
+
 finish admin renovation
 
   - scopes intersect with visibility
