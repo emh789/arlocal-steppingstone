@@ -35,17 +35,5 @@ namespace :arlocal do
     task :tasks do Arlake::Initialize.tasks end
   end
   
-  
-  namespace :portfolio do
-    desc 'Pull artist portfolio from a remote server (rsync)'
-    task :pull => :environment do Arlake::Portfolio.pull end
-
-    desc 'Push artist portfolio to a remote server (rsync)'
-    task :push => :environment do Arlake::Portfolio.push end
-  end
-
 
 end
-
-
-

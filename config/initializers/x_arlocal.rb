@@ -16,14 +16,6 @@ Rails.application.configure do
     source_imported_url_path_prefix: '/portfolio'
   })
 
-  if Rails.application.credentials.rsync
-    config.x.arlocal.merge! ({
-      rsync_source_imported_remote_url: Rails.application.credentials.rsync[:source_imported_remote_url],
-      rsync_source_uploaded_remote_url: Rails.application.credentials.rsync[:source_uploaded_remote_url]
-    })
-  end
-
-
   config.action_controller.forgery_protection_origin_check = true
   config.action_controller.per_form_csrf_tokens = true
 
