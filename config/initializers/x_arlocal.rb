@@ -1,7 +1,6 @@
 # There should be no need to modify this file.
 # Please use rails credentials:edit to store rsync and mail server information.
 
-
 Rails.application.configure do
 
   config.x.arlocal = {}
@@ -11,7 +10,6 @@ Rails.application.configure do
     app_logo_file_path: 'arlocal/arlocal-logo.png',
     app_logo_icon_file_path: 'arlocal/arlocal-logo-icon.png',
     app_nilpicture_file_path: 'arlocal/arlocal-nilpicture.png',
-    app_version: '0.60',
     source_imported_filesystem_dirname: File.join(Rails.root, '/public/portfolio'),
     source_imported_url_path_prefix: '/portfolio'
   })
@@ -22,7 +20,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
   config.active_storage.service = :local
-
 
   if Rails.application.credentials.mailer_smtp
     config.action_mailer.smtp_settings = {
@@ -36,7 +33,5 @@ Rails.application.configure do
       user_name:            Rails.application.credentials.mailer_smtp[:user_name]
     }
   end
-
-
 
 end
