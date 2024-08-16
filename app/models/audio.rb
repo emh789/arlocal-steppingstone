@@ -86,7 +86,7 @@ class Audio < ApplicationRecord
   end
 
   def album_audio_sorted_by_title_asc
-    album_audio.to_a.sort_by! { |aa| aa.album.title.downcase }
+    album_audio.to_a.sort_by! { |aa| aa.album.title_sortable.downcase }
   end
 
   ### albums_count
@@ -96,7 +96,7 @@ class Audio < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
   end
 
   def audio_keywords_sorted
@@ -104,7 +104,7 @@ class Audio < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.keyword.title.downcase }
+    audio_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable.downcase }
   end
 
   ### composer
@@ -235,7 +235,7 @@ class Audio < ApplicationRecord
   end
 
   def event_audio_sorted_by_datetime_asc
-    event_audio.to_a.sort_by! { |ea| ea.event.datetime }
+    event_audio.to_a.sort_by! { |ea| ea.event.datetime_utc_sortable }
   end
 
   def events_sorted
@@ -243,7 +243,7 @@ class Audio < ApplicationRecord
   end
 
   def events_sorted_by_datetime_asc
-    events.to_a.sort_by! { |event| event.datetime_utc }
+    events.to_a.sort_by! { |event| event.datetime_utc_sortable }
   end
 
   def full_title

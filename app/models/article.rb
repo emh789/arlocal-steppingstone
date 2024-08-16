@@ -41,7 +41,7 @@ class Article < ApplicationRecord
   end
 
   def article_keywords_sorted_by_title_asc
-    article_keywords.sort_by! { |ak| ak.keyword.title.downcase }
+    article_keywords.sort_by! { |ak| ak.keyword.title_sortable.downcase }
   end
 
   ### author

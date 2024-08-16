@@ -97,7 +97,7 @@ class Picture < ApplicationRecord
   end
 
   def album_pictures_sorted_by_title_asc
-    album_pictures.to_a.sort_by! { |ap| ap.album.title.downcase }
+    album_pictures.to_a.sort_by! { |ap| ap.album.title_sortable.downcase }
   end
 
   def albums_sorted
@@ -105,7 +105,7 @@ class Picture < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
   end
 
   ### created_at
@@ -328,7 +328,7 @@ class Picture < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
   end
 
   ### picture_keywords
@@ -338,7 +338,7 @@ class Picture < ApplicationRecord
   end
 
   def picture_keywords_sorted_by_title_asc
-    picture_keywords.to_a.sort_by! { |pk| pk.keyword.title.downcase }
+    picture_keywords.to_a.sort_by! { |pk| pk.keyword.title_sortable.downcase }
   end
 
   def should_generate_new_friendly_id?
@@ -502,7 +502,7 @@ class Picture < ApplicationRecord
   end
 
   def video_pictures_sorted_by_title_asc
-    video_pictures.to_a.sort_by! { |vp| vp.video.title.downcase }
+    video_pictures.to_a.sort_by! { |vp| vp.video.title_sortable.downcase }
   end
 
   def videos_sorted
@@ -510,7 +510,7 @@ class Picture < ApplicationRecord
   end
 
   def videos_sorted_by_title_asc
-    videos.to_a.sort_by! { |video| video.title.downcase }
+    videos.to_a.sort_by! { |video| video.title_sortable.downcase }
   end
 
   ### visibility

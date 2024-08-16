@@ -185,8 +185,12 @@ class Video < ApplicationRecord
     event_videos_sorted_by_title_asc
   end
 
+  def event_videos_sorted_by_datetime_asc
+    event_videos.to_a.sort_by! { |ev| ev.event.datetime_utc_sortable }
+  end
+
   def event_videos_sorted_by_title_asc
-    event_videos.to_a.sort_by! { |ev| ev.event.title.downcase }
+    event_videos.to_a.sort_by! { |ev| ev.event.title_sortable.downcase }
   end
 
   ### events
@@ -254,7 +258,7 @@ class Video < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
   end
 
   ### personnel_markup_type
@@ -272,7 +276,7 @@ class Video < ApplicationRecord
   end
 
   def pictures_sorted_by_title_asc
-    pictures.to_a.sort_by! { |picture| picture.title }
+    pictures.to_a.sort_by! { |picture| picture.title_sortable }
   end
 
   def should_generate_new_friendly_id?
@@ -376,7 +380,7 @@ class Video < ApplicationRecord
   end
 
   def video_keywords_sorted_by_title_asc
-    video_keywords.to_a.sort_by! { |vk| vk.keyword.title.downcase }
+    video_keywords.to_a.sort_by! { |vk| vk.keyword.title_sortable.downcase }
   end
 
   def video_pictures_sorted
@@ -384,7 +388,7 @@ class Video < ApplicationRecord
   end
 
   def video_pictures_sorted_by_title_asc
-    video_pictures.to_a.sort_by! { |vp| vp.picture.title_without_markup.downcase }
+    video_pictures.to_a.sort_by! { |vp| vp.picture.title_sortable.downcase }
   end
 
   ### visibility

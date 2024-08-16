@@ -7,13 +7,15 @@ arlocal_settings => user.settings has_one
 
 finish admin renovation
 
+Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
+  - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
+  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
+
   - scopes intersect with visibility
     - models `does_have_published_{resource}` and counter_cache
     - [].any vs [].count
 
   - `admin/isrc/edit` narrow view buttons overflow right
-
-  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
 
   - autokeyword not fully implemented
     - remaining: article, infopage, link, stream
@@ -24,7 +26,7 @@ finish admin renovation
 
 ## HIGH priority
 
-Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_
+Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_ This discrepancy arose because `form_metadata` modules serving the `#edit` action frequently invoke ActiveRecord, whereas the `#index` action selectables were a part of the application structure and `Sorter` object definitions.
 
 Admin views public_index/show buttons should use a "preview" action instead of bouncing to public
 
@@ -179,3 +181,12 @@ Video index needs headings
     - however, a value of Date.new(0) breaks the date-select year field (range: -5...5).
     - _use a `date_released_sortable` method to wrap the attribute when sorting._
       - done: audio, album, video
+
+      - *check for `_sortable` methods on joined_resource sorting.*
+        - Album v/
+        - Article v/
+        - Audio v/
+        - Event v/
+        - Keyword v/
+        - Picture v/
+        - Video v/

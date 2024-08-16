@@ -78,7 +78,7 @@ class Album < ApplicationRecord
   end
 
   def album_keywords_sorted_by_title_asc
-    album_keywords.to_a.sort_by! { |ak| ak.keyword.title.downcase }
+    album_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable.downcase }
   end
 
   def album_pictures_published_sorted

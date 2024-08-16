@@ -120,39 +120,21 @@ class Event < ApplicationRecord
   ### created_at
 
   def date_and_venue
-    datetime_formatted(:year_month_day) + ' @ ' + venue
+    datetime_local_formatted(:year_month_day) + ' @ ' + venue
   end
 
-  def datetime_friendly
-    datetime_local.strftime('%Y.%m.%d %a %l:%M%P %Z')
-  end
-
-  def datetime_formatted(format)
-    datetime_local.to_fs(format)
-  end
-
-  def datetime_local
-    if datetime_utc
-      datetime_utc.in_time_zone(datetime_zone)
-    end
-  end
-
-  def datetime_year
-    if datetime_local
-      datetime_local.year
-    end
-  end
-
-  def datetime_month
-    if datetime_local
-      datetime_local.month
-    end
+  def datetime
+    datetime_local
   end
 
   def datetime_day
     if datetime_local
       datetime_local.day
     end
+  end
+
+  def datetime_friendly
+    datetime_local.strftime('%Y.%m.%d %a %l:%M%P %Z')
   end
 
   def datetime_hour
@@ -167,19 +149,55 @@ class Event < ApplicationRecord
     end
   end
 
+  def datetime_local
+    if datetime_utc
+      datetime_utc.in_time_zone(datetime_zone)
+    end
+  end
+
+  def datetime_local_formatted(format)
+    datetime_local.to_fs(format)
+  end
+
+  def datetime_month
+    if datetime_local
+      datetime_local.month
+    end
+  end
+
+  def datetime_sortable
+    datetime_utc_sortable
+  end
+
+  ### datetime_utc
+
+  def datetime_utc_sortable
+    if datetime_utc
+      datetime_utc
+    else
+      Time.new(0)
+    end
+  end
+
+  def datetime_year
+    if datetime_local
+      datetime_local.year
+    end
+  end
+
   ### datetime_zone
 
   def datetime_and_title
-    "#{datetime_formatted(:year_month_day)} / #{title_without_markup}"
+    "#{datetime_local_formatted(:year_month_day)} / #{title_without_markup}"
   end
+
+  ### details_markup_text
 
   ### details_markup_type
 
   def details_props
     { markup_type: details_markup_type, markup_text: details_markup_text  }
   end
-
-  ### details_markup_text
 
   def does_have_audio
     audio_count.to_i > 0
@@ -268,7 +286,7 @@ class Event < ApplicationRecord
   end
 
   def event_keywords_sorted_by_title_asc
-    event_keywords.to_a.sort_by! { |ek| ek.keyword.title.downcase }
+    event_keywords.to_a.sort_by! { |ek| ek.keyword.title_sortable.downcase }
   end
 
   def event_pictures_published_sorted
@@ -348,7 +366,7 @@ class Event < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title.downcase }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
   end
 
   ### map_url
@@ -395,13 +413,17 @@ class Event < ApplicationRecord
     title_without_markup
   end
 
+  ### title_markup_type
+
+  ### title_markup_text
+
   def title_props
     { markup_type: title_markup_type, markup_text: title_markup_text }
   end
 
-  ### title_markup_type
-
-  ### title_markup_text
+  def title_sortable
+    title.to_s
+  end
 
   ### title_without_markup
 

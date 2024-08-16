@@ -86,7 +86,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.audio.title_sortable.downcase }
+    audio_keywords.to_a.sort_by! { |ak| ak.audio.full_title.downcase }
   end
 
   def audio_sorted
@@ -184,7 +184,7 @@ class Keyword < ApplicationRecord
   end
 
   def event_keywords_sorted_by_datetime_asc
-    event_keywords.to_a.sort_by! { |ek| ek.event.datetime }
+    event_keywords.to_a.sort_by! { |ek| ek.event.datetime_sortable }
   end
 
   ### events_count
@@ -194,11 +194,11 @@ class Keyword < ApplicationRecord
   end
 
   def events_sorted_by_datetime_asc
-    events.to_a.sort_by! { |event| event.datetime }
+    events.to_a.sort_by! { |event| event.datetime_utc_sortable }
   end
 
   def events_sorted_by_title_asc
-    events.to_a.sort_by! { |event| event.title }
+    events.to_a.sort_by! { |event| event.title_sortable }
   end
 
   ### id
@@ -254,7 +254,7 @@ class Keyword < ApplicationRecord
   end
 
   def pictures_sorted_by_title_asc
-    pictures.to_a.sort_by! { |picture| picture.title.downcase }
+    pictures.to_a.sort_by! { |picture| picture.title_sortable.downcase }
   end
 
   def should_generate_new_friendly_id?
@@ -271,6 +271,10 @@ class Keyword < ApplicationRecord
   end
 
   ### title
+
+  def title_sortable
+    title.to_s.downcase
+  end
 
   def title_with_audio_count
     "#{title} (#{audio_count})"
