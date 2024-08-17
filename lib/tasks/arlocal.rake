@@ -2,7 +2,6 @@ module Arlake
   require_relative 'concerns/arlake_interaction'
   require_relative 'arlake_administrator'
   require_relative 'arlake_initialize'
-  require_relative 'arlake_portfolio'
 end
 
 
@@ -34,6 +33,6 @@ namespace :arlocal do
     desc 'List tasks performed in arlocal:init:all'
     task :tasks do Arlake::Initialize.tasks end
   end
-  
+
 
 end
