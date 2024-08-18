@@ -110,3 +110,16 @@ Where to Sort vs Where to Query
   - So many contradictions here. Best option seems to be datetime_field despite not having yyyy-mm-dd format
 
 - Picture datetime can be simplified. See `@event.datetime`
+
+I think the only test use cases are complete:
+Migration for "catalog/imported" and "attachment/uploaded"
+  - update the data
+    - audio
+    - picture
+    - arlocal_settings icon_source_type
+  - 20230521021626_source_catalog_source_uploaded.rb
+    - see 20230405010631_resource_visibility.rb for example
+  - **OK now I think.**
+  - *Not yet. Somehow the visibility value bleeds into source_type*
+  - ***REALLY FREAKING WEIRD.***
+    - Migrations can run separately, but in a single roll they mess with data values.

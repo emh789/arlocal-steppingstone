@@ -4,6 +4,8 @@
 ## HIGHEST priority
 
 arlocal_settings => user.settings has_one
+  - would require dividing application settings (eg. marquee) form user preferences (admin index order)
+  - reduce to low/no priority
 
 finish admin renovation
 
@@ -14,6 +16,7 @@ Check where display_title and title_sortable overlap. They may be approaching th
   - scopes intersect with visibility
     - models `does_have_published_{resource}` and counter_cache
     - [].any vs [].count
+      - `.any` requires a db query UNLESS the parent search had an `.includes()` method
 
   - `admin/isrc/edit` narrow view buttons overflow right
 
@@ -34,6 +37,8 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 
 **- Video player layout could be improved at narrow widths.**
 ***- jplayer Audio player has not been updated in 10 yrs. Can videojs replace it?***
+      - Yes, but it will require additional custom code, and it will change the look-and-feel.
+      - and it uses npm which puts diarrhea everywhere
 
 - why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
   - for example `admin/isrc/edit` overflows at narrow widths.
@@ -154,18 +159,6 @@ Audio Id3 tags:
   - Maybe not. It's a specific collection.
   - Makes more sense with improved label semantics.
 
-I think the only test use cases are complete:
-Migration for "catalog/imported" and "attachment/uploaded"
-  - update the data
-    - audio
-    - picture
-    - arlocal_settings icon_source_type
-  - 20230521021626_source_catalog_source_uploaded.rb
-    - see 20230405010631_resource_visibility.rb for example
-  - **OK now I think.**
-  - *Not yet. Somehow the visibility value bleeds into source_type*
-  - ***REALLY FREAKING WEIRD.***
-    - Migrations can run separately, but in a single roll they mess with data values.
 
 Investigate which `Class.options_for_select_admin` could be optimized with a `.select` or `.pluck` to get only the needed fields for a form select element
 
