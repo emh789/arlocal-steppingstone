@@ -3,11 +3,13 @@
 
 ## HIGHEST priority
 
-arlocal_settings => user.settings has_one
-  - would require dividing application settings (eg. marquee) form user preferences (admin index order)
-  - reduce to low/no priority
+- autokeyword not fully implemented
+  - remaining: article, infopage, link, stream
+  - if anything, only `article` needs it
 
-finish admin renovation
+- Keyword Admin:
+  - #edit?videos missing buttons
+    - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
 Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
   - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
@@ -18,16 +20,12 @@ Check where display_title and title_sortable overlap. They may be approaching th
     - [].any vs [].count
       - `.any` requires a db query UNLESS the parent search had an `.includes()` method
 
-  - `admin/isrc/edit` narrow view buttons overflow right
-
-  - autokeyword not fully implemented
-    - remaining: article, infopage, link, stream
-
-  - Keyword Admin:
-    - #edit?videos missing buttons
-      - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
 ## HIGH priority
+
+- Admin::Articles#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
+
+- Articles, Links, and Pictures lack a pane for infopages.
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_ This discrepancy arose because `form_metadata` modules serving the `#edit` action frequently invoke ActiveRecord, whereas the `#index` action selectables were a part of the application structure and `Sorter` object definitions.
 
@@ -68,10 +66,6 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 
 ## Medium priority
 
-- Admin::Articles#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
-
-- Articles, Links, and Pictures lack a pane for infopages.
-
 - Should html_head title elements include the resource type? Would help add clarity to browser history.
   - examples:
     - picture: album cover
@@ -111,10 +105,14 @@ Audio Id3 tags:
   - buttons that are an `<input>`  cannot take innerHTML elements, only text as a `value=` attribute
   - is using the font-awesome webfont the only way to use fa-icons in the `<input>` buttons?
 
+
 ## Low Priority
 
 - administrators/sign_in
   - Is it worth getting `devise::rememberable` to work correctly?
+
+- arlocal_settings => user.settings has_one
+  - would require dividing application settings (eg. marquee) form user preferences (admin index order)
 
 - Audio index
 
@@ -124,7 +122,6 @@ Audio Id3 tags:
   - #link_parse_email
   - #link_parse_web
   - redundancy, confusion, could be refactored.
-  - _Complicated. Reduce to low priority._
 
 
 
@@ -183,3 +180,5 @@ Video index needs headings
         - Keyword v/
         - Picture v/
         - Video v/
+
+- `admin/isrc/edit` narrow view buttons overflow right

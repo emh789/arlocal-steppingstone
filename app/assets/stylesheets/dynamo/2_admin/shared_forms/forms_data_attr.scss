@@ -1,0 +1,191 @@
+.arl_form_data_attr {
+  display: grid;
+  grid-template-areas: 'label inline' 'explanation explanation' 'input input' 'detail detail';
+  grid-template-columns: 1fr min-content;
+  margin: $arl-margin-wide 0;
+}
+.arl_form_data_attr_attachment {
+  font-family: $font-family-data;
+  grid-area: input;
+}
+.arl_form_data_attr_can_select {
+  align-items: center;
+  display: grid;
+  grid-template-areas: 'inline label label_b input';
+  grid-template-columns: 1.5rem auto min-content 3em;
+  column-gap: $arl-margin / 2;
+  margin: $arl-margin-wide 0;
+}
+.arl_form_data_attr_can_select_label {
+  font-family: $font-family-description;
+  font-weight: bold;
+  grid-area: label_b;
+}
+.arl_form_data_attr_explanation {
+  font-family: $font-family-description;
+  font-size: 0.875em;
+  grid-area: explanation;
+  margin-left: ($arl-margin-narrow / 1.5);
+}
+.arl_form_data_attr_input_checkbox {
+  align-self: center;
+  grid-area: inline;
+  justify-self: center;
+  visibility: hidden;
+}
+.arl_form_data_attr_input_checkbox_visible {
+  border-style: $border-style;
+  border-width: $border-width;
+  display: inline-block;
+  grid-area: inline;
+  height: 1.0em;
+  width: 1.0em;
+}
+.arl_form_data_attr_input_checkbox_inline {
+  align-self: center;
+  grid-area: inline;
+  justify-self: center;
+}
+.arl_form_data_attr_input_file_upload {
+  border-radius: $border-radius-wide;
+  border-width: $border-width;
+  border-style: solid;
+  content-box: border-box;
+  display: inline-block;
+  margin: $arl-margin-wide $arl-margin;
+  padding: $arl-margin;
+  text-align: center;
+  text-decoration: none;
+  font-family: $font-family-application;
+  font-size: 1rem;
+  grid-area: input;
+  margin: 0;
+}
+.arl_form_data_attr_input_number_field {
+  grid-area: input;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
+  text-align: right;
+  width: 2rem;
+}
+.arl_form_data_attr_input_select {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  grid-area: input;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+}
+.arl_form_data_attr_input_select_multi {
+  grid-area: input;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  margin-right: ($arl-margin-narrow / 2);
+  &:last-child {
+    margin-right: 0
+  }
+}
+.arl_form_data_attr_input_select_picture {
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  grid-area: input;
+  margin-bottom: $arl-spacing;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+}
+.arl_form_data_attr_input_select_small {
+  grid-area: input;
+  border-style: $border-style;
+  border-width: $border-width;
+  width: 10em;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+}c
+.arl_form_data_attr_input_select_inline {
+  grid-area: inline;
+  justify-self: end;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  margin-bottom: ($arl-margin-narrow / 2);
+  padding: 0 ($arl-margin-narrow / 2);
+}
+.arl_form_data_attr_input_text_area {
+  grid-area: input;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  min-height: 10rem;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
+}
+.arl_form_data_attr_input_text_field {
+  grid-area: input;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
+}
+.arl_form_data_attr_input_text_field_inline {
+  grid-area: input;
+  justify-self: start;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
+}
+.arl_form_data_attr_label {
+  align-self: left;
+  font-family: $font-family-description;
+  font-weight: bold;
+  grid-area: label;
+  margin-left: ($arl-margin-narrow / 1.5);
+  margin-bottom: ($arl-margin-narrow / 2);
+}
+.arl_form_data_attr_multi {
+  grid-area: input;
+  display: flex;
+  flex-direction: row;
+}
+.arl_form_data_attr_multi_field {
+  display: grid;
+  grid-template-areas: 'label' 'input';
+}
+.arl_form_data_attr_multi_label {
+  align-self: center;
+  font-family: $font-family-data;
+  font-size: 0.9rem;
+  grid-area: label;
+  margin-left: ($arl-margin-narrow);
+}
+.arl_form_data_attr_multi_spacer {
+  align-self: flex-end;
+  font-family: $font-family-data;
+  font-weight: bold;
+  margin: ($arl-margin-narrow / 1.5) ($arl-margin-narrow / 2);
+
+}
+.arl_form_data_attr_thumbnail_image {
+  align-self: center;
+  border-radius: $border-radius-narrow;
+  grid-area: detail;
+  justify-self: center;
+  margin-top: $arl-margin-narrow;
+  max-height: 8rem;
+  max-width: 8rem;
+}
+.arl_form_data_attr_value {
+  grid-area: input;
+  font-family: $font-family-data;
+  padding: ($arl-margin-narrow / 2) $arl-margin-narrow;
+}

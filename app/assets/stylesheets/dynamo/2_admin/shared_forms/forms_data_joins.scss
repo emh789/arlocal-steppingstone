@@ -1,0 +1,68 @@
+.arl_form_data_joins {
+  margin-left: auto;
+  margin-right: auto;
+}
+.arl_form_data_joins_destroy {
+  font-family: $font-family-application;
+  padding: $arl-margin-narrow;
+}
+.arl_form_data_joins_destroy_checkbox {
+  display: none;
+}
+.arl_form_data_joins_destroy_checkbox_visible {
+  border-style: $border-style;
+  border-width: $border-width;
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.arl_form_data_joins_heading {
+  font-family: $font-family-application;
+  font-weight: bold;
+  padding: $arl-margin-narrow;
+}
+.arl_form_data_joins_picture {
+  display: grid;
+  column-gap: 1rem;
+  grid-template-areas: 'thumbnail title remove' 'thumbnail coverpicture .' 'thumbnail order .' ' thumbnail . .';
+  grid-template-columns: 8rem 16rem auto;
+  grid-template-rows: auto auto auto auto;
+  margin: $arl-spacing-wide 0;
+}
+.arl_form_data_joins_picture_coverpicture {
+  column-gap: $arl-margin-narrow;
+  display: grid;
+  font-family: $font-family-application;
+  grid-template-areas: 'inline label';
+  grid-area: coverpicture;
+  justify-content: start;
+}
+.arl_form_data_joins_picture_order {
+  grid-area: order;
+  font-family: $font-family-application;
+}
+.arl_form_data_joins_picture_remove {
+  grid-area: remove;
+  align-self: center;
+  justify-self: center;
+}
+.arl_form_data_joins_picture_thumbnail {
+  grid-area: thumbnail;
+  align-self: start;
+  justify-self: center;
+}
+.arl_form_data_joins_picture_thumbnail_image {
+  border-radius: $border-radius-narrow;
+  display: block;
+  width: 128px;
+  height: 72px;
+}
+.arl_form_data_joins_picture_title {
+  grid-area: title;
+  font-family: $font-family-data;
+  font-weight: bold;
+}
+.arl_form_data_joins_value {
+  font-family: $font-family-data;
+  padding: $arl-margin-narrow;
+}

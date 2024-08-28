@@ -1,0 +1,17 @@
+.arl_form_explanation {
+  margin: $arl-margin 0rem;
+}
+.arl_form_explanation_caveat {
+  font-family: $font-family-data;
+  font-size: 0.875em;
+  list-style-type: none;
+  margin: 0;
+  text-align: center;
+}
+.arl_form_explanation_warning {
+  font-family: $font-family-data;
+  font-weight: bold;
+  list-style-type: none;
+  margin: 0;
+  text-align: center;
+}

@@ -1,0 +1,80 @@
+.arl_form_bulk {
+  margin: $arl-spacing;
+  width: 100%;
+}
+.arl_form_bulk_item {
+  align-items: center;
+  display: grid;
+  justify-content: stretch;
+  margin: $arl-spacing 0rem;
+}
+.arl_form_bulk_item_action {
+  grid-area: action;
+}
+.arl_form_bulk_item_action_submit {
+  border-radius: $border-radius;
+  border-style: $border-style;
+  border-width: ($border-width * 2);
+  font-family: $font-family-application;
+  padding: ($arl-spacing / 3) ($arl-spacing / 2);
+}
+.arl_form_bulk_item_data {
+  grid-area: data;
+}
+.arl_form_bulk_item_data_attr {
+  font-family: $font-family-data;
+}
+.arl_form_bulk_item_input {
+  display: flex;
+  flex-direction: row;
+  font-family: $font-family-data;
+  grid-area: input;
+}
+.arl_form_bulk_item_input_multi {
+  font-family: $font-family-data;
+}
+.arl_form_bulk_item_input_text_field {
+  font-family: $font-family-data;
+  border-style: $border-style;
+  border-width: $border-width;
+  font-size: 0.9em;
+  font-family: $font-family-data;
+  margin: $border-width;
+}
+
+
+@media #{$media-screen-1} {
+  .arl_form_bulk_item {
+    grid-template-areas: 'data action' 'input action';
+    grid-template-columns: auto min-content;
+  }
+}
+
+@media #{$media-screen-2} {
+  .arl_form_bulk_item {
+    column-gap: ($arl-spacing / 2);
+    grid-template-areas: 'data input action';
+    grid-template-columns: auto 9rem min-content;
+  }
+  .arl_form_bulk_item_data {
+    display: flex;
+    flex-direction: row;
+  }
+  .arl_form_bulk_item_data_attr {
+    min-width: 4rem;
+  }
+}
+
+@media #{$media-screen-3} {
+  .arl_form_bulk_item {
+    grid-template-areas: 'data input action';
+    grid-template-columns: auto 10rem min-content;
+  }
+  .arl_form_bulk_item_data {
+    display: flex;
+    flex-direction: row;
+  }
+  .arl_form_bulk_item_data_attr {
+    min-width: 4rem;
+  }
+}
