@@ -3,7 +3,7 @@
     = resource_joined_events_count_label(resource)
   - if resource.does_have_events
     %table.arl_admin_resource_show_joined_items.arl_metadata_table_values
-      - resource.joined_events.each do |joined_event|
+      - resource.joined_events_sorted.each do |joined_event|
         %tr
           %td.arl_metadata_table_value
             = event_admin_link_date_and_venue(joined_event.event)

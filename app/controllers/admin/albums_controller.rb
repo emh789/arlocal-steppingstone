@@ -1,10 +1,7 @@
 class Admin::AlbumsController < AdminController
 
-
   before_action :verify_nested_audio_file_exists,   only: [ :audio_create_from_import ]
   before_action :verify_nested_picture_file_exists, only: [ :picture_create_from_import ]
-
-
 
   def audio_create_from_import
     @album = QueryAlbums.find_admin(params[:id])
@@ -19,7 +16,6 @@ class Admin::AlbumsController < AdminController
     end
   end
 
-
   def audio_create_from_upload
     @album = QueryAlbums.find_admin(params[:id])
     @audio = AudioBuilder.create_from_upload_nested_within_album(@album, params_album_permitted, arlocal_settings: @arlocal_settings)
@@ -27,15 +23,11 @@ class Admin::AlbumsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_album_path(@album.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormAlbumMetadata.new(pane: :audio_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Audio could not be uploaded.'
       render 'edit'
     end
   end
-
 
   def audio_join_by_keyword
     @keyword = QueryKeywords.find(params[:album][:keywords])
@@ -45,22 +37,17 @@ class Admin::AlbumsController < AdminController
     redirect_to edit_admin_album_path(@album, pane: params[:pane])
   end
 
-
   def create
-    @album = AlbumBuilder.create(params_album_permitted)
+    @album = AlbumBuilder.create(params_album_permitted, arlocal_settings: @arlocal_settings)
     if @album.save
       flash[:notice] = 'Album was successfully created.'
       redirect_to edit_admin_album_path(@album.id_admin)
     else
       @form_metadata = FormAlbumMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       flash[:notice] = 'Album could not be created.'
       render 'new'
     end
   end
-
 
   def destroy
     @album = QueryAlbums.find_admin(params[:id])
@@ -69,28 +56,20 @@ class Admin::AlbumsController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @album = QueryAlbums.find_admin(params[:id])
     @album_neighbors = QueryAlbums.neighborhood_admin(@album, @arlocal_settings)
     @form_metadata = FormAlbumMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
   end
 
-
   def index
     @albums = QueryAlbums.index_admin(@arlocal_settings, params)
   end
 
-
   def new
-    @album = AlbumBuilder.build_with_defaults
+    @album = AlbumBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings)
     @form_metadata = FormAlbumMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_autokeyword_enabled
-      @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      @album.album_keywords.build(keyword_id: @auto_keyword.keyword_id)
-    end
   end
-
 
   def picture_create_from_import
     @album = QueryAlbums.find_admin(params[:id])
@@ -105,7 +84,6 @@ class Admin::AlbumsController < AdminController
     end
   end
 
-
   def picture_create_from_upload
     @album = QueryAlbums.find_admin(params[:id])
     @picture = PictureBuilder.create_from_upload_nested_within_album(@album, params_album_permitted)
@@ -113,15 +91,11 @@ class Admin::AlbumsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_album_path(@album.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormAlbumMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Picture could not be uploaded.'
       render 'edit'
     end
   end
-
 
   def pictures_join_by_keyword
     @keyword = QueryKeywords.find(params[:album][:keywords])
@@ -131,12 +105,10 @@ class Admin::AlbumsController < AdminController
     redirect_to edit_admin_album_path(@album, pane: params[:pane])
   end
 
-
   def show
     @album = QueryAlbums.find_admin(params[:id])
     @album_neighbors = QueryAlbums.neighborhood_admin(@album, @arlocal_settings)
   end
-
 
   def update
     @album = QueryAlbums.find_admin(params[:id])
@@ -151,9 +123,7 @@ class Admin::AlbumsController < AdminController
   end
 
 
-
   private
-
 
   def params_album_permitted
     params.require(:album).permit(
@@ -207,7 +177,6 @@ class Admin::AlbumsController < AdminController
     )
   end
 
-
   def verify_file(filename)
     if File.exist?(filename) == false
       flash[:notice] = "File not found: #{filename}"
@@ -215,17 +184,14 @@ class Admin::AlbumsController < AdminController
     end
   end
 
-
   def verify_nested_audio_file_exists
     filename = helpers.source_imported_file_path(params_album_permitted['audio_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
 
-
   def verify_nested_picture_file_exists
     filename = helpers.source_imported_file_path(params_album_permitted['pictures_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
-
 
 end

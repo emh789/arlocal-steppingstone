@@ -119,6 +119,12 @@ class Album < ApplicationRecord
     audio.to_a.sort_by! { |audio| audio.full_title.downcase }
   end
 
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
+  end
+
   ### copyright_markup_type
 
   def copyright_props
@@ -182,6 +188,10 @@ class Album < ApplicationRecord
 
   def does_have_audio_published
     audio_published_count.to_i > 0
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_coverpicture
@@ -324,14 +334,26 @@ class Album < ApplicationRecord
   end
 
   def joined_audio
+    album_audio
+  end
+
+  def joined_audio_sorted
     album_audio_sorted
   end
 
   def joined_keywords
+    album_keywords
+  end
+
+  def joined_keywords_sorted
     album_keywords_sorted
   end
 
   def joined_pictures
+    album_pictures
+  end
+
+  def joined_pictures_sorted
     album_pictures_sorted
   end
 

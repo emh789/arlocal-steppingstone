@@ -5,12 +5,11 @@
     Picture Import to Album
 
 .arl_admin_picture_edit
-  = form_with(model: [:admin, Picture.new], local: true, url: admin_picture_create_from_import_to_album_path, class: :arl_form) do |f|
+  = form_with(model: [:admin, @picture], local: true, url: admin_picture_create_from_import_to_album_path, class: :arl_form) do |f|
     .arl_form_data
       = render 'form_elements/text_field', attribute: :source_imported_file_path, form: f, aside: "#{source_imported_dirname(trailing_separator: true)}"
+      = render 'form_elements/auto_keyword', attribute: :picture_keywords, form: f
       = f.fields_for :album_pictures, f.object.album_pictures.build do |ap|
         = render 'form_elements/collection_select', form: ap, attribute: :album_id, blank: true, collection: @albums, label: 'Album title', text_method: :title
-      - if @auto_keyword
-        = render 'form_elements/auto_keyword', attribute: :picture_keywords, auto_keyword: @auto_keyword, form: f
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

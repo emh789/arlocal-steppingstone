@@ -1,21 +1,16 @@
 class Admin::StreamsController < AdminController
 
-
   def create
     @stream = StreamBuilder.create(params_stream_permitted)
     if @stream.save
       flash[:notice] = 'Stream was successfully created.'
       redirect_to edit_admin_stream_path(@stream.id_admin)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormStreamMetadata.new(pane: params[:pane])
       flash[:notice] = 'Stream could not be created.'
       render 'new'
     end
   end
-
 
   def destroy
     @stream = QueryStreams.find_admin(params[:id])
@@ -24,28 +19,23 @@ class Admin::StreamsController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @stream = QueryStreams.find_admin(params[:id])
     @form_metadata = FormStreamMetadata.new(pane: params[:pane])
   end
 
-
   def index
     @streams = QueryStreams.index_admin
   end
-
 
   def new
     @stream = StreamBuilder.build_with_defaults
     @form_metadata = FormStreamMetadata.new(pane: params[:pane])
   end
 
-
   def show
     @stream = QueryStreams.find_admin(params[:id])
   end
-
 
   def update
     @stream = QueryStreams.find_admin(params[:id])
@@ -62,7 +52,6 @@ class Admin::StreamsController < AdminController
 
   private
 
-
   def params_stream_permitted
     params.require(:stream).permit(
       :description_markup_type,
@@ -72,6 +61,5 @@ class Admin::StreamsController < AdminController
       :visibility
     )
   end
-
 
 end

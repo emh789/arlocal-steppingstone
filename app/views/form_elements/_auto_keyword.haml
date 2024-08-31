@@ -1,8 +1,8 @@
-- if local_assigns[:auto_keyword]
-  = form.fields_for attribute, form.object.public_method(attribute).call.build do |joined_keyword|
+- if form_will_include_autokeyword(params[:action], form.object)
+  = form.fields_for attribute, form.object.autokeyword do |jk|
     .arl_form_data_attr
-      = joined_keyword.label :keyword_id, sanitize("Auto-keyword as <i>#{auto_keyword.keyword_title}</i>", keywords: %w(i)), class: :arl_form_data_attr_label
-      = joined_keyword.check_box :keyword_id, {class: :arl_form_data_attr_input_checkbox, checked: true}, auto_keyword.keyword_id
-      = joined_keyword.label :keyword_id, '&nbsp;'.html_safe, class: :arl_form_data_attr_input_checkbox_visible, tabindex: 0
+      = jk.label :keyword_id, sanitize("Auto-keyword as <i>#{jk.object.keyword.title}</i>", keywords: %w(i)), class: :arl_form_data_attr_label
+      = jk.check_box :keyword_id, {class: :arl_form_data_attr_input_checkbox, checked: true}, jk.object.keyword.id
+      = jk.label :keyword_id, '&nbsp;'.html_safe, class: :arl_form_data_attr_input_checkbox_visible, tabindex: 0
       %aside.arl_form_data_attr_explanation
         = sanitize("Value can be changed in the #{link_to 'A&R.local control panel', edit_admin_arlocal_settings_path(pane: :admin), class: :arl_link_url}.")

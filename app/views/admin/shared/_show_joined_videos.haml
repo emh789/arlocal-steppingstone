@@ -3,7 +3,7 @@
     = resource_joined_videos_count_label(resource)
   - if resource.does_have_videos
     %table.arl_admin_resource_show_joined_items.arl_metadata_table_values
-      - resource.joined_videos.each do |joined_video|
+      - resource.joined_videos_sorted.each do |joined_video|
         %tr
           %td.arl_metadata_table_value
             = video_admin_link_title(joined_video.video)

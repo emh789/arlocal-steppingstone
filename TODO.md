@@ -3,9 +3,7 @@
 
 ## HIGHEST priority
 
-- autokeyword not fully implemented
-  - remaining: article, infopage, link, stream
-  - if anything, only `article` needs it
+- does Video:Form-picture-import/upload need autokeyword
 
 - Keyword Admin:
   - #edit?videos missing buttons
@@ -23,8 +21,6 @@ Check where display_title and title_sortable overlap. They may be approaching th
 
 ## HIGH priority
 
-- Admin::Articles#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
-
 - Articles, Links, and Pictures lack a pane for infopages.
 
 Admin Resource Indexes are starting to have 'selectable' components and forms (`admin_index_filter_select`) in the style of `form_metadata.selectable`. However, the existing `form_metadata` modules exclusively serve the `#edit` action. Indexes currently get their selectable values from `{resource}_helper` methods. _(see also in 'Medium priority')_ This discrepancy arose because `form_metadata` modules serving the `#edit` action frequently invoke ActiveRecord, whereas the `#index` action selectables were a part of the application structure and `Sorter` object definitions.
@@ -37,9 +33,6 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 ***- jplayer Audio player has not been updated in 10 yrs. Can videojs replace it?***
       - Yes, but it will require additional custom code, and it will change the look-and-feel.
       - and it uses npm which puts diarrhea everywhere
-
-- why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
-  - for example `admin/isrc/edit` overflows at narrow widths.
 
 - check various `form_pictures`
   - coverpicture=true would slightly obscure the Order field
@@ -72,17 +65,12 @@ Admin views public_index/show buttons should use a "preview" action instead of b
     - album: Diamonds in the Ruff
   - see Picture for code
 
-autokeyword smells bad.
-_Could be replaced by `Add [resource] to Keyword`_
-
-
 Audio Id3 tags:
   - AUdioHelper#audio_read_source_metadata
   - is audio_helper the best place for the method?
   - used in `app/views/admin/audio/_form_id3.haml`
 
 - `form_helper` has one current and several obsolete methods that describe specific form attributes,
-
 
 - import/upload video via `keywords/_form_video_import`
 
@@ -122,6 +110,10 @@ Audio Id3 tags:
   - #link_parse_email
   - #link_parse_web
   - redundancy, confusion, could be refactored.
+
+  autokeyword smells bad.
+  _Could be replaced by `Add [resource] to Keyword`_
+    - This gets complicated quickly.
 
 
 
@@ -182,3 +174,18 @@ Video index needs headings
         - Video v/
 
 - `admin/isrc/edit` narrow view buttons overflow right
+- why does `size: ` attribute result in larger-than-size fields? inherited from CSS maybe?
+  - for example `admin/isrc/edit` overflows at narrow widths.
+
+- Admin::Articles#index: `content` section might get extremely vertical. Maybe add overflow-y and max-height?
+  - no, it's okay – uses `content_beginning_props`
+
+- autokeyword not fully implemented
+  - remaining: article, infopage, link, stream
+  - if anything, only `article` needs it
+  - the @autokeyword controller variable could be replaced by adding resource.keyword.build to a builder method
+    and testing for its presence in the view.
+  - look for where `build_with_defaults` would more accurately be `build_with_defaults_and_autokeyword`
+
+- autokeyword refactor needed a distinction between joined_resources and joined_resources_sorted
+  - check joined_resource views. update methods.

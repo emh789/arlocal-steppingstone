@@ -1,6 +1,5 @@
 class Admin::ArticlesController < AdminController
 
-
   def create
     @article = ArticleBuilder.create(params_article_permitted)
     if @article.save
@@ -13,7 +12,6 @@ class Admin::ArticlesController < AdminController
     end
   end
 
-
   def destroy
     @article = QueryArticles.find(params[:id])
     @article.destroy
@@ -21,30 +19,25 @@ class Admin::ArticlesController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @article = QueryArticles.find(params[:id])
     @article_neighbors = QueryArticles.new(arlocal_settings: @arlocal_settings).action_admin_show_neighborhood(@article)
     @form_metadata = FormArticleMetadata.new(pane: params[:pane])
   end
 
-
   def index
     @articles = Article.all
   end
 
-
   def new
-    @article = ArticleBuilder.build_with_defaults
+    @article = ArticleBuilder.build_with_defaults_and_conditional_autokeyword(@arlocal_settings)
     @form_metadata = FormArticleMetadata.new
   end
-
 
   def show
     @article = QueryArticles.find(params[:id])
     @article_neighbors = QueryArticles.new(arlocal_settings: @arlocal_settings).action_admin_show_neighborhood(@article)
   end
-
 
   def update
     @article = QueryArticles.find(params[:id])
@@ -59,9 +52,7 @@ class Admin::ArticlesController < AdminController
   end
 
 
-
   private
-
 
   def params_article_permitted
     params.require(:article).permit(
@@ -74,9 +65,13 @@ class Admin::ArticlesController < AdminController
       :summary_markup_type,
       :summary_markup_text,
       :title,
-      :visibility
+      :visibility,
+      article_keywords_attributes: [
+        :id,
+        :keyword_id,
+        :_destroy
+      ]
     )
   end
-
 
 end

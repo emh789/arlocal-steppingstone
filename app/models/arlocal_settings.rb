@@ -27,6 +27,10 @@ class ArlocalSettings < ApplicationRecord
 
   ### admin_forms_edit_slug_field
 
+  def admin_forms_new_will_have_autokeyword
+    (admin_forms_autokeyword_enabled) && (admin_forms_autokeyword_id.to_i != 0)
+  end
+
   ### admin_forms_retain_pane_for_neighbors
 
   ### admin_forms_selectable_pictures_sort_method

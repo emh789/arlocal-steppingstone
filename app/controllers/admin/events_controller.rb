@@ -1,6 +1,5 @@
 class Admin::EventsController < AdminController
 
-
   before_action :verify_nested_audio_file_exists,   only: [ :audio_create_from_import ]
   before_action :verify_nested_picture_file_exists, only: [ :picture_create_from_import ]
 #  before_action :verify_nested_video_file_exists,   only: [ :video_create_from_import ]
@@ -13,7 +12,6 @@ class Admin::EventsController < AdminController
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
 
-
   def add_pictures_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
     @event = QueryEvents.find_admin(params[:id])
@@ -21,14 +19,12 @@ class Admin::EventsController < AdminController
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
 
-
   def add_videos_by_keyword
     @keyword = QueryKeywords.find_admin(params[:event][:keywords])
     @event = QueryEvents.find_admin(params[:id])
     @event.videos << QueryVideos.find_admin_with_keyword(@keyword)
     redirect_to edit_admin_event_path(@event, pane: params[:pane])
   end
-
 
   def audio_create_from_import
     @event = QueryEvents.find_admin(params[:id])
@@ -43,7 +39,6 @@ class Admin::EventsController < AdminController
     end
   end
 
-
   def audio_create_from_upload
     @event = QueryEvents.find_admin(params[:id])
     @audio = AudioBuilder.create_from_upload_nested_within_event(@event, params_event_permitted, arlocal_settings: @arlocal_settings)
@@ -51,31 +46,23 @@ class Admin::EventsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_event_path(@event.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormEventMetadata.new(pane: :audio_upload, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Audio could not be uploaded.'
       render 'edit'
     end
   end
 
-
   def create
-    @event = EventBuilder.create(params_event_permitted)
+    @event = EventBuilder.create(params_event_permitted, arlocal_settings: @arlocal_settings)
     if @event.save
       flash[:notice] = 'Event was successfully created.'
       redirect_to edit_admin_event_path(@event.id_admin)
     else
       @form_metadata = FormEventMetadata.new
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       flash[:notice] = 'Event could not be created.'
       render 'new'
     end
   end
-
 
   def destroy
     @event = QueryEvents.find_admin(params[:id])
@@ -84,28 +71,20 @@ class Admin::EventsController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @event = QueryEvents.find_admin(params[:id])
     @event_neighbors = QueryEvents.neighborhood_admin(@event, @arlocal_settings)
     @form_metadata = FormEventMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
   end
 
-
   def index
     @events = QueryEvents.index_admin(@arlocal_settings, params)
   end
 
-
   def new
-    @event = EventBuilder.build_with_defaults
+    @event = EventBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings)
     @form_metadata = FormEventMetadata.new
-    if @arlocal_settings.admin_forms_autokeyword_enabled
-      @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      @event.event_keywords.build(keyword_id: @auto_keyword.keyword_id)
-    end
   end
-
 
   def picture_create_from_import
     @event = QueryEvents.find_admin(params[:id])
@@ -120,7 +99,6 @@ class Admin::EventsController < AdminController
     end
   end
 
-
   def picture_create_from_upload
     @event = QueryEvents.find_admin(params[:id])
     @picture = PictureBuilder.create_from_upload_nested_within_event(@event, params_event_permitted)
@@ -128,21 +106,16 @@ class Admin::EventsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_event_path(@event.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormEventMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Picture could not be uploaded.'
       render 'edit'
     end
   end
 
-
   def show
     @event = QueryEvents.find_admin(params[:id])
     @event_neighbors = QueryEvents.neighborhood_admin(@event, @arlocal_settings)
   end
-
 
   def update
     @event = QueryEvents.find_admin(params[:id])
@@ -157,7 +130,6 @@ class Admin::EventsController < AdminController
     end
   end
 
-
 #  def video_create_from_import
 #    @event = QueryEvents.find_admin(params[:id])
 #    @video = VideoBuilder.create_from_import_nested_within_event(@event, params_event_permitted, arlocal_settings: @arlocal_settings)
@@ -170,8 +142,7 @@ class Admin::EventsController < AdminController
 #      render 'edit'
 #    end
 #  end
-
-
+#
 #  def video_create_from_upload
 #    @event = QueryEvents.find_admin(params[:id])
 #    @video = VideoBuilder.create_from_upload_nested_within_event(@event, params_event_permitted, arlocal_settings: @arlocal_settings)
@@ -179,9 +150,6 @@ class Admin::EventsController < AdminController
 #      flash[:notice] = 'Video was successfully uploaded.'
 #      redirect_to edit_admin_event_path(@event.id_admin, pane: :videos)
 #    else
-#      if @arlocal_settings.admin_forms_autokeyword_enabled
-#        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-#      end
 #      @form_metadata = FormEventMetadata.new(pane: :video_upload, arlocal_settings: @arlocal_settings)
 #      flash[:notice] = 'Videos could not be uploaded.'
 #      render 'edit'
@@ -190,10 +158,7 @@ class Admin::EventsController < AdminController
 
 
 
-
-
   private
-
 
   def params_event_permitted
     params.require(:event).permit(
@@ -252,7 +217,6 @@ class Admin::EventsController < AdminController
     )
   end
 
-
   def verify_file(filename)
     if File.exist?(filename) == false
       flash[:notice] = "File not found: #{filename}"
@@ -260,28 +224,23 @@ class Admin::EventsController < AdminController
     end
   end
 
-
   def verify_nested_audio_file_exists
     filename = helpers.source_imported_file_path(params_event_permitted['audio_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
-
 
   def verify_nested_picture_file_exists
     filename = helpers.source_imported_file_path(params_event_permitted['pictures_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
 
-
 #  def verify_nested_video_file_exists
 #    filename = helpers.source_imported_file_path(params_event_permitted['videos_attributes']['0']['source_imported_file_path'])
 #    verify_file(filename)
 #  end
 
-
   def set_event_time_zone_from_params
     Time.use_zone(params[:event][:datetime_zone]) { yield }
   end
-
 
 end

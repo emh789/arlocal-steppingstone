@@ -81,6 +81,12 @@ class Video < ApplicationRecord
 
   public
 
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
+  end
+
   ### copyright_markup_type
 
   def copyright_props
@@ -140,6 +146,10 @@ class Video < ApplicationRecord
     when :source_uploaded
       self.source_uploaded.attached? == true
     end
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_coverpicture
@@ -240,14 +250,26 @@ class Video < ApplicationRecord
   ### isrc_year_of_reference
 
   def joined_events
+    event_videos
+  end
+
+  def joined_events_sorted
     event_videos_sorted
   end
 
   def joined_keywords
+    video_keywords
+  end
+
+  def joined_keywords_sorted
     video_keywords_sorted
   end
 
   def joined_pictures
+    video_pictures
+  end
+
+  def joined_pictures_sorted
     video_pictures_sorted
   end
 

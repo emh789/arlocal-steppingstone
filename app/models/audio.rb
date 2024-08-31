@@ -107,6 +107,12 @@ class Audio < ApplicationRecord
     audio_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable.downcase }
   end
 
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
+  end
+
   ### composer
 
   ### copright_markup_type
@@ -139,6 +145,10 @@ class Audio < ApplicationRecord
 
   def does_have_albums_published
     albums_published_count.to_i > 0
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_source_uploaded
@@ -250,9 +260,9 @@ class Audio < ApplicationRecord
     title_and_subtitle_for_display
   end
 
-  def has_albums
-    does_have_albums
-  end
+  # def has_albums
+  #   does_have_albums
+  # end
 
   ### id
 
@@ -297,14 +307,26 @@ class Audio < ApplicationRecord
   ### isrc_year_of_reference
 
   def joined_albums
+    album_audio
+  end
+
+  def joined_albums_sorted
     album_audio_sorted
   end
 
   def joined_events
+    event_audio
+  end
+
+  def joined_events_sorted
     event_audio_sorted
   end
 
   def joined_keywords
+    audio_keywords
+  end
+
+  def joined_keywords_sorted
     audio_keywords_sorted
   end
 

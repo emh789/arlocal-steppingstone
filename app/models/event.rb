@@ -74,13 +74,6 @@ class Event < ApplicationRecord
   accepts_nested_attributes_for :videos
 
 
-  protected
-
-  def self.datetime_array_attrs
-    [ :datetime_year, :datetime_month, :datetime_day, :datetime_hour, :datetime_min, :datetime_zone ]
-  end
-
-
   public
 
   ### alert
@@ -95,6 +88,12 @@ class Event < ApplicationRecord
 
   def audio_sorted_by_title_asc
     audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+  end
+
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
   end
 
   ### city
@@ -205,6 +204,10 @@ class Event < ApplicationRecord
 
   def does_have_audio_published
     audio.published_count.to_i > 0
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_alert
@@ -348,14 +351,26 @@ class Event < ApplicationRecord
   end
 
   def joined_audio
+    event_audio
+  end
+
+  def joined_audio_sorted
     event_audio_sorted
   end
 
   def joined_keywords
+    event_keywords
+  end
+
+  def joined_keywords_sorted
     event_keywords_sorted
   end
 
   def joined_pictures
+    event_pictures
+  end
+
+  def joined_pictures_sorted
     event_pictures_sorted
   end
 

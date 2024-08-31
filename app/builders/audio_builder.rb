@@ -1,11 +1,8 @@
 class AudioBuilder
 
-
   require 'mediainfo'
 
-
   attr_reader :audio, :metadata
-
 
   def initialize(**args)
     arlocal_settings = (ArlocalSettings === args[:arlocal_settings]) ? args[:arlocal_settings] : nil
@@ -17,9 +14,7 @@ class AudioBuilder
   end
 
 
-
   protected
-
 
   def self.build(**args)
     builder = new(**args)
@@ -27,13 +22,18 @@ class AudioBuilder
     builder.audio
   end
 
-
   def self.build_with_defaults(**args)
     self.build(**args) do |b|
       b.attributes_default_assign
     end
   end
 
+  def self.build_with_defaults_and_conditional_autokeyword(**args)
+    self.build(**args) do |b|
+      b.attributes_default_assign
+      b.conditionally_build_autokeyword
+    end
+  end
 
   def self.create(audio_params, **args)
     self.build(**args) do |b|
@@ -41,7 +41,6 @@ class AudioBuilder
       b.attributes_given_assign(audio_params)
     end
   end
-
 
   def self.create_from_import(audio_params, **args)
     self.build(**args) do |b|
@@ -52,7 +51,6 @@ class AudioBuilder
       b.metadata_assign
     end
   end
-
 
   def self.create_from_import_and_join_nested_album(audio_params, **args)
     self.build(**args) do |b|
@@ -65,7 +63,6 @@ class AudioBuilder
     end
   end
 
-
   def self.create_from_import_and_join_nested_event(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
@@ -76,7 +73,6 @@ class AudioBuilder
       b.set_new_event_order
     end
   end
-
 
   def self.create_from_import_nested_within_album(album, params, **args)
     audio_params = {
@@ -92,7 +88,6 @@ class AudioBuilder
     end
   end
 
-
   def self.create_from_import_nested_within_event(event, params, **args)
     audio_params = {
       source_imported_file_path: params['audio_attributes']['0']['source_imported_file_path'],
@@ -106,7 +101,6 @@ class AudioBuilder
       b.join_to_event(event)
     end
   end
-
 
   def self.create_from_import_nested_within_keyword(keyword, params, **args)
     audio_params = {
@@ -122,7 +116,6 @@ class AudioBuilder
     end
   end
 
-
   def self.create_from_upload(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
@@ -133,7 +126,6 @@ class AudioBuilder
       b.metadata_assign
     end
   end
-
 
   def self.create_from_upload_and_join_nested_album(audio_params, **args)
     self.build(**args) do |b|
@@ -147,7 +139,6 @@ class AudioBuilder
     end
   end
 
-
   def self.create_from_upload_and_join_nested_event(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
@@ -159,7 +150,6 @@ class AudioBuilder
       b.set_new_event_order
     end
   end
-
 
   def self.create_from_upload_nested_within_album(album, params, **args)
     audio_params = {
@@ -175,7 +165,6 @@ class AudioBuilder
     end
   end
 
-
   def self.create_from_upload_nested_within_event(event, params, **args)
     audio_params = {
       source_uploaded: params['audio_attributes']['0']['source_uploaded'],
@@ -189,7 +178,6 @@ class AudioBuilder
       b.join_to_event(event)
     end
   end
-
 
   def self.create_from_upload_nested_within_keyword(keyword, params, **args)
     audio_params = {
@@ -205,7 +193,6 @@ class AudioBuilder
     end
   end
 
-
   def self.refresh_id3(audio_params)
     audio = Audio.find(audio_params['id'])
     self.build(audio: audio) do |b|
@@ -215,19 +202,21 @@ class AudioBuilder
   end
 
 
-
   public
-
 
   def attributes_default_assign
     @audio.assign_attributes(params_default)
   end
 
-
   def attributes_given_assign(audio_params)
     @audio.assign_attributes(audio_params)
   end
 
+  def conditionally_build_autokeyword
+    if @arlocal_settings.admin_forms_new_will_have_autokeyword
+      @audio.audio_keywords.build(keyword_id: @arlocal_settings.admin_forms_autokeyword_id)
+    end
+  end
 
   def join_to_album(album)
     album_id = album.id
@@ -235,19 +224,16 @@ class AudioBuilder
     @audio.album_audio.build(album_id: album_id, album_order: album_order)
   end
 
-
   def join_to_event(event)
     event_id = event.id
     event_order = @metadata.general.track_position
     @audio.event_audio.build(event_id: event_id, event_order: event_order)
   end
 
-
   def join_to_keyword(keyword)
     keyword_id = keyword.id
     @audio.audio_keyword.build(keyword_id: keyword_id)
   end
-
 
   def metadata_assign
     @audio.audio_artist = "#{@metadata.general.performer}"
@@ -258,16 +244,13 @@ class AudioBuilder
     @audio.duration_mils = @metadata.general.duration.divmod(1000)[1]
   end
 
-
   def metadata_is_assigned
     MediaInfo::Tracks === @metadata
   end
 
-
   def metadata_is_not_assigned
     metadata_is_assigned == false
   end
-
 
   def metadata_read
     case @audio.source_type
@@ -280,7 +263,6 @@ class AudioBuilder
     end
   end
 
-
   def metadata_read_from_uploaded
     if @audio.source_uploaded.attached?
       @audio.source_uploaded.open do |a|
@@ -289,36 +271,23 @@ class AudioBuilder
     end
   end
 
-
   def metadata_read_from_imported_file
     if File.exist?(source_imported_file_path(@audio))
       @metadata = MediaInfo.from(source_imported_file_path(@audio))
     end
   end
 
-
-  # def metadata_read_from_tempfile(audio_params)
-  #   tf = audio_params['source_uploaded'].tempfile
-  #   if File.exist?(tf.path)
-  #     @metadata = MediaInfo.from(tf.path)
-  #   end
-  # end
-
-
   def set_new_album_order
     @audio.album_audio.first.album_order = @metadata.general.track_position
   end
-
 
   def set_new_event_order
     @audio.event_audio.first.event_order = @metadata.general.track_position
   end
 
-
   def source_type_assign(source_type)
     @audio.source_type = source_type
   end
-
 
   def update_joined_albums_order
     if @audio.does_have_albums
@@ -332,7 +301,6 @@ class AudioBuilder
     end
   end
 
-
   def update_joined_events_order
     if @audio.does_have_events
       event = Event.find_by_title(@metadata.general.album)
@@ -345,16 +313,13 @@ class AudioBuilder
     end
   end
 
-
   def update_joined_resources_order
     update_joined_albums_order
     update_joined_events_order
   end
 
 
-
   private
-
 
   def params_default
     {
@@ -370,13 +335,11 @@ class AudioBuilder
     }
   end
 
-
   def params_default_artist
     if @arlocal_settings
       @arlocal_settings.artist_name
     end
   end
-
 
   def params_default_date_released
     if params_default_date_released_enabled
@@ -386,11 +349,9 @@ class AudioBuilder
     end
   end
 
-
   def params_default_date_released_enabled
     @arlocal_settings && @arlocal_settings.audio_default_date_released_enabled
   end
-
 
   def params_default_isrc_country_code
     if @arlocal_settings
@@ -398,12 +359,10 @@ class AudioBuilder
     end
   end
 
-
   def params_default_isrc_registrant_code
     if @arlocal_settings
       @arlocal_settings.audio_default_isrc_registrant_code
     end
   end
-
 
 end

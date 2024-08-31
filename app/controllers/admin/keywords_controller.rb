@@ -1,6 +1,5 @@
 class Admin::KeywordsController < AdminController
 
-
   def audio_create_from_import
     @keyword = QueryKeywords.find_admin(params[:id])
     @audio = AudioBuilder.create_from_import_nested_within_keyword(@keyword, params_keyword_permitted, arlocal_settings: @arlocal_settings)
@@ -14,7 +13,6 @@ class Admin::KeywordsController < AdminController
     end
   end
 
-
   def audio_create_from_upload
     @keyword = QueryKeywords.find_admin(params[:id])
     @audio = AudioBuilder.create_from_upload_nested_within_keyword(@keyword, params_keyword_permitted, arlocal_settings: @arlocal_settings)
@@ -22,15 +20,11 @@ class Admin::KeywordsController < AdminController
       flash[:notice] = 'Audio was successfully uploaded.'
       redirect_to edit_admin_keyword_path(@keyword.id_admin, pane: :audio)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormKeywordMetadata.new(pane: :audio_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Audio could not be uploaded.'
       render 'edit'
     end
   end
-
 
   def create
     @keyword = KeywordBuilder.default_with(params_keyword_permitted)
@@ -44,7 +38,6 @@ class Admin::KeywordsController < AdminController
     end
   end
 
-
   def destroy
     @keyword = QueryKeywords.find_admin(params[:id])
     @keyword.destroy
@@ -52,24 +45,20 @@ class Admin::KeywordsController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @keyword = QueryKeywords.find_admin(params[:id])
     @keyword_neighbors = QueryKeywords.neighborhood_admin(@keyword)
     @form_metadata = FormKeywordMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
   end
 
-
   def index
     @keywords = QueryKeywords.index_admin
   end
-
 
   def new
     @keyword = KeywordBuilder.default
     @form_metadata = FormKeywordMetadata.new
   end
-
 
   def picture_create_from_import
     @keyword = QueryKeywords.find_admin(params[:id])
@@ -84,7 +73,6 @@ class Admin::KeywordsController < AdminController
     end
   end
 
-
   def picture_create_from_upload
     @keyword = QueryKeywords.find_admin(params[:id])
     @picture = PictureBuilder.create_from_upload_nested_within_keyword(@keyword, params_keyword_permitted)
@@ -92,23 +80,16 @@ class Admin::KeywordsController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_keyword_path(@keyword.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormKeywordMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Picture could not be uploaded.'
       render 'edit'
     end
   end
 
-
-
-
   def show
     @keyword = QueryKeywords.find_admin(params[:id])
     @keyword_neighbors = QueryKeywords.neighborhood_admin(@keyword)
   end
-
 
   def update
     @keyword = QueryKeywords.find_admin(params[:id])
@@ -123,9 +104,7 @@ class Admin::KeywordsController < AdminController
   end
 
 
-
   private
-
 
   def params_keyword_permitted
     params.require(:keyword).permit(
@@ -167,7 +146,6 @@ class Admin::KeywordsController < AdminController
       ]
     )
   end
-
 
 end
 

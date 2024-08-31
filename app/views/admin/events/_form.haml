@@ -5,7 +5,7 @@
     = render 'form_elements/parseable_field',     form: f, attribute: :title, selectable: selectable
     = render 'form_elements/datetimezone_field',  form: f, attribute: :datetime_utc, zone: :datetime_zone, heading: 'Date and time of event start', selectable: selectable
     = render 'form_elements/visibility',          form: f, attribute: :visibility
-    = render 'form_elements/auto_keyword',        form: f, attribute: :event_keywords, auto_keyword: @auto_keyword
+    = render 'form_elements/auto_keyword',       form: f, attribute: :event_keywords
     = render 'form_elements/spacer'
     = render 'form_elements/text_field',          form: f, attribute: :alert
     = render 'form_elements/text_field',          form: f, attribute: :city

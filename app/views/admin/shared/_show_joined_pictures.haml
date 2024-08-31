@@ -3,7 +3,7 @@
     = resource_joined_pictures_count_label(resource)
   - if resource.does_have_pictures
     %table.arl_admin_resource_show_joined_items.arl_metadata_table_values
-      - resource.joined_pictures.each do |joined_picture|
+      - resource.joined_pictures_sorted.each do |joined_picture|
         %tr
           %td.arl_metadata_table_value_right
             = "#{joined_picture.order}." if joined_picture.does_have_order

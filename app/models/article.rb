@@ -23,13 +23,19 @@ class Article < ApplicationRecord
 
   friendly_id :slug_candidates, use: :slugged
 
+  has_many :article_keywords, -> { includes_keyword }, dependent: :destroy
+
   has_many :infopage_items, -> { infopage_articles.includes_infopage }, foreign_key: :infopageable_id, dependent: :destroy
   has_many :infopages, through: :infopage_items
+
+  has_many :keywords, through: :article_keywords
 
   before_validation :strip_whitespace_edges_from_entered_text
 
   validates :content_markup_type, presence: true
   validates :copyright_markup_type, presence: true
+
+  accepts_nested_attributes_for :article_keywords, allow_destroy: true, reject_if: proc { |attributes| attributes['keyword_id'] == '0' }
 
 
   public
@@ -45,6 +51,12 @@ class Article < ApplicationRecord
   end
 
   ### author
+
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
+  end
 
   def content_beginning_props
     { markup_type: content_markup_type, markup_text: content_markup_text[0..250].gsub(/[\n\r]+/,' ').concat('…') }
@@ -69,6 +81,10 @@ class Article < ApplicationRecord
   ### created_at
 
   ### date_released
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
+  end
 
   def does_have_infopages
     infopages_count.to_i > 0
@@ -113,6 +129,10 @@ class Article < ApplicationRecord
   end
 
   def joined_keywords
+    article_keywords
+  end
+
+  def joined_keywords_sorted
     article_keywords_sorted
   end
 

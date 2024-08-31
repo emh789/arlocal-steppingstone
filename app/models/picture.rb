@@ -108,6 +108,12 @@ class Picture < ApplicationRecord
     albums.to_a.sort_by! { |album| album.title_sortable.downcase }
   end
 
+  def autokeyword
+    if is_newly_built_and_has_unassigned_keyword
+      joined_keywords[0]
+    end
+  end
+
   ### created_at
 
   ### credits_markup_type
@@ -209,6 +215,10 @@ class Picture < ApplicationRecord
 
   def does_have_albums_published
     albums_published_count.to_i > 0
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_credits

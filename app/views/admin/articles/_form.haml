@@ -2,12 +2,13 @@
   .arl_form_title
     Article Details
   .arl_form_data
-    = render 'form_elements/text_field',      attribute: :title,          form: f
-    = render 'form_elements/visibility',      attribute: :visibility,     form: f
+    = render 'form_elements/text_field',      attribute: :title,            form: f
+    = render 'form_elements/visibility',      attribute: :visibility,       form: f
+    = render 'form_elements/auto_keyword',   attribute: :article_keywords, form: f
     = render 'form_elements/spacer'
-    = render 'form_elements/text_field',      attribute: :author,         form: f
-    = render 'form_elements/parseable_area',  attribute: :content,        form: f, selectable: selectable
-    = render 'form_elements/parseable_field', attribute: :copyright,      form: f, selectable: selectable
-    = render 'form_elements/date_select',     attribute: :date_released,  form: f, default_date: Date.current
+    = render 'form_elements/text_field',      attribute: :author,           form: f
+    = render 'form_elements/parseable_area',  attribute: :content,          form: f, selectable: selectable
+    = render 'form_elements/parseable_field', attribute: :copyright,        form: f, selectable: selectable
+    = render 'form_elements/date_select',     attribute: :date_released,    form: f, default_date: Date.current
   .arl_form_actions
     = f.submit class: :arl_button_form_submit

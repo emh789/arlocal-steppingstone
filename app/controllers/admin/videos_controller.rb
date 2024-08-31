@@ -1,8 +1,6 @@
 class Admin::VideosController < AdminController
 
-
   before_action :verify_nested_picture_file_exists, only: [ :picture_create_from_import ]
-
 
   def create
     @video = VideoBuilder.create(params_video_permitted)
@@ -11,14 +9,10 @@ class Admin::VideosController < AdminController
       redirect_to edit_admin_video_path(@video.id_admin)
     else
       @form_metadata = FormVideoMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       flash[:notice] = 'Video could not be created.'
       render 'new'
     end
   end
-
 
   def destroy
     @video = QueryVideos.find_admin(params[:id])
@@ -27,28 +21,20 @@ class Admin::VideosController < AdminController
     redirect_to action: :index
   end
 
-
   def edit
     @video = QueryVideos.find_admin(params[:id])
     @video_neighbors = QueryVideos.neighborhood_admin(@video, @arlocal_settings)
     @form_metadata = FormVideoMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
   end
 
-
   def index
     @videos = QueryVideos.index_admin(@arlocal_settings, params)
   end
 
-
   def new
-    @video = VideoBuilder.build_with_defaults
+    @video = VideoBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings)
     @form_metadata = FormVideoMetadata.new(pane: params[:pane], arlocal_settings: @arlocal_settings)
-    if @arlocal_settings.admin_forms_autokeyword_enabled
-      @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      @video.video_keywords.build(keyword_id: @auto_keyword.keyword_id)
-    end
   end
-
 
   def picture_create_from_import
     @video = QueryVideos.find_admin(params[:id])
@@ -63,7 +49,6 @@ class Admin::VideosController < AdminController
     end
   end
 
-
   def picture_create_from_upload
     @video = QueryVideos.find_admin(params[:id])
     @picture = PictureBuilder.create_from_upload_nested_within_video(@video, params_video_permitted)
@@ -71,21 +56,16 @@ class Admin::VideosController < AdminController
       flash[:notice] = 'Picture was successfully uploaded.'
       redirect_to edit_admin_video_path(@video.id_admin, pane: :pictures)
     else
-      if @arlocal_settings.admin_forms_autokeyword_enabled
-        @auto_keyword = AutoKeywordMetadata.new(@arlocal_settings)
-      end
       @form_metadata = FormAlbumMetadata.new(pane: :picture_import, arlocal_settings: @arlocal_settings)
       flash[:notice] = 'Picture could not be uploaded.'
       render 'edit'
     end
   end
 
-
   def show
     @video = QueryVideos.find_admin(params[:id])
     @video_neighbors = QueryVideos.neighborhood_admin(@video, @arlocal_settings)
   end
-
 
   def update
     @video = QueryVideos.find_admin(params[:id])
@@ -101,9 +81,7 @@ class Admin::VideosController < AdminController
   end
 
 
-
   private
-
 
   def params_video_permitted
     params.require(:video).permit(
@@ -152,7 +130,6 @@ class Admin::VideosController < AdminController
     )
   end
 
-
   def verify_file(filename)
     if File.exist?(filename) == false
       flash[:notice] = "File not found: #{filename}"
@@ -160,11 +137,9 @@ class Admin::VideosController < AdminController
     end
   end
 
-
   def verify_nested_picture_file_exists
     filename = helpers.source_imported_file_path(params_video_permitted['pictures_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
-
 
 end
