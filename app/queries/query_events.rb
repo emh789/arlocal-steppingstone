@@ -28,7 +28,7 @@ class QueryEvents
   end
 
   def self.options_for_select_admin
-    Event.select(:id, :datetime_utc, Event.datetime_array_attrs, :title_without_markup).sort_by{ |e| e.datetime_utc }
+    Event.select(:id, :datetime_utc, :datetime_zone, :title_without_markup).sort_by{ |e| e.datetime_utc }
   end
 
 
