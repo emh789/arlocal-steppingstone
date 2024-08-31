@@ -18,9 +18,9 @@ class MarkupParser
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
     },
     {
-      id: 'string',
+      id: 'inline',
       categories: [:admin, :public],
-      description: 'Single line',
+      description: 'Inline text',
       method_parse: lambda { |text| text.to_s },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
     }

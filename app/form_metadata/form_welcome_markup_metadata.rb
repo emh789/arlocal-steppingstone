@@ -21,11 +21,11 @@ class FormWelcomeMarkupMetadata
       markup_examples: proc { ArlocalMarkupExamples::examples },
       parser: proc { MarkupParser.find('plaintext') }
     },
-    'single line': {
+    'inline text': {
       navbar: 1,
-      partial: 'markup_example_string',
+      partial: 'markup_example_inline',
       markup_examples: proc { ArlocalMarkupExamples::examples },
-      parser: proc { MarkupParser.find('string') }
+      parser: proc { MarkupParser.find('inline') }
     },
   }
 
