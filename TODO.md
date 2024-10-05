@@ -3,7 +3,7 @@
 
 ## HIGHEST priority
 
-fixing the multi-field spacing elminiated proper padding on markup_type-select
+- duration attributes in forms would look better with leading zero
 
 - article_keyword needs counters
 - article & keyword need full implementation in views.
@@ -227,3 +227,6 @@ Video index needs headings
 
 - autokeyword refactor needed a distinction between joined_resources and joined_resources_sorted
   - check joined_resource views. update methods.
+
+fixing the multi-field spacing elminiated proper padding on markup_type-select
+_nope, just a typo_
