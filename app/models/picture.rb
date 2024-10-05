@@ -318,18 +318,34 @@ class Picture < ApplicationRecord
   end
 
   def joined_albums
+    album_pictures
+  end
+
+  def joined_albums_sorted
     album_pictures_sorted
   end
 
   def joined_events
+    event_pictures
+  end
+
+  def joined_events_sorted
     event_pictures_sorted
   end
 
   def joined_keywords
+    picture_keywords
+  end
+
+  def joined_keywords_sorted
     picture_keywords_sorted
   end
 
   def joined_videos
+    video_pictures
+  end
+
+  def joined_videos_sorted
     video_pictures_sorted
   end
 
