@@ -190,10 +190,6 @@ class Album < ApplicationRecord
     audio_published_count.to_i > 0
   end
 
-  def is_newly_built_and_has_unassigned_keyword
-    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
-  end
-
   def does_have_coverpicture
     coverpicture && coverpicture.picture
   end
@@ -325,12 +321,18 @@ class Album < ApplicationRecord
     ['public_indexable', 'public_joinable'].include?(visibility)
   end
 
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
+  end
+
   def is_published?
     is_joinable? && is_released?
   end
 
   def is_released?
-    date_released <= FindPublished.date_today
+    if date_released
+      date_released <= FindPublished.date_today
+    end
   end
 
   def joined_audio

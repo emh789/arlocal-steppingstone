@@ -66,7 +66,9 @@ class Stream < ApplicationRecord
   end
 
   def is_released?
-    date_released <= FindPublished.date_today
+    if date_released
+      date_released <= FindPublished.date_today
+    end
   end
 
   def should_generate_new_friendly_id?

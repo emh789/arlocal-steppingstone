@@ -206,10 +206,6 @@ class Event < ApplicationRecord
     audio.published_count.to_i > 0
   end
 
-  def is_newly_built_and_has_unassigned_keyword
-    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
-  end
-
   def does_have_alert
     alert.to_s != ''
   end
@@ -343,7 +339,13 @@ class Event < ApplicationRecord
   end
 
   def is_announced?
-    date_announced <= FindPublished.date_today
+    if date_announced
+      date_announced <= FindPublished.date_today
+    end
+  end
+
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def is_published?

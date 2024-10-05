@@ -70,7 +70,7 @@ class Audio < ApplicationRecord
     [:imported, :uploaded]
   end
 
-  def self.source_type_options_for_select
+  def self.source_0type_options_for_select
     Audio.source_type_options.map { |option| [option, option] }
   end
 
@@ -145,10 +145,6 @@ class Audio < ApplicationRecord
 
   def does_have_albums_published
     albums_published_count.to_i > 0
-  end
-
-  def is_newly_built_and_has_unassigned_keyword
-    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
   end
 
   def does_have_source_uploaded
@@ -290,12 +286,18 @@ class Audio < ApplicationRecord
     ['public_indexable', 'public_joinable'].include?(visibility)
   end
 
+  def is_newly_built_and_has_unassigned_keyword
+    (id == nil) && (joined_keywords.length == 1) && (joined_keywords[0].id == nil)
+  end
+
   def is_published?
     is_joinable? && is_released?
   end
 
   def is_released?
-    date_released <= FindPublished.date_today
+    if date_released
+      date_released <= FindPublished.date_today
+    end
   end
 
   def isrc
