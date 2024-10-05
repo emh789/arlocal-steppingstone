@@ -3,9 +3,6 @@
 
 ## HIGHEST priority
 
-- duration attributes in forms would look better with leading zero
-
-- article_keyword needs counters
 - article & keyword need full implementation in views.
 
 - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
@@ -230,3 +227,7 @@ Video index needs headings
 
 fixing the multi-field spacing elminiated proper padding on markup_type-select
 _nope, just a typo_
+
+- duration attributes in forms would look better with leading zero
+
+- article_keyword needs counters

@@ -238,7 +238,15 @@ class Audio < ApplicationRecord
 
   ### duration_secs
 
+  def duration_secs_padded
+    duration_secs.to_s.rjust(2, '0')
+  end
+
   ### duration_mils
+
+  def duration_mils_padded
+    duration_mils.to_s.rjust(3, '0')
+  end
 
   def event_audio_sorted
     event_audio_sorted_by_datetime_asc
