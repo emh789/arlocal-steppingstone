@@ -19,9 +19,9 @@ class InfopageItem < ApplicationRecord
   belongs_to :infopage
   belongs_to :infopageable, polymorphic: true
 
-  belongs_to :article,  -> { where(infopage_items: { infopageable_type: 'Article' } )}, foreign_key: 'infopageable_id'
-  belongs_to :link,     -> { where(infopage_items: { infopageable_type: 'Link'    } )}, foreign_key: 'infopageable_id'
-  belongs_to :picture,  -> { where(infopage_items: { infopageable_type: 'Picture' } )}, foreign_key: 'infopageable_id'
+  belongs_to :article,  -> { where(infopage_items: { infopageable_type: 'Article' } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
+  belongs_to :link,     -> { where(infopage_items: { infopageable_type: 'Link'    } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
+  belongs_to :picture,  -> { where(infopage_items: { infopageable_type: 'Picture' } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
 
 
   protected

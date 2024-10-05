@@ -3,6 +3,42 @@
 
 ## HIGHEST priority
 
+- article_keyword needs counters
+- article & keyword need full implementation in views.
+
+- audio.published might not be finished. There is not yet an audio index, so this had been delayed.
+  - .published is defined but check for full join support and implementation.
+- event.announced/published might not be finalized. This had been considered irrelevant, but should now be completed.
+  - .announced is defined, but there is not yet an date_announced attribute. OK to finish join support.
+    - *except…* audio/pictures/video would be more applicable for Event.past rather than Even.announced.
+    - why would this be useful? if media is from a past event, how would there be multiple joins?
+    - maybe coverpicture? But then `announced` would be better
+    - keywords maybe.
+    - Is this a YAGNI item?
+- counter cache for infopage articles, links, pictures
+  - it's polymorphic. *see below*
+
+- Gem support from counter_culture might be necessary for
+  - scope-dependent counters (audio_published_count)
+  - polymorphic counters (infopageables)
+  - **conditional counting**
+  - No. **Dynamic column names?**
+```
+class Product < ActiveRecord::Base
+  belongs_to :category
+  scope :awesomes, ->{ where "products.product_type = ?", 'awesome' }
+  scope :suckys, ->{ where "products.product_type = ?", 'sucky' }
+
+  counter_culture :category,
+      column_name: proc {|model| "#{model.product_type}_count" },
+      column_names: -> { {
+          Product.awesomes => :awesome_count,
+          Product.suckys => :sucky_count
+      } }
+end
+```
+
+
 - does Video:Form-picture-import/upload need autokeyword
 
 - Keyword Admin:

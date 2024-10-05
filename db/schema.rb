@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_01_065728) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -176,6 +176,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
     t.string "summary_markup_type"
     t.text "summary_markup_text"
     t.string "visibility"
+    t.integer "infopages_count"
+    t.integer "keywords_count"
     t.index ["slug"], name: "index_articles_on_slug"
   end
 
@@ -319,6 +321,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "visibility"
+    t.integer "articles_count"
+    t.integer "links_count"
+    t.integer "pictures_count"
     t.index ["slug"], name: "index_infopages_on_slug"
   end
 
@@ -347,6 +352,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
     t.integer "events_published_count"
     t.integer "pictures_published_count"
     t.integer "videos_published_count"
+    t.integer "articles_count"
     t.index ["slug"], name: "index_keywords_on_slug"
   end
 
@@ -360,6 +366,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "visibility"
+    t.integer "infopages_count"
   end
 
   create_table "picture_keywords", force: :cascade do |t|
@@ -404,6 +411,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_06_211905) do
     t.integer "events_published_count"
     t.integer "videos_published_count"
     t.datetime "datetime_from_manual_entry"
+    t.integer "infopages_count"
     t.index ["slug"], name: "index_pictures_on_slug"
   end
 

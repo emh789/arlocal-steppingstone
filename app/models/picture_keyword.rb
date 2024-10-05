@@ -8,7 +8,7 @@ class PictureKeyword < ApplicationRecord
 
   belongs_to :picture, counter_cache: :keywords_count
   belongs_to :keyword, counter_cache: :pictures_count
-
+  belongs_to :keyword, counter_cache: :pictures_published_count
 
   ### created_at
 

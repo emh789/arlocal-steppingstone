@@ -3,8 +3,8 @@ class EventKeyword < ApplicationRecord
   scope :includes_event,    -> { includes(:event) }
   scope :includes_keyword,  -> { includes(:keyword) }
 
-  belongs_to :event, counter_cache: :keywords_count
-  belongs_to :keyword, counter_cache: :events_count
+  belongs_to :event,    counter_cache: :keywords_count
+  belongs_to :keyword,  counter_cache: :events_count
 
 
   ### created_at

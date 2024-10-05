@@ -8,8 +8,8 @@ preferred: &preferred
   username: <%= Rails.application.credentials[:postgres_username] %>
   password: <%= Rails.application.credentials[:postgres_password] %>
 
-development:
-  <<: *preferred
+#development:
+#  <<: *preferred
 
 production:
   <<: *preferred
@@ -33,6 +33,6 @@ test:
 # Ruby on Rails now warns against using sqlite3 in production
 # so maybe it's better not to use it in development either.
 #
-# Previous_development:
-#   <<: *rails_default
-#   database: db/development.sqlite3
+development:
+  <<: *rails_default
+  database: db/development.sqlite3

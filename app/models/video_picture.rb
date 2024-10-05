@@ -12,6 +12,7 @@ class VideoPicture < ApplicationRecord
   scope :videos_published, -> { videos_joinable.videos_released }
 
   belongs_to :video, counter_cache: :pictures_count
+  belongs_to :video, counter_cache: :pictures_published_count
   belongs_to :picture, counter_cache: :videos_count
 
 

@@ -4,6 +4,13 @@ class MarkupParser
 
   DATA = [
     {
+      id: 'inline',
+      categories: [:admin, :public],
+      description: 'Inline text',
+      method_parse: lambda { |text| text.to_s },
+      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
+    },
+    {
       id: 'markdown',
       categories: [:admin, :public],
       description: 'Markdown',
@@ -15,13 +22,6 @@ class MarkupParser
       categories: [:admin, :public],
       description: 'Plain text',
       method_parse: lambda { |text| ApplicationController.helpers.simple_format(text.to_s) },
-      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
-    },
-    {
-      id: 'inline',
-      categories: [:admin, :public],
-      description: 'Inline text',
-      method_parse: lambda { |text| text.to_s },
       method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
     }
   ]
