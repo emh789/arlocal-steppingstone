@@ -3,6 +3,8 @@
 
 ## HIGHEST priority
 
+fixing the multi-field spacing elminiated proper padding on markup_type-select
+
 - article_keyword needs counters
 - article & keyword need full implementation in views.
 
