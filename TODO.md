@@ -7,15 +7,9 @@
 
 - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
   - .published is defined but check for full join support and implementation.
-- event.announced/published might not be finalized. This had been considered irrelevant, but should now be completed.
-  - .announced is defined, but there is not yet an date_announced attribute. OK to finish join support.
-    - *except…* audio/pictures/video would be more applicable for Event.past rather than Even.announced.
-    - why would this be useful? if media is from a past event, how would there be multiple joins?
-    - maybe coverpicture? But then `announced` would be better
-    - keywords maybe.
-    - Is this a YAGNI item?
+
 - counter cache for infopage articles, links, pictures
-  - it's polymorphic. *see below*
+  - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
 
 - does Video:Form-picture-import/upload need autokeyword
 
@@ -26,11 +20,6 @@
 Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
   - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
   -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
-
-  - scopes intersect with visibility
-    - models `does_have_published_{resource}` and counter_cache
-    - [].any vs [].count
-      - `.any` requires a db query UNLESS the parent search had an `.includes()` method
 
 
 ## HIGH priority
@@ -68,6 +57,14 @@ Admin views public_index/show buttons should use a "preview" action instead of b
   - if not, return a dummy html_class to guarantee minimal dimensions
 - form_pictures exerwhere
 - picture_selector in join_single
+
+- event.announced/published might not be finalized. (This had been considered irrelevant.)
+  - .announced is defined, but there is not yet an date_announced attribute. OK to finish join support.
+    - *except…* audio/pictures/video would be more applicable for Event.past rather than Even.announced.
+    - why would this be useful? if media is from a past event, how would there be multiple joins?
+    - maybe coverpicture? But then `announced` would be better
+    - keywords maybe.
+    - Is this a YAGNI item?
 
 
 
@@ -211,4 +208,8 @@ _nope, just a typo_
 
 - article_keyword needs counters
 
+- scopes intersect with visibility
+  - models `does_have_published_{resource}` and counter_cache
+  - [].any vs [].count
+    - `.any` requires a db query UNLESS the parent search had an `.includes()` method
 - Counter cache support for `published` scopes as a table column is unfeasible because it requires a variable evaluation (current date).
