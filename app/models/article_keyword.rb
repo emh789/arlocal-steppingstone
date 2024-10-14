@@ -9,7 +9,6 @@ class ArticleKeyword < ApplicationRecord
 
   belongs_to :article, counter_cache: :keywords_count
   belongs_to :keyword, counter_cache: :articles_count
-  belongs_to :keyword, counter_cache: :articles_published_count
 
 
   public

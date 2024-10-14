@@ -9,7 +9,6 @@ class VideoKeyword < ApplicationRecord
 
   belongs_to :video,    counter_cache: :keywords_count
   belongs_to :keyword,  counter_cache: :videos_count
-  belongs_to :keyword,  counter_cache: :videos_published_count
 
 
   ### created_at

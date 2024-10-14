@@ -12,7 +12,6 @@ class EventAudio < ApplicationRecord
   scope :includes_event,  -> { includes(:event) }
 
   belongs_to :event, counter_cache: :audio_count
-  belongs_to :event, counter_cache: :audio_published_count
   belongs_to :audio, counter_cache: :events_count
 
 

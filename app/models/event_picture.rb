@@ -12,7 +12,6 @@ class EventPicture < ApplicationRecord
   scope :pictures_published,        -> { pictures_public_joinable }
 
   belongs_to :event, counter_cache: :pictures_count
-  belongs_to :event, counter_cache: :pictures_published_count
   belongs_to :picture, counter_cache: :events_count
 
 

@@ -9,12 +9,6 @@ class AudioKeyword < ApplicationRecord
 
   belongs_to :audio, counter_cache: :keywords_count
   belongs_to :keyword, counter_cache: :audio_count
-  belongs_to :keyword, counter_cache: :audio_published_count
-
-  # counter_culture :keyword,
-  #     column_names: -> { {
-  #         Audio.published => :audio_published_count
-  #     } }
 
 
   ### audio_id

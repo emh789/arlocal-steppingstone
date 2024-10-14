@@ -12,9 +12,7 @@ class AlbumPicture < ApplicationRecord
   scope :pictures_published,        -> { pictures_public_joinable }
 
   belongs_to :album, counter_cache: :pictures_count
-  belongs_to :album, counter_cache: :pictures_published_count
   belongs_to :picture, counter_cache: :albums_count
-  belongs_to :picture, counter_cache: :albums_published_count
 
 
   public

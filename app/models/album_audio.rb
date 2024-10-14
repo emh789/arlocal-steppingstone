@@ -12,9 +12,7 @@ class AlbumAudio < ApplicationRecord
   scope :includes_audio,    -> { includes(audio: :source_uploaded_attachment) }
 
   belongs_to :album, counter_cache: :audio_count
-  belongs_to :album, counter_cache: :audio_published_count
   belongs_to :audio, counter_cache: :albums_count
-  belongs_to :audio, counter_cache: :albums_published_count
 
 
   public

@@ -8,7 +8,6 @@ class EventVideo < ApplicationRecord
   scope :videos_published,        -> { videos_public_joinable.videos_released }
 
   belongs_to :event, counter_cache: :videos_count
-  belongs_to :event, counter_cache: :videos_published_count
   belongs_to :video, counter_cache: :events_count
 
 end

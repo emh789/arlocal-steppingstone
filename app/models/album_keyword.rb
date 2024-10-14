@@ -9,7 +9,6 @@ class AlbumKeyword < ApplicationRecord
 
   belongs_to :album, counter_cache: :keywords_count
   belongs_to :keyword, counter_cache: :albums_count
-  belongs_to :keyword, counter_cache: :albums_published_count
 
 
   public
