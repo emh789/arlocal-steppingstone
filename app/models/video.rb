@@ -157,7 +157,7 @@ class Video < ApplicationRecord
   end
 
   def does_have_events_published
-    events_published_count.to_i > 0
+    events_published.count.to_i > 0
   end
 
   def does_have_keywords
@@ -169,7 +169,7 @@ class Video < ApplicationRecord
   end
 
   def does_have_pictures_published
-    pictures_published_count.to_i > 0
+    pictures_published.count.to_i > 0
   end
 
   def does_have_source_uploaded

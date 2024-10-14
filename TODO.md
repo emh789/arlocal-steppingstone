@@ -17,27 +17,6 @@
 - counter cache for infopage articles, links, pictures
   - it's polymorphic. *see below*
 
-- Gem support from counter_culture might be necessary for
-  - scope-dependent counters (audio_published_count)
-  - polymorphic counters (infopageables)
-  - **conditional counting**
-  - No. **Dynamic column names?**
-```
-class Product < ActiveRecord::Base
-  belongs_to :category
-  scope :awesomes, ->{ where "products.product_type = ?", 'awesome' }
-  scope :suckys, ->{ where "products.product_type = ?", 'sucky' }
-
-  counter_culture :category,
-      column_name: proc {|model| "#{model.product_type}_count" },
-      column_names: -> { {
-          Product.awesomes => :awesome_count,
-          Product.suckys => :sucky_count
-      } }
-end
-```
-
-
 - does Video:Form-picture-import/upload need autokeyword
 
 - Keyword Admin:
@@ -231,3 +210,5 @@ _nope, just a typo_
 - duration attributes in forms would look better with leading zero
 
 - article_keyword needs counters
+
+- Counter cache support for `published` scopes as a table column is unfeasible because it requires a variable evaluation (current date).
