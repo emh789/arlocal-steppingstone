@@ -211,22 +211,42 @@ class Keyword < ApplicationRecord
   end
 
   def joined_albums
+    album_keywords
+  end
+
+  def joined_albums_sorted
     album_keywords_sorted
   end
 
   def joined_audio
+    audio_keywords
+  end
+
+  def joined_audio_sorted
     audio_keywords_sorted
   end
 
   def joined_events
+    event_keywords
+  end
+
+  def joined_events_sorted
     event_keywords_sorted
   end
 
   def joined_pictures
+    picture_keywords
+  end
+
+  def joined_pictures_sorted
     picture_keywords_sorted
   end
 
   def joined_videos
+    video_keywords
+  end
+
+  def joined_videos_sorted
     video_keywords_sorted
   end
 
