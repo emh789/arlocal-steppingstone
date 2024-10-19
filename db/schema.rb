@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_14_000124) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_19_235846) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -340,6 +340,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_14_000124) do
     t.integer "order_selecting_videos"
     t.boolean "can_select_audio"
     t.integer "articles_count"
+    t.integer "order_selecting_audio"
     t.index ["slug"], name: "index_keywords_on_slug"
   end
 
