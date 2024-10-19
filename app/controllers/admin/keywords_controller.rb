@@ -114,6 +114,7 @@ class Admin::KeywordsController < AdminController
       :can_select_pictures,
       :can_select_videos,
       :order_selecting_albums,
+      :order_selecting_audio,
       :order_selecting_events,
       :order_selecting_pictures,
       :order_selecting_videos,
