@@ -74,7 +74,7 @@ class SorterIndexPublicVideos
   def self.sort_by_keyword(video_collection, inner_order: :title_asc)
     videos_by_keyword = Hash.new
 
-    keyword_collection = Keyword.will_select_published_videos
+    keyword_collection = Keyword.will_select_videos
     keyword_collection.each do |keyword|
       videos_by_keyword[keyword.title] = video_collection.with_keywords_matching(keyword_collection)
     end

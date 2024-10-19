@@ -3,11 +3,10 @@ class Keyword < ApplicationRecord
   extend FriendlyId
   extend Neighborable
 
-  scope :can_select_videos,-> { where(can_select_videos: true) }
+  scope :can_select_videos, -> { where(can_select_videos: true) }
 
-  scope :will_select_published_videos,  -> { can_select_videos.with_videos_published }
+  scope :will_select_videos,            -> { can_select_videos.with_videos }
   scope :with_videos,                   -> { where(videos_count: 1..) }
-  scope :with_videos_published,         -> { with_videos }
 
   scope :include_everything,  -> { includes_albums.includes_articles.includes_audio.includes_events.includes_pictures.includes_videos }
   scope :includes_albums,     -> { includes(:albums) }
