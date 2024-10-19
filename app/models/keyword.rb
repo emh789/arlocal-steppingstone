@@ -7,7 +7,7 @@ class Keyword < ApplicationRecord
 
   scope :will_select_published_videos,  -> { can_select_videos.with_videos_published }
   scope :with_videos,                   -> { where(videos_count: 1..) }
-  scope :with_videos_published,         -> { where(videos_published.count: 1..) }
+  scope :with_videos_published,         -> { with_videos }
 
   scope :include_everything,  -> { includes_albums.includes_articles.includes_audio.includes_events.includes_pictures.includes_videos }
   scope :includes_albums,     -> { includes(:albums) }
