@@ -72,14 +72,14 @@ class ArlocalSettings < ApplicationRecord
 
   ### created_at
 
-  def does_have_attached(attribute)
+  def does_have_source_uploaded(attribute)
     case attribute
     when :icon_image
       self.icon_image.attached? == true
     end
   end
 
-  def does_not_have_attached(attribute)
+  def does_not_have_source_uploaded(attribute)
     case attribute
     when :icon_image
       self.icon_image.attached? == false

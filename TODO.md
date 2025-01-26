@@ -36,6 +36,8 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 ***- jplayer Audio player has not been updated in 10 yrs. Can videojs replace it?***
       - Yes, but it will require additional custom code, and it will change the look-and-feel.
       - and it uses npm which puts diarrhea everywhere
+*AmplitudeJS for audio*
+
 
 - check various `form_pictures`
   - coverpicture=true would slightly obscure the Order field
