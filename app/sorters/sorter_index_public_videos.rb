@@ -76,7 +76,7 @@ class SorterIndexPublicVideos
 
     keyword_collection = Keyword.will_select_videos
     keyword_collection.each do |keyword|
-      videos_by_keyword[keyword.title] = video_collection.with_keywords_matching(keyword_collection)
+      videos_by_keyword[keyword.title] = video_collection.with_keywords_matching(keyword)
     end
     videos_by_keyword["more videos"] = video_collection.without_any_or_matching_keywords(keyword_collection)
 
