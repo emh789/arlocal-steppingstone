@@ -7,7 +7,7 @@ class QueryVideos
   end
 
   def self.find_public(id)
-    Video.include_everything.publicly_linkable.friendly.find(id)
+    Video.any_public_released_or_showable.include_everything.friendly.find(id)
   end
 
   def self.find_admin_with_keyword(keyword)
