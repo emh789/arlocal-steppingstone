@@ -1,7 +1,6 @@
 .arl_videos_index {}
-.arl_videos_index_heading {
-//  border-style: $border-style;
-//  border-width: $border-width;
+.arl_videos_index_category {}
+.arl_videos_index_subheading {
   font-family: $font-family-marquee;
   font-size: 1.2em;
   font-style: italic;
@@ -12,30 +11,24 @@
   cursor: pointer;
 }
 .arl_videos_index_video_picture {
-//  vertical-align: middle;
-}
-.arl_videos_index_video_picture_img {
-  border-radius: $border-radius-narrow;
+  grid-area: picture;
 }
 .arl_videos_index_video_text {
+  grid-area: text;
+  vertical-align: top;
 }
 .arl_videos_index_video_text_video_artist {
   font-family: $font-family-title;
-  font-size: 0.9em;
   font-weight: bold;
-  margin-bottom: ($arl-margin-narrow / 2);
 }
 .arl_videos_index_video_text_title {
   font-family: $font-family-title;
   font-weight: bold;
-  margin-bottom: $arl-margin-narrow;
 }
 .arl_videos_index_video_text_title_link {
 }
 .arl_videos_index_video_text_year {
   font-family: $font-family-description;
-  font-size: 0.75rem;
-  margin-top: $arl-margin-narrow;
 }
 .arl_videos_index_videos {}
 
@@ -43,83 +36,173 @@
 
 @media #{$media-screen-1} {
   .arl_videos_index {
-    padding: $arl-margin;
-  }
-  .arl_videos_index_video_picture {
-    padding-bottom: $arl-margin-wide;
-    padding-left: 0rem;
-    padding-right: $arl-margin-narrow;
-    padding-top: $arl-margin-wide;
-  }
-  .arl_videos_index_video_picture_img {
-    height: 3.375rem;
-    width: 6rem;
-  }
-  .arl_videos_index_video_text {
-    padding-bottom: $arl-margin;
-    padding-left: $arl-margin-narrow;
-    padding-right: 0rem;
-    padding-top: $arl-margin;
+    display: flex;
+    flex-direction: column;
     width: 100%;
   }
-  .arl_videos_index_video_text_video_artist {
-    font-size: .75em;
+  .arl_videos_index_category {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
-  .arl_videos_index_video_notice_alt_url {
-    display: none;
+  .arl_videos_index_subheading {
+    padding: $arl-margin $arl-spacing;
+    text-align: right;
+    text-shadow: 1px 1px 1px black;
   }
-  .arl_videos_index_video_text_tracks {
-    display: none;
+  .arl_videos_index_video {
+    align-items: start;
+    display: grid;
+    grid-template-areas: 'picture' 'text';
+    grid-template-rows: min-content auto;
+    width: 100%;
   }
-  .arl_videos_index_videos {
-    width: 18rem;
+  .arl_videos_index_video_picture {
   }
-  .arl_videos_index_video_notice_alt_url {
-    margin-bottom: $arl-margin-wide;
+  .arl_videos_index_video_picture_img {
+    max-height: 12rem;
+    max-width: 100%;
+    min-height: 12rem;
+    min-width: 100%;
+    object-fit: cover;
   }
-
+  .arl_videos_index_video_text {
+    padding: ($arl-margin / 2);
+    margin-bottom: $arl-margin;
+  }
+  .arl_videos_index_video_text_title {
+    font-size: 1rem;
+  }
+  .arl_videos_index_video_text_year {
+    font-size: 0.825rem;
+  }
 }
 
 
 @media #{$media-screen-2} {
   .arl_videos_index {
-    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    max-width: 30rem;
-    padding: $arl-margin-wide;
+    width: 25rem;
+  }
+  .arl_videos_index_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .arl_videos_index_subheading {
+    margin-top: $arl-spacing;
+    margin-bottom: $arl-margin;
+  }
+  .arl_videos_index_video {
+    align-items: start;
+    display: grid;
+    grid-template-areas: 'picture' 'text';
+    grid-template-rows: min-content auto;
+    margin: $arl-margin;
+    row-gap: ($arl-margin / 2);
+    width: 11rem;
   }
   .arl_videos_index_video_picture {
-    padding: $arl-margin-wider $arl-margin-narrow;
   }
   .arl_videos_index_video_picture_img {
-    height: 4.5rem;
-    width: 8rem;
+    border-radius: $border-radius-narrow;
+    max-height: 8rem;
+    max-width: 11rem;
+    min-height: 8rem;
+    min-width: 11rem;
+    object-fit: cover;
   }
-  .arl_videos_index_video_text {
-    padding: $arl-margin-wide $arl-margin-narrow;
+  .arl_videos_index_video_text_title {
+    font-size: 0.9rem;
+  }
+  .arl_videos_index_video_text_year {
+    font-size: 0.75rem;
   }
 }
 
 
-@media #{$media-screen-3} {
+@media #{$media-screen-3-only} {
   .arl_videos_index {
-    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    max-width: 35rem;
-    padding: $arl-margin-wide;
+    width: 38rem;
+    padding: $arl-margin-wide 0rem;
+  }
+  .arl_videos_index_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .arl_videos_index_subheading {
+    margin-top: $arl-spacing;
+    margin-bottom: $arl-margin;
+  }
+  .arl_videos_index_video {
+    align-items: start;
+    display: grid;
+    grid-template-areas: 'picture' 'text';
+    grid-template-rows: min-content auto;
+    margin: $arl-margin;
+    row-gap: ($arl-margin / 2);
+    width: 11rem;
   }
   .arl_videos_index_video_picture {
-    padding: $arl-margin-wider $arl-margin-narrow;
   }
   .arl_videos_index_video_picture_img {
-    height: 4.5rem;
-    width: 8rem;
+    border-radius: $border-radius-narrow;
+    max-height: 8rem;
+    max-width: 11rem;
+    min-height: 8rem;
+    min-width: 11rem;
+    object-fit: cover;
   }
-  .arl_videos_index_video_text {
-    padding: $arl-margin-wide $arl-margin-narrow;
+  .arl_videos_index_video_text_title {
+    font-size: 0.9rem;
+  }
+  .arl_videos_index_video_text_year {
+    font-size: 0.75rem;
+  }
+}
+
+@media #{$media-screen-4} {
+  .arl_videos_index {
+    display: flex;
+    flex-direction: column;
+    padding: $arl-margin-wide $arl-spacing-wide;
+  }
+  .arl_videos_index_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .arl_videos_index_subheading {
+    margin-top: $arl-spacing;
+    margin-bottom: $arl-margin;
+  }
+  .arl_videos_index_video {
+    align-items: start;
+    display: grid;
+    grid-template-areas: 'picture' 'text';
+    grid-template-rows: min-content auto;
+    margin: $arl-margin;
+    row-gap: ($arl-margin / 2);
+    width: 11rem;
+  }
+  .arl_videos_index_video_picture {
+  }
+  .arl_videos_index_video_picture_img {
+    border-radius: $border-radius-narrow;
+    max-height: 8rem;
+    max-width: 11rem;
+    min-height: 8rem;
+    min-width: 11rem;
+    object-fit: cover;
+  }
+  .arl_videos_index_video_text_title {
+    font-size: 0.9rem;
+  }
+  .arl_videos_index_video_text_year {
+    font-size: 0.75rem;
   }
 }

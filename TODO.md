@@ -4,6 +4,7 @@
 ## HIGHEST priority
 
 - article & keyword need full implementation in views.
+  - *keyword admin index order by can_select*
 
 - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
   - .published is defined but check for full join support and implementation.

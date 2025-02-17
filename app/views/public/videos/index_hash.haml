@@ -1,14 +1,14 @@
 = html_head_subtitle_set 'videos'
 
 .arl_videos_index
-  %table.arl_videos_index_videos
-    - @video_groups.each_pair do |keyword, videos|
-      %tr.arl_videos_index_headings
-        %th.arl_videos_index_heading.color_bg_heading{colspan: 2}= keyword
-        - videos.each do |video|
-          %tr.arl_videos_index_video.arl_active_link_container{data: {url: public_video_path(video.id_public)}}
-            %td.arl_videos_index_video_picture
-              = render 'index_video_picture_img', video: video
-            %td.arl_videos_index_video_text
-              = render 'index_video_text_title', video: video
-              = render 'index_video_text_year', video: video
+  - @video_groups.each_pair do |keyword, videos|
+    .arl_videos_index_subheading.color_bg_heading
+      = keyword
+    .arl_videos_index_category
+      - videos.each do |video|
+        .arl_videos_index_video.arl_active_link_container{data: {url: public_video_path(video.id_public)}}
+          .arl_videos_index_video_picture
+            = render 'index_video_picture_img', video: video
+          .arl_videos_index_video_text
+            = render 'index_video_text_title', video: video
+            = render 'index_video_text_year', video: video
