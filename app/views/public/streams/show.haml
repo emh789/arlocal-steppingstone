@@ -1,4 +1,5 @@
-= html_head_subtitle_set @stream.title
+= content_for :page_subtitle, 'stream'
+= content_for :page_subtitle_detail, @stream.title
 
 .arl_streams_show
   .arl_streams_show_title

@@ -1,4 +1,5 @@
-= html_head_subtitle_set @event.date_and_venue
+= content_for :page_subtitle, 'event'
+= content_for :page_subtitle_detail, @event.date_and_venue
 
 - if @event.show_will_cycle_pictures
   = resource_script_picture_cycler(@event)

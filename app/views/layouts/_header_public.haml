@@ -1,12 +1,5 @@
 %header.arl_header
   %h1.arl_header_artist
     = arlocal_public_artist_home_link(@arlocal_settings)
-  - if @arlocal_settings.public_layout_will_have_nav
-    %nav.arl_header_nav
-      = arlocal_public_nav_link(@arlocal_settings, :albums)
-      -#arlocal_public_nav_link(@arlocal_settings, :audio)
-      = arlocal_public_nav_link(@arlocal_settings, :events)
-      = arlocal_public_nav_link(@arlocal_settings, :info)
-      = arlocal_public_nav_link(@arlocal_settings, :pictures)
-      = arlocal_public_nav_link(@arlocal_settings, :stream)
-      = arlocal_public_nav_link(@arlocal_settings, :videos)
+  %nav.arl_header_nav
+    = nav_public_select(@arlocal_settings)

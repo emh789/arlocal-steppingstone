@@ -490,9 +490,9 @@ class Picture < ApplicationRecord
 
   def title_for_html_head
     if title_without_markup.to_s == ''
-      'picture: untitled'
+      'untitled'
     else
-      "picture: #{title_without_markup}"
+      title_without_markup
     end
   end
 

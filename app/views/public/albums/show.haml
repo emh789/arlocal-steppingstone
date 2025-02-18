@@ -1,4 +1,5 @@
-= html_head_subtitle_set @album.title
+= content_for :page_subtitle, 'album'
+= content_for :page_subtitle_detail, @album.title
 
 .arl_albums_show
   .arl_albums_show_picture

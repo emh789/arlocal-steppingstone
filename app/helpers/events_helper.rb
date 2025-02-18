@@ -192,7 +192,7 @@ module EventsHelper
       :filter,
       SorterIndexPublicEvents.options_for_select(:url),
       { include_blank: false, selected: selected },
-      { class: [:arl_active_refine_selection, :arl_button_select, :arl_events_index_filter] }
+      { class: [:arl_active_refine_selection, :arl_button_select, :arl_events_index_select, :color_bg_heading] }
     )
   end
 

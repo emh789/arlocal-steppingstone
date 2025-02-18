@@ -10,7 +10,7 @@
 .arl_events_index_by_year {
   font-weight: 700;
   font-family: $font-family-marquee;
-  font-size: 1.125em;
+  f0ont-size: 1.125em;
   font-style: italic;
   border-style: $border-style;
   border-width: $border-width;
@@ -25,33 +25,29 @@
 .arl_events_index_empty {}
 .arl_events_index_event {
 }
-.arl_events_index_event_info {
-  padding: $arl-margin-wide $arl_margin-narrow;
-}
-.arl_events_index_event_info_alert {
+.arl_events_index_event_alert {
   font-family: $font-family-description;
-  margin-bottom: ($arl-margin-narrow / 2);
+  // margin-bottom: ($arl-margin-narrow / 2);
 }
-.arl_events_index_event_info_datetime {
+.arl_events_index_event_datetime {
   font-family: $font-family-title;
   font-weight: 700;
 }
-.arl_events_index_event_info_link {
+.arl_events_index_event_link {
   font-family: $font-family-description;
-  margin: 0em 0.5em;
+  // margin: 0em 0.5em;
 }
-.arl_events_index_event_info_links {}
-.arl_events_index_event_info_location {
+.arl_events_index_event_links {}
+.arl_events_index_event_location {
   font-family: $font-family-description;
 }
-.arl_events_index_event_info_title {
+.arl_events_index_event_title {
   font-family: $font-family-title;
   font-weight: 600;
-  margin-bottom: ($arl-margin-narrow / 2);
 }
-.arl_events_index_event_info_url {
+.arl_events_index_event_url {
 }
-.arl_events_index_filter {
+.arl_events_index_select {
   margin-top: $arl-spacing-wide;
 }
 .arl_events_index_heading {
@@ -95,12 +91,39 @@
   }
 }
 @media #{$media-screen-3} {
-  .arl_events_index_event_info {
+  .arl_events_index {
+    width: 40rem;
   }
-  .arl_events_index_table {
+  .arl_events_index_events {
+    display: flex;
+    flex-direction: column;
+    padding: $arl-margin;
+  }
+  .arl_events_index_event {
+    display: grid;
+    grid-template-areas: 'datetime' 'title' 'location' 'alert';
+    grid-template-columns: auto auto;
+    margin: $arl-margin;
+  }
+  .arl_events_index_event_alert {
+    grid-area: alert;
+  }
+  .arl_events_index_event_datetime {
+    grid-area: datetime;
+  }
+  .arl_events_index_event_location {
+    grid-area: location;
+  }
+  .arl_events_index_select {
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
   }
   .arl_events_index_thumbnail {
     max-height: 7em;
     max-width: 7em;
+  }
+  .arl_events_index_event_title {
+    grid-area: title;
   }
 }

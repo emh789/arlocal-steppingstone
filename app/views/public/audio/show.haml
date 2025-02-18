@@ -1,4 +1,5 @@
-= html_head_subtitle_set @audio.title
+= content_for :page_subtitle, 'audio'
+= content_for :page_subtitle_detail, @audio.title_and_subtitle_for_display
 
 .arl_audio_show
   .arl_audio_show_media

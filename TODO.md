@@ -3,6 +3,22 @@
 
 ## HIGHEST priority
 
+- Should html_head title elements include the resource type? Would help add clarity to browser history.
+  - examples:
+    - picture: album cover
+    - album: Diamonds in the Ruff
+  - see Picture for code
+  - *Yes, but in two different components*
+    - resource:
+    - title
+    - *this way the components can be used by the nav selector*
+- Standardize existing methods
+  - title_html_head
+  - title_for_display
+  - title_sortable
+- Does title need .html_safe?
+- DUplicate for admin & neutral
+
 - article & keyword need full implementation in views.
   - *keyword admin index order by can_select*
 
@@ -72,12 +88,6 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 
 
 ## Medium priority
-
-- Should html_head title elements include the resource type? Would help add clarity to browser history.
-  - examples:
-    - picture: album cover
-    - album: Diamonds in the Ruff
-  - see Picture for code
 
 Audio Id3 tags:
   - AUdioHelper#audio_read_source_metadata

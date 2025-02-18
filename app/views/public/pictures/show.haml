@@ -1,4 +1,5 @@
-= html_head_subtitle_set @picture.title_for_html_head
+= content_for :page_subtitle, 'picture'
+= content_for :page_subtitle_detail, @picture.title_for_select
 
 .arl_pictures_show
   = render 'show_picture_img', picture: @picture

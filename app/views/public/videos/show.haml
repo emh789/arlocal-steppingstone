@@ -1,4 +1,5 @@
-= html_head_subtitle_set @video.title
+= content_for :page_subtitle, 'video'
+= content_for :page_subtitle_detail, @video.title
 
 .arl_videos_show
   .arl_videos_show_player

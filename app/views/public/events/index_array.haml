@@ -1,10 +1,11 @@
-= html_head_subtitle_set 'events'
+= content_for :page_subtitle, 'events'
 
-.arl_events_select
-  = event_public_filter_select(@arlocal_settings, params)
 .arl_events_index
-  %table.arl_events_index_table
+  = event_public_filter_select(@arlocal_settings, params)
+  .arl_events_index_events
     - @events.each do |event|
-      %tr.arl_events_index_event.arl_active_link_container{data: {url: public_event_path(event.id_public)}}
-        -# = render 'index_event_coverpicture', event: event
-        = render 'index_event_info', event: event
+      .arl_events_index_event.arl_active_link_container{data: {url: public_event_path(event.id_public)}}
+        = render 'index_event_info_datetime', event: event
+        = render 'index_event_info_title', event: event
+        = render 'index_event_info_location', event: event
+        = render 'index_event_info_alert', event: event

@@ -2,12 +2,12 @@ module ButtonHelper
 
 
   def button_admin_to_done_editing(path = nil)
-    content_tag(:a, icon_done_editing, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_done_editing, class: nav_admin_button_html_classes, href: path)
   end
 
 
   def button_admin_to_edit(path = nil)
-    content_tag(:a, icon_edit, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_edit, class: nav_admin_button_html_classes, href: path)
   end
 
 
@@ -24,12 +24,12 @@ module ButtonHelper
 
 
   def button_admin_to_index(path = nil)
-    content_tag(:a, icon_index, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_index, class: nav_admin_button_html_classes, href: path)
   end
 
 
   def button_admin_to_new(path = nil)
-    content_tag(:a, icon_new, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_new, class: nav_admin_button_html_classes, href: path)
   end
 
 
@@ -54,22 +54,22 @@ module ButtonHelper
 
 
   def button_admin_to_next(path = nil)
-    content_tag(:a, icon_next, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_next, class: nav_admin_button_html_classes, href: path)
   end
 
 
   def button_admin_to_previous(path = nil)
-    content_tag(:a, icon_previous, class: admin_nav_button_html_classes, href: path)
+    content_tag(:a, icon_previous, class: nav_admin_button_html_classes, href: path)
   end
 
 
   def button_admin_to_public(path = nil)
-    content_tag(:a, icon_public, class: admin_nav_button_html_classes, href: path, target: 'new' )
+    content_tag(:a, icon_public, class: nav_admin_button_html_classes, href: path, target: 'new' )
   end
 
 
   def button_admin_to_public_null
-    content_tag(:a, icon_private, class: [admin_nav_button_html_classes, :arl_button_not_allowed])
+    content_tag(:a, icon_private, class: [nav_admin_button_html_classes, :arl_button_not_allowed])
   end
 
 
@@ -77,6 +77,10 @@ module ButtonHelper
     button_to icon_edit, path, class: :arl_button_admin_resource, method: :get, title: 'edit profile'
   end
 
+
+  def button_to_index(path)
+    link_to icon_index, path, class: resource_neighbor_nav_button_html_classes
+  end
 
   def button_to_next(path)
     link_to icon_next, path, class: resource_neighbor_nav_button_html_classes

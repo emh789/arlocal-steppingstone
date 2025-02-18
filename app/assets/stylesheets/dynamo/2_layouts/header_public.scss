@@ -21,23 +21,20 @@
   text-decoration: none;
 }
 
-.arl_header_nav {
-  font-family: $font-family-nav;
+.arl_header_nav_select {
+  border-radius: $border-radius;
+  // border-style: $border-style;
+  // border-width: $border-width-wide;
+  display: inline-block;
+  font-family: $font-family-title;
   font-weight: bold;
-  margin: $arl-margin-narrow;
-  text-align: center;
+  font-size: 1rem;
+  height: 1.5em;
+  margin-right: 0.5rem;
+  min-width: 1.5em;
+  padding: ($arl-margin-narrow / 2) $arl-margin;
+  vertical-align: top;
+  &:last-child {
+    margin-right: 0rem;
+  }
 }
-
-.arl_header_nav_category {
-  margin: $arl-margin;
-}
-
-
-// @media #{$media-screen-1} {
-//   .arl_header {
-//     border-left-style: $border-style;
-//     border-left-width: $border-width;
-//     border-right-style: $border-style;
-//     border-right-width: $border-width;
-//   }
-// }

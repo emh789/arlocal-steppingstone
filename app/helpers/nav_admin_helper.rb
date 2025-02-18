@@ -1,12 +1,10 @@
-module AdminNavHelper
+module NavAdminHelper
 
-
-  def admin_nav_button_html_classes
+  def nav_admin_button_html_classes
     [:arl_admin_header_nav_button]
   end
 
-
-  def admin_nav_buttons
+  def nav_admin_buttons
     case params[:controller]
     when 'admin/audio'
       audio_admin_header_nav_buttons
@@ -37,30 +35,25 @@ module AdminNavHelper
     end
   end
 
-
-  def admin_nav_optgroup_tags
-    admin_nav_grouped_options.map do |options|
-      content_tag(:optgroup, admin_nav_option_tags(options))
+  def nav_admin_optgroup_tags
+    nav_admin_grouped_options.map do |options|
+      content_tag(:optgroup, nav_admin_option_tags(options))
     end
   end
 
-
-  def admin_nav_optgroups
-    admin_nav_optgroup_tags.join("\n").html_safe
+  def nav_admin_optgroups
+    nav_admin_optgroup_tags.join("\n").html_safe
   end
 
-
-  def admin_nav_select
-    content_tag(:select, admin_nav_optgroups, class: admin_nav_select_classes).html_safe
+  def nav_admin_select
+    content_tag(:select, nav_admin_optgroups, class: nav_admin_select_classes).html_safe
   end
 
-
-  def admin_nav_select_classes
+  def nav_admin_select_classes
     [:arl_active_select, :arl_admin_header_nav_select]
   end
 
-
-  def admin_nav_option_tag(option = { label: '', controller: '', path: '' })
+  def nav_admin_option_tag(option = { label: '', controller: '', path: '' })
     if option[:controller].match(params[:controller])
       content_tag(:option, option[:label], selected: 'selected', data: {url: option[:path]})
     else
@@ -68,17 +61,14 @@ module AdminNavHelper
     end
   end
 
-
-  def admin_nav_option_tags(options)
-    options.map { |o| admin_nav_option_tag(o) }.join("\n").html_safe
+  def nav_admin_option_tags(options)
+    options.map { |o| nav_admin_option_tag(o) }.join("\n").html_safe
   end
-
 
 
   private
 
-
-  def admin_nav_grouped_options
+  def nav_admin_grouped_options
     [
       [
         { label: 'Welcome', controller: 'admin/welcome', path: admin_welcome_path },
@@ -103,6 +93,5 @@ module AdminNavHelper
       ]
     ]
   end
-
 
 end
