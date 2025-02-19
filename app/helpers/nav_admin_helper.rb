@@ -71,7 +71,7 @@ module NavAdminHelper
   def nav_admin_grouped_options
     [
       [
-        { label: 'Welcome', controller: 'admin/welcome', path: admin_welcome_path },
+        { label: 'Welcome & Help', controller: 'admin/welcome', path: admin_welcome_path },
         { label: 'A&R.local settings', controller: 'admin/arlocal_settings', path: edit_admin_arlocal_settings_path },
         { label: 'Administrators', controller: 'admin/administrators/registrations', path: admin_administrators_path },
       ],

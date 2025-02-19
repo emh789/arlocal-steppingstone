@@ -130,7 +130,8 @@ class Infopage < ApplicationRecord
   end
 
   def is_released?
-    date_released <= FindPublished.date_today
+    # date_released <= FindPublished.date_today
+    true
   end
 
   def items_group_left

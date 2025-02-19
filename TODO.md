@@ -3,21 +3,51 @@
 
 ## HIGHEST priority
 
+- admin header artist name link should open in target
+
+- infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
+
+- <fieldset> for forms
+
 - Should html_head title elements include the resource type? Would help add clarity to browser history.
   - examples:
     - picture: album cover
     - album: Diamonds in the Ruff
   - see Picture for code
   - *Yes, but in two different components*
-    - resource:
-    - title
+    - resource: :page_subtitle
+    - title: :page_subtitle_detail
     - *this way the components can be used by the nav selector*
 - Standardize existing methods
   - title_html_head
   - title_for_display
   - title_sortable
+  - event date_and_venue
+  - audio title_and_subtitle_for_display
+- review audio & picture terminology for import (single/to album/event) and upload
 - Does title need .html_safe?
-- DUplicate for admin & neutral
+- DUplicate for admin & ~neutral~
+  - **Welcome** should be **Help**
+- admin done:
+  - welcome
+  - administrators - see also views/administrators
+  - albums
+  - arlocal_settings
+  - articles
+  - audio
+  - events
+  - infopages
+  - isrc
+  - keywords
+  - links
+  - pictures
+  - streams
+  - videos
+
+Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
+  - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
+  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
+
 
 - article & keyword need full implementation in views.
   - *keyword admin index order by can_select*
@@ -34,9 +64,6 @@
   - #edit?videos missing buttons
     - **Finish implementation of video joins submenus; look across resources; also within video#edit**
 
-Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
-  - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
-  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
 
 
 ## HIGH priority

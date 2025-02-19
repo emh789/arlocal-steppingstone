@@ -22,8 +22,39 @@ module HtmlHeadHelper
     '<meta name="viewport" content="initial-scale=1.0" />'.html_safe
   end
 
-  def html_head_title_public(artist_name)
-    tag.title sanitize(html_head_title_public_parsed(artist_name))   #.html_safe?
+  def html_head_title_admin
+    tag.title sanitize(html_head_title_admin_parsed)   #.html_safe?
+  end
+
+  def html_head_title_admin_parsed
+    subtitle = content_for(:page_subtitle)
+    detail = content_for(:page_subtitle_detail)
+    if !subtitle && !detail
+      "A&R.local admin"
+    elsif subtitle && !detail
+      "#{subtitle} | A&R.local admin"
+    elsif !subtitle && detail
+      "#{detail} | A&R.local admin"
+    elsif subtitle && detail
+      "#{subtitle}: #{detail} | A&R.local admin"
+    end
+  end
+
+  def html_head_title_neutral
+    tag.title sanitize(html_head_title_neutral_parsed)   #.html_safe?
+  end
+
+  def html_head_title_neutral_parsed
+    subtitle = content_for(:page_subtitle)
+    if !subtitle
+      "A&R.local"
+    elsif subtitle
+      "#{subtitle} | A&R.local"
+    end
+  end
+
+  def html_head_title_public(arlocal_settings)
+    tag.title sanitize(html_head_title_public_parsed(arlocal_settings.artist_name))   #.html_safe?
   end
 
   def html_head_title_public_parsed(artist_name)
@@ -42,18 +73,18 @@ module HtmlHeadHelper
     end
   end
 
-  def html_head_title_admin(html_head_title_subtitle)
-    title_string = "#{html_head_title_subtitle} | A&R.local admin"
-    result = tag.title(sanitize(title_string)).html_safe
-    result.html_safe
-  end
+  # def html_head_title_admin(html_head_title_subtitle)
+  #   title_string = "#{html_head_title_subtitle} | A&R.local admin"
+  #   result = tag.title(sanitize(title_string)).html_safe
+  #   result.html_safe
+  # end
 
-  def html_head_title_neutral(html_head_title_subtitle)
-    title_string = "#{html_head_title_subtitle} | A&R.local"
-    result = tag.title(sanitize(title_string)).html_safe
-    result.html_safe
-  end
-
+  # def html_head_title_neutral(html_head_title_subtitle)
+  #   title_string = "#{html_head_title_subtitle} | A&R.local"
+  #   result = tag.title(sanitize(title_string)).html_safe
+  #   result.html_safe
+  # end
+  #
   def html_head_subtitle_set(subtitle)
     content_for :html_head_title_subtitle, subtitle
   end

@@ -1,4 +1,5 @@
-= html_head_subtitle_set "editing article '#{@article.title}'"
+= content_for :page_subtitle, 'editing article'
+= content_for :page_subtitle_detail, @article.title
 
 .arl_admin_resource_header.resource_edit
   .arl_admin_resource_header_category

@@ -1,4 +1,5 @@
-= html_head_subtitle_set "event '#{@event.date_and_venue}'"
+= content_for :page_subtitle, 'event'
+= content_for :page_subtitle_detail, @event.date_and_venue
 
 - if @event.show_will_cycle_pictures
   = resource_script_picture_cycler(@event)
@@ -21,7 +22,7 @@
   %div.arl_admin_events_show_picture
     = render 'show_event_coverpicture', event: @event
   %dl.arl_admin_events_show_attributes
-    = render 'admin/shared/metadata_pair', key: 'alert', value: @event.alert
+    = render 'admin/shared/metadata_pair', key: 'Alert', value: @event.alert
     = render 'admin/shared/metadata_pair', key: 'City', value: @event.city
     = render 'admin/shared/metadata_pair', key: 'Details', text_props: @event.details_props
     = render 'admin/shared/metadata_pair', key: 'Map url', value: @event.map_url
