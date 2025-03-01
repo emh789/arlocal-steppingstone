@@ -93,7 +93,7 @@ module AlbumsHelper
 
 
   def album_admin_link_title(album)
-    link_to album.title, admin_album_path(album.id_admin)
+    link_to album.title_for_display, admin_album_path(album.id_admin)
   end
 
 

@@ -86,6 +86,19 @@ class Stream < ApplicationRecord
 
   ### title
 
+  def title_for_display
+    case title
+    when nil, ''
+      '(untitled)'
+    else
+      title
+    end
+  end
+
+  def title_sortable
+    title.to_s.downcase
+  end
+
   ### visibility
 
 

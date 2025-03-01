@@ -32,7 +32,7 @@ class QueryAudio
   end
 
   def self.options_for_select_admin
-    Audio.select(:id, :title, :subtitle).sort_by{ |a| a.full_title.downcase }
+    Audio.select(:id, :title, :subtitle).sort_by{ |a| a.title_and_subtitle_for_display }
   end
 
 

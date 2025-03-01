@@ -7,7 +7,7 @@ module JavascriptHelper
   def js_fragment_jp_audio_ordered(resource_audio)
     filetype = resource_audio.audio.source_file_extension_or_dummy
     { "albumOrder" => resource_audio.playlist_order,
-      "title" => resource_audio.full_title,
+      "title" => resource_audio.audio_title_for_display,
       "duration" => resource_audio.audio.duration(rounded_to: :seconds),
       "#{filetype}" => audio_preferred_url(resource_audio.audio)
     }.to_json
@@ -16,7 +16,7 @@ module JavascriptHelper
 
   def js_fragment_jp_audio_unordered(audio)
     filetype = audio.source_file_extension_or_dummy
-    { "title" => audio.full_title,
+    { "title" => audio.audio_title_for_display,
       "duration" => audio.duration(rounded_to: :seconds),
       "#{filetype}" => audio_preferred_url(audio)
     }.to_json

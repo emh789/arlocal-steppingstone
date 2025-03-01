@@ -1,20 +1,16 @@
 module ParsersHelper
 
-
   def parser_div(resource_text_props)
     parser_result(resource_text_props, wrap_with: :div)
   end
-
 
   def parser_inline(resource_text_props)
     sanitize parser_result(resource_text_props), tags: ['a', 'b', 'em', 'i', 'strong']
   end
 
-
   def parser_remove_markup(resource_text_props)
     strip_tags(parser_result(resource_text_props))
   end
-
 
   def parser_result(resource_text_props, html_class: nil, wrap_with: nil)
     parser_result = MarkupParser.parse_sanitize_class(resource_text_props)
@@ -25,6 +21,5 @@ module ParsersHelper
       parser_result[:sanitized_text]
     end
   end
-
 
 end

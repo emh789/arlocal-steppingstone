@@ -47,7 +47,7 @@ class Article < ApplicationRecord
   end
 
   def article_keywords_sorted_by_title_asc
-    article_keywords.sort_by! { |ak| ak.keyword.title_sortable.downcase }
+    article_keywords.sort_by! { |ak| ak.keyword.title_sortable }
   end
 
   ### author
@@ -152,6 +152,19 @@ class Article < ApplicationRecord
   end
 
   ### title
+
+  def title_for_display
+    case title
+    when nil, ''
+      '(untitled)'
+    else
+      title
+    end
+  end
+
+  def title_sortable
+    title.to_s.downcase
+  end
 
   ### updated_at
 

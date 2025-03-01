@@ -93,7 +93,7 @@ module VideosHelper
 
 
   def video_admin_link_title(video)
-    link_to video.full_title, admin_video_path(video.id_admin)
+    link_to video.title_for_display, admin_video_path(video.id_admin)
   end
 
 

@@ -68,7 +68,7 @@ module KeywordsHelper
 
 
   def keyword_admin_link_title(keyword)
-    link_to keyword.title, admin_keyword_path(keyword.id_admin)
+    link_to keyword.title_for_display, admin_keyword_path(keyword.id_admin)
   end
 
 

@@ -48,7 +48,7 @@ class Infopage < ApplicationRecord
   end
 
   def articles_sorted_by_title_asc
-    articles.to_a.sort_by! { |article| article.title }
+    articles.to_a.sort_by! { |article| article.title_sortable }
   end
 
   ### created_at
@@ -167,7 +167,7 @@ class Infopage < ApplicationRecord
   end
 
   def links_sorted_by_title_asc
-    links.to_a.sort_by! { |link| link.title }
+    links.to_a.sort_by! { |link| link.title_sortable }
   end
 
   def pictures_count
@@ -179,7 +179,7 @@ class Infopage < ApplicationRecord
   end
 
   def pictures_sorted_by_title_asc
-    pictures.to_a.sort_by! { |picture| picture.title.downcase }
+    pictures.to_a.sort_by! { |picture| picture.title_sortable }
   end
 
   def should_generate_new_friendly_id?

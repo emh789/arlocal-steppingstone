@@ -3,57 +3,29 @@
 
 ## HIGHEST priority
 
+- make autokeyword methods a concern/ included module
+
 - admin header artist name link should open in target
 
 - infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
 
 - <fieldset> for forms
 
-- Should html_head title elements include the resource type? Would help add clarity to browser history.
-  - examples:
-    - picture: album cover
-    - album: Diamonds in the Ruff
-  - see Picture for code
-  - *Yes, but in two different components*
-    - resource: :page_subtitle
-    - title: :page_subtitle_detail
-    - *this way the components can be used by the nav selector*
-- Standardize existing methods
-  - title_html_head
-  - title_for_display
-  - title_sortable
-  - event date_and_venue
-  - audio title_and_subtitle_for_display
+  - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
+    - .published is defined but check for full join support and implementation.
+    - event audio_published_sorted
+
+- event when to use datetime_and_title, datetime_friendly, datetime_and_venue
+- should {resource}.title_for_display be renamed? .title_or_placeholder
+- link_admin_link_name -> *_title  see: links_helper
+
 - review audio & picture terminology for import (single/to album/event) and upload
 - Does title need .html_safe?
 - DUplicate for admin & ~neutral~
   - **Welcome** should be **Help**
-- admin done:
-  - welcome
-  - administrators - see also views/administrators
-  - albums
-  - arlocal_settings
-  - articles
-  - audio
-  - events
-  - infopages
-  - isrc
-  - keywords
-  - links
-  - pictures
-  - streams
-  - videos
-
-Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
-  - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
-  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
-
 
 - article & keyword need full implementation in views.
   - *keyword admin index order by can_select*
-
-- audio.published might not be finished. There is not yet an audio index, so this had been delayed.
-  - .published is defined but check for full join support and implementation.
 
 - counter cache for infopage articles, links, pictures
   - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
@@ -253,3 +225,72 @@ _nope, just a typo_
   - [].any vs [].count
     - `.any` requires a db query UNLESS the parent search had an `.includes()` method
 - Counter cache support for `published` scopes as a table column is unfeasible because it requires a variable evaluation (current date).
+
+- Should html_head title elements include the resource type? Would help add clarity to browser history.
+  - examples:
+    - picture: album cover
+    - album: Diamonds in the Ruff
+  - see Picture for code
+  - *Yes, but in two different components*
+    - resource: :page_subtitle
+    - title: :page_subtitle_detail
+    - *this way the components can be used by the nav selector*
+  - admin done:
+    - welcome
+    - administrators - see also views/administrators
+    - albums
+    - arlocal_settings
+    - articles
+    - audio
+    - events
+    - infopages
+    - isrc
+    - keywords
+    - links
+    - pictures
+    - streams
+    - videos
+
+- Standardize existing methods
+  - title_html_head
+  - title_for_display
+  - title_sortable
+  - event date_and_venue
+  - audio title_and_subtitle_for_display
+- Use methods on the join model for consistency
+*check join methods that sort* `album.audio_sorted_by_title`
+*title_sortable* is to_s.downcase
+*title_for_display* returns `(untitled)` for '' **should this be renamed?
+  - done:
+    - album_audio
+    - album_keyword
+    - album_picture
+    - album
+      - no title_for_display method
+      - views/*/albums do not use title_for_Display
+    - article_keyword
+    - article
+    - audio_keyword
+    - audio
+    - event_audio
+    - event_keyword
+    - event_picture
+    - event_video
+    - event
+    - infopage_item
+    - infopage
+    - keyword
+    - link
+    - picture_keyword
+    - picture
+    - stream
+    - video_keyword
+    - video_picture
+    - video
+
+
+- **when done** check helpers `album_[admin|public]_title_link` etc
+
+Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
+  - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
+  -  **audio.title album_audio.title and event_audio.title all have some legacy methods**

@@ -17,11 +17,16 @@ class EventAudio < ApplicationRecord
 
   ### audio_id
 
+  def audio_title_for_display
+    audio.title_and_subtitle_for_display
+  end
+
   ### created_at
 
-  def display_title
-    audio.title
-  end
+  # TODO: Obsolete
+  # def display_title
+  #   audio.title
+  # end
 
   def does_have_order
     order.to_s.length > 0
@@ -31,9 +36,10 @@ class EventAudio < ApplicationRecord
 
   ### event_order
 
-  def full_title
-    audio.full_title
-  end
+  # TODO: Obsolete
+  # def full_title
+  #   audio.full_title
+  # end
 
   ### id
 
@@ -45,9 +51,10 @@ class EventAudio < ApplicationRecord
     event_order
   end
 
-  def title
-    audio.title
-  end
+  # TODO: Obsolete
+  # def title
+  #   audio.title
+  # end
 
   ### updated_at
 

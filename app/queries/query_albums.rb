@@ -28,7 +28,7 @@ class QueryAlbums
   end
 
   def self.options_for_select_admin
-    Album.select(:id, :title).sort_by{ |a| a.title.downcase }
+    Album.select(:id, :title).sort_by{ |a| a.title_sortable }
   end
 
 

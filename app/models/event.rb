@@ -87,7 +87,7 @@ class Event < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
   end
 
   def autokeyword
@@ -285,7 +285,7 @@ class Event < ApplicationRecord
   end
 
   def event_keywords_sorted_by_title_asc
-    event_keywords.to_a.sort_by! { |ek| ek.keyword.title_sortable.downcase }
+    event_keywords.to_a.sort_by! { |ek| ek.keyword.title_sortable }
   end
 
   def event_pictures_published_sorted
@@ -317,12 +317,13 @@ class Event < ApplicationRecord
   end
 
   def event_videos_sorted_by_title_asc
-    event_videos.to_a.sort_by! { |ev| ev.event_order}
+    event_videos.to_a.sort_by! { |ev| ev.event_order }
   end
 
-  def full_title
-    datetime_and_title
-  end
+  # TODO: Deprecated
+  # def full_title
+  #   datetime_and_title
+  # end
 
   ### id
 
@@ -383,7 +384,7 @@ class Event < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable }
   end
 
   ### map_url
@@ -430,6 +431,15 @@ class Event < ApplicationRecord
     title_without_markup
   end
 
+  def title_for_display
+    case title_without_markup
+    when nil, ''
+      '(untitled)'
+    else
+      title_without_markup
+    end
+  end
+
   ### title_markup_type
 
   ### title_markup_text
@@ -439,7 +449,7 @@ class Event < ApplicationRecord
   end
 
   def title_sortable
-    title.to_s
+    title_without_markup.to_s.downcase
   end
 
   ### title_without_markup

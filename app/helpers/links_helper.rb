@@ -71,7 +71,7 @@ module LinksHelper
 
 
   def link_admin_link_name(link)
-    link_to link.name, admin_link_path(link.id_admin)
+    link_to link.title_for_display, admin_link_path(link.id_admin)
   end
 
 

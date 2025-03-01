@@ -150,7 +150,7 @@ module PicturesHelper
   def picture_options_for_select(picture_options, form)
     options_for_select(
       picture_options.map { |picture| [
-          picture.title_for_select,
+          picture.title_for_display,
           picture.id,
           {'data-picture-src' => picture_preferred_url(picture)}
       ] },

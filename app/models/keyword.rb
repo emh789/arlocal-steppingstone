@@ -65,7 +65,7 @@ class Keyword < ApplicationRecord
   end
 
   def album_keywords_sorted_by_title_asc
-    album_keywords.to_a.sort_by! { |ak| ak.album.title_sortable.downcase }
+    album_keywords.to_a.sort_by! { |ak| ak.album.title_sortable }
   end
 
   ### albums_count
@@ -75,7 +75,7 @@ class Keyword < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable }
   end
 
   ### audio_count
@@ -85,7 +85,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.audio.full_title.downcase }
+    audio_keywords.to_a.sort_by! { |ak| ak.audio.title_and_subtitle_for_display }
   end
 
   def audio_sorted
@@ -93,7 +93,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
   end
 
   def can_select
@@ -263,7 +263,7 @@ class Keyword < ApplicationRecord
   end
 
   def picture_keywords_sorted_by_title_asc
-    picture_keywords.to_a.sort_by! { |pk| pk.picture.title_sortable.downcase }
+    picture_keywords.to_a.sort_by! { |pk| pk.picture.title_sortable }
   end
 
   ### pictures_count
@@ -273,7 +273,7 @@ class Keyword < ApplicationRecord
   end
 
   def pictures_sorted_by_title_asc
-    pictures.to_a.sort_by! { |picture| picture.title_sortable.downcase }
+    pictures.to_a.sort_by! { |picture| picture.title_sortable }
   end
 
   def should_generate_new_friendly_id?
@@ -290,6 +290,15 @@ class Keyword < ApplicationRecord
   end
 
   ### title
+
+  def title_for_display
+    case title
+    when nil, ''
+      '(untitled)'
+    else
+      title
+    end
+  end
 
   def title_sortable
     title.to_s.downcase
@@ -314,7 +323,7 @@ class Keyword < ApplicationRecord
   end
 
   def video_keywords_sorted_by_title_asc
-    video_keywords.to_a.sort_by! { |vk| vk.video.title_sortable.downcase }
+    video_keywords.to_a.sort_by! { |vk| vk.video.title_sortable }
   end
 
   ### videos_count

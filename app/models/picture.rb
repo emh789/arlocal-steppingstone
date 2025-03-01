@@ -97,7 +97,7 @@ class Picture < ApplicationRecord
   end
 
   def album_pictures_sorted_by_title_asc
-    album_pictures.to_a.sort_by! { |ap| ap.album.title_sortable.downcase }
+    album_pictures.to_a.sort_by! { |ap| ap.album.title_sortable }
   end
 
   def albums_sorted
@@ -105,7 +105,7 @@ class Picture < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable }
   end
 
   def autokeyword
@@ -274,7 +274,7 @@ class Picture < ApplicationRecord
   end
 
   def event_pictures_sorted_by_title_asc
-    event_pictures.to_a.sort_by! { |ep| ep.event.title.downcase }
+    event_pictures.to_a.sort_by! { |ep| ep.event.datetime_and_title }
   end
 
   def events_sorted
@@ -282,7 +282,7 @@ class Picture < ApplicationRecord
   end
 
   def events_sorted_by_title_asc
-    events.to_a.sort_by! { |event| event.title.downcase }
+    events.to_a.sort_by! { |event| event.datetime_and_title }
   end
 
   def filename
@@ -356,7 +356,7 @@ class Picture < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable }
   end
 
   ### picture_keywords
@@ -366,7 +366,7 @@ class Picture < ApplicationRecord
   end
 
   def picture_keywords_sorted_by_title_asc
-    picture_keywords.to_a.sort_by! { |pk| pk.keyword.title_sortable.downcase }
+    picture_keywords.to_a.sort_by! { |pk| pk.keyword.title_sortable }
   end
 
   def should_generate_new_friendly_id?
@@ -476,34 +476,30 @@ class Picture < ApplicationRecord
 
   def title_props_for_display
     case title_markup_text
-    when ''
-      { markup_type: title_markup_type, markup_text: '(untitled)' }
+    when nil, ''
+      { markup_type: 'inline', markup_text: '(untitled)' }
     else
       title_props
     end
   end
 
-  def title_sortable
-    title_without_markup.to_s
-  end
-
-
-  def title_for_html_head
-    if title_without_markup.to_s == ''
-      'untitled'
+  def title_for_display
+    case title_without_markup
+    when nil, ''
+      '(untitled)'
     else
       title_without_markup
     end
   end
 
-  def title_for_select
-    case title_sortable
-    when ''
-      '(untitled)'
-    else
-      title_sortable
-    end
-  end
+  ### TODO: Deprecated
+  # def title_for_html_head
+  #   if title_without_markup.to_s == ''
+  #     'untitled'
+  #   else
+  #     title_without_markup
+  #   end
+  # end
 
   ### title_markup_type
 
@@ -514,14 +510,10 @@ class Picture < ApplicationRecord
   ### title_markup_text
 
   def title_sortable
-    title_without_markup.to_s
+    title_without_markup.to_s.downcase
   end
 
   ### title_without_markup
-
-  def title_without_markup_downcase
-    title_without_markup.downcase
-  end
 
   ### updated_at
 
@@ -530,7 +522,7 @@ class Picture < ApplicationRecord
   end
 
   def video_pictures_sorted_by_title_asc
-    video_pictures.to_a.sort_by! { |vp| vp.video.title_sortable.downcase }
+    video_pictures.to_a.sort_by! { |vp| vp.video.title_sortable }
   end
 
   def videos_sorted
@@ -538,7 +530,7 @@ class Picture < ApplicationRecord
   end
 
   def videos_sorted_by_title_asc
-    videos.to_a.sort_by! { |video| video.title_sortable.downcase }
+    videos.to_a.sort_by! { |video| video.title_sortable }
   end
 
   ### visibility

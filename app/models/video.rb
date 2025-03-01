@@ -192,20 +192,21 @@ class Video < ApplicationRecord
   end
 
   def event_videos_sorted_by_datetime_asc
-    event_videos.to_a.sort_by! { |ev| ev.event.datetime_utc_sortable }
+    event_videos.to_a.sort_by! { |ev| ev.event.datetime_and_title }
   end
 
   def event_videos_sorted_by_title_asc
-    event_videos.to_a.sort_by! { |ev| ev.event.title_sortable.downcase }
+    event_videos.to_a.sort_by! { |ev| ev.event.datetime_and_title }
   end
 
   ### events
 
   ### events_count
 
-  def full_title
-    title
-  end
+  ### TODO: Deprecated
+  # def full_title
+  #   title
+  # end
 
   ### id
 
@@ -282,7 +283,7 @@ class Video < ApplicationRecord
   end
 
   def keywords_sorted_by_title_asc
-    keywords.to_a.sort_by! { |keyword| keyword.title_sortable.downcase }
+    keywords.to_a.sort_by! { |keyword| keyword.title_sortable }
   end
 
   ### personnel_markup_type
@@ -395,8 +396,17 @@ class Video < ApplicationRecord
 
   ### title
 
+  def title_for_display
+    case title
+    when nil, ''
+      '(untitled)'
+    else
+      title
+    end
+  end
+
   def title_sortable
-    title.to_s
+    title.to_s.downcase
   end
 
   def video_keywords_sorted
@@ -404,7 +414,7 @@ class Video < ApplicationRecord
   end
 
   def video_keywords_sorted_by_title_asc
-    video_keywords.to_a.sort_by! { |vk| vk.keyword.title_sortable.downcase }
+    video_keywords.to_a.sort_by! { |vk| vk.keyword.title_sortable }
   end
 
   def video_pictures_sorted
@@ -412,7 +422,7 @@ class Video < ApplicationRecord
   end
 
   def video_pictures_sorted_by_title_asc
-    video_pictures.to_a.sort_by! { |vp| vp.picture.title_sortable.downcase }
+    video_pictures.to_a.sort_by! { |vp| vp.picture.title_sortable }
   end
 
   ### visibility

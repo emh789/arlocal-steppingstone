@@ -108,7 +108,7 @@ module AudioHelper
 
 
   def audio_admin_link_title(audio)
-    link_to audio.full_title, admin_audio_path(audio.id_admin)
+    link_to audio.title_and_subtitle_for_display, admin_audio_path(audio.id_admin)
   end
 
 

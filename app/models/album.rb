@@ -78,7 +78,7 @@ class Album < ApplicationRecord
   end
 
   def album_keywords_sorted_by_title_asc
-    album_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable.downcase }
+    album_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable }
   end
 
   def album_pictures_published_sorted
@@ -116,7 +116,7 @@ class Album < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.full_title.downcase }
+    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
   end
 
   def autokeyword
@@ -458,8 +458,17 @@ class Album < ApplicationRecord
 
   ### title
 
+  def title_for_display
+    case title
+    when nil, ''
+      '(untitled)'
+    else
+      title
+    end
+  end
+
   def title_sortable
-    title.to_s
+    title.to_s.downcase
   end
 
   ### updated_at

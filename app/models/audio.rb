@@ -70,7 +70,7 @@ class Audio < ApplicationRecord
     [:imported, :uploaded]
   end
 
-  def self.source_0type_options_for_select
+  def self.source_type_options_for_select
     Audio.source_type_options.map { |option| [option, option] }
   end
 
@@ -86,7 +86,7 @@ class Audio < ApplicationRecord
   end
 
   def album_audio_sorted_by_title_asc
-    album_audio.to_a.sort_by! { |aa| aa.album.title_sortable.downcase }
+    album_audio.to_a.sort_by! { |aa| aa.album.title_sortable }
   end
 
   ### albums_count
@@ -96,7 +96,7 @@ class Audio < ApplicationRecord
   end
 
   def albums_sorted_by_title_asc
-    albums.to_a.sort_by! { |album| album.title_sortable.downcase }
+    albums.to_a.sort_by! { |album| album.title_sortable }
   end
 
   def audio_keywords_sorted
@@ -104,7 +104,7 @@ class Audio < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable.downcase }
+    audio_keywords.to_a.sort_by! { |ak| ak.keyword.title_sortable }
   end
 
   def autokeyword
@@ -260,9 +260,10 @@ class Audio < ApplicationRecord
     events.to_a.sort_by! { |event| event.datetime_utc_sortable }
   end
 
-  def full_title
-    title_and_subtitle_for_display
-  end
+  # TODO: Deprecated
+  # def full_title
+  #   title_and_subtitle_for_display
+  # end
 
   # def has_albums
   #   does_have_albums
@@ -478,16 +479,16 @@ class Audio < ApplicationRecord
   end
 
   def title_for_display
-    case title_sortable
-    when ''
+    case title
+    when nil, ''
       '(untitled)'
     else
-      title_sortable
+      title
     end
   end
 
   def title_sortable
-    title.to_s
+    title.to_s.downcase
   end
 
   ### updated_at

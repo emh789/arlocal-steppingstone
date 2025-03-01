@@ -23,9 +23,11 @@ class AlbumAudio < ApplicationRecord
 
   ### audio_id
 
-  ### created_at
+  def audio_title_for_display
+    audio.title_and_subtitle_for_display
+  end
 
-  def title_for_display
+  def audio_title_for_index
     if album.index_tracklist_audio_includes_subtitles
       audio.title_and_subtitle_for_display
     else
@@ -33,16 +35,20 @@ class AlbumAudio < ApplicationRecord
     end
   end
 
+  ### created_at
+
   def does_have_order
-    order.to_s.length > 0
+    album_order.to_s.length > 0
   end
 
-  def full_title
-    audio.full_title
-  end
+  # TODO: Deprecated?
+  # def full_title
+  #   audio.full_title
+  # end
 
   ### id
 
+  # TODO: Are these still in use?
   def order
     album_order
   end
@@ -51,9 +57,10 @@ class AlbumAudio < ApplicationRecord
     album_order
   end
 
-  def title
-    audio_title
-  end
+  # TODO: Deprecated?
+  # def title
+  #   audio_title
+  # end
 
   ### updated_at
 

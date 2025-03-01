@@ -115,6 +115,19 @@ class Link < ApplicationRecord
     name
   end
 
+  def title_for_display
+    case name
+    when nil, ''
+      '(untitled)'
+    else
+      name
+    end
+  end
+
+  def title_sortable
+    name.to_s.downcase
+  end
+
   ### updated_at
 
   ### visibility
