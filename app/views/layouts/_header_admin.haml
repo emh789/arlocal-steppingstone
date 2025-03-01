@@ -3,7 +3,7 @@
     = link_to (app_logo html_class: [:arl_admin_header_logo_thumbnail, :faux_border]), admin_root_path
   .arl_admin_header_text
     %h1.arl_admin_header_text_artist
-      = link_to @arlocal_settings.artist_name, root_path, class: [:arl_header_artist_name, :color_fg]
+      = link_to @arlocal_settings.artist_name, root_path, class: [:arl_header_artist_name, :color_fg], target: '_blank'
     %h2.arl_admin_header_text_title
       = link_to 'administrator access', admin_root_path, class: :color_fg
     %div.arl_admin_header_text_email

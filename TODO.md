@@ -5,11 +5,11 @@
 
 - make autokeyword methods a concern/ included module
 
-- admin header artist name link should open in target
-
 - infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
 
 - <fieldset> for forms
+
+- compare header margins btw admin neutral publica
 
   - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
     - .published is defined but check for full join support and implementation.
@@ -294,3 +294,5 @@ _nope, just a typo_
 Check where display_title and title_sortable overlap. They may be approaching the same problem from different angles: what to say/do when a indexing value (title, datetime) is undefined.
   - Audio: `title_sortable` is messy but serves the current `sort_by! … full_title` approach. Refactor somehow.
   -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
+
+- admin header artist name link should open in target
