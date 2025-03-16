@@ -88,6 +88,12 @@ Admin views public_index/show buttons should use a "preview" action instead of b
 
 ## Medium priority
 
+Video: source_url is obsolete?
+  - it depended on videojs plugins that seem unwieldy
+  - video embedding has become standardized
+  - probably OK to remove attribute
+  - see also video _form fields
+
 Audio Id3 tags:
   - AUdioHelper#audio_read_source_metadata
   - is audio_helper the best place for the method?
