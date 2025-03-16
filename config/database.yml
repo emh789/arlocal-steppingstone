@@ -1,12 +1,17 @@
+# Specifying a hostname, even as localhost, will send the database connection
+# over TCP/IP, and, with a default postgresql config, will # require a password.
+#
+# Excluding hostname allows postgresql to use peer authentication via unix
+# socket. If needed, system user accounts can be mapped to the database role via
+# pg_hba.conf and pg_ident.conf. See files in /opt. 
+
 preferred: &preferred
   adapter: postgresql
   encoding: utf8
   database: <%= Rails.application.credentials[:postgres_database] %>
-  host: localhost
   pool: 5
   prepared_statements: false
   username: <%= Rails.application.credentials[:postgres_username] %>
-  password: <%= Rails.application.credentials[:postgres_password] %>
 
 development:
   <<: *preferred
