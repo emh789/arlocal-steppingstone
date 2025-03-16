@@ -1,5 +1,5 @@
 - if local_assigns[:arlocal_settings].admin_forms_edit_slug_field == true
-  .arl_form_data_attr.arl_form_layout_blocks
+  %fieldset.arl_form_data_attr.arl_form_layout_blocks
     = form.label attribute, class: :arl_form_data_label_block
     %aside.arl_form_data_attr_explanation
       = resource_slug_form_explanation(form.object)

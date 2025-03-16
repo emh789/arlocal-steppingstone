@@ -1,6 +1,6 @@
 - if not local_assigns[:step] then step = nil end
 
-.arl_form_data_attr
+%fieldset.arl_form_data_attr
   = form.label heading, class: :arl_form_data_attr_label
   .arl_form_data_attr_multi
     = form.datetime_local_field attribute, autocomplete: :off, class: :arl_form_data_attr_input_select_multi, step: step

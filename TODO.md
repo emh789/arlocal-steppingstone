@@ -7,8 +7,6 @@
 
 - infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
 
-- <fieldset> for forms
-
 - compare header margins btw admin neutral publica
 
   - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
@@ -302,3 +300,5 @@ Check where display_title and title_sortable overlap. They may be approaching th
   -  **audio.title album_audio.title and event_audio.title all have some legacy methods**
 
 - admin header artist name link should open in target
+
+- <fieldset> for forms

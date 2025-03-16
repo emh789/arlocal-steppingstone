@@ -16,7 +16,7 @@ module JavascriptHelper
 
   def js_fragment_jp_audio_unordered(audio)
     filetype = audio.source_file_extension_or_dummy
-    { "title" => audio.audio_title_for_display,
+    { "title" => audio.title_for_display,
       "duration" => audio.duration(rounded_to: :seconds),
       "#{filetype}" => audio_preferred_url(audio)
     }.to_json

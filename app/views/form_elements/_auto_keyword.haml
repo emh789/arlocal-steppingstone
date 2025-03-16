@@ -1,6 +1,6 @@
 - if form_will_include_autokeyword(params[:action], form.object)
   = form.fields_for attribute, form.object.autokeyword do |jk|
-    .arl_form_data_attr
+    %fieldset.arl_form_data_attr
       = jk.label :keyword_id, sanitize("Auto-keyword as <i>#{jk.object.keyword.title}</i>", keywords: %w(i)), class: :arl_form_data_attr_label
       = jk.check_box :keyword_id, {class: :arl_form_data_attr_input_checkbox, checked: true}, jk.object.keyword.id
       = jk.label :keyword_id, '&nbsp;'.html_safe, class: :arl_form_data_attr_input_checkbox_visible, tabindex: 0
