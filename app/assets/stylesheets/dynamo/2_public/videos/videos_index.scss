@@ -126,24 +126,25 @@
   .arl_videos_index {
     display: flex;
     flex-direction: column;
-    width: 38rem;
+    width: 35rem;
     padding: $arl-margin-wide 0rem;
   }
   .arl_videos_index_category {
     display: flex;
     flex-direction: row;
+    column-gap: 1rem;
+    row-gap: $arl-spacing;
     flex-wrap: wrap;
   }
   .arl_videos_index_subheading {
     margin-top: $arl-spacing;
-    margin-bottom: $arl-margin;
+    margin-bottom: $arl-spacing;
   }
   .arl_videos_index_video {
     align-items: start;
     display: grid;
     grid-template-areas: 'picture' 'text';
     grid-template-rows: min-content auto;
-    margin: $arl-margin;
     row-gap: ($arl-margin / 2);
     width: 11rem;
   }
@@ -175,17 +176,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    column-gap: 1rem;
+    row-gap: $arl-spacing;
+    max-width: 71rem;
   }
   .arl_videos_index_subheading {
     margin-top: $arl-spacing;
-    margin-bottom: $arl-margin;
+    margin-bottom: $arl-spacing;
   }
   .arl_videos_index_video {
     align-items: start;
     display: grid;
     grid-template-areas: 'picture' 'text';
     grid-template-rows: min-content auto;
-    margin: $arl-margin;
     row-gap: ($arl-margin / 2);
     width: 11rem;
   }

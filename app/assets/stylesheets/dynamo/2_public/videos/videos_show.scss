@@ -28,6 +28,9 @@
 .arl_videos_show_text_date_released {
   font-size: 0.8em;
 }
+.arl_videos_show_text_personnel {
+  font-size: 1em;
+}
 .arl_videos_show_text_title {
   font-family: $font-family-title;
   font-size: 1.25em;
@@ -58,7 +61,13 @@
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
   }
+  .arl_videos_show_text_date_released {
+    padding-top: $arl-margin;
+  }
   .arl_videos_show_text_description {
+    padding-top: $arl-margin;
+  }
+  .arl_videos_show_text_personnel {
     padding-top: $arl-margin;
   }
   .arl_videos_show_text_title {
@@ -99,7 +108,13 @@
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
   }
+  .arl_videos_show_text_date_released {
+    padding-top: $arl-margin;
+  }
   .arl_videos_show_text_description {
+    padding-top: $arl-margin;
+  }
+  .arl_videos_show_text_personnel {
     padding-top: $arl-margin;
   }
   .arl_video_embed {
@@ -137,7 +152,13 @@
   .arl_videos_show_text_copyright {
     padding-top: $arl-spacing;
   }
+  .arl_videos_show_text_date_released {
+    padding-top: $arl-margin;
+  }
   .arl_videos_show_text_description {
+    padding-top: $arl-margin;
+  }
+  .arl_videos_show_text_personnel {
     padding-top: $arl-margin;
   }
   .arl_video_embed {

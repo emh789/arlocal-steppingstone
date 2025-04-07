@@ -4,7 +4,7 @@
 - if selectable.does_have_videos
   = form_with model: [:admin, picture], url: admin_picture_path(picture, pane: :videos), local: true, class: :arl_form do |f|
     .arl_form_data
-      = f.fields_for :video_picture, picture.video_pictures.build do |vp|
+      = f.fields_for :video_pictures, picture.video_pictures.build do |vp|
         = render 'form_elements/collection_select', form: vp, attribute: :video_id, blank: true, collection: selectable.videos, label: 'Title', text_method: :title
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

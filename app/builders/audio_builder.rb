@@ -272,8 +272,8 @@ class AudioBuilder
   end
 
   def metadata_read_from_imported_file
-    if File.exist?(source_imported_file_path(@audio))
-      @metadata = MediaInfo.from(source_imported_file_path(@audio))
+    if File.exist?(source_imported_full_path)
+      @metadata = MediaInfo.from(source_imported_full_path)
     end
   end
 
@@ -363,6 +363,13 @@ class AudioBuilder
     if @arlocal_settings
       @arlocal_settings.audio_default_isrc_registrant_code
     end
+  end
+
+  def source_imported_full_path
+    File.join(
+      Rails.application.config.x.arlocal[:source_imported_filesystem_dirname],
+      @audio.source_imported_file_path
+    )
   end
 
 end

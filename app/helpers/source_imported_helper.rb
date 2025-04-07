@@ -1,6 +1,5 @@
 module SourceImportedHelper
 
-
   def source_imported_dirname(trailing_separator: false)
     case trailing_separator
     when true
@@ -10,16 +9,17 @@ module SourceImportedHelper
     end
   end
 
+  def source_imported_file_path(relative_filename)
+    File.join(source_imported_dirname, relative_filename)
+  end
 
   def source_imported_path_prefix_filesystem
     Rails.application.config.x.arlocal[:source_imported_filesystem_dirname]
   end
 
-
   def source_imported_path_prefix_url
     Rails.application.config.x.arlocal[:source_imported_url_path_prefix]
   end
-
 
   def source_imported_url(item)
     case item
@@ -29,6 +29,5 @@ module SourceImportedHelper
       asset_url File.join(source_imported_path_prefix_url, item), skip_pipeline: true
     end
   end
-
 
 end

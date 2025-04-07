@@ -288,8 +288,8 @@ class PictureBuilder
   end
 
   def metadata_read_from_imported_file
-    if File.exist?(source_imported_file_path(@picture))
-      @metadata = Exiftool.new(source_imported_file_path(@picture))
+    if File.exist?(source_imported_full_path)
+      @metadata = Exiftool.new(source_imported_full_path)
     end
   end
 
@@ -321,6 +321,13 @@ class PictureBuilder
       title_markup_type: 'string',
       visibility: 'admin_only'
     }
+  end
+
+  def source_imported_full_path
+    File.join(
+      Rails.application.config.x.arlocal[:source_imported_filesystem_dirname],
+      @picture.source_imported_file_path
+    )
   end
 
 end
