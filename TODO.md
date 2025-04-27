@@ -3,6 +3,14 @@
 
 ## HIGHEST priority
 
+- counter cache for infopage articles, links, pictures
+  - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
+- **drop counter_cache columns from infopage**
+
+- Does infopage correctly import/upload pictures?
+
+- evaluate nav_public behavior with infopages when show?id
+
 - make autokeyword methods a concern/ included module
 
 - infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
@@ -24,9 +32,6 @@
 
 - article & keyword need full implementation in views.
   - *keyword admin index order by can_select*
-
-- counter cache for infopage articles, links, pictures
-  - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
 
 - does Video:Form-picture-import/upload need autokeyword
 
@@ -302,3 +307,6 @@ Check where display_title and title_sortable overlap. They may be approaching th
 - admin header artist name link should open in target
 
 - <fieldset> for forms
+
+  ``- addding link to infopage doesn't work
+  PG::UndefinedTable: ERROR: missing FROM-clause entry for table "infopage_items" LINE 1: ...".* FROM "articles" WHERE "articles"."id" = 7 AND "infopage_... ^

@@ -25,7 +25,7 @@ class Article < ApplicationRecord
 
   has_many :article_keywords, -> { includes_keyword }, dependent: :destroy
 
-  has_many :infopage_items, -> { infopage_articles.includes_infopage }, foreign_key: :infopageable_id, dependent: :destroy
+  has_many :infopage_items, as: :infopageable, dependent: :destroy
   has_many :infopages, through: :infopage_items
 
   has_many :keywords, through: :article_keywords

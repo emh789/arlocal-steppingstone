@@ -19,7 +19,7 @@
             %th.arl_form_data_joins_heading order
             %th.arl_form_data_joins_heading= icon_remove
         %tbody
-          = f.fields_for :infopage_pictures, infopage.infopage_pictures_sorted do |ip|
+          = f.fields_for :infopage_items, infopage.infopage_pictures_sorted do |ip|
             %tr.arl_form_data_joins_values
               %td.arl_form_data_joins_value= picture_preferred_tag(ip.object.picture, html_class: :arl_form_data_joins_picture_thumbnail_image)
               %td.arl_form_data_joins_value= picture_admin_link_title(ip.object.infopageable)

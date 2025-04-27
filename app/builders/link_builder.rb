@@ -55,7 +55,8 @@ class LinkBuilder
 
   def params_default
     {
-      details_markup_type: 'plaintext'
+      details_markup_type: 'plaintext',
+      visibility: 'public_joinable'
     }
   end
 

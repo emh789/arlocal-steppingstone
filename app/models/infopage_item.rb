@@ -5,9 +5,9 @@ class InfopageItem < ApplicationRecord
   scope :includes_link,     -> { includes(:link) }
   scope :includes_picture,  -> { includes(picture: :source_uploaded_attachment) }
 
-  scope :infopage_articles, -> { where(infopageable_type: 'Article') }
-  scope :infopage_links,    -> { where(infopageable_type: 'Link'   ) }
-  scope :infopage_pictures, -> { where(infopageable_type: 'Picture') }
+  scope :infopage_item_articles, -> { where(infopageable_type: 'Article') }
+  scope :infopage_item_links,    -> { where(infopageable_type: 'Link'   ) }
+  scope :infopage_item_pictures, -> { where(infopageable_type: 'Picture') }
 
   scope :articles_joinable,   -> { articles.joins(:article).where(articles: { visibility: ['public_indexable', 'public_joinable'] }) }
   scope :articles_released,   -> { articles.joins(:article).where('articles.date_released <= ?', FindPublished.date_today) }
@@ -18,10 +18,6 @@ class InfopageItem < ApplicationRecord
 
   belongs_to :infopage
   belongs_to :infopageable, polymorphic: true
-
-  belongs_to :article,  -> { where(infopage_items: { infopageable_type: 'Article' } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
-  belongs_to :link,     -> { where(infopage_items: { infopageable_type: 'Link'    } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
-  belongs_to :picture,  -> { where(infopage_items: { infopageable_type: 'Picture' } )}, foreign_key: 'infopageable_id', counter_cache: :infopages_count
 
 
   protected

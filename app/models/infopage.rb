@@ -16,9 +16,9 @@ class Infopage < ApplicationRecord
   has_many :infopage_items, dependent: :destroy
   has_many :items, class_name: 'InfopageItem', dependent: :destroy
 
-  has_many :infopage_articles,  -> { infopage_articles }, class_name: 'InfopageItem', dependent: :destroy
-  has_many :infopage_links,     -> { infopage_links    }, class_name: 'InfopageItem', dependent: :destroy
-  has_many :infopage_pictures,  -> { infopage_pictures }, class_name: 'InfopageItem', dependent: :destroy
+  has_many :infopage_articles,  -> { infopage_item_articles }, class_name: 'InfopageItem', dependent: :destroy
+  has_many :infopage_links,     -> { infopage_item_links    }, class_name: 'InfopageItem', dependent: :destroy
+  has_many :infopage_pictures,  -> { infopage_item_pictures }, class_name: 'InfopageItem', dependent: :destroy
 
   has_many :infopage_articles_published, -> { articles_published }, class_name: 'InfopageItem'
   has_many :infopage_pictures_published, -> { pictures_published }, class_name: 'InfopageItem'

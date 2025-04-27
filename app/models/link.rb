@@ -6,7 +6,7 @@ class Link < ApplicationRecord
 
   validates :details_markup_type, presence: true
 
-  has_many :infopage_items, -> { where infopageable_type: 'Link' }, foreign_key: :infopageable_id, dependent: :destroy
+  has_many :infopage_items, as: :infopageable, dependent: :destroy
   has_many :infopages, through: :infopage_items
 
   accepts_nested_attributes_for :infopage_items, allow_destroy: true
@@ -106,6 +106,10 @@ class Link < ApplicationRecord
   end
 
   def joined_infopages
+    infopage_items
+  end
+
+  def joined_infopages_sorted
     infopage_items
   end
 

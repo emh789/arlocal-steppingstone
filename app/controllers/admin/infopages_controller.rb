@@ -94,15 +94,6 @@ class Admin::InfopagesController < AdminController
       :index_order,
       :title,
       :visibility,
-      infopage_articles_attributes: [
-        :id,
-        :infopage_id,
-        :infopage_group,
-        :infopage_group_order,
-        :infopageable_id,
-        :infopageable_type,
-        :_destroy
-      ],
       infopage_items_attributes: [
         :id,
         :infopage_id,
@@ -111,26 +102,7 @@ class Admin::InfopagesController < AdminController
         :infopageable_id,
         :infopageable_type,
         :_destroy
-      ],
-      infopage_links_attributes: [
-        :id,
-        :infopage_id,
-        :infopage_group,
-        :infopage_group_order,
-        :infopageable_id,
-        :infopageable_type,
-        :_destroy
-      ],
-      infopage_pictures_attributes: [
-        :id,
-        :infopage_id,
-        :infopage_group,
-        :infopage_group_order,
-        :infopageable_id,
-        :infopageable_type,
-        :_destroy
       ]
-
     )
   end
 

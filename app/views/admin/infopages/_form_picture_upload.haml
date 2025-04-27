@@ -3,7 +3,8 @@
 
 = form_with model: [:admin, infopage], local: true, url: admin_infopage_picture_create_from_upload_path(infopage), class: :arl_form do |f|
   .arl_form_data
-    = f.fields_for :pictures, f.object.pictures.build do |p|
-      = render 'form_elements/file_upload', attribute: :source_uploaded, form: p
+      = f.fields_for :infopage_items, f.object.infopage_pictures.build do |ip|
+        = ip.hidden_field :infopageable_type
+        = render 'form_elements/file_upload', attribute: :source_uploaded, form: ip
   .arl_form_actions
     = f.submit class: :arl_button_form_submit

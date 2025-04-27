@@ -66,7 +66,7 @@ class Picture < ApplicationRecord
   has_many :events_published, through: :event_published_pictures, source: :event
   has_many :videos_published, through: :video_published_pictures, source: :video
 
-  has_many :infopage_items, -> { where(infopageable_type: 'Picture') }, foreign_key: :infopageable_id, dependent: :destroy
+  has_many :infopage_items, as: :infopageable, dependent: :destroy
   has_many :infopages, through: :infopage_items
 
   has_one_attached :source_uploaded

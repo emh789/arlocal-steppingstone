@@ -15,7 +15,7 @@
             %th.arl_form_data_joins_heading order
             %th.arl_form_data_joins_heading= icon_remove
         %tbody
-          = f.fields_for :infopage_links, infopage.infopage_links_sorted do |il|
+          = f.fields_for :infopage_items, infopage.infopage_links_sorted do |il|
             %tr.arl_form_data_joins_values
               %td.arl_form_data_joins_value= link_admin_link_name(il.object.infopageable)
               %td.arl_form_data_joins_value= il.select :infopage_group, @form_metadata.selectables.item_groups, { selected: il.object.infopage_group }, { class: :arl_form_data_attr_input_select }
