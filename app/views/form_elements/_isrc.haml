@@ -1,5 +1,13 @@
+= console
+
 %fieldset.arl_form_data_attr
   %label.arl_form_data_attr_label ISRC
+
+  - if form.object.errors_include_isrc
+    %mark.arl_form_data_attr_errors
+      - form.object.errors_isrc_messages.each do |e|
+        .arl_form_data_attr_error= e
+
   .arl_form_data_attr_multi
     = form.text_field :isrc_country_code, autocomplete: :off, size: 3, maxlength: 2, class: [:arl_form_data_attr_input_text_field, :arl_form_margin_right]
     = form.text_field :isrc_registrant_code, autocomplete: :off, size: 4, maxlength: 3, class: [:arl_form_data_attr_input_text_field, :arl_form_margin_right]
