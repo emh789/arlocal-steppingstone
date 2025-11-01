@@ -1,6 +1,10 @@
+.field_with_errors {
+  display: inline;
+}
+
 .arl_form_data_attr {
   display: grid;
-  grid-template-areas: 'label inline' 'explanation explanation' 'input input' 'detail detail';
+  grid-template-areas: 'label inline' 'errors errors' 'explanation explanation' 'input input' 'detail detail';
   grid-template-columns: 1fr min-content;
   margin: $arl-margin-wide 0;
 }
@@ -20,6 +24,12 @@
   font-family: $font-family-description;
   font-weight: bold;
   grid-area: label_b;
+}
+.arl_form_data_attr_errors {
+  font-family: $font-family-application;
+  font-size: 0.875em;
+  grid-area: errors;
+  padding: 0 ($arl-margin-narrow / 1.5);
 }
 .arl_form_data_attr_explanation {
   font-family: $font-family-description;

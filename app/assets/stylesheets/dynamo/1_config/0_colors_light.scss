@@ -93,6 +93,10 @@ $light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
     // filter: invert(10%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
     filter: invert(30%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
   }
+  .arl_form_data_attr_errors {
+    background-color: inherit;
+    color: mix(red, $light-fg);
+  }
   .arl_form_data_attr_input_checkbox_visible {
     background-color: $light-bg;
     border-color: $light-border;

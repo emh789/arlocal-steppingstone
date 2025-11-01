@@ -93,6 +93,10 @@ $dark-narrow-foundation: black;
     // filter: invert(85%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
     filter: invert(80%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
   }
+  .arl_form_data_attr_errors {
+    background-color: inherit;
+    color: mix(red, $dark-fg);
+  }
   .arl_form_data_attr_input_checkbox_visible {
     background-color: $dark-bg;
     border-color: $dark-border;
