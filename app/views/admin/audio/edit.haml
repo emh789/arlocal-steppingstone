@@ -13,7 +13,6 @@
     = audio_admin_button_to_done_editing(@audio)
     = audio_admin_button_to_public(@audio)
     = audio_admin_button_to_edit_next(@audio_neighbors.next, arlocal_settings: @arlocal_settings, current_pane: @form_metadata.current_pane)
-  = render '/form_elements/errors', resource: @audio
 
 .arl_admin_resource_edit_nav
   - @form_metadata.navbar_categories.each do |category|
