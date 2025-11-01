@@ -244,6 +244,18 @@ class Audio < ApplicationRecord
     duration_mils.to_s.rjust(3, '0')
   end
 
+  def errors_include_isrc
+    errors_isrc.any?
+  end
+
+  def errors_isrc
+    errors.to_hash(true).select { |k,v| k.to_s =~ /\Aisrc/ }
+  end
+
+  def errors_isrc_messages
+    errors_isrc.values.flatten
+  end
+
   def event_audio_sorted
     event_audio_sorted_by_datetime_asc
   end

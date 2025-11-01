@@ -187,6 +187,18 @@ class Video < ApplicationRecord
     self.source_uploaded.attached? == false
   end
 
+  def errors_include_isrc
+    errors_isrc.any?
+  end
+
+  def errors_isrc
+    errors.to_hash(true).select { |k,v| k.to_s =~ /\Aisrc/ }
+  end
+
+  def errors_isrc_messages
+    errors_isrc.values
+  end
+
   def event_videos_sorted
     event_videos_sorted_by_title_asc
   end
