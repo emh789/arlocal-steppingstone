@@ -4,9 +4,19 @@
   display: grid;
   font-family: $font-family-application;
 	grid-gap: 1rem 1rem;
-  grid-template-areas: 'logo text' 'buttons buttons';
+  grid-template-areas: 'logo text' 'buttons buttons' 'messages messages';
 	grid-template-columns: min-content auto;
 	padding: $arl-spacing-wide;
+}
+.arl_admin_header_error {
+  display: inline
+}
+.arl_admin_header_error_list {
+  display: block;
+  margin-left: $arl-margin-narrow;
+}
+.arl_admin_header_errors {
+  display: inline;
 }
 .arl_admin_header_logo {
   grid-area: logo;
@@ -33,6 +43,10 @@
 	margin: 0;
 }
 .arl_admin_header_text_email {
+}
+.arl_admin_header_messages {
+  grid-area: messages;
+  padding: 0 $arl-margin-narrow;
 }
 .arl_admin_header_nav {
 	grid-area: buttons;
@@ -66,4 +80,17 @@
   &:last-child {
     margin-right: 0rem;
   }
+}
+.arl_admin_header_notice {
+  display: inline;
+}
+.arl_admin_header_updated {
+  display: inline;
+}
+.arl_admin_header_updated_list {
+  display: block;
+  margin-left: $arl-margin-narrow;
+}
+.arl_admin_header_updated_attribute {
+  display: inline;
 }
