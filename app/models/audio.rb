@@ -436,6 +436,10 @@ class Audio < ApplicationRecord
     end
   end
 
+  def source_imported_file_exists
+    (source_imported_file_path.length > 0) && (File.exist?(source_absolute_path_to_file))
+  end
+
   ### source_imported_file_path
 
   def source_is_file

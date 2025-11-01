@@ -213,7 +213,7 @@ class AudioBuilder
   end
 
   def conditionally_build_autokeyword
-    if @arlocal_settings.admin_forms_new_will_have_autokeyword
+    if @arlocal_settings.admin_forms_new_will_have_autokeyword && @audio.audio_keywords.empty?
       @audio.audio_keywords.build(keyword_id: @arlocal_settings.admin_forms_autokeyword_id)
     end
   end
@@ -236,12 +236,14 @@ class AudioBuilder
   end
 
   def metadata_assign
-    @audio.audio_artist = "#{@metadata.general.performer}"
-    @audio.copyright_markup_text = "© #{@metadata.general.recorded_date}"
-    @audio.title = @metadata.general.track ? "#{@metadata.general.track}" : "#{File.basename(@audio.source_file_path, '.*')}"
-    @audio.duration_mins = @metadata.general.duration.divmod(1000)[0].divmod(60)[0]
-    @audio.duration_secs = @metadata.general.duration.divmod(1000)[0].divmod(60)[1]
-    @audio.duration_mils = @metadata.general.duration.divmod(1000)[1]
+    if metadata_is_assigned
+      @audio.audio_artist = "#{@metadata.general.performer}"
+      @audio.copyright_markup_text = "© #{@metadata.general.recorded_date}"
+      @audio.title = @metadata.general.track ? "#{@metadata.general.track}" : "#{File.basename(@audio.source_file_path, '.*')}"
+      @audio.duration_mins = @metadata.general.duration.divmod(1000)[0].divmod(60)[0]
+      @audio.duration_secs = @metadata.general.duration.divmod(1000)[0].divmod(60)[1]
+      @audio.duration_mils = @metadata.general.duration.divmod(1000)[1]
+    end
   end
 
   def metadata_is_assigned
@@ -268,12 +270,17 @@ class AudioBuilder
       @audio.source_uploaded.open do |a|
         @metadata = MediaInfo.from(a.path)
       end
+    else
+      @audio.errors.add(:base, :file_not_uploaded, message: 'Source file was not uploaded.')
     end
   end
 
   def metadata_read_from_imported_file
-    if File.exist?(source_imported_full_path)
+    if @audio.source_imported_file_exists
+    # if File.exist?(source_imported_full_path)
       @metadata = MediaInfo.from(source_imported_full_path)
+    else
+      @audio.errors.add(:source_imported_file_path, :not_found, message: 'Source file not found.')
     end
   end
 
