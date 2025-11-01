@@ -1,6 +1,10 @@
 # There should be no need to modify this file.
 # Please use rails credentials:edit to store rsync and mail server information.
 
+ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+  html_tag.html_safe
+end
+
 Rails.application.configure do
 
   config.x.arlocal = {}
