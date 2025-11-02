@@ -17,12 +17,16 @@ class Admin::ArlocalSettingsController < AdminController
 
   def update
     @arlocal_settings = QueryArlocalSettings.get
-    if @arlocal_settings.update(params_arlocal_settings_permitted)
+    @arlocal_settings.assign_attributes(params_arlocal_settings_permitted)
+    changed = @arlocal_settings.changed
+    @form_metadata = FormArlocalSettingsMetadata.new(pane: params[:pane])
+    if @arlocal_settings.save
       flash[:notice] = 'A&R.local settings were successfully updated.'
-      redirect_to edit_admin_arlocal_settings_path(pane: params[:pane])
+      flash[:changed] = changed
+      render 'edit'
     else
-      @form_metadata = FormArlocalSettingsMetadata.new(pane: params[:pane])
       flash[:notice] = 'A&R.local settings could not be updated.'
+      flash[:errors] = @arlocal_settings.errors.attribute_names
       render 'edit'
     end
   end
