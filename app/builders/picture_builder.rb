@@ -46,30 +46,36 @@ class PictureBuilder
     end
   end
 
-  def self.create_from_import(params, **args)
+  def self.create_from_import(picture_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
-      b.attributes_given_assign(params)
+      b.attributes_given_assign(picture_params)
       b.source_type_assign('imported')
       b.metadata_read_from_imported_file
       b.metadata_assign
     end
   end
 
-  def self.create_from_import_and_join_nested_album(params, **args)
+  def self.create_from_import_and_join_nested_album(picture_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
-      b.attributes_given_assign(params)
+      if picture_params['album_pictures_attributes']['0']['album_id'] == ''
+        b.raise_album_selection_required
+      end
+      b.attributes_given_assign(picture_params)
       b.source_type_assign('imported')
       b.metadata_read_from_imported_file
       b.metadata_assign
     end
   end
 
-  def self.create_from_import_and_join_nested_event(params, **args)
+  def self.create_from_import_and_join_nested_event(picture_params, **args)
     self.build(**args) do |b|
+      if picture_params['event_pictures_attributes']['0']['event_id'] == ''
+        b.raise_event_selection_required
+      end
       b.attributes_default_assign
-      b.attributes_given_assign(params)
+      b.attributes_given_assign(picture_params)
       b.source_type_assign('imported')
       b.metadata_read_from_imported_file
       b.metadata_assign
@@ -132,12 +138,11 @@ class PictureBuilder
     end
   end
 
-  def self.create_from_upload(picture_params, **args)
+  def self.create_from_upload(params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
-      b.attributes_given_assign(picture_params)
+      b.attributes_given_assign(params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(picture_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
     end
@@ -146,9 +151,11 @@ class PictureBuilder
   def self.create_from_upload_and_join_nested_album(picture_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if picture_params['album_pictures_attributes']['0']['album_id'] == ''
+        b.raise_album_selection_required
+      end
       b.attributes_given_assign(picture_params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(picture_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
     end
@@ -157,9 +164,11 @@ class PictureBuilder
   def self.create_from_upload_and_join_nested_event(picture_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if picture_params['event_pictures_attributes']['0']['event_id'] == ''
+        b.raise_event_selection_required
+      end
       b.attributes_given_assign(picture_params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(picture_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
     end
@@ -186,7 +195,7 @@ class PictureBuilder
     }
     self.build(**args) do |b|
       b.attributes_default_assign
-      b.attributes_given_assign(picture_params)
+      b.attributes_given_assign(params)
       b.metadata_read_from_uploaded
       b.metadata_assign
       b.join_to_event(event)
@@ -240,7 +249,7 @@ class PictureBuilder
   end
 
   def conditionally_build_autokeyword
-    if @arlocal_settings.admin_forms_new_will_have_autokeyword
+    if @arlocal_settings.admin_forms_new_will_have_autokeyword && @picture.picture_keywords.empty?
       @picture.picture_keywords.build(keyword_id: @arlocal_settings.admin_forms_autokeyword_id)
     end
   end
@@ -266,9 +275,11 @@ class PictureBuilder
   end
 
   def metadata_assign
-    @picture.datetime_from_exif = determine_time_from_exif_formatting(@metadata.raw[:date_time_original])
-    @picture.datetime_from_file = determine_time_from_exif_formatting(@metadata.raw[:file_modify_date])
-    @picture.title_markup_text = @picture.source_file_basename
+    if metadata_is_assigned
+      @picture.datetime_from_exif = determine_time_from_exif_formatting(@metadata.raw[:date_time_original])
+      @picture.datetime_from_file = determine_time_from_exif_formatting(@metadata.raw[:file_modify_date])
+      @picture.title_markup_text = @picture.source_file_basename
+    end
   end
 
   def metadata_is_assigned
@@ -279,18 +290,30 @@ class PictureBuilder
     metadata_is_assigned == false
   end
 
-  def metadata_read_from_uploaded
-    if @picture.source_uploaded.attached?
-      @picture.source_uploaded.open do |i|
-        @metadata = Exiftool.new(i.path)
-      end
+  def metadata_read_from_imported_file
+    if @picture.source_imported_file_exists
+      @metadata = Exiftool.new(source_imported_full_path)
+    else
+      @picture.errors.add(:source_file, :not_found, message: 'Source file not found.')
     end
   end
 
-  def metadata_read_from_imported_file
-    if File.exist?(source_imported_full_path)
-      @metadata = Exiftool.new(source_imported_full_path)
+  def metadata_read_from_uploaded
+    if @picture.source_uploaded_file_exists
+      @picture.source_uploaded.open do |i|
+        @metadata = Exiftool.new(i.path)
+      end
+    else
+      @picture.errors.add(:source_file, :file_not_uploaded, message: 'Source file is required.')
     end
+  end
+
+  def raise_album_selection_required
+    @picture.errors.add(:album, :album, message: 'Album is required.')
+  end
+
+  def raise_event_selection_required
+    @picture.errors.add(:event, :event, message: 'Event is required.')
   end
 
   def source_type_assign(source_type)
@@ -321,13 +344,6 @@ class PictureBuilder
       title_markup_type: 'string',
       visibility: 'admin_only'
     }
-  end
-
-  def source_imported_full_path
-    File.join(
-      Rails.application.config.x.arlocal[:source_imported_filesystem_dirname],
-      @picture.source_imported_file_path
-    )
   end
 
 end

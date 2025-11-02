@@ -7,9 +7,22 @@
 .arl_admin_picture_edit
   = form_with(model: [:admin, @picture], local: true, url: admin_picture_create_from_upload_to_event_path, class: :arl_form) do |f|
     .arl_form_data
-      = render 'form_elements/file_field', attribute: :source_uploaded, form: f
-      = render 'form_elements/auto_keyword', attribute: :picture_keywords, form: f
+      = render 'form_elements/file_field', |
+          attribute: :source_uploaded, |
+          errors: @picture.errors.messages_for(:source_file), |
+          form: f, |
+          label: 'Source file'
+      = render 'form_elements/auto_keyword', |
+          attribute: :picture_keywords, |
+          form: f
       = f.fields_for :event_pictures, f.object.event_pictures.build do |ep|
-        = render 'form_elements/collection_select', form: ep, attribute: :event_id, blank: true, collection: @events, label: 'Event title', text_method: :datetime_and_title
+        = render 'form_elements/collection_select', |
+            attribute: :event_id, |
+            blank: true, |
+            collection: @events, |
+            errors: @picture.errors.messages_for(:event), |
+            form: ep, |
+            label: 'Event', |
+            text_method: :datetime_and_title
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

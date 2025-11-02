@@ -55,6 +55,9 @@ class AudioBuilder
   def self.create_from_import_and_join_nested_album(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if audio_params['album_audio_attributes']['0']['album_id'] == ''
+        b.raise_album_selection_required
+      end
       b.attributes_given_assign(audio_params)
       b.source_type_assign('imported')
       b.metadata_read_from_imported_file
@@ -66,6 +69,9 @@ class AudioBuilder
   def self.create_from_import_and_join_nested_event(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if audio_params['event_audio_attributes']['0']['event_id'] == ''
+        b.raise_event_selection_required
+      end
       b.attributes_given_assign(audio_params)
       b.source_type_assign('imported')
       b.metadata_read_from_imported_file
@@ -129,6 +135,9 @@ class AudioBuilder
   def self.create_from_upload_and_join_nested_album(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if audio_params['album_audio_attributes']['0']['album_id'] == ''
+        b.raise_album_selection_required
+      end
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
       b.metadata_read_from_uploaded
@@ -140,6 +149,9 @@ class AudioBuilder
   def self.create_from_upload_and_join_nested_event(audio_params, **args)
     self.build(**args) do |b|
       b.attributes_default_assign
+      if audio_params['event_audio_attributes']['0']['event_id'] == ''
+        b.raise_event_selection_required
+      end
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
       b.metadata_read_from_uploaded
@@ -255,7 +267,7 @@ class AudioBuilder
     if @audio.source_imported_file_exists
       @metadata = MediaInfo.from(source_imported_full_path)
     else
-      @audio.errors.add(:source_imported_file_path, :not_found, message: 'Source file not found.')
+      @audio.errors.add(:source_file, :not_found, message: 'Source file not found.')
     end
   end
 
@@ -265,16 +277,29 @@ class AudioBuilder
         @metadata = MediaInfo.from(a.path)
       end
     else
-      @audio.errors.add(:base, :file_not_uploaded, message: 'Source file was not uploaded.')
+      @audio.errors.add(:source_file, :file_not_uploaded, message: 'Source file is required.')
     end
   end
 
+  def raise_album_selection_required
+    @audio.errors.add(:album, :album, message: 'Album is required.')
+  end
+
+  def raise_event_selection_required
+    @audio.errors.add(:event, :event, message: 'Event is required.')
+  end
+
+
   def set_new_album_order
-    @audio.album_audio.first.album_order = @metadata.general.track_position
+    if metadata_is_assigned
+      @audio.album_audio.first.album_order = @metadata.general.track_position
+    end
   end
 
   def set_new_event_order
-    @audio.event_audio.first.event_order = @metadata.general.track_position
+    if metadata_is_assigned
+      @audio.event_audio.first.event_order = @metadata.general.track_position
+    end
   end
 
   def source_type_assign(source_type)

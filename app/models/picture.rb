@@ -92,6 +92,11 @@ class Picture < ApplicationRecord
 
   ### albums_count
 
+  # Semantic sugar method
+  def album
+    albums
+  end
+
   def album_pictures_sorted
     album_pictures_sorted_by_title_asc
   end
@@ -269,6 +274,11 @@ class Picture < ApplicationRecord
     (title == nil) || (title.to_s == '')
   end
 
+  # Semantic sugar method
+  def event
+    events
+  end
+
   def event_pictures_sorted
     event_pictures_sorted_by_title_asc
   end
@@ -395,6 +405,10 @@ class Picture < ApplicationRecord
     ]
   end
 
+  def source_file
+    source_file_path
+  end
+
   def source_file_basename
     if source_file_path
       File.basename(source_file_path, '.*')
@@ -438,6 +452,10 @@ class Picture < ApplicationRecord
     end
   end
 
+  def source_imported_file_exists
+    (source_imported_file_path.length > 0) && (File.exist?(source_absolute_path_to_file))
+  end
+
   ### source_imported_file_path
 
   def source_is_file
@@ -470,6 +488,10 @@ class Picture < ApplicationRecord
     end
   end
 
+  def source_uploaded_file_exists
+    source_uploaded_file_path.length > 0
+  end
+
   def title
     title_without_markup
   end
@@ -491,15 +513,6 @@ class Picture < ApplicationRecord
       title_without_markup
     end
   end
-
-  ### TODO: Deprecated
-  # def title_for_html_head
-  #   if title_without_markup.to_s == ''
-  #     'untitled'
-  #   else
-  #     title_without_markup
-  #   end
-  # end
 
   ### title_markup_type
 
@@ -541,16 +554,6 @@ class Picture < ApplicationRecord
   def create_attr_title_without_markup
     self.title_without_markup = ApplicationController.helpers.parser_remove_markup(self.title_props).strip.to_s
   end
-
-  # def datetime_is_valid?
-  #   begin
-  #     if datetime_from_manual_entry_array_to_best_precision.any?
-  #       DateTime === DateTime.new(*self.datetime_from_manual_entry_array_to_best_precision)
-  #     end
-  #   rescue Date::Error
-  #     self.errors.add :base, :invalid_date, message: 'Invalid date.'
-  #   end
-  # end
 
   def source_absolute_path_to_file
     case source_type

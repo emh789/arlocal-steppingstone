@@ -1,92 +1,142 @@
 class Admin::PicturesController < AdminController
 
-  before_action :verify_picture_file_exists, only: [
-    :create_from_import,
-    :create_from_import_to_album,
-    :create_from_import_to_event
-  ]
-
   around_action :set_datetime_manual_entry_zone_from_params, only: [:create, :update]
 
   def create
-    @picture = PictureBuilder.create(params_picture_permitted)
+    @picture = PictureBuilder.create(params_picture_permitted, arlocal_settings: @arlocal_settings)
     if @picture.save
       flash[:notice] = 'Picture was successfuly created.'
-      redirect_to edit_admin_picture_path(@picture.id_admin)
+      render 'edit'
     else
       @form_metadata = FormPictureMetadata.new
-      flash[:notice] = 'Picture could not be created.'
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not created.'
       render 'new'
     end
   end
 
+  # Missing data stops the #create_from_ actions
+
   def create_from_import
-    @picture = PictureBuilder.create_from_import(params_picture_permitted)
+    @picture = PictureBuilder.create_from_import(params_picture_permitted, arlocal_settings: @arlocal_settings)
+    if @picture.errors.any?
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not imported.'
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_import_single'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully imported.'
-      redirect_to edit_admin_picture_path(@picture.id_admin)
+      flash[:notice] = 'Picture successfully imported.'
+      # redirect_to edit_admin_picture_path(@picture.id_admin)
+      render 'edit'
     else
-      @form_metadata = FormPictureMetadata.new
-      flash[:notice] = 'Picture could not be imprted.'
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not imported.'
       render 'new_import'
     end
   end
 
   def create_from_import_to_album
     @picture = PictureBuilder.create_from_import_and_join_nested_album(params_picture_permitted)
+    if @picture.errors.any?
+      flash[:notice] = 'Picture not imported.'
+      flash[:errors] = @picture.errors.attribute_names
+      @albums = QueryAlbums.options_for_select_admin
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_import_to_album'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully imported.'
+      flash[:notice] = 'Picture successfully imported.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      @albums = QueryAlbums.new.order_by_title_asc
-      flash[:notice] = 'Picture could not be imported.'
+      @albums = QueryAlbums.options_for_select_admin
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not imported.'
       render 'new_import_to_album'
     end
   end
 
   def create_from_import_to_event
     @picture = PictureBuilder.create_from_import_and_join_nested_event(params_picture_permitted)
+    if @picture.errors.any?
+      flash[:notice] = 'Picture not imported.'
+      flash[:errors] = @picture.errors.attribute_names
+      @events = QueryEvents.options_for_select_admin
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_import_to_event'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully imported.'
+      flash[:notice] = 'Picture successfully imported.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      @events = QueryEvents.new.order_by_start_time_asc
-      flash[:notice] = 'Picture could not be imported.'
+      @events = QueryEvents.options_for_select_admin
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not imported.'
       render 'new_import_to_event'
     end
   end
 
   def create_from_upload
     @picture = PictureBuilder.create_from_upload(params_picture_permitted)
+    if @picture.errors.any?
+      flash[:notice] = 'Picture not uploaded.'
+      flash[:errors] = @picture.errors.attribute_names
+      @events = QueryEvents.options_for_select_admin
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_upload_single'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully uploaded.'
+      flash[:notice] = 'Picture successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      flash[:notice] = 'Picture could not be uploaded.'
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not uploaded.'
       render 'new_upload_single'
     end
   end
 
   def create_from_upload_to_album
     @picture = PictureBuilder.create_from_upload_and_join_nested_album(params_picture_permitted)
+    if @picture.errors.any?
+      flash[:notice] = 'Picture not uploaded.'
+      flash[:errors] = @picture.errors.attribute_names
+      @albums = QueryAlbums.options_for_select_admin
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_upload_to_album'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully uploaded.'
+      flash[:notice] = 'Picture successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      @albums = QueryAlbums.new.order_by_title_asc
-      flash[:notice] = 'Picture could not be uploaded.'
+      @albums = QueryAlbums.options_for_select_admin
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not uploaded.'
       render 'new_upload_to_album'
     end
   end
 
   def create_from_upload_to_event
     @picture = PictureBuilder.create_from_upload_and_join_nested_event(params_picture_permitted)
+    if @picture.errors.any?
+      flash[:notice] = 'Picture not uploaded.'
+      flash[:errors] = @picture.errors.attribute_names
+      @events = QueryEvents.options_for_select_admin
+      @picture = PictureBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, picture: @picture)
+      render 'new_upload_to_event'
+      return
+    end
     if @picture.save
-      flash[:notice] = 'Picture was successfully uploaded.'
+      flash[:notice] = 'Picture successfully uploaded.'
       redirect_to edit_admin_picture_path(@picture.id_admin)
     else
-      @events = QueryEvents.new.order_by_start_time_asc
-      flash[:notice] = 'Picture could not be uploaded.'
+      @events = QueryEvents.options_for_select_admin
+      flash[:errors] = @picture.errors.attribute_names
+      flash[:notice] = 'Picture not uploaded.'
       render 'new_upload_to_event'
     end
   end
@@ -228,14 +278,6 @@ class Admin::PicturesController < AdminController
 
   def set_datetime_manual_entry_zone_from_params
     Time.use_zone(params[:picture][:datetime_from_manual_entry_zone]) { yield }
-  end
-
-  def verify_picture_file_exists
-    filename = helpers.source_imported_file_path(params[:picture][:source_imported_file_path])
-    if File.exist?(filename) == false
-      flash[:notice] = "File not found: #{filename}"
-      redirect_to request.referrer
-    end
   end
 
 end

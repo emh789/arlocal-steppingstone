@@ -13,15 +13,14 @@ class Admin::AudioController < AdminController
     end
   end
 
-  # Even though a missing source file should not invalidate an Audio object,
-  # a missing source file should stop the #create_from_import actions.
+  # Missing data stops the #create_from_ actions
+
   def create_from_import
     @audio = AudioBuilder.create_from_import(params_audio_permitted, arlocal_settings: @arlocal_settings)
-    if @audio.errors.include?(:source_imported_file_path)
-      flash[:notice] = 'Audio could not be imported.'
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not imported.'
       flash[:errors] = @audio.errors.attribute_names
       @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
-      @form_metadata = FormAudioMetadata.new
       render 'new_import_single'
       return
     end
@@ -29,83 +28,106 @@ class Admin::AudioController < AdminController
       flash[:notice] = 'Audio was successfully imported.'
       render 'edit'
     else
-      flash[:notice] = 'Audio could not be imported.'
-      @form_metadata = FormAudioMetadata.new
+      flash[:notice] = 'Audio not imported.'
+      flash[:errors] = @audio.errors.attribute_names
       render 'new_inport_single'
     end
   end
 
   def create_from_import_to_album
     @audio = AudioBuilder.create_from_import_and_join_nested_album(params_audio_permitted, arlocal_settings: @arlocal_settings)
-    if @audio.errors.include?(:source_imported_file_path)
-      flash[:notice] = 'Audio could not be imported.'
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not imported.'
       flash[:errors] = @audio.errors.attribute_names
       @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
-      @form_metadata = FormAudioMetadata.new
-      render 'new_import_single'
+      @albums = QueryAlbums.options_for_select_admin
+      render 'new_import_to_album'
       return
     end
     if @audio.save
-      flash[:notice] = 'Audio was successfully imported.'
+      flash[:notice] = 'Audio successfully imported.'
       render 'edit'
     else
       @albums = QueryAlbums.options_for_select_admin
-      flash[:notice] = 'Audio could not be imported.'
+      flash[:notice] = 'Audio not imported.'
       render 'new_import_to_album'
     end
   end
 
   def create_from_import_to_event
     @audio = AudioBuilder.create_from_import_and_join_nested_event(params_audio_permitted, arlocal_settings: @arlocal_settings)
-    if @audio.errors.include?(:source_imported_file_path)
-      flash[:notice] = 'Audio could not be imported.'
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not imported.'
       flash[:errors] = @audio.errors.attribute_names
       @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
-      @form_metadata = FormAudioMetadata.new
-      render 'new_import_single'
+      @events = QueryEvents.options_for_select_admin
+      render 'new_import_to_event'
       return
     end
     if @audio.save
-      flash[:notice] = 'Audio was successfully imported.'
+      flash[:notice] = 'Audio successfully imported.'
       render 'edit'
     else
       @events = QueryEvents.options_for_select_admin
-      flash[:notice] = 'Audio could not be imported.'
+      flash[:notice] = 'Audio not imported.'
       render 'new_import_to_event'
     end
   end
 
   def create_from_upload
     @audio = AudioBuilder.create_from_upload(params_audio_permitted, arlocal_settings: @arlocal_settingss)
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not uploaded.'
+      flash[:errors] = @audio.errors.attribute_names
+      @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
+      render 'new_upload_single'
+      return
+    end
     if @audio.save
-      flash[:notice] = 'Audio was successfully uploaded.'
+      flash[:notice] = 'Audio successfully uploaded.'
       render 'edit'
     else
-      flash[:notice] = 'Audio could not be uploaded.'
+      flash[:notice] = 'Audio not uploaded.'
       render 'new_upload_single'
     end
   end
 
   def create_from_upload_to_album
     @audio = AudioBuilder.create_from_upload_and_join_nested_album(params_audio_permitted, arlocal_settings: @arlocal_settings)
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not uploaded.'
+      flash[:errors] = @audio.errors.attribute_names
+      @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
+      @albums = QueryAlbums.options_for_select_admin
+      render 'new_upload_to_album'
+      return
+    end
     if @audio.save
-      flash[:notice] = 'Audio was successfully uploaded.'
+      flash[:notice] = 'Audio successfully uploaded.'
       render 'edit'
     else
+      flash[:notice] = 'Audio not uploaded.'
       @albums = QueryAlbums.options_for_select_admin
-      flash[:notice] = 'Audio could not be uploaded.'
       render 'new_upload_to_album'
     end
   end
 
   def create_from_upload_to_event
     @audio = AudioBuilder.create_from_upload_and_join_nested_event(params_audio_permitted)
+    if @audio.errors.any?
+      flash[:notice] = 'Audio not uploaded.'
+      flash[:errors] = @audio.errors.attribute_names
+      @audio = AudioBuilder.build_with_defaults_and_conditional_autokeyword(arlocal_settings: @arlocal_settings, audio: @audio)
+      @events = QueryEvents.options_for_select_admin
+      render 'new_upload_to_event'
+      return
+    end
     if @audio.save
-      flash[:notice] = 'Audio was successfully uploaded.'
+      flash[:notice] = 'Audio successfully uploaded.'
       render 'edit'
     else
       @events = QueryEvents.options_for_select_admin
-      flash[:notice] = 'Audio could not be uploaded.'
+      flash[:notice] = 'Audio not uploaded.'
       render 'new_upload_to_event'
     end
   end
@@ -188,13 +210,13 @@ class Admin::AudioController < AdminController
     @audio.assign_attributes(params_audio_permitted)
     changed = @audio.changed
     if @audio.save
-      flash[:notice] = 'Audio was successfully updated.'
+      flash[:notice] = 'Audio successfully updated.'
       flash[:changed] = changed
       redirect_to edit_admin_audio_path(@audio.id_admin, pane: params[:pane])
     else
       @audio_neighbors = QueryAudio.neighborhood_admin(@audio, @arlocal_settings)
       @form_metadata = FormAudioMetadata.new(pane: params[:pane])
-      flash[:notice] = 'Audio could not be updated.'
+      flash[:notice] = 'Audio not updated.'
       flash[:errors] = @audio.errors.attribute_names
       render 'edit'
     end

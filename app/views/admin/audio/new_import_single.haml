@@ -7,7 +7,14 @@
 .arl_admin_audio_edit
   = form_with(model: [:admin, @audio], local: true, url: admin_audio_create_from_import_path, class: :arl_form) do |f|
     .arl_form_data
-      = render 'form_elements/text_field',   attribute: :source_imported_file_path, form: f, aside: "#{source_imported_dirname(trailing_separator: true)}"
-      = render 'form_elements/auto_keyword', attribute: :audio_keywords, form: f
+      = render 'form_elements/text_field', |
+          aside: "#{source_imported_dirname(trailing_separator: true)}", |
+          attribute: :source_imported_file_path, |
+          errors: @audio.errors.messages_for(:source_file), |
+          form: f, |
+          label: 'Source file'
+      = render 'form_elements/auto_keyword', |
+          attribute: :audio_keywords, |
+          form: f
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

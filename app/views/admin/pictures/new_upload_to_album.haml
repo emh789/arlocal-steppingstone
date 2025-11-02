@@ -7,9 +7,22 @@
 .arl_admin_picture_edit
   = form_with(model: [:admin, @picture], local: true, url: admin_picture_create_from_upload_to_album_path, class: :arl_form) do |f|
     .arl_form_data
-      = render 'form_elements/file_field', attribute: :source_uploaded, form: f
-      = render 'form_elements/auto_keyword', attribute: :picture_keywords, form: f
+      = render 'form_elements/file_field', |
+          attribute: :source_uploaded, |
+          errors: @picture.errors.messages_for(:source_file), |
+          form: f, |
+          label: 'Source file'
+      = render 'form_elements/auto_keyword', |
+          attribute: :picture_keywords, |
+          form: f
       = f.fields_for :album_pictures, f.object.album_pictures.build do |ap|
-        = render 'form_elements/collection_select', form: ap, attribute: :album_id, blank: true, collection: @albums, label: 'Album title', text_method: :title
+        = render 'form_elements/collection_select', |
+            attribute: :album_id, |
+            blank: true, |
+            collection: @albums, |
+            errors: @picture.errors.messages_for(:album), |
+            form: ap, |
+            label: 'Album', |
+            text_method: :title
     .arl_form_actions
       = f.submit class: :arl_button_form_submit

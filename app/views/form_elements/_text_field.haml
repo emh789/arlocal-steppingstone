@@ -1,9 +1,9 @@
 %fieldset.arl_form_data_attr
-  = form.label attribute, class: :arl_form_data_attr_label
+  = form.label (local_assigns[:label] ? label : attribute), class: :arl_form_data_attr_label
 
-  - if form.object.errors.include?(attribute)
+  - if local_assigns[:errors]
     %mark.arl_form_data_attr_errors
-      - form.object.errors.messages_for(attribute).each do |e|
+      - errors.each do |e|
         .arl_form_data_attr_error= e
 
   - if local_assigns[:aside]

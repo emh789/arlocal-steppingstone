@@ -1,6 +1,11 @@
 %fieldset.arl_form_data_attr
   = form.label (local_assigns[:label] ? label : attribute), class: :arl_form_data_attr_label
 
+  - if local_assigns[:errors]
+    %mark.arl_form_data_attr_errors
+      - errors.each do |e|
+        .arl_form_data_attr_error= e
+
   - if form.object.does_not_have_source_uploaded
     = form.file_field attribute, autocomplete: :off, direct_upload: true, class: :arl_form_data_attr_input_file_upload
 

@@ -13,6 +13,13 @@
   text-indent: 0;
   margin: 0;
 }
+.arl_admin_header_error:after {
+  content: ', ';
+}
+.arl_admin_header_error:last-child:after {
+  content: '';
+}
+
 .arl_admin_header_error_list {
   display: inline;
   text-indent: 0;

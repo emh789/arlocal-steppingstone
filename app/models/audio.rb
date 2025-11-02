@@ -77,9 +77,10 @@ class Audio < ApplicationRecord
 
   public
 
-  ### artist
-
-  ### audio_artist
+  # Semantic sugar method
+  def album
+    albums
+  end
 
   def album_audio_sorted
     album_audio_sorted_by_title_asc
@@ -98,6 +99,10 @@ class Audio < ApplicationRecord
   def albums_sorted_by_title_asc
     albums.to_a.sort_by! { |album| album.title_sortable }
   end
+
+  ### artist
+
+  ### audio_artist
 
   def audio_keywords_sorted
     audio_keywords_sorted_by_title_asc
@@ -256,6 +261,11 @@ class Audio < ApplicationRecord
     errors_isrc.values.flatten
   end
 
+  # Semantic sugar method
+  def event
+    events
+  end
+
   def event_audio_sorted
     event_audio_sorted_by_datetime_asc
   end
@@ -399,6 +409,10 @@ class Audio < ApplicationRecord
       [:title, :subtitle],
       [:title, :subtitle, :year]
     ]
+  end
+
+  def source_file
+    source_file_path
   end
 
   def source_file_does_exist
