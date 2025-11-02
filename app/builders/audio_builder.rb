@@ -121,7 +121,6 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(audio_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
     end
@@ -132,7 +131,6 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(audio_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
       b.set_new_album_order
@@ -144,7 +142,6 @@ class AudioBuilder
       b.attributes_default_assign
       b.attributes_given_assign(audio_params)
       b.source_type_assign('uploaded')
-      # b.metadata_read_from_tempfile(audio_params)
       b.metadata_read_from_uploaded
       b.metadata_assign
       b.set_new_event_order
@@ -254,14 +251,11 @@ class AudioBuilder
     metadata_is_assigned == false
   end
 
-  def metadata_read
-    case @audio.source_type
-    when 'imported'
-      metadata_read_from_imported
-    when 'tempfile'
-      metadata_read_from_tempfile
-    when 'uploaded'
-      metadata_read_from_uploaded
+  def metadata_read_from_imported_file
+    if @audio.source_imported_file_exists
+      @metadata = MediaInfo.from(source_imported_full_path)
+    else
+      @audio.errors.add(:source_imported_file_path, :not_found, message: 'Source file not found.')
     end
   end
 
@@ -272,15 +266,6 @@ class AudioBuilder
       end
     else
       @audio.errors.add(:base, :file_not_uploaded, message: 'Source file was not uploaded.')
-    end
-  end
-
-  def metadata_read_from_imported_file
-    if @audio.source_imported_file_exists
-    # if File.exist?(source_imported_full_path)
-      @metadata = MediaInfo.from(source_imported_full_path)
-    else
-      @audio.errors.add(:source_imported_file_path, :not_found, message: 'Source file not found.')
     end
   end
 
