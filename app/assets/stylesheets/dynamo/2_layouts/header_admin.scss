@@ -9,14 +9,17 @@
 	padding: $arl-spacing-wide;
 }
 .arl_admin_header_error {
-  display: inline
+  display: inline;
+  text-indent: 0;
+  margin: 0;
 }
 .arl_admin_header_error_list {
-  display: block;
-  margin-left: $arl-margin-narrow;
+  display: inline;
+  text-indent: 0;
+  margin: 0;
 }
 .arl_admin_header_errors {
-  display: inline;
+  display: block;
 }
 .arl_admin_header_logo {
   grid-area: logo;

@@ -3,10 +3,10 @@
 
 - if flash[:errors]
   .arl_admin_header_errors
-    = "See #{pluralize(flash[:errors].length, 'error')} in:"
-  %ul.arl_admin_header_error_list
-    - flash[:errors].sort.each do |e|
-      %li.arl_admin_header_error= e.to_s.gsub('_',' ')
+    = "#{pluralize(flash[:errors].length, 'error')}:"
+    %ul.arl_admin_header_error_list
+      - flash[:errors].sort.each do |e|
+        %li.arl_admin_header_error= e.to_s.gsub('_',' ')
 - elsif flash[:changed]
   .arl_admin_header_updated
     = "Updated #{pluralize(flash[:changed].length, 'attribute')}:"
