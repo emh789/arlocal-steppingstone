@@ -89,7 +89,7 @@ $dark-narrow-foundation: black;
   .arl_error_file_missing, .arl_error_not_indexed {
     color: mix(red, $dark-fg);
   }
-  .arl_fa_icon {
+  .arl_fa_icon, .arl_fa_icon_mini {
     // filter: invert(85%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
     filter: invert(80%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%);
   }

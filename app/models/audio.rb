@@ -500,12 +500,14 @@ class Audio < ApplicationRecord
 
   ### title
 
+  ### TODO: Remove.
   def title_and_subtitle_for_display
-    if subtitle && !subtitle.blank?
-      "#{title} (#{subtitle})"
-    else
-      title_for_display
-    end
+    # if subtitle && !subtitle.blank?
+    #   "#{title} (#{subtitle})"
+    # else
+    #   title_for_display
+    # end
+    [title_for_display, "!!!"].join(' ')
   end
 
   def title_for_display

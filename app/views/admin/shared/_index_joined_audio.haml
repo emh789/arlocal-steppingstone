@@ -1,4 +1,4 @@
 .arl_admin_joined_resource
   %dh.arl_admin_joined_resource_heading= resource_joined_audio_count_statement(resource, punctuated: true)
   - resource.audio_sorted.each do |audio|
-    %dd.arl_admin_joined_resource_data= audio.title_and_subtitle_for_display
+    %dd.arl_admin_joined_resource_data= audio.title_for_display

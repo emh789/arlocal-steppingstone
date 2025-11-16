@@ -10,6 +10,17 @@
   margin-left: auto;
   margin-right: auto;
 }
+.arl_fa_icon_mini {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain contain;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  transform-origin: center center;
+  margin-left: $arl-margin-mini;
+  margin-right: $arl-margin-mini;
+}
 .fa_done_editing {
   background-image: asset_url('font-awesome/lock.svg');
 }
@@ -21,6 +32,10 @@
 }
 .fa_index {
   background-image: asset_url('font-awesome/bars.svg');
+}
+.fa_join {
+  background-image: asset_url('font-awesome/link.svg');
+  transform: scale(0.9, 0.9);
 }
 .fa_join_by_keyword {
   background-image: asset_url('font-awesome/arrows-to-circle.svg');
@@ -43,6 +58,9 @@
 }
 .fa_public {
   background-image: asset_url('font-awesome/eye.svg');
+}
+.fa_share {
+  background-image: asset_url('font-awesome/share-nodes.svg');
 }
 .fa_upload {
   background-image: asset_url('font-awesome/upload.svg');

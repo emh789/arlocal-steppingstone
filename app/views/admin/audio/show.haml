@@ -17,7 +17,6 @@
 .arl_admin_audio_show
   %dl.arl_admin_audio_show_title
     = render 'admin/shared/metadata_pair', key: 'Title', value: @audio.title
-    = render 'admin/shared/metadata_pair', key: 'Subtitle', value: @audio.subtitle
     = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @audio.visibility
   %div.arl_admin_audio_show_player
     = render 'public/jplayer_single/jplayer_audio', audio: @audio

@@ -23,17 +23,22 @@ class AlbumAudio < ApplicationRecord
 
   ### audio_id
 
-  def audio_title_for_display
-    audio.title_and_subtitle_for_display
+  def audio_title
+    audio.title_for_display
   end
 
-  def audio_title_for_index
-    if album.index_tracklist_audio_includes_subtitles
-      audio.title_and_subtitle_for_display
-    else
-      audio.title_for_display
-    end
+  def audio_title_for_display
+   audio.title_for_display
   end
+
+  #
+  # def audio_title_for_index
+  #   if album.index_tracklist_audio_includes_subtitles
+  #     audio.title_and_subtitle_for_display
+  #   else
+  #     audio.title_for_display
+  #   end
+  # end
 
   ### created_at
 

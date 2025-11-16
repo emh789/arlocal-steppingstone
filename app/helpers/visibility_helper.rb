@@ -2,25 +2,21 @@ module VisibilityHelper
 
   VISIBILITIES = [
     {
-      abbreviation: 'admin',
       description: 'administrators only',
       id: 'admin_only',
       order: 0,
     },
     {
-      abbreviation: 'public by url',
       description: 'public – url',
       id: 'public_showable',
       order: 1,
     },
     {
-      abbreviation: 'public thru join',
       description: 'public – url, join',
       id: 'public_joinable',
       order: 2,
     },
     {
-      abbreviation: 'public thru index',
       description: 'public – url, join, index',
       id: 'public_indexable',
       order: 3,
@@ -28,7 +24,16 @@ module VisibilityHelper
   ]
 
   def visibility_abbreviation(id)
-    VISIBILITIES.select { |v| v[:id] == id }[0][:abbreviation]
+    case id
+    when 'admin_only'
+      icon_visibility_private.html_safe
+    when 'public_showable'
+      icon_visibility_share.html_safe
+    when 'public_joinable'
+      [ icon_visibility_share, icon_visibility_join ].join.html_safe
+    when 'public_indexable'
+      [ icon_visibility_share, icon_visibility_join, icon_visibility_index ].join.html_safe
+    end
   end
 
   def visibility_description(id)

@@ -89,7 +89,7 @@ $light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
   .arl_error_file_missing, .arl_error_not_indexed {
     color: mix(red, $light-fg);
   }
-  .arl_fa_icon {
+  .arl_fa_icon, .arl_fa_icon_mini {
     // filter: invert(10%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
     filter: invert(30%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%);
   }
