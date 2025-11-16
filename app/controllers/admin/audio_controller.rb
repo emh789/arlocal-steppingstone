@@ -251,7 +251,6 @@ class Admin::AudioController < AdminController
       :source_type,
       :source_uploaded,
       :source_url,
-      :subtitle,
       :title,
       :visibility,
       album_audio_attributes: [

@@ -116,7 +116,7 @@ class Album < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
+    audio.to_a.sort_by! { |audio| audio.title_for_display }
   end
 
   def autokeyword
@@ -310,8 +310,6 @@ class Album < ApplicationRecord
   end
 
   ### index_can_display_tracklist
-
-  ### index_tracklist_audio_includes_subtitles
 
   def index_will_display_tracklist
     index_can_display_tracklist && does_have_audio

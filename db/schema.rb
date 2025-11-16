@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_19_235846) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_16_072608) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -92,7 +95,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_235846) do
     t.string "description_markup_type"
     t.text "description_markup_text"
     t.boolean "index_can_display_tracklist"
-    t.boolean "index_tracklist_audio_includes_subtitles"
     t.string "personnel_markup_type"
     t.text "personnel_markup_text"
     t.integer "keywords_count"
@@ -154,8 +156,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_235846) do
   end
 
   create_table "article_keywords", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "keyword_id"
+    t.bigint "article_id"
+    t.bigint "keyword_id"
     t.index ["article_id"], name: "index_article_keywords_on_article_id"
     t.index ["keyword_id"], name: "index_article_keywords_on_keyword_id"
   end
@@ -203,7 +205,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_19_235846) do
     t.integer "keywords_count"
     t.string "musicians_markup_type"
     t.text "musicians_markup_text"
-    t.string "subtitle"
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

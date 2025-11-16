@@ -27,11 +27,6 @@ class EventAudio < ApplicationRecord
 
   ### created_at
 
-  # TODO: Obsolete
-  # def display_title
-  #   audio.title
-  # end
-
   def does_have_order
     order.to_s.length > 0
   end
@@ -39,11 +34,6 @@ class EventAudio < ApplicationRecord
   ### event_id
 
   ### event_order
-
-  # TODO: Obsolete
-  # def full_title
-  #   audio.full_title
-  # end
 
   ### id
 
@@ -54,11 +44,6 @@ class EventAudio < ApplicationRecord
   def playlist_order
     event_order
   end
-
-  # TODO: Obsolete
-  # def title
-  #   audio.title
-  # end
 
   ### updated_at
 

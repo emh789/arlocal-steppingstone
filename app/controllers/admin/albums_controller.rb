@@ -137,7 +137,6 @@ class Admin::AlbumsController < AdminController
       :description_markup_type,
       :description_markup_text,
       :index_can_display_tracklist,
-      :index_tracklist_audio_includes_subtitles,
       :musicians_markup_type,
       :musicians_markup_text,
       :personnel_markup_type,

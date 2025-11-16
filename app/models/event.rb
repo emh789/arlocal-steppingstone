@@ -87,7 +87,7 @@ class Event < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
+    audio.to_a.sort_by! { |audio| audio.title_for_display }
   end
 
   def autokeyword

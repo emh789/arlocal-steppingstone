@@ -496,19 +496,17 @@ class Audio < ApplicationRecord
     end
   end
 
-  ### subtitle
-
   ### title
 
   ### TODO: Remove.
-  def title_and_subtitle_for_display
+  # def title_and_subtitle_for_display
     # if subtitle && !subtitle.blank?
     #   "#{title} (#{subtitle})"
     # else
     #   title_for_display
     # end
-    [title_for_display, "!!!"].join(' ')
-  end
+    # [title_for_display, "!!!"].join(' ')
+  # end
 
   def title_for_display
     case title
@@ -560,7 +558,6 @@ class Audio < ApplicationRecord
       'musicians_markup_text',
       'personnel_markup_text',
       'source_imported_file_path',
-      'subtitle',
       'title'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }

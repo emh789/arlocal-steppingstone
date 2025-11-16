@@ -66,7 +66,6 @@ class AlbumBuilder
       copyright_markup_type: 'string',
       description_markup_type: 'plaintext',
       index_can_display_tracklist: true,
-      index_tracklist_audio_includes_subtitles: true,
       musicians_markup_type: 'plaintext',
       personnel_markup_type: 'plaintext',
       show_can_cycle_pictures: true,
