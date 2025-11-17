@@ -143,9 +143,9 @@ class Admin::AlbumsController < AdminController
       :personnel_markup_text,
       :show_can_cycle_pictures,
       :show_can_have_more_pictures_link,
-      :show_can_have_vendor_widget_gumroad,
+      :show_can_include_vendor_markdown_links,
       :title,
-      :vendor_widget_gumroad,
+      :vendor_markdown_links,
       :visibility,
       album_audio_attributes: [
         :album_order,

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_16_072608) do
+ActiveRecord::Schema[7.1].define(version: 2025_11_16_180138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,10 +107,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_16_072608) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "vendor_widget_gumroad"
-    t.boolean "show_can_have_vendor_widget_gumroad"
+    t.boolean "show_can_include_vendor_markdown_links"
     t.string "visibility"
     t.string "album_pictures_sort_method"
+    t.text "vendor_markdown_links"
     t.index ["slug"], name: "index_albums_on_slug"
   end
 

@@ -22,4 +22,12 @@ module ParsersHelper
     end
   end
 
+  def parser_vendor_links(markdown)
+    fragment = CommonMarker.render_html(markdown)
+    fragment_tree = Nokogiri::HTML5.fragment(fragment)
+    fragment_tree.css('ul').each { |node| node['class'] = 'arl_albums_show_vendor_links' }
+    fragment_tree.css('li').each { |node| node['class'] = 'arl_albums_show_vendor_link' }
+    fragment_tree.to_html.html_safe
+  end
+
 end

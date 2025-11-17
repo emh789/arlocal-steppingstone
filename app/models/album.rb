@@ -231,8 +231,8 @@ class Album < ApplicationRecord
     pictures_sorter_id.to_s != ''
   end
 
-  def does_have_vendor_widget_gumroad
-    vendor_widget_gumroad.to_s != ''
+  def does_have_vendor_markdown_links
+    vendor_markdown_links.to_s != ''
   end
 
   def does_not_have_alt_url
@@ -433,8 +433,8 @@ class Album < ApplicationRecord
     show_can_have_more_pictures_link && does_have_more_than_one_picture
   end
 
-  def show_will_have_vendor_widget_gumroad
-    show_can_have_vendor_widget_gumroad && does_have_vendor_widget_gumroad
+  def show_will_include_vendor_markdown_links
+    show_can_include_vendor_markdown_links && does_have_vendor_markdown_links
   end
 
   def show_will_link_to_alt_url
@@ -492,7 +492,7 @@ class Album < ApplicationRecord
       'musicians_markup_text',
       'personnel_markup_text',
       'title',
-      'vendor_widget_gumroad'
+      'vendor_markdown_links'
     ]
     changed_strippable_attributes = self.changed.select { |v| strippable_attributes.include?(v) }
     changed_strippable_attributes.each do |attribute|
