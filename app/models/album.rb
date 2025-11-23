@@ -471,6 +471,8 @@ class Album < ApplicationRecord
 
   ### updated_at
 
+  ### vendor_markdown_links
+
   ### visibility
 
   def year

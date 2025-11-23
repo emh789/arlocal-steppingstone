@@ -1,31 +1,29 @@
 .jp-type-playlist {
+  max-width: 20rem;
   width: 20rem;
 }
 
 @media #{$media-screen-1} {
-  // see .arl_albums_show_player for border-top.
-  // TODO: figure out why .jp_audio doesn't render borders for this @media type
   .jp-type-playlist {
-    max-width: 20rem;
-    border-bottom-style: $border-style;
-    border-bottom-width: $border-width;
-    border-left-style: $border-style;
-    border-left-width: $border-width;
-    border-right-style: $border-style;
-    border-right-width: $border-width;
+    // border-bottom-style: $border-style;
+    // border-bottom-width: $border-width;
+    // border-left-style: $border-style;
+    // border-left-width: $border-width;
+    // border-right-style: $border-style;
+    // border-right-width: $border-width;
   }
 }
 
 @media #{$media-screen-2} {
   .jp-type-playlist {
-    border-style: $border-style;
-    border-width: $border-width;
+    // border-style: $border-style;
+    // border-width: $border-width;
   }
 }
 
 @media #{$media-screen-3} {
   .jp-type-playlist {
-    border-style: $border-style;
-    border-width: $border-width;
+    // border-style: $border-style;
+    // border-width: $border-width;
   }
 }

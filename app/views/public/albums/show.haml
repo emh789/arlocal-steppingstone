@@ -5,18 +5,18 @@
   .arl_albums_show_picture
     = render 'show_album_picture_img', album: @album
   .arl_albums_show_text
-    .arl_layout_section_text
-      = render 'show_album_text_title', album: @album
-      = render 'show_album_text_album_artist', album: @album
+    = render 'show_album_text_title', album: @album
+    = render 'show_album_text_album_artist', album: @album
     = render 'show_album_text_description', album: @album
     = render 'show_album_text_musicians', album: @album
     = render 'show_album_text_personnel', album: @album
-    .arl_layout_section_text
+    .arl_albums_show_text_etc
       = render 'show_album_text_date_released', album: @album
       = render 'show_album_text_duration', album: @album
-      = render 'show_album_text_copyright', album: @album
-  .arl_albums_show_player
-    = render 'public/jplayer_multiple/jplayer_album', album: @album, view: :published
+    = render 'show_album_text_copyright', album: @album
+  .arl_albums_show_media
+    .arl_albums_show_media_player
+      = render 'public/jplayer_multiple/jplayer_album', album: @album, view: :published
     = render 'show_album_vendor_markdown_links', album: @album
 
   - if @album_neighbors
