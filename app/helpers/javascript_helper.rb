@@ -6,7 +6,7 @@ module JavascriptHelper
 
   def js_fragment_jp_audio_ordered(resource_audio)
     filetype = resource_audio.audio.source_file_extension_or_dummy
-    { "albumOrder" => resource_audio.playlist_order,
+    { "albumOrder" => resource_audio.playlist_order.to_s,
       "title" => resource_audio.audio_title_for_display,
       "duration" => resource_audio.audio.duration(rounded_to: :seconds),
       "#{filetype}" => audio_preferred_url(resource_audio.audio)

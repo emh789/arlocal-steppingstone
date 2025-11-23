@@ -27,7 +27,7 @@
  * playlist is now presented as tabular data
  *   albumOrder:title:duration
  *   albumOrder and duration added to playlist objects during playlist definition
- *   
+ *
  * <ul> is now <table>
  *   <li> is now <tr>
  *     <div> are now <td>
@@ -251,7 +251,7 @@
 				$(this.cssSelector.playlist + " table").slideUp(displayTime, function() {
 					var $this = $(this);
 					$(this).empty();
-					
+
 					$.each(self.playlist, function(i) {
 						$this.append(self._createListItem(self.playlist[i]));
 					});
@@ -270,7 +270,7 @@
 		_createListItem: function(media) {
 			var self = this;
 
-      /* ARLOCAL: 
+      /* ARLOCAL:
           listItem prepared as <tr><td> instead of <li><div><span>
           'remove' and 'free' links are not used
 
@@ -300,7 +300,7 @@
 			// The title is given next in the HTML otherwise the float:right on the free media corrupts in IE6/7
 			listItem += "<a href='javascript:;' class='" + this.options.playlistOptions.itemClass + "' tabindex='0'>" + media.title + (media.artist ? " <span class='jp-artist'>by " + media.artist + "</span>" : "") + "</a>";
 			listItem += "</div></li>";
-      
+
       */
 
       /* ARLOCAL: For accessibility purposes, only the title will receive an <A> element.
@@ -310,10 +310,11 @@
       /* ARLOCAL: Add playlist number. Include an empty <TD> if media.albumOrder is null */
       listItem += "<td class='jp-playlist-item-number'>";
       if (media.albumOrder.length > 0) {
-       listItem += "<span class='jp-playlist-item-number-value'>" + media.albumOrder + "</span></td>"; 
+       listItem += "<span class='jp-playlist-item-number-value'>" + media.albumOrder + "</span>"; 
       }
-        
-      /* ARLOCAL: Add title and duration */  
+			listItem += "</td>";
+
+      /* ARLOCAL: Add title and duration */
 			listItem += "<td class='jp-playlist-item-title'><a tabindex='0'>" + media.title + "</a></td>";
       listItem += "<td class='jp-playlist-item-duration'>" + media.duration + "</td>";
 			listItem += "</tr>";
