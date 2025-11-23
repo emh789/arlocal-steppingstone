@@ -10,18 +10,21 @@
 
 .arl_header_artist {
   margin-top: $arl-margin-narrow;
-  margin-bottom: 0rem;
+  margin-bottom: ($arl-margin-narrow / 2);
 }
 
 .arl_header_artist_name {
+  border-radius: $border-radius;
   font-family: $font-family-artist;
   font-size: 2.5rem;
   font-weight: 400;
   line-height: 2.5rem;
+  padding: 0 $arl-margin-narrow;
   text-decoration: none;
 }
 
 .arl_header_nav_select {
+  background-color: transparent;
   border-radius: $border-radius;
   // border-style: $border-style;
   // border-width: $border-width-wide;
