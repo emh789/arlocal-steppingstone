@@ -31,7 +31,7 @@ module NavPublicHelper
 
   def nav_public_select_current_and_indexes_optgroups(arlocal_settings)
     [ content_tag(:optgroup, nav_public_select_current_and_indexes_optgroup_current, label: content_for(:page_subtitle).concat(':')),
-      content_tag(:optgroup, nav_public_select_current_and_indexes_optgroup_indexes(arlocal_settings), label: 'Indexes')
+      content_tag(:optgroup, nav_public_select_current_and_indexes_optgroup_indexes(arlocal_settings), label: '─────────')
     ].join("\n").html_safe
   end
 
