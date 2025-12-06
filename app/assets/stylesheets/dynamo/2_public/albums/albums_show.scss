@@ -184,15 +184,17 @@
     width: 22rem;
   }
   .arl_albums_show_media {
+    align-content: start;
     display: grid;
     grid-area: media;
     grid-template-areas: 'player' 'vendors';
+    row-gap: $arl-margin-wide;
   }
   .arl_albums_show_media_player {
     grid-area: player;
   }
   .arl_albums_show_media_vendors {
-    gird-area: vendors;
+    grid-area: vendors;
   }
   .arl_albums_show_nav_neighbors {
     grid-area: neighbors;
