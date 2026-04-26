@@ -3,6 +3,8 @@
 
 ## HIGHEST priority
 
+- check aurlocal_settings error handling in admin_form
+
 - counter cache for infopage articles, links, pictures
   - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
 - **drop counter_cache columns from infopage**
