@@ -6,7 +6,7 @@ class Public::HomeController < PublicController
   end
 
   def album_url(album)
-    public_album_url(album)
+    public_album_url(album.id_public)
   end
 
   def albums_url
@@ -18,7 +18,7 @@ class Public::HomeController < PublicController
   end
 
   def video_url(video)
-    public_video_url(video)
+    public_video_url(video.id_public)
   end
 
   def videos_path
