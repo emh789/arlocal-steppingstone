@@ -23,7 +23,7 @@ class Admin::ArlocalSettingsController < AdminController
     if @arlocal_settings.save
       flash[:notice] = 'A&R.local settings were successfully updated.'
       flash[:changed] = changed
-      render 'edit'
+      redirect_to edit_admin_arlocal_settings_path
     else
       flash[:notice] = 'A&R.local settings could not be updated.'
       flash[:errors] = @arlocal_settings.errors.attribute_names
