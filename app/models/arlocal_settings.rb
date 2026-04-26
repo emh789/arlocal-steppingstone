@@ -1,12 +1,14 @@
 class ArlocalSettings < ApplicationRecord
 
+  include Rails.application.routes.url_helpers
+
   has_one_attached :icon_image
 
   before_validation :strip_whitespace_edges_from_entered_text
   before_validation :strip_any_leading_slash_from_icon_source_imported_file_path
 
   validates :admin_forms_autokeyword_id, presence: true, if: :admin_forms_autokeyword_enabled
-
+  validates :public_homepage_target, presence: true
 
   protected
 
@@ -163,6 +165,8 @@ class ArlocalSettings < ApplicationRecord
   def marquee_will_render
     (marquee_enabled) && (marquee_markup_text.to_s != '')
   end
+
+  ### public_homepage_target
 
   ### public_index_albums_sort_method
 

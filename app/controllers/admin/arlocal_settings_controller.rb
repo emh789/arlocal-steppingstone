@@ -77,6 +77,7 @@ class Admin::ArlocalSettingsController < AdminController
       :icon_image,
       :icon_source_imported_file_path,
       :icon_source_type,
+      :public_homepage_target,
       :public_index_albums_sort_method,
       :public_index_audio_sort_method,
       :public_index_events_sort_method,

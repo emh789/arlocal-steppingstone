@@ -20,6 +20,7 @@ class FormMetadataSelectable
     :parser,
     :pictures,
     :pictures_index_sorters,
+    :public_homepage_targets,
     :selectable_pictures_sorters,
     :source_types,
     :time_zones,

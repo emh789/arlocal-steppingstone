@@ -56,6 +56,7 @@ class FormArlocalSettingsMetadata
         :@audio_index_sorters => proc { SorterIndexPublicAudio.options_for_select },
         :@events_index_sorters => proc { SorterIndexPublicEvents.options_for_select },
         :@pictures_index_sorters => proc { SorterIndexPublicPictures.options_for_select },
+        :@public_homepage_targets => proc { HomepageTarget.options_for_select },
         :@videos_index_sorters => proc { SorterIndexPublicVideos.options_for_select },
         :@selectable_pictures_sorters => proc { SorterFormSelectablePictures.options_for_select }
       }

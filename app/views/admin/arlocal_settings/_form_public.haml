@@ -2,6 +2,7 @@
   .arl_form_title Public view settings
 
   .arl_form_data
+    = render 'form_elements_arls/homepage_target_select', form: f, label: 'Public Homepage Target', targets: selectable.public_homepage_targets
     = render 'form_elements_arls/select_sorter', attribute: :public_index_albums_sort_method,   form: f, label: 'Public Index – Albums – sort by', selectable: selectable.albums_index_sorters
     = render 'form_elements_arls/select_sorter', attribute: :public_index_audio_sort_method,    form: f, label: 'Public Index – Audio – sort by', selectable: selectable.audio_index_sorters
     = render 'form_elements_arls/select_sorter', attribute: :public_index_events_sort_method,   form: f, label: 'Public Index – Events – sort by', selectable: selectable.events_index_sorters

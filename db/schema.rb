@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_11_16_180138) do
+ActiveRecord::Schema[7.1].define(version: 2026_04_26_070509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -153,6 +153,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_11_16_180138) do
     t.string "public_index_events_sort_method"
     t.string "public_index_pictures_sort_method"
     t.string "public_index_videos_sort_method"
+    t.string "public_homepage_target"
   end
 
   create_table "article_keywords", force: :cascade do |t|

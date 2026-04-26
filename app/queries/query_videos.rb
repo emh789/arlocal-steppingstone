@@ -34,6 +34,10 @@ class QueryVideos
     Video.select(:id, :title).sort_by{ |v| v.title.downcase }
   end
 
+  def self.select_public_most_recent
+    Video.select(:id, :date_released).any_public_released_or_showable.order(date_released: :desc).first
+  end
+
 
   public
 

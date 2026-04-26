@@ -31,6 +31,11 @@ class QueryAlbums
     Album.select(:id, :title).sort_by{ |a| a.title_sortable }
   end
 
+  def self.select_public_most_recent
+    Album.select(:id, :date_released).any_public_released_or_showable.order(date_released: :desc).first
+  end
+
+
 
   public
 

@@ -1,0 +1,14 @@
+%fieldset.arl_form_data_attr
+  - if local_assigns[:label]
+    = form.label :public_homepage_target, label, class: :arl_form_data_attr_label
+  - else
+    = form.label :public_homepage_target, class: :arl_form_data_attr_label
+
+  - if local_assigns[:errors]
+    %mark.arl_form_data_attr_errors
+      - errors.each do |e|
+        .arl_form_data_attr_error= e
+
+  = form.select :public_homepage_target, targets, { selected: form.object.public_homepage_target }, { class: :arl_form_data_attr_input_select }
+  - if local_assigns[:aside]
+    %aside.arl_form_data_attr_explanation= "#{aside}"

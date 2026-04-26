@@ -36,6 +36,7 @@ class ArlocalSettingsBuilder
       marquee_enabled: false,
       marquee_markup_type: 'markdown',
       marquee_markup_text: '',
+      public_homepage_target: 'albums_index',
       public_index_albums_sort_method: 'datetime_asc',
       public_index_audio_sort_method: 'filepath_asc',
       public_index_events_sort_method: 'upcoming',

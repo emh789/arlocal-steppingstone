@@ -1,4 +1,4 @@
-root to: 'public/albums#index'
+root to: 'public/home#show'
 
 get 'albums',                         to: 'public/albums#index',              as: :public_albums
 get 'albums/:id',                     to: 'public/albums#show',               as: :public_album
