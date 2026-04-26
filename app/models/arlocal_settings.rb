@@ -8,6 +8,9 @@ class ArlocalSettings < ApplicationRecord
   before_validation :strip_any_leading_slash_from_icon_source_imported_file_path
 
   validates :admin_forms_autokeyword_id, presence: true, if: :admin_forms_autokeyword_enabled
+  validates :audio_default_isrc_country_code, allow_blank: true, length: { is: 2 }
+  validates :audio_default_isrc_registrant_code, allow_blank: true, length: { is: 3 }
+
   validates :public_homepage_target, presence: true
 
   protected
