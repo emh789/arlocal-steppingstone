@@ -85,7 +85,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_keywords_sorted_by_title_asc
-    audio_keywords.to_a.sort_by! { |ak| ak.audio.title_and_subtitle_for_display }
+    audio_keywords.to_a.sort_by! { |ak| ak.audio.title_for_display }
   end
 
   def audio_sorted
@@ -93,7 +93,7 @@ class Keyword < ApplicationRecord
   end
 
   def audio_sorted_by_title_asc
-    audio.to_a.sort_by! { |audio| audio.title_and_subtitle_for_display }
+    audio.to_a.sort_by! { |audio| audio.title_for_display }
   end
 
   def can_select
