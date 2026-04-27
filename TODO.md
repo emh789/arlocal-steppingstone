@@ -3,7 +3,9 @@
 
 ## HIGHEST priority
 
-- check aurlocal_settings error handling in admin_form
+- resource.save might need to have `redirect` instead of `render`
+
+- check arlocal_settings error handling in admin_form
 
 - counter cache for infopage articles, links, pictures
   - it's polymorphic, can be consolidated via infopage_items but not easily distinguished.
