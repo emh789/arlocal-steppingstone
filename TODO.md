@@ -2,6 +2,7 @@
 
 
 ## HIGHEST priority
+- JOIN resource title needs resource type, e.g., "Keyword Title" instead of simply "Title"
 
 - resource.save might need to have `redirect` instead of `render`
 
