@@ -1,5 +1,7 @@
 class PictureBuilder
 
+  include SourceImportedHelper
+  
   require 'exiftool'
 
   attr_reader :picture
@@ -292,7 +294,7 @@ class PictureBuilder
 
   def metadata_read_from_imported_file
     if @picture.source_imported_file_exists
-      @metadata = Exiftool.new(source_imported_full_path)
+      @metadata = Exiftool.new(source_imported_file_path(@picture.source_imported_file_path))
     else
       @picture.errors.add(:source_file, :not_found, message: 'Source file not found.')
     end

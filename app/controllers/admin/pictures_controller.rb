@@ -28,8 +28,7 @@ class Admin::PicturesController < AdminController
     end
     if @picture.save
       flash[:notice] = 'Picture successfully imported.'
-      # redirect_to edit_admin_picture_path(@picture.id_admin)
-      render 'edit'
+      redirect_to edit_admin_picture_path(@picture.id_admin)
     else
       flash[:errors] = @picture.errors.attribute_names
       flash[:notice] = 'Picture not imported.'
