@@ -11,7 +11,7 @@ class HomepageTarget
     {
       description: 'Albums – index',
       id: 'albums_index',
-      method: -> { Albums }
+      method: -> { Album }
     },
     {
       description: 'Info',
@@ -26,7 +26,7 @@ class HomepageTarget
     {
       description: 'Videos – index',
       id: 'videos_index',
-      method: -> { Videos }
+      method: -> { Video }
     }
   ]
 
