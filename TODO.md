@@ -2,6 +2,10 @@
 
 
 ## HIGHEST priority
+
+- Videos sort by keyword doesn't invoke Order
+- subsort either needs title sort or better datetime sort
+
 - JOIN resource title needs resource type, e.g., "Keyword Title" instead of simply "Title"
 
 - resource.save might need to have `redirect` instead of `render`
@@ -19,8 +23,6 @@
 - make autokeyword methods a concern/ included module
 
 - infopage is_published calls upon is_released, but do infopages have a Date_Released attribute?
-
-- compare header margins btw admin neutral publica
 
   - audio.published might not be finished. There is not yet an audio index, so this had been delayed.
     - .published is defined but check for full join support and implementation.
@@ -194,6 +196,8 @@ Video index needs headings
 
 
 ## Probably finished
+
+- compare header margins btw admin neutral publica
 
 - **Sorting:**
   - Time values (date_released, etc) needs a value instead of nil because `nil` does not compare with `Date`
