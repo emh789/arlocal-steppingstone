@@ -164,8 +164,8 @@ module AudioHelper
         end
       end
     when 'imported'
-      if File.exist?(source_imported_file_path(audio))
-        metadata = MediaInfo.from(source_imported_file_path(audio))
+      if File.exist?(source_imported_full_pathname(audio))
+        metadata = MediaInfo.from(source_imported_full_pathname(audio))
       end
     end
     if MediaInfo::Tracks === metadata

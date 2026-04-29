@@ -184,12 +184,12 @@ class Admin::AlbumsController < AdminController
   end
 
   def verify_nested_audio_file_exists
-    filename = helpers.source_imported_file_path(params_album_permitted['audio_attributes']['0']['source_imported_file_path'])
+    filename = helpers.source_imported_full_pathname(params_album_permitted['audio_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
 
   def verify_nested_picture_file_exists
-    filename = helpers.source_imported_file_path(params_album_permitted['pictures_attributes']['0']['source_imported_file_path'])
+    filename = helpers.source_imported_full_pathname(params_album_permitted['pictures_attributes']['0']['source_imported_file_path'])
     verify_file(filename)
   end
 

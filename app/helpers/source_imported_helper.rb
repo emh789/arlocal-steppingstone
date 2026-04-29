@@ -9,7 +9,7 @@ module SourceImportedHelper
     end
   end
 
-  def source_imported_file_path(relative_filename)
+  def source_imported_full_pathname(relative_filename)
     File.join(source_imported_dirname, relative_filename)
   end
 
