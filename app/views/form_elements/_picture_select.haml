@@ -4,9 +4,11 @@
 
 - if local_assigns[:attribute]
   %fieldset.arl_form_data_attr
+    = form.label attribute, 'Picture title', class: :arl_form_data_attr_label
     = form.select attribute, picture_options_for_select(selectable.pictures, form), { include_blank: false }, { class: [:arl_form_data_attr_input_select_picture, :arl_listening] }
     = picture_for_select_original_nil_tag(html_class: :arl_form_data_attr_thumbnail_image)
 - else
   %fieldset.arl_form_data_attr
+    = form.label :picture_id, 'Picture title', class: :arl_form_data_attr_label
     = form.select :picture_id, picture_options_for_select(selectable.pictures, form), { include_blank: false }, { class: [:arl_form_data_attr_input_select_picture, :arl_listening] }
     = picture_for_select_original_nil_tag(html_class: :arl_form_data_attr_thumbnail_image)

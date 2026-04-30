@@ -1,3 +1,6 @@
+.arl_admin_resource_joins_buttons
+  = keyword_video_admin_button_to_new_join_single(keyword)
+
 .arl_form_title
   = resource_joined_videos_count_statement(keyword)
 
@@ -20,9 +23,3 @@
         = "will detach any video with the #{icon_remove} box checked."
 
 = render 'form_elements/spacer'
-
-.arl_form_title
-  Add videos
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = keyword_video_admin_button_to_new_join_single(keyword)

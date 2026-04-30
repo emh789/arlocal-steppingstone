@@ -1,3 +1,6 @@
+.arl_admin_resource_joins_buttons
+  = picture_album_admin_button_to_new_join_single(picture)
+
 .arl_form_title
   = resource_joined_albums_count_statement(picture)
 
@@ -13,16 +16,8 @@
           = f.fields_for :album_pictures, picture.album_pictures_sorted do |ap|
             %tr.arl_form_data_joins_values
               %td.arl_form_data_joins_value= album_admin_link_title(ap.object.album)
-              %td.arl_form_data_joins_value= ap.check_box :_destroy, class: :arl_form_data_joins_value_destroy
+              %td.arl_form_data_joins_value= render 'form_elements/destroy_box', form: ap
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
       %aside.arl_form_action_explanation
         = "will detach any albums with the #{icon_remove} box checked."
-
-= render 'form_elements/spacer'
-
-.arl_form_title
-  Add to album
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = picture_album_admin_button_to_new_join_single(picture)

@@ -5,7 +5,7 @@
   = form_with model: [:admin, event], url: admin_event_path(event, pane: :keywords), local: true, class: :arl_form do |f|
     .arl_form_data
       = f.fields_for :event_keywords, event.event_keywords.build do |ek|
-        = render 'form_elements/collection_select', form: ek, attribute: :keyword_id, blank: true, collection: selectable.keywords, text_method: :title
+        = render 'form_elements/collection_select', form: ek, attribute: :keyword_id, blank: true, collection: selectable.keywords, label: 'Keyword', text_method: :title
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
 

@@ -12,7 +12,7 @@ class FormPictureMetadata
     },
     album_join_single: {
       navbar: nil,
-      form: 'form_album_join_single',
+      partial: 'form_album_join_single',
       selectable: { :@albums => proc { QueryAlbums.options_for_select_admin } }
     },
     albums: {

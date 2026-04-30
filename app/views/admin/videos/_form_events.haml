@@ -1,3 +1,6 @@
+.arl_admin_resource_joins_buttons
+  = video_event_admin_button_to_new_join_single(video)
+
 .arl_form_title
   = resource_joined_events_count_statement(video)
 
@@ -19,11 +22,3 @@
     .arl_form_actions
       = f.submit class: :arl_button_form_submit
       %aside.arl_form_action_explanation= "will also detach any events with '#{icon_destroy}' box checked"
-
-= render 'form_elements/spacer'
-
-.arl_form_title
-  Add event
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = video_event_admin_button_to_new_join_single(video)

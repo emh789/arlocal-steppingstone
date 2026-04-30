@@ -1,3 +1,8 @@
+.arl_admin_resource_joins_buttons
+  = video_picture_admin_button_to_new_join_single(video)
+  = video_picture_admin_button_to_new_import(video)
+  = video_picture_admin_button_to_new_upload(video)
+
 .arl_form_title
   = resource_joined_pictures_count_statement(video)
 
@@ -16,13 +21,3 @@
       = f.submit class: :arl_button_form_submit
       %aside.arl_form_action_explanation
         = "will also detatch any pictures with the #{icon_remove} box checked"
-
-= render 'form_elements/spacer'
-
-.arl_form_title
-  Add picture
-.arl_form_actions
-  .arl_admin_resource_alt_buttons
-    = video_picture_admin_button_to_new_join_single(video)
-    = video_picture_admin_button_to_new_import(video)
-    = video_picture_admin_button_to_new_upload(video)
