@@ -122,6 +122,9 @@ $light-narrow-foundation: linear-gradient(to right, #888, #333, #888);
   .arl_header {
     background-color: $light-bg;
   }
+  .arl_header_nav_select {
+    background-color: $light-button-bg;
+  }
   .arl_marquee {
     background-color: $light-marquee-bg;
     color: $light-marquee-fg;
