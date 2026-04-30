@@ -1,13 +1,11 @@
 = content_for :page_subtitle, 'audio'
-= content_for :page_subtitle_detail, @audio.title_and_subtitle_for_display
+= content_for :page_subtitle_detail, @audio.title_for_display
 
 .arl_admin_resource_header.resource_show
   .arl_admin_resource_header_category
     Audio
   .arl_admin_resource_header_title
     %span= @audio.title
-    - if @audio.does_have_subtitle
-      %span= "(#{@audio.subtitle})"
   .arl_admin_resource_header_nav
     = audio_admin_button_to_previous(@audio_neighbors.previous)
     = audio_admin_button_to_edit(@audio)

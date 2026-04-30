@@ -168,10 +168,6 @@ class Audio < ApplicationRecord
     keywords_count.to_i > 0
   end
 
-  def does_have_subtitle
-    subtitle.to_s.length > 0
-  end
-
   def does_not_have_source_uploaded
     self.source_uploaded.attached? == false
   end
@@ -497,16 +493,6 @@ class Audio < ApplicationRecord
   end
 
   ### title
-
-  ### TODO: Remove.
-  # def title_and_subtitle_for_display
-    # if subtitle && !subtitle.blank?
-    #   "#{title} (#{subtitle})"
-    # else
-    #   title_for_display
-    # end
-    # [title_for_display, "!!!"].join(' ')
-  # end
 
   def title_for_display
     case title
