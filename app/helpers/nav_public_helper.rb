@@ -10,13 +10,17 @@ module NavPublicHelper
 
   def nav_public_select(arlocal_settings)
     if arlocal_settings.public_layout_will_have_nav
-      case params[:action]
-      when 'index'
+      if params[:controller] == 'public/infopages'
         nav_public_select_indexes_only(arlocal_settings)
-      when 'show'
-        nav_public_select_current_and_indexes(arlocal_settings)
       else
-        nav_public_select_indexes_only(arlocal_settings)
+        case params[:action]
+        when 'index'
+          nav_public_select_indexes_only(arlocal_settings)
+        when 'show'
+          nav_public_select_current_and_indexes(arlocal_settings)
+        else
+          nav_public_select_indexes_only(arlocal_settings)
+        end
       end
     end
   end
