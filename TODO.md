@@ -4,9 +4,7 @@
 ## HIGHEST priority
 
 - Videos sort by keyword doesn't invoke Order
-- subsort either needs title sort or better datetime sort
-
-- JOIN resource title needs resource type, e.g., "Keyword Title" instead of simply "Title"
+- subsort either needs title sort or better datetime sort *this*
 
 - resource.save might need to have `redirect` instead of `render`
 
@@ -17,8 +15,6 @@
 - **drop counter_cache columns from infopage**
 
 - Does infopage correctly import/upload pictures?
-
-- evaluate nav_public behavior with infopages when show?id
 
 - make autokeyword methods a concern/ included module
 
@@ -319,3 +315,10 @@ Check where display_title and title_sortable overlap. They may be approaching th
 
   ``- addding link to infopage doesn't work
   PG::UndefinedTable: ERROR: missing FROM-clause entry for table "infopage_items" LINE 1: ...".* FROM "articles" WHERE "articles"."id" = 7 AND "infopage_... ^
+
+  - Infopage_item ordering doesn't work as intended
+
+  - JOIN resource title needs resource type, e.g., "Keyword Title" instead of simply "Title"
+
+  - Infopage title doesn't appear in nav select when a specific page is #shown but does for top-level /info #info-first
+  - evaluate nav_public behavior with infopages when show?id
