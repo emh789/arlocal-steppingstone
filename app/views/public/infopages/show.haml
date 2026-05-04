@@ -3,13 +3,13 @@
 .arl_infopage_show
   - if @infopage.does_have_items_group_top
     .arl_infopage_show_group_top
-      - @infopage.items_group_top.each do |item|
+      - @infopage.items_group_top_sorted.each do |item|
         = render 'show_infopage_item', item: item
   - if @infopage.does_have_items_group_bottom
     .arl_infopage_show_group_bottom
       .arl_infopage_show_group_left
-        - @infopage.items_group_left.each do |item|
+        - @infopage.items_group_left_sorted.each do |item|
           = render 'show_infopage_item', item: item
       .arl_infopage_show_group_right
-        - @infopage.items_group_right.each do |item|
+        - @infopage.items_group_right_sorted.each do |item|
           = render 'show_infopage_item', item: item

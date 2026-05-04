@@ -106,15 +106,15 @@ class Infopage < ApplicationRecord
   ### info_order
 
   def infopage_articles_sorted
-    infopage_articles
+    infopage_articles.sort_by { |i| i.infopage_group_order }
   end
 
   def infopage_links_sorted
-    infopage_links
+    infopage_links.sort_by { |i| i.infopage_group_order }
   end
 
   def infopage_pictures_sorted
-    infopage_pictures
+    infopage_pictures.sort_by { |i| i.infopage_group_order }
   end
 
   def infopage_items_sorted
@@ -139,7 +139,7 @@ class Infopage < ApplicationRecord
   end
 
   def items_group_left_sorted
-    items_group_left.sort_by! { |item| item.infopage_group_order }
+    items_group_left.sort_by { |item| item.infopage_group_order }
   end
 
   def items_group_right
@@ -147,7 +147,7 @@ class Infopage < ApplicationRecord
   end
 
   def items_group_right_sorted
-    items_group_right.sort_by! { |item| item.infopage_group_order }
+    items_group_right.sort_by { |item| item.infopage_group_order }
   end
 
   def items_group_top
@@ -155,7 +155,7 @@ class Infopage < ApplicationRecord
   end
 
   def items_group_top_sorted
-    items_group_top.sort_by! { |item| item.infopage_group_order }
+    items_group_top.sort_by { |item| item.infopage_group_order }
   end
 
   def links_count
@@ -167,7 +167,7 @@ class Infopage < ApplicationRecord
   end
 
   def links_sorted_by_title_asc
-    links.to_a.sort_by! { |link| link.title_sortable }
+    links.to_a.sort_by { |link| link.title_sortable }
   end
 
   def pictures_count
@@ -179,7 +179,7 @@ class Infopage < ApplicationRecord
   end
 
   def pictures_sorted_by_title_asc
-    pictures.to_a.sort_by! { |picture| picture.title_sortable }
+    pictures.to_a.sort_by { |picture| picture.title_sortable }
   end
 
   def should_generate_new_friendly_id?
